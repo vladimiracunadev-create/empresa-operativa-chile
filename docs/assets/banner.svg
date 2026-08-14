@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="Empresa Operativa Chile — crear, operar y controlar una empresa chilena">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="320" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0b0f16"/>
+      <stop offset="0.55" stop-color="#121b2c"/>
+      <stop offset="1" stop-color="#0e1a20"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="112" y2="112" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4f8cff"/>
+      <stop offset="1" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="rule" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4f8cff"/>
+      <stop offset="0.5" stop-color="#34d399"/>
+      <stop offset="1" stop-color="#4f8cff" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="glyph">
+      <rect width="112" height="112" fill="#000"/>
+      <rect x="31.4" y="21.3" width="49.3" height="11.2" rx="4.7" fill="#fff"/>
+      <rect x="32.5" y="31.4" width="47" height="56" rx="4.2" fill="#fff"/>
+      <rect x="38.6" y="38.6" width="9" height="9" rx="2.5" fill="#000"/>
+      <rect x="53.7" y="38.6" width="9" height="9" rx="2.5" fill="#000"/>
+      <rect x="38.6" y="53.7" width="9" height="9" rx="2.5" fill="#000"/>
+      <rect x="53.7" y="53.7" width="9" height="9" rx="2.5" fill="#000"/>
+      <rect x="50.3" y="72.8" width="11.3" height="14.6" rx="3.4" fill="#000"/>
+    </mask>
+  </defs>
+
+  <rect width="1200" height="320" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="3" fill="url(#rule)"/>
+
+  <!-- Marca -->
+  <g transform="translate(72, 56)">
+    <rect width="112" height="112" rx="25" fill="url(#brand)"/>
+    <g mask="url(#glyph)"><rect width="112" height="112" fill="#fff"/></g>
+  </g>
+
+  <!-- Título -->
+  <g font-family="Segoe UI, system-ui, -apple-system, Helvetica Neue, Arial, sans-serif">
+    <text x="220" y="98" fill="#e8edf5" font-size="46" font-weight="680" letter-spacing="-1">Empresa Operativa Chile</text>
+    <text x="220" y="136" fill="#9aa8bf" font-size="20">Crear, operar y controlar una empresa chilena a través del tiempo</text>
+
+    <!-- Puntos clave -->
+    <g fill="#6b7a94" font-size="16">
+      <text x="220" y="176">Contabilidad y tributación explicables · Reglas versionadas por año · Evidencia obligatoria</text>
+      <text x="220" y="202">Sin servidor · Sin cuentas · Sin telemetría · Los datos no salen del dispositivo</text>
+    </g>
+
+    <!-- Plataformas -->
+    <g transform="translate(220, 232)">
+      <g>
+        <rect width="132" height="34" rx="17" fill="rgba(79,140,255,0.16)" stroke="rgba(79,140,255,0.5)"/>
+        <text x="66" y="22" fill="#a8c6ff" font-size="14" font-weight="600" text-anchor="middle">Android · APK</text>
+      </g>
+      <g transform="translate(144, 0)">
+        <rect width="150" height="34" rx="17" fill="rgba(79,140,255,0.16)" stroke="rgba(79,140,255,0.5)"/>
+        <text x="75" y="22" fill="#a8c6ff" font-size="14" font-weight="600" text-anchor="middle">Windows · MSI/EXE</text>
+      </g>
+      <g transform="translate(306, 0)">
+        <rect width="148" height="34" rx="17" fill="rgba(52,211,153,0.16)" stroke="rgba(52,211,153,0.5)"/>
+        <text x="74" y="22" fill="#6ee7b7" font-size="14" font-weight="600" text-anchor="middle">Navegador · PWA</text>
+      </g>
+      <g transform="translate(466, 0)">
+        <rect width="126" height="34" rx="17" fill="rgba(240,168,60,0.16)" stroke="rgba(240,168,60,0.5)"/>
+        <text x="63" y="22" fill="#f6c17c" font-size="14" font-weight="600" text-anchor="middle">CLI · Node 20+</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Los dos entornos, a la derecha -->
+  <g transform="translate(880, 62)" font-family="Segoe UI, system-ui, sans-serif">
+    <g>
+      <rect width="250" height="88" rx="14" fill="rgba(240,168,60,0.1)" stroke="rgba(240,168,60,0.42)"/>
+      <circle cx="24" cy="30" r="5" fill="#f0a83c"/>
+      <text x="40" y="35" fill="#f0a83c" font-size="15" font-weight="700" letter-spacing="0.5">EMPRESA REAL</text>
+      <text x="24" y="62" fill="#9aa8bf" font-size="13">Tu contabilidad, con bitácora</text>
+      <text x="24" y="79" fill="#9aa8bf" font-size="13">de auditoría de cada cambio.</text>
+    </g>
+    <g transform="translate(0, 104)">
+      <rect width="250" height="88" rx="14" fill="rgba(52,211,153,0.1)" stroke="rgba(52,211,153,0.42)"/>
+      <circle cx="24" cy="30" r="5" fill="#34d399"/>
+      <text x="40" y="35" fill="#34d399" font-size="15" font-weight="700" letter-spacing="0.5">SANDBOX</text>
+      <text x="24" y="62" fill="#9aa8bf" font-size="13">Empresa ficticia para practicar.</text>
+      <text x="24" y="79" fill="#9aa8bf" font-size="13">Nunca toca la empresa real.</text>
+    </g>
+  </g>
+</svg>

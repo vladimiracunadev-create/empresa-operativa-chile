@@ -1,0 +1,67 @@
+name: 🐛 Error
+description: Algo no funciona como debería
+labels: [error]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Antes de continuar:** no pegues datos reales de tu empresa. Ni RUT de terceros, ni
+        folios, ni montos que identifiquen a alguien. Si el problema depende de datos concretos,
+        reprodúcelo en el entorno **SANDBOX** y cuenta eso.
+
+  - type: dropdown
+    id: plataforma
+    attributes:
+      label: ¿Dónde ocurre?
+      options:
+        - Navegador / PWA
+        - Android (APK)
+        - Windows (instalador)
+        - Windows (portable)
+        - CLI
+        - No lo sé
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Versión
+      description: Aparece bajo el nombre de la aplicación, arriba a la izquierda. Ej.: 1.0.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: que-pasa
+    attributes:
+      label: Qué pasa
+      description: Qué esperabas que ocurriera y qué ocurrió en su lugar.
+    validations:
+      required: true
+
+  - type: textarea
+    id: pasos
+    attributes:
+      label: Cómo reproducirlo
+      placeholder: |
+        1. Entrar en SANDBOX
+        2. Ir a Operaciones y registrar una venta de 100.000
+        3. Abrir Impuestos
+        4. El IVA aparece como…
+    validations:
+      required: true
+
+  - type: textarea
+    id: numeros
+    attributes:
+      label: Si es un cálculo que sale mal
+      description: |
+        Indica el resultado que da la app, el que esperabas y de dónde sacas el esperado
+        (propuesta del SII, cálculo a mano, otra fuente). Usa montos inventados si hace falta.
+
+  - type: textarea
+    id: consola
+    attributes:
+      label: Errores en la consola
+      description: En el navegador, F12 → Consola. Opcional.
+      render: text

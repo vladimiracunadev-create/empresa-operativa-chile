@@ -1,0 +1,51 @@
+name: 💡 Mejora
+description: Una idea para el producto
+labels: [mejora]
+body:
+  - type: textarea
+    id: problema
+    attributes:
+      label: Qué problema resuelve
+      description: |
+        Describe la situación real, no la solución. "Al cerrar el mes tengo que revisar a mano
+        cuáles facturas no tienen respaldo" es más útil que "añadir una columna de respaldo".
+    validations:
+      required: true
+
+  - type: textarea
+    id: propuesta
+    attributes:
+      label: Cómo lo imaginas
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área
+      options:
+        - Operaciones y registro
+        - Impuestos y F29
+        - Constitución de la empresa
+        - Obligaciones y vencimientos
+        - Cierre mensual
+        - Datos, respaldos y portabilidad
+        - Academia
+        - CLI
+        - Instaladores y distribución
+        - Otra
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: limites
+    attributes:
+      label: Compatible con los límites del proyecto
+      description: Estas cosas están fuera de alcance por diseño. Márcalas si tu idea las respeta.
+      options:
+        - label: No requiere que la app presente ni pague nada ante el SII automáticamente.
+          required: true
+        - label: No requiere enviar los datos del usuario a ningún servidor.
+          required: true
+        - label: No permite marcar algo como cumplido sin su evidencia.
+          required: true

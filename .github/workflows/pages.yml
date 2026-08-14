@@ -1,0 +1,55 @@
+name: Pages
+
+# Publica apps/web/dist en GitHub Pages. Es la misma aplicación que va en el APK
+# y en el instalador de Windows, así que la demo pública nunca queda desfasada
+# respecto de lo que la gente instala.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    name: Construir y publicar
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+
+      - run: node scripts/build-all.mjs
+
+      - name: Comprobar que se publica la app completa
+        run: |
+          set -euo pipefail
+          test "$(find apps/web/dist/views -name '*.js' | wc -l)" -ge 10
+          grep -q "Empresa Operativa Chile" apps/web/dist/index.html
+          # Pages sirve archivos estáticos: sin este marcador, Jekyll se comería
+          # cualquier ruta que empiece por guion bajo.
+          touch apps/web/dist/.nojekyll
+
+      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: apps/web/dist
+
+      - id: deploy
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

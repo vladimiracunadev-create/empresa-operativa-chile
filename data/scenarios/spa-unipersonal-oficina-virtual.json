@@ -1,0 +1,37 @@
+{
+  "profile": "SpA unipersonal de servicios tecnológicos, oficina virtual, sin trabajadores dependientes",
+  "period": "2026-08",
+  "previousVatCredit": 0,
+  "operations": [
+    {
+      "date": "2026-08-01",
+      "type": "capital_contribution",
+      "amount": 1000000,
+      "description": "Aporte inicial del accionista"
+    },
+    {
+      "date": "2026-08-05",
+      "type": "sale",
+      "amount": 800000,
+      "description": "Factura por desarrollo de software; monto neto"
+    },
+    {
+      "date": "2026-08-07",
+      "type": "expense",
+      "amount": 100000,
+      "description": "Servicio afecto relacionado al giro; monto neto"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "honorarium_paid",
+      "amount": 250000,
+      "description": "Profesional externo; bruto"
+    },
+    {
+      "date": "2026-08-20",
+      "type": "owner_withdrawal",
+      "amount": 150000,
+      "description": "Ejemplo didáctico de salida al accionista; revisar tratamiento tributario"
+    }
+  ]
+}

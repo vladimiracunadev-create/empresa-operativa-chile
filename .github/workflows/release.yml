@@ -1,0 +1,100 @@
+name: Release
+
+# Se dispara con una etiqueta `vX.Y.Z`. Reutiliza los workflows de Android y de
+# Windows en vez de duplicar sus pasos: lo que se publica en el release es
+# exactamente lo que esos workflows verificaron.
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  android:
+    uses: ./.github/workflows/android.yml
+
+  windows:
+    uses: ./.github/workflows/desktop.yml
+
+  publicar:
+    name: Publicar el release
+    needs: [android, windows]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          path: descargas
+
+      - name: Reunir los artefactos y calcular los hashes
+        run: |
+          set -euo pipefail
+          mkdir -p release
+          find descargas -type f ! -name '*.sha256' ! -name 'SHA256SUMS.txt' -exec cp {} release/ \;
+          ls -la release
+
+          # Un release sin la app de Android o sin el instalador de Windows es
+          # un release a medias: mejor fallar que publicarlo incompleto.
+          test -f release/EmpresaOperativaChile-android.apk
+          test -f release/EmpresaOperativaChile-windows.msi
+          test -f release/EmpresaOperativaChile-windows-setup.exe
+          test -f release/EmpresaOperativaChile-windows-portable.exe
+
+          cd release
+          sha256sum ./* > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+
+      - name: Redactar las notas del release
+        run: |
+          set -euo pipefail
+          VERSION="${GITHUB_REF_NAME#v}"
+          {
+            echo "## Empresa Operativa Chile ${VERSION}"
+            echo ""
+            echo "Aplicación local-first para **crear, operar y controlar una empresa chilena a través del tiempo**."
+            echo "La misma interfaz en las tres plataformas; los datos nunca salen del dispositivo."
+            echo ""
+            echo "### Descargas"
+            echo ""
+            echo "| Plataforma | Archivo | Notas |"
+            echo "| --- | --- | --- |"
+            echo "| 📱 Android | \`EmpresaOperativaChile-android.apk\` | Android 6+. Hay que permitir la instalación desde orígenes desconocidos. |"
+            echo "| 💻 Windows | \`EmpresaOperativaChile-windows-setup.exe\` | Instalador recomendado (NSIS). |"
+            echo "| 💻 Windows | \`EmpresaOperativaChile-windows.msi\` | Instalación desatendida o despliegue corporativo. |"
+            echo "| 💻 Windows | \`EmpresaOperativaChile-windows-portable.exe\` | Sin instalar: se ejecuta y ya. |"
+            echo "| 🌐 Navegador | [Abrir la app](https://vladimiracunadev-create.github.io/empresa-operativa-chile/) | Instalable como PWA, funciona sin conexión. |"
+            echo ""
+            echo "Verifica lo que descargues con \`SHA256SUMS.txt\`."
+            echo ""
+            echo "### Lo que estos artefactos SÍ tienen verificado"
+            echo ""
+            echo "- El APK se abre en CI y se cuentan las vistas, los módulos del motor y las reglas tributarias que lleva dentro."
+            echo "- El ejecutable de Windows arranca en CI y se comprueba que sigue vivo pasados 12 segundos."
+            echo "- La interfaz se verifica completa antes de sellarla dentro del binario."
+            echo ""
+            echo "### Advertencias honestas"
+            echo ""
+            echo "- Los binarios **no están firmados** con certificado de código: Windows SmartScreen y Android avisarán."
+            echo "- El APK es de **depuración** (firmado con la clave de debug): sirve para instalar y usar, no para Google Play."
+            echo "- Esta aplicación **no presenta ni paga nada ante el SII**. Calcula, controla y guarda evidencia; la presentación ocurre en los sistemas oficiales."
+            echo "- El borrador F29 es una **ayuda de control**, no una declaración. Concilia siempre con el RCV y con la propuesta oficial."
+            echo ""
+            echo "El detalle de los cambios está en [CHANGELOG.md](https://github.com/${GITHUB_REPOSITORY}/blob/main/CHANGELOG.md)."
+          } > notas.md
+          cat notas.md
+
+      - uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
+        with:
+          name: Empresa Operativa Chile ${{ github.ref_name }}
+          body_path: notas.md
+          files: release/*
+          draft: false
+          prerelease: false
+          fail_on_unmatched_files: true

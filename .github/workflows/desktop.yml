@@ -1,0 +1,141 @@
+name: Windows
+
+# Compila la aplicación de escritorio con Tauri 2. La interfaz embebida es la
+# misma apps/web/dist que se sirve en el navegador y viaja en el APK.
+#
+# Se publican tres formas de instalar porque resuelven situaciones distintas:
+#   .msi          → despliegue corporativo / instalación desatendida
+#   -setup.exe    → instalador NSIS, el camino normal para una persona
+#   portable .exe → sin instalar nada, para un pendrive o un equipo ajeno
+
+on:
+  workflow_dispatch:
+  workflow_call:
+    outputs:
+      artefacto:
+        description: Nombre del artefacto con los instaladores
+        value: EmpresaOperativaChile-windows
+
+permissions:
+  contents: read
+
+concurrency:
+  group: desktop-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows:
+    name: Instaladores de Windows
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+
+      - name: Rust estable
+        run: rustup toolchain install stable --profile minimal --no-self-update
+
+      - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2
+        with:
+          workspaces: apps/contador-desktop/src-tauri
+
+      - name: Construir la aplicación web
+        run: node scripts/build-all.mjs
+
+      - name: Comprobar que la interfaz está completa ANTES de empaquetarla
+        # Tauri embebe y comprime los recursos dentro del binario, así que
+        # después ya no se pueden contar leyendo el .exe. El momento de
+        # verificar que la app está entera es este, justo antes de sellarla.
+        shell: bash
+        run: |
+          set -euo pipefail
+          vistas=$(find apps/web/dist/views -name '*.js' | wc -l)
+          nucleo=$(find apps/web/dist/core -name '*.mjs' | wc -l)
+          echo "Vistas: $vistas · módulos del núcleo: $nucleo"
+          test "$vistas" -ge 10
+          test "$nucleo" -ge 6
+          grep -q "Empresa Operativa Chile" apps/web/dist/index.html
+          grep -q "f29Basic" apps/web/dist/core/accounting-engine/index.mjs
+
+      - name: Pruebas del backend Rust
+        working-directory: apps/contador-desktop/src-tauri
+        run: cargo test --release
+
+      - name: Compilar los instaladores
+        working-directory: apps/contador-desktop
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+
+      - name: Recoger los artefactos
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $bundle = 'apps/contador-desktop/src-tauri/target/release/bundle'
+          New-Item -ItemType Directory -Force -Path artefactos | Out-Null
+
+          $msi = Get-ChildItem "$bundle/msi/*.msi" -ErrorAction SilentlyContinue | Select-Object -First 1
+          $nsis = Get-ChildItem "$bundle/nsis/*-setup.exe" -ErrorAction SilentlyContinue | Select-Object -First 1
+          $portable = Get-ChildItem 'apps/contador-desktop/src-tauri/target/release/*.exe' |
+                      Where-Object { $_.Name -notlike '*setup*' } | Select-Object -First 1
+
+          if (-not $msi)      { throw 'No se generó el instalador MSI' }
+          if (-not $nsis)     { throw 'No se generó el instalador NSIS' }
+          if (-not $portable) { throw 'No se generó el ejecutable portable' }
+
+          Copy-Item $msi.FullName      'artefactos/EmpresaOperativaChile-windows.msi'
+          Copy-Item $nsis.FullName     'artefactos/EmpresaOperativaChile-windows-setup.exe'
+          Copy-Item $portable.FullName 'artefactos/EmpresaOperativaChile-windows-portable.exe'
+
+          # Un binario de Tauri con la interfaz dentro no baja de unos pocos MB.
+          # Si sale muy por debajo, algo no se empaquetó.
+          foreach ($f in Get-ChildItem artefactos) {
+            $mb = [math]::Round($f.Length / 1MB, 2)
+            Write-Host "$($f.Name) — $mb MB"
+            if ($f.Length -lt 1MB) { throw "$($f.Name) pesa $mb MB: sospechosamente vacío" }
+          }
+
+          Get-ChildItem artefactos | ForEach-Object {
+            "$((Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower())  $($_.Name)"
+          } | Out-File -Encoding utf8 artefactos/SHA256SUMS.txt
+          Get-Content artefactos/SHA256SUMS.txt
+
+      - name: Comprobar que el ejecutable arranca
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          # No se puede pedirle a una app de ventana que responda por HTTP, pero
+          # sí comprobar que el proceso levanta y sigue vivo: eso descarta los
+          # fallos de arranque por DLL o recursos ausentes.
+          $p = Start-Process -FilePath 'artefactos/EmpresaOperativaChile-windows-portable.exe' -PassThru
+          Start-Sleep -Seconds 12
+          if ($p.HasExited) { throw "La aplicación se cerró sola con código $($p.ExitCode)" }
+          Write-Host 'La aplicación arrancó y sigue en ejecución.'
+          Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: EmpresaOperativaChile-windows
+          path: artefactos/*
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Resumen
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "### 💻 Aplicación de Windows"
+            echo ""
+            echo "| Artefacto | Para qué |"
+            echo "| --- | --- |"
+            echo "| \`.msi\` | Instalación desatendida / despliegue corporativo |"
+            echo "| \`-setup.exe\` | Instalador NSIS, el camino normal |"
+            echo "| \`-portable.exe\` | Ejecutar sin instalar |"
+            echo ""
+            echo "Los instaladores **no están firmados con certificado de código**:"
+            echo "Windows SmartScreen mostrará un aviso la primera vez."
+          } >> "$GITHUB_STEP_SUMMARY"

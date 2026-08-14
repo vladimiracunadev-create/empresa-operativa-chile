@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Empresa Operativa Chile">
+  <defs>
+    <linearGradient id="brand" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4f8cff"/>
+      <stop offset="1" stop-color="#34d399"/>
+    </linearGradient>
+    <mask id="cut">
+      <rect width="512" height="512" fill="#000"/>
+      <rect x="143.4" y="97.3" width="225.3" height="51.2" rx="21.5" fill="#fff"/>
+      <rect x="148.5" y="143.4" width="215" height="256" rx="19.4" fill="#fff"/>
+      <rect x="176.4" y="176.6" width="40.9" height="40.9" rx="11.5" fill="#000"/>
+      <rect x="245.3" y="176.6" width="40.9" height="40.9" rx="11.5" fill="#000"/>
+      <rect x="176.4" y="245.6" width="40.9" height="40.9" rx="11.5" fill="#000"/>
+      <rect x="245.3" y="245.6" width="40.9" height="40.9" rx="11.5" fill="#000"/>
+      <rect x="230.1" y="332.8" width="51.6" height="66.6" rx="15.5" fill="#000"/>
+    </mask>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#brand)"/>
+  <g mask="url(#cut)"><rect width="512" height="512" fill="#fff"/></g>
+</svg>

@@ -1,0 +1,21 @@
+{
+  "name": "empresa-operativa-android",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Envoltorio Capacitor que empaqueta apps/web/dist como aplicación Android",
+  "scripts": {
+    "prepare:www": "node ../../scripts/build-web.mjs && node ./copiar-www.mjs",
+    "add": "cap add android",
+    "sync": "cap sync android",
+    "build:apk": "cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/app": "^7.0.0",
+    "@capacitor/browser": "^7.0.0",
+    "@capacitor/core": "^7.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.0.0"
+  }
+}

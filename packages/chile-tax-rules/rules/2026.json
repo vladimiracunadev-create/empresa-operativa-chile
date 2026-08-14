@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 2,
+  "country": "CL",
+  "commercialYear": 2026,
+  "lastVerified": "2026-08-09",
+  "profile": "SpA Pro Pyme General — línea base operativa y educativa",
+  "status": "baseline",
+  "iva": {
+    "generalRate": 0.19,
+    "source": "https://www.sii.cl/valores_y_fechas/iva/iva2026.htm",
+    "lastVerified": "2026-08-09",
+    "note": "Tasa general del IVA. No modela exenciones, proporcionalidad ni regímenes especiales."
+  },
+  "honorarios": {
+    "retentionRate": 0.1525,
+    "source": "https://www.sii.cl/preguntas_frecuentes/renta/001_002_5310.htm",
+    "lastVerified": "2026-08-09",
+    "note": "Retención sobre boletas de honorarios según la gradualidad de la Ley 21.133."
+  },
+  "ppmProPyme": {
+    "initialYearRate": 0.0025,
+    "upTo50000UfRate": 0.0025,
+    "above50000UfRate": 0.005,
+    "source": "https://www.sii.cl/destacados/modernizacion/regimenes_mt.html",
+    "lastVerified": "2026-08-09",
+    "note": "PPM del régimen Pro Pyme General. La tasa efectiva puede variar por recálculos y créditos."
+  },
+  "idpcProPyme": {
+    "rate": 0.125,
+    "source": "https://www.sii.cl/destacados/modernizacion/regimenes_mt.html",
+    "lastVerified": "2026-08-09",
+    "note": "Referencia para rentas del año comercial 2026; validar nuevamente antes de Operación Renta 2027."
+  },
+  "utm": {
+    "2026-08": 71649,
+    "source": "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm",
+    "lastVerified": "2026-08-09",
+    "note": "La UTM cambia todos los meses. Actualizar el mes correspondiente antes de calcular patentes o multas."
+  },
+  "municipalPatent": {
+    "minUtm": 1,
+    "maxUtm": 4000,
+    "minRate": 0.0025,
+    "maxRate": 0.005,
+    "source": "https://www.bcn.cl/leychile/navegar?idNorma=6942",
+    "lastVerified": "2026-08-09",
+    "note": "Rango legal. Cada municipalidad fija su tasa dentro del rango y puede exigir requisitos propios."
+  },
+  "f29": {
+    "generalDueDay": 12,
+    "internetPaidEligibleDueDay": 20,
+    "internetNoPaymentDueDay": 28,
+    "source": "https://www.sii.cl/preguntas_frecuentes/iva/001_030_1668.htm",
+    "lastVerified": "2026-08-09",
+    "note": "Si el vencimiento cae en día inhábil, el plazo se traslada según la regla vigente del SII."
+  },
+  "warnings": [
+    "El cálculo F29 es una simulación educativa básica y no reemplaza la propuesta oficial del SII.",
+    "La UTM debe actualizarse para el mes que corresponda.",
+    "Exenciones, proporcionalidad de IVA, activos fijos, importaciones y reglas especiales requieren módulos adicionales o revisión experta.",
+    "Ninguna tasa de este archivo debe tratarse como permanente: cada año comercial exige su propio archivo de reglas verificado contra la fuente oficial."
+  ]
+}

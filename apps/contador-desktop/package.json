@@ -1,0 +1,15 @@
+{
+  "name": "empresa-operativa-desktop",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Shell Tauri 2 que empaqueta apps/web/dist como aplicación de Windows",
+  "scripts": {
+    "tauri": "tauri",
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "build:windows": "tauri build"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.8.0"
+  }
+}

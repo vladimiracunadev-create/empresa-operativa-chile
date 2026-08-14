@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Empresa Operativa Chile</title>
+  <meta name="description" content="Aplicación local-first para crear, operar y controlar una empresa chilena: constitución, operaciones, IVA/PPM, borrador F29, obligaciones, cierre mensual, auditoría y respaldos. Sin servidor y sin cuentas.">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0b0f16">
+  <meta name="application-name" content="Empresa Operativa Chile">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./app.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Estado inicial: si los módulos ES fallan al cargar, esto es lo que queda a la vista. -->
+    <div style="display:grid;place-items:center;min-height:100vh;padding:24px;text-align:center">
+      <div>
+        <p style="font-size:1.05rem;color:#e8edf5">Cargando Empresa Operativa Chile…</p>
+        <noscript>
+          <p style="color:#f87171">Esta aplicación necesita JavaScript. Todo el cálculo ocurre en tu dispositivo: no hay servidor que pueda hacerlo por ti.</p>
+        </noscript>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

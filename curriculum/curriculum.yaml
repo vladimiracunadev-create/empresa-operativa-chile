@@ -1,0 +1,244 @@
+version: 1
+country: CL
+reference_date: 2026-08-09
+parts:
+  - id: "00"
+    title: "Mentalidad contable"
+    classes:
+      - id: C01
+        title: "Qué resuelve la contabilidad"
+        duration_minutes: 90
+      - id: C02
+        title: "Documentos, hechos y evidencia"
+        duration_minutes: 90
+      - id: C03
+        title: "Devengado vs percibido/pagado"
+        duration_minutes: 90
+      - id: C04
+        title: "Ciclo mensual y anual"
+        duration_minutes: 90
+  - id: "01"
+    title: "Formalización y perfil tributario"
+    classes:
+      - id: C05
+        title: "SpA unipersonal"
+        duration_minutes: 90
+      - id: C06
+        title: "RUT e inicio de actividades"
+        duration_minutes: 90
+      - id: C07
+        title: "Oficina virtual y domicilio"
+        duration_minutes: 90
+      - id: C08
+        title: "Régimen Pro Pyme"
+        duration_minutes: 90
+  - id: "02"
+    title: "Partida doble"
+    classes:
+      - id: C09
+        title: "Activo/pasivo/patrimonio"
+        duration_minutes: 90
+      - id: C10
+        title: "Debe y haber"
+        duration_minutes: 90
+      - id: C11
+        title: "Ingresos y gastos"
+        duration_minutes: 90
+      - id: C12
+        title: "Balance de comprobación"
+        duration_minutes: 90
+  - id: "03"
+    title: "Plan de cuentas y evidencia"
+    classes:
+      - id: C13
+        title: "Diseñar cuentas"
+        duration_minutes: 90
+      - id: C14
+        title: "Banco y caja"
+        duration_minutes: 90
+      - id: C15
+        title: "Clientes/proveedores"
+        duration_minutes: 90
+      - id: C16
+        title: "Trazabilidad documental"
+        duration_minutes: 90
+  - id: "04"
+    title: "Ventas y DTE"
+    classes:
+      - id: C17
+        title: "Factura electrónica"
+        duration_minutes: 90
+      - id: C18
+        title: "Base neta e IVA"
+        duration_minutes: 90
+      - id: C19
+        title: "Notas de crédito/débito"
+        duration_minutes: 90
+      - id: C20
+        title: "Cobranza y cuentas por cobrar"
+        duration_minutes: 90
+  - id: "05"
+    title: "Compras y gastos"
+    classes:
+      - id: C21
+        title: "Factura recibida"
+        duration_minutes: 90
+      - id: C22
+        title: "Crédito fiscal"
+        duration_minutes: 90
+      - id: C23
+        title: "Gasto del giro"
+        duration_minutes: 90
+      - id: C24
+        title: "Gasto rechazado/no deducible"
+        duration_minutes: 90
+  - id: "06"
+    title: "Registro de Compras y Ventas"
+    classes:
+      - id: C25
+        title: "RCV ventas"
+        duration_minutes: 90
+      - id: C26
+        title: "RCV compras"
+        duration_minutes: 90
+      - id: C27
+        title: "Caracterización"
+        duration_minutes: 90
+      - id: C28
+        title: "Conciliación RCV ↔ documentos"
+        duration_minutes: 90
+  - id: "07"
+    title: "F29 y PPM"
+    classes:
+      - id: C29
+        title: "Anatomía F29"
+        duration_minutes: 90
+      - id: C30
+        title: "IVA débito/crédito"
+        duration_minutes: 90
+      - id: C31
+        title: "PPM Pro Pyme"
+        duration_minutes: 90
+      - id: C32
+        title: "Plazos, pago y rectificación"
+        duration_minutes: 90
+  - id: "08"
+    title: "Honorarios"
+    classes:
+      - id: C33
+        title: "Boleta recibida"
+        duration_minutes: 90
+      - id: C34
+        title: "Retención 15,25% 2026"
+        duration_minutes: 90
+      - id: C35
+        title: "Pago y F29"
+        duration_minutes: 90
+      - id: C36
+        title: "Casos con/sin retención"
+        duration_minutes: 90
+  - id: "09"
+    title: "Tesorería"
+    classes:
+      - id: C37
+        title: "Cuenta bancaria empresa"
+        duration_minutes: 90
+      - id: C38
+        title: "Conciliación bancaria"
+        duration_minutes: 90
+      - id: C39
+        title: "Cuentas por pagar"
+        duration_minutes: 90
+      - id: C40
+        title: "Flujo de caja"
+        duration_minutes: 90
+  - id: "10"
+    title: "Accionista y patrimonio"
+    classes:
+      - id: C41
+        title: "Aporte de capital"
+        duration_minutes: 90
+      - id: C42
+        title: "Cuenta corriente accionista"
+        duration_minutes: 90
+      - id: C43
+        title: "Retiros y distribuciones"
+        duration_minutes: 90
+      - id: C44
+        title: "Separación empresa/persona"
+        duration_minutes: 90
+  - id: "11"
+    title: "Activos y cierre contable"
+    classes:
+      - id: C45
+        title: "Activo vs gasto"
+        duration_minutes: 90
+      - id: C46
+        title: "Depreciación conceptual"
+        duration_minutes: 90
+      - id: C47
+        title: "Provisiones y ajustes"
+        duration_minutes: 90
+      - id: C48
+        title: "Cierre de resultados"
+        duration_minutes: 90
+  - id: "12"
+    title: "Municipal y compliance"
+    classes:
+      - id: C49
+        title: "Patente municipal"
+        duration_minutes: 90
+      - id: C50
+        title: "UTM y actualizaciones"
+        duration_minutes: 90
+      - id: C51
+        title: "Contratos/oficina virtual"
+        duration_minutes: 90
+      - id: C52
+        title: "Matriz de obligaciones"
+        duration_minutes: 90
+  - id: "13"
+    title: "Cierre mensual"
+    classes:
+      - id: C53
+        title: "Checklist"
+        duration_minutes: 90
+      - id: C54
+        title: "Conciliaciones cruzadas"
+        duration_minutes: 90
+      - id: C55
+        title: "Control de errores"
+        duration_minutes: 90
+      - id: C56
+        title: "Carpeta de evidencia"
+        duration_minutes: 90
+  - id: "14"
+    title: "Renta anual"
+    classes:
+      - id: C57
+        title: "Base Pro Pyme"
+        duration_minutes: 90
+      - id: C58
+        title: "Registros empresariales"
+        duration_minutes: 90
+      - id: C59
+        title: "Declaraciones Juradas"
+        duration_minutes: 90
+      - id: C60
+        title: "F22 y revisión final"
+        duration_minutes: 90
+  - id: "15"
+    title: "Auditoría y automatización"
+    classes:
+      - id: C61
+        title: "Muestreo y pruebas"
+        duration_minutes: 90
+      - id: C62
+        title: "Alertas de inconsistencias"
+        duration_minutes: 90
+      - id: C63
+        title: "Reglas versionadas"
+        duration_minutes: 90
+      - id: C64
+        title: "Diseño de un contador virtual seguro"
+        duration_minutes: 90

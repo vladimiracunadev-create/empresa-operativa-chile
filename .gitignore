@@ -1,0 +1,32 @@
+# Dependencias
+node_modules/
+.pnpm-store/
+
+# Artefactos de build (se regeneran: node scripts/build-all.mjs)
+apps/web/dist/
+apps/android/www/
+apps/android/android/
+apps/contador-desktop/src-tauri/target/
+apps/contador-desktop/src-tauri/gen/
+dist/
+artefactos/
+
+# Datos operativos locales — NUNCA subir contabilidad real
+.local-data/
+private-data/
+real-company-data/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+empresa-operativa-real-*.json
+empresa-operativa-real-*.csv
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+coverage/
+.idea/
+.vscode/

@@ -1,0 +1,95 @@
+name: Seguridad
+
+# Dos capas, por razones distintas:
+#   CodeQL         → busca vulnerabilidades en el código que se ejecuta.
+#   Fuga de datos  → busca contabilidad REAL commiteada por accidente, que en
+#                    este proyecto es el riesgo más probable y el más caro.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Lunes 06:00 UTC: las alertas nuevas aparecen aunque el repo esté quieto.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: seguridad-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  codeql:
+    name: CodeQL
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      security-events: write
+      contents: read
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - uses: github/codeql-action/init@f3712979fa5f215279b101dd0a2e3bdfb4353324 # v3
+        with:
+          languages: javascript-typescript
+          queries: security-and-quality
+
+      - uses: github/codeql-action/analyze@f3712979fa5f215279b101dd0a2e3bdfb4353324 # v3
+        with:
+          category: /language:javascript-typescript
+
+  datos:
+    name: Sin datos reales en el repositorio
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - name: Buscar contabilidad real, credenciales y certificados
+        run: |
+          set -euo pipefail
+          fallos=0
+
+          # Un espacio de trabajo exportado desde EMPRESA REAL nunca debe entrar
+          # al repositorio: lleva RUT de terceros, montos y folios.
+          reales=$(grep -rl '"format": *"empresa-operativa-chile/backup"' \
+                   --include='*.json' . 2>/dev/null | grep -v node_modules || true)
+          if [ -n "$reales" ]; then
+            echo "Respaldos de espacios de trabajo commiteados:"; echo "$reales"; fallos=1
+          fi
+
+          # Claves privadas y certificados digitales del SII.
+          claves=$(git ls-files | grep -iE '\.(pfx|p12|pem|key|jks|keystore)$' || true)
+          if [ -n "$claves" ]; then
+            echo "Certificados o claves privadas commiteados:"; echo "$claves"; fallos=1
+          fi
+
+          # Directorios de datos locales que .gitignore debería estar cubriendo.
+          locales=$(git ls-files | grep -E '^(\.local-data|private-data|real-company-data)/' || true)
+          if [ -n "$locales" ]; then
+            echo "Datos locales commiteados:"; echo "$locales"; fallos=1
+          fi
+
+          if [ "$fallos" -ne 0 ]; then
+            echo ""
+            echo "Este repositorio es una app de contabilidad: subir datos reales"
+            echo "es el fallo que más daño hace y el más fácil de cometer."
+            exit 1
+          fi
+          echo "Sin datos reales, credenciales ni certificados en el repositorio."
+
+      - name: Las dependencias de producción siguen siendo cero
+        # El argumento del proyecto es que el motor no depende de nadie. Si eso
+        # deja de ser cierto, tiene que ser una decisión, no un descuido.
+        run: |
+          set -euo pipefail
+          deps=$(node -p "Object.keys(require('./package.json').dependencies ?? {}).length")
+          if [ "$deps" -ne 0 ]; then
+            echo "El paquete raíz declara $deps dependencia(s) de producción."
+            exit 1
+          fi
+          echo "Cero dependencias de producción en el motor y la CLI."

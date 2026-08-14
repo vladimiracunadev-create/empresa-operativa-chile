@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Permisos mínimos de la ventana principal. Sólo el núcleo de Tauri: la app no usa red, ni shell, ni sistema de archivos genérico. El acceso a disco pasa exclusivamente por los cuatro comandos declarados en lib.rs, que validan sus argumentos.",
+  "windows": ["main"],
+  "permissions": ["core:default"]
+}

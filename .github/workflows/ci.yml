@@ -1,0 +1,147 @@
+name: CI
+
+# Sin filtros `paths`: el check tiene que existir en TODOS los commits de main.
+# Con filtros, un commit que sólo toca documentación no ejecuta nada y la rama
+# queda sin estado — que no es lo mismo que estar en verde.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pruebas:
+    name: Pruebas · Node ${{ matrix.node }} · ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        # Windows entra en la matriz porque es la plataforma de escritorio del
+        # producto: si las rutas se rompen ahí, se rompe el instalador.
+        os: [ubuntu-latest, windows-latest]
+        node: ['20', '22']
+        exclude:
+          - os: windows-latest
+            node: '20'
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Las reglas embebidas están sincronizadas con los JSON
+        run: node scripts/build-rules.mjs --check
+
+      - name: Las tasas del año en curso son las esperadas
+        run: node scripts/validate-rules.mjs
+
+      - name: Build completo
+        run: node scripts/build-all.mjs
+
+      - name: El build es reproducible
+        # Un segundo build no puede cambiar nada. Si cambia, algo depende del
+        # reloj o del orden del sistema de archivos, y entonces el artefacto que
+        # se publica no es el que se probó.
+        shell: bash
+        run: |
+          set -euo pipefail
+          antes=$(cat apps/web/dist/build-info.json)
+          node scripts/build-all.mjs > /dev/null
+          despues=$(cat apps/web/dist/build-info.json)
+          if [ "$antes" != "$despues" ]; then
+            echo "El build no es reproducible:"
+            diff <(echo "$antes") <(echo "$despues") || true
+            exit 1
+          fi
+          echo "Build reproducible: $(node -p "require('./apps/web/dist/build-info.json').buildId")"
+
+      - name: Pruebas
+        run: node --test tests/*.test.mjs
+
+      - name: La CLI responde
+        shell: bash
+        run: |
+          set -euo pipefail
+          node apps/contador-cli/src/index.mjs venta --neto 100000 | grep -q '"iva": 19000'
+          node apps/contador-cli/src/index.mjs rut 76.000.000-0 | grep -q '"valid": true'
+          node apps/contador-cli/src/index.mjs f29 --ventas-netas 1000000 --compras-netas 300000 | grep -q '"vatPayable": 133000'
+          node apps/contador-cli/src/index.mjs vencimientos --periodo 2026-08 | grep -q '2026-09'
+
+  servidor:
+    name: El servidor local sirve la aplicación
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+
+      - run: node scripts/build-all.mjs
+
+      - name: Arranca, sirve la app y bloquea el path traversal
+        run: |
+          set -euo pipefail
+          node apps/empresa-operativa/server.mjs &
+          SERVER=$!
+          trap 'kill $SERVER 2>/dev/null || true' EXIT
+          for i in $(seq 1 20); do
+            curl -sf http://127.0.0.1:4180/ > /dev/null && break
+            sleep 0.5
+          done
+
+          curl -sf http://127.0.0.1:4180/ | grep -q "Empresa Operativa Chile"
+          curl -sf http://127.0.0.1:4180/app.js > /dev/null
+          curl -sf http://127.0.0.1:4180/core/accounting-engine/index.mjs | grep -q "f29Basic"
+          curl -sf http://127.0.0.1:4180/manifest.webmanifest > /dev/null
+
+          # El servidor sirve datos contables en la máquina de alguien: que un
+          # `..` escape del directorio no puede volver a pasar sin que CI lo vea.
+          for ruta in "/../../package.json" "/%2e%2e%2f%2e%2e%2fpackage.json" "/..%2f..%2fpackage.json"; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "http://127.0.0.1:4180${ruta}")
+            if [ "$code" = "200" ]; then
+              echo "FALLA: ${ruta} devolvió 200 — el servidor escapa de dist/"
+              exit 1
+            fi
+          done
+          echo "Servidor verificado."
+
+  workflows:
+    name: Los workflows son válidos
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - name: actionlint
+        run: |
+          set -euo pipefail
+          bash <(curl -sSf https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+          ./actionlint -color
+
+      - name: Todas las acciones están fijadas a un SHA
+        # Una etiqueta móvil (`@v4`) puede cambiar de contenido bajo los pies;
+        # un SHA no. Esto impide que se cuele una acción sin fijar.
+        run: |
+          set -euo pipefail
+          sin_pin=$(grep -rhoE '^\s*(- )?uses:\s*[^ ]+' .github/workflows/ \
+                    | grep -vE '@[0-9a-f]{40}' \
+                    | grep -vE 'uses:\s*\./' || true)
+          if [ -n "$sin_pin" ]; then
+            echo "Estas acciones no están fijadas a un SHA:"
+            echo "$sin_pin"
+            exit 1
+          fi
+          echo "Todas las acciones están fijadas."

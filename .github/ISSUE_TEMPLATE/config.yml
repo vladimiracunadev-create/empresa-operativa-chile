@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔒 Vulnerabilidad de seguridad
+    url: https://github.com/vladimiracunadev-create/empresa-operativa-chile/security/advisories/new
+    about: No abras una incidencia pública. Usa un aviso de seguridad privado.
+  - name: 💬 Preguntas de uso
+    url: https://github.com/vladimiracunadev-create/empresa-operativa-chile/discussions
+    about: Dudas sobre cómo usar la aplicación.
+  - name: 🏛️ Consultas tributarias
+    url: https://www.sii.cl/ayudas/asistencia/index.html
+    about: Este proyecto no da asesoría tributaria. Para dudas normativas, el SII.

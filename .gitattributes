@@ -1,0 +1,27 @@
+# Normalización de fin de línea.
+#
+# Los workflows ejecutan scripts de shell y `grep` sobre estos archivos en
+# Ubuntu: un CRLF que se cuele desde un checkout en Windows rompe el script con
+# un error que no menciona los saltos de línea por ninguna parte.
+* text=auto eol=lf
+
+# Binarios: nunca convertir.
+*.png binary
+*.ico binary
+*.apk binary
+*.msi binary
+*.exe binary
+*.pdf binary
+
+# Scripts de Windows: necesitan CRLF para que cmd.exe los interprete bien.
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# El módulo de reglas se genera: marcarlo evita ruido en las revisiones.
+packages/chile-tax-rules/rules.generated.mjs linguist-generated=true
+
+# El material del curso no debe dominar la estadística de lenguajes del repo.
+curriculum/** linguist-documentation=true
+labs/** linguist-documentation=true
+cases/** linguist-documentation=true
+docs/** linguist-documentation=true

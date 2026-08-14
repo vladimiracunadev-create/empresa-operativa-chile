@@ -1,0 +1,31 @@
+[package]
+name = "empresa_operativa_chile"
+version = "1.0.0"
+edition = "2021"
+rust-version = "1.77"
+description = "Empresa Operativa Chile — aplicación de escritorio"
+authors = ["Vladimir Acuña"]
+license = "MIT"
+
+[lib]
+name = "empresa_operativa_chile_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[dependencies]
+# Sin base de datos embebida: el estado vive en la WebView y aquí sólo se
+# refleja a JSON. Quitar `rusqlite` elimina la compilación de SQLite en C del
+# camino crítico del instalador y deja un único modelo de datos para las tres
+# plataformas.
+tauri = { version = "2", features = [] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
