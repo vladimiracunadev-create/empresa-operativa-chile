@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="1000" height="520" role="img" aria-label="Anatomía de la pantalla: marca y versión, selector de entorno, selector de período, tema, navegación lateral, franja de entorno y área de trabajo">
+  <style>
+    .t { font-family: "Segoe UI", system-ui, sans-serif; }
+    .lbl { font-size: 12.5px; fill: #e8edf5; font-weight: 620; }
+    .det { font-size: 11px; fill: #9aa8bf; }
+    .cal { font-size: 12px; font-weight: 700; fill: #0b0f16; }
+  </style>
+  <rect width="1000" height="520" rx="14" fill="#0f1521"/>
+
+  <!-- Maqueta de la app -->
+  <g transform="translate(30, 30)">
+    <rect width="640" height="440" rx="10" fill="#0b0f16" stroke="#33415c"/>
+
+    <!-- barra marca -->
+    <rect x="0" y="0" width="170" height="46" fill="#121826"/>
+    <rect x="12" y="11" width="24" height="24" rx="6" fill="#4f8cff"/>
+    <rect x="44" y="14" width="86" height="8" rx="4" fill="#e8edf5" opacity="0.85"/>
+    <rect x="44" y="27" width="60" height="6" rx="3" fill="#6b7a94"/>
+
+    <!-- topbar -->
+    <rect x="170" y="0" width="470" height="46" fill="#121826"/>
+    <rect x="186" y="12" width="76" height="22" rx="11" fill="#f0a83c" opacity="0.35"/>
+    <rect x="264" y="12" width="70" height="22" rx="11" fill="#34d399"/>
+    <rect x="500" y="12" width="94" height="22" rx="6" fill="#0e131d" stroke="#33415c"/>
+    <circle cx="614" cy="23" r="9" fill="#182131"/>
+
+    <!-- sidebar -->
+    <rect x="0" y="46" width="170" height="394" fill="#121826"/>
+    <rect x="14" y="60" width="46" height="7" rx="3" fill="#6b7a94"/>
+    <rect x="10" y="76" width="150" height="26" rx="7" fill="#1e3a5f"/>
+    <rect x="20" y="85" width="14" height="9" rx="2" fill="#a8c6ff"/>
+    <rect x="42" y="85" width="52" height="8" rx="4" fill="#a8c6ff"/>
+    <g fill="#33415c">
+      <rect x="20" y="115" width="14" height="9" rx="2"/><rect x="42" y="115" width="72" height="8" rx="4"/>
+      <rect x="20" y="143" width="14" height="9" rx="2"/><rect x="42" y="143" width="62" height="8" rx="4"/>
+      <rect x="20" y="171" width="14" height="9" rx="2"/><rect x="42" y="171" width="78" height="8" rx="4"/>
+      <rect x="20" y="199" width="14" height="9" rx="2"/><rect x="42" y="199" width="44" height="8" rx="4"/>
+    </g>
+    <rect x="14" y="226" width="52" height="7" rx="3" fill="#6b7a94"/>
+    <g fill="#33415c">
+      <rect x="20" y="246" width="14" height="9" rx="2"/><rect x="42" y="246" width="76" height="8" rx="4"/>
+      <rect x="20" y="274" width="14" height="9" rx="2"/><rect x="42" y="274" width="54" height="8" rx="4"/>
+    </g>
+
+    <!-- franja de entorno -->
+    <rect x="184" y="60" width="440" height="30" rx="8" fill="rgba(52,211,153,0.14)" stroke="rgba(52,211,153,0.5)"/>
+    <circle cx="200" cy="75" r="4" fill="#34d399"/>
+    <rect x="212" y="71" width="230" height="8" rx="4" fill="#34d399" opacity="0.75"/>
+
+    <!-- contenido -->
+    <rect x="184" y="104" width="200" height="14" rx="4" fill="#e8edf5" opacity="0.85"/>
+    <rect x="184" y="126" width="330" height="8" rx="4" fill="#33415c"/>
+
+    <g>
+      <rect x="184" y="152" width="104" height="66" rx="9" fill="#121826" stroke="#232e42"/>
+      <rect x="196" y="164" width="52" height="6" rx="3" fill="#6b7a94"/>
+      <rect x="196" y="180" width="66" height="14" rx="4" fill="#e8edf5" opacity="0.8"/>
+      <rect x="196" y="202" width="76" height="5" rx="2.5" fill="#33415c"/>
+    </g>
+    <g>
+      <rect x="296" y="152" width="104" height="66" rx="9" fill="#121826" stroke="#232e42"/>
+      <rect x="308" y="164" width="46" height="6" rx="3" fill="#6b7a94"/>
+      <rect x="308" y="180" width="60" height="14" rx="4" fill="#f0a83c" opacity="0.85"/>
+      <rect x="308" y="202" width="72" height="5" rx="2.5" fill="#33415c"/>
+    </g>
+    <g>
+      <rect x="408" y="152" width="104" height="66" rx="9" fill="#121826" stroke="#232e42"/>
+      <rect x="420" y="164" width="56" height="6" rx="3" fill="#6b7a94"/>
+      <rect x="420" y="180" width="54" height="14" rx="4" fill="#e8edf5" opacity="0.8"/>
+      <rect x="420" y="202" width="66" height="5" rx="2.5" fill="#33415c"/>
+    </g>
+    <g>
+      <rect x="520" y="152" width="104" height="66" rx="9" fill="#121826" stroke="#232e42"/>
+      <rect x="532" y="164" width="50" height="6" rx="3" fill="#6b7a94"/>
+      <rect x="532" y="180" width="62" height="14" rx="4" fill="#34d399" opacity="0.85"/>
+      <rect x="532" y="202" width="70" height="5" rx="2.5" fill="#33415c"/>
+    </g>
+
+    <rect x="184" y="234" width="440" height="190" rx="9" fill="#121826" stroke="#232e42"/>
+    <rect x="200" y="252" width="120" height="10" rx="5" fill="#e8edf5" opacity="0.75"/>
+    <g fill="#232e42">
+      <rect x="200" y="280" width="408" height="1.5"/>
+      <rect x="200" y="308" width="408" height="1.5"/>
+      <rect x="200" y="336" width="408" height="1.5"/>
+      <rect x="200" y="364" width="408" height="1.5"/>
+    </g>
+    <g fill="#33415c">
+      <rect x="200" y="290" width="90" height="7" rx="3.5"/><rect x="330" y="290" width="60" height="7" rx="3.5"/><rect x="530" y="290" width="70" height="7" rx="3.5"/>
+      <rect x="200" y="318" width="110" height="7" rx="3.5"/><rect x="330" y="318" width="52" height="7" rx="3.5"/><rect x="540" y="318" width="60" height="7" rx="3.5"/>
+      <rect x="200" y="346" width="76" height="7" rx="3.5"/><rect x="330" y="346" width="68" height="7" rx="3.5"/><rect x="524" y="346" width="76" height="7" rx="3.5"/>
+    </g>
+  </g>
+
+  <!-- Llamadas -->
+  <g class="t">
+    <g><circle cx="60" cy="53" r="11" fill="#4f8cff"/><text class="cal" x="60" y="57" text-anchor="middle">1</text></g>
+    <g><circle cx="255" cy="53" r="11" fill="#4f8cff"/><text class="cal" x="255" y="57" text-anchor="middle">2</text></g>
+    <g><circle cx="577" cy="53" r="11" fill="#4f8cff"/><text class="cal" x="577" y="57" text-anchor="middle">3</text></g>
+    <g><circle cx="644" cy="53" r="11" fill="#4f8cff"/><text class="cal" x="644" y="57" text-anchor="middle">4</text></g>
+    <g><circle cx="60" cy="136" r="11" fill="#4f8cff"/><text class="cal" x="60" y="140" text-anchor="middle">5</text></g>
+    <g><circle cx="228" cy="105" r="11" fill="#4f8cff"/><text class="cal" x="228" y="109" text-anchor="middle">6</text></g>
+    <g><circle cx="380" cy="215" r="11" fill="#4f8cff"/><text class="cal" x="380" y="219" text-anchor="middle">7</text></g>
+  </g>
+
+  <!-- Leyenda -->
+  <g class="t" transform="translate(700, 40)">
+    <g transform="translate(0, 0)"><circle cx="10" cy="10" r="10" fill="#4f8cff"/><text class="cal" x="10" y="14" text-anchor="middle">1</text>
+      <text class="lbl" x="28" y="9">Marca y versión</text><text class="det" x="28" y="25">Dice en qué plataforma estás</text></g>
+    <g transform="translate(0, 56)"><circle cx="10" cy="10" r="10" fill="#4f8cff"/><text class="cal" x="10" y="14" text-anchor="middle">2</text>
+      <text class="lbl" x="28" y="9">Selector de entorno</text><text class="det" x="28" y="25">EMPRESA REAL o SANDBOX</text></g>
+    <g transform="translate(0, 112)"><circle cx="10" cy="10" r="10" fill="#4f8cff"/><text class="cal" x="10" y="14" text-anchor="middle">3</text>
+      <text class="lbl" x="28" y="9">Período de trabajo</text><text class="det" x="28" y="25">Todo lo que ves es de ese mes</text></g>
+    <g transform="translate(0, 168)"><circle cx="10" cy="10" r="10" fill="#4f8cff"/><text class="cal" x="10" y="14" text-anchor="middle">4</text>
+      <text class="lbl" x="28" y="9">Tema claro u oscuro</text><text class="det" x="28" y="25">Se recuerda entre sesiones</text></g>
+    <g transform="translate(0, 224)"><circle cx="10" cy="10" r="10" fill="#4f8cff"/><text class="cal" x="10" y="14" text-anchor="middle">5</text>
+      <text class="lbl" x="28" y="9">Navegación</text><text class="det" x="28" y="25">En el teléfono pasa abajo</text></g>
+    <g transform="translate(0, 280)"><circle cx="10" cy="10" r="10" fill="#4f8cff"/><text class="cal" x="10" y="14" text-anchor="middle">6</text>
+      <text class="lbl" x="28" y="9">Franja de entorno</text><text class="det" x="28" y="25">Ámbar = real · verde = sandbox</text></g>
+    <g transform="translate(0, 336)"><circle cx="10" cy="10" r="10" fill="#4f8cff"/><text class="cal" x="10" y="14" text-anchor="middle">7</text>
+      <text class="lbl" x="28" y="9">Área de trabajo</text><text class="det" x="28" y="25">Indicadores, tarjetas y tablas</text></g>
+  </g>
+</svg>

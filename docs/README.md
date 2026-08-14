@@ -1,4 +1,16 @@
-# Documentación
+# 📚 Documentación
+
+<div align="center">
+
+[![Manual](https://img.shields.io/badge/📘_manual-17_capítulos-e8590c?style=for-the-badge)](MANUAL.md)
+[![PDF](https://img.shields.io/badge/📕_PDF-28_páginas-b45309?style=for-the-badge)](MANUAL.pdf)
+[![Fuentes](https://img.shields.io/badge/fuentes-oficiales_2026-2e8b57?style=for-the-badge)](SOURCES-2026.md)
+
+[🏠 Inicio](../README.md) · [📘 Manual](MANUAL.md) · [🏗️ Arquitectura](ARCHITECTURE.md) · [🗺️ Roadmap](ROADMAP.md)
+
+</div>
+
+---
 
 ## Para usar la aplicación
 

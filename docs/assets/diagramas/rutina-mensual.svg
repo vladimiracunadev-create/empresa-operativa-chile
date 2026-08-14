@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" width="1000" height="470" role="img" aria-label="Rutina mensual: durante el mes registrar y respaldar; al cerrar el mes conciliar, revisar impuestos, presentar, guardar comprobante, cerrar y respaldar">
+  <style>
+    .t { font-family: "Segoe UI", system-ui, sans-serif; }
+    .paso { font-size: 14px; font-weight: 620; fill: #e8edf5; }
+    .det { font-size: 11.5px; fill: #9aa8bf; }
+    .fase { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; }
+    .num { font-size: 12px; font-weight: 700; }
+  </style>
+  <rect width="1000" height="470" rx="14" fill="#0f1521"/>
+
+  <!-- Fase 1 -->
+  <text class="t fase" x="40" y="42" fill="#4f8cff">DURANTE EL MES · cada vez que pasa algo</text>
+  <rect x="30" y="56" width="940" height="96" rx="12" fill="rgba(79,140,255,0.08)" stroke="rgba(79,140,255,0.35)"/>
+  <g class="t">
+    <g transform="translate(58, 80)">
+      <rect width="270" height="52" rx="9" fill="#182131" stroke="#33415c"/>
+      <circle cx="26" cy="26" r="12" fill="#4f8cff"/><text class="num" x="26" y="30" fill="#fff" text-anchor="middle">1</text>
+      <text class="paso" x="48" y="23">Registrar la operación</text>
+      <text class="det" x="48" y="40">Venta, compra, gasto, honorario o retiro</text>
+    </g>
+    <g transform="translate(365, 80)">
+      <rect width="270" height="52" rx="9" fill="#182131" stroke="#33415c"/>
+      <circle cx="26" cy="26" r="12" fill="#4f8cff"/><text class="num" x="26" y="30" fill="#fff" text-anchor="middle">2</text>
+      <text class="paso" x="48" y="23">Anotar su documento</text>
+      <text class="det" x="48" y="40">Tipo y folio: sin esto queda «sin respaldo»</text>
+    </g>
+    <g transform="translate(672, 80)">
+      <rect width="270" height="52" rx="9" fill="#182131" stroke="#33415c"/>
+      <circle cx="26" cy="26" r="12" fill="#4f8cff"/><text class="num" x="26" y="30" fill="#fff" text-anchor="middle">3</text>
+      <text class="paso" x="48" y="23">Marcar el IVA</text>
+      <text class="det" x="48" y="40">¿Da derecho a crédito? ¿Es deducible?</text>
+    </g>
+  </g>
+
+  <!-- Fase 2 -->
+  <text class="t fase" x="40" y="192" fill="#f0a83c">AL CERRAR EL MES · una vez, con calma</text>
+  <rect x="30" y="206" width="940" height="164" rx="12" fill="rgba(240,168,60,0.07)" stroke="rgba(240,168,60,0.35)"/>
+  <g class="t">
+    <g transform="translate(58, 230)">
+      <rect width="270" height="52" rx="9" fill="#182131" stroke="#33415c"/>
+      <circle cx="26" cy="26" r="12" fill="#f0a83c"/><text class="num" x="26" y="30" fill="#1b1206" text-anchor="middle">4</text>
+      <text class="paso" x="48" y="23">Conciliar con el RCV</text>
+      <text class="det" x="48" y="40">Lo del SII contra lo tuyo</text>
+    </g>
+    <g transform="translate(365, 230)">
+      <rect width="270" height="52" rx="9" fill="#182131" stroke="#33415c"/>
+      <circle cx="26" cy="26" r="12" fill="#f0a83c"/><text class="num" x="26" y="30" fill="#1b1206" text-anchor="middle">5</text>
+      <text class="paso" x="48" y="23">Revisar el borrador F29</text>
+      <text class="det" x="48" y="40">Compararlo con la propuesta oficial</text>
+    </g>
+    <g transform="translate(672, 230)">
+      <rect width="270" height="52" rx="9" fill="#182131" stroke="#33415c"/>
+      <circle cx="26" cy="26" r="12" fill="#f0a83c"/><text class="num" x="26" y="30" fill="#1b1206" text-anchor="middle">6</text>
+      <text class="paso" x="48" y="23">Presentar en el SII</text>
+      <text class="det" x="48" y="40">Fuera de la app, en el portal oficial</text>
+    </g>
+    <g transform="translate(58, 300)">
+      <rect width="270" height="52" rx="9" fill="#182131" stroke="#33415c"/>
+      <circle cx="26" cy="26" r="12" fill="#f0a83c"/><text class="num" x="26" y="30" fill="#1b1206" text-anchor="middle">7</text>
+      <text class="paso" x="48" y="23">Guardar el comprobante</text>
+      <text class="det" x="48" y="40">Recién ahí la obligación queda cumplida</text>
+    </g>
+    <g transform="translate(365, 300)">
+      <rect width="270" height="52" rx="9" fill="#182131" stroke="#33415c"/>
+      <circle cx="26" cy="26" r="12" fill="#f0a83c"/><text class="num" x="26" y="30" fill="#1b1206" text-anchor="middle">8</text>
+      <text class="paso" x="48" y="23">Cerrar el período</text>
+      <text class="det" x="48" y="40">El mes queda congelado</text>
+    </g>
+    <g transform="translate(672, 300)">
+      <rect width="270" height="52" rx="9" fill="#123f31" stroke="#34d399"/>
+      <circle cx="26" cy="26" r="12" fill="#34d399"/><text class="num" x="26" y="30" fill="#04241a" text-anchor="middle">9</text>
+      <text class="paso" x="48" y="23">Exportar el respaldo</text>
+      <text class="det" x="48" y="40">Y sacarlo del dispositivo</text>
+    </g>
+  </g>
+
+  <g transform="translate(30, 396)">
+    <rect width="940" height="48" rx="10" fill="rgba(248,113,113,0.09)" stroke="rgba(248,113,113,0.4)"/>
+    <text class="t" x="24" y="30" font-size="18" fill="#f87171">!</text>
+    <text class="t det" x="46" y="29" font-size="12.5">
+      Los pasos 6 y 7 ocurren fuera de esta aplicación. No hay integración con el SII: la app calcula, controla y guarda evidencia.
+    </text>
+  </g>
+</svg>

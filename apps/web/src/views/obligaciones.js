@@ -69,7 +69,7 @@ export default {
             <button class="btn btn--primary" data-add>+ Nueva obligación</button>
           </div>
         </div>
-        <div class="tablewrap">
+        <div class="tablewrap tablewrap--wide">
           <table>
             <thead><tr><th>Tipo</th><th>Período</th><th>Vence</th><th>Estado</th><th>Comprobante</th><th></th></tr></thead>
             <tbody>

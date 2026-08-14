@@ -59,7 +59,7 @@ export default {
         </div>
         <label class="field"><span class="field__label">Buscar en la bitácora</span>
           <input type="search" data-q value="${filters.query}" placeholder="Ej.: eliminada, cerrado, respaldo"></label>
-        <div class="tablewrap">
+        <div class="tablewrap tablewrap--wide">
           <table>
             <thead><tr><th>Cuándo</th><th>Qué pasó</th><th>Detalle</th></tr></thead>
             <tbody>

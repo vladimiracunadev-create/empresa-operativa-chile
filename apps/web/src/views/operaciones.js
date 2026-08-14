@@ -152,7 +152,7 @@ export default {
             <input type="search" data-filter-q value="${filters.query}" placeholder="Descripción, folio o RUT"></label>
         </div>
 
-        <div class="tablewrap">
+        <div class="tablewrap tablewrap--wide">
           <table>
             <thead>
               <tr><th>Fecha</th><th>Tipo</th><th>Descripción</th><th>Documento</th>

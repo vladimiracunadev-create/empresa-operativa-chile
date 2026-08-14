@@ -415,7 +415,14 @@ textarea { min-height: 74px; resize: vertical; }
 /* -------------------------------------------------------------- tablas --- */
 
 .tablewrap { overflow-x: auto; margin: 0 -18px; padding: 0 18px; }
-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 520px; }
+
+/* Sin `min-width` por defecto.
+   Una tabla de dos columnas (concepto / monto) dentro de una tarjeta estrecha
+   con min-width se desborda y el desplazamiento horizontal esconde justo la
+   columna que importa: la de las cifras. Sólo las tablas de muchas columnas
+   piden un ancho mínimo, y lo hacen marcándose como `--wide`. */
+table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+.tablewrap--wide table { min-width: 560px; }
 th {
   text-align: left;
   font-size: 0.72rem;

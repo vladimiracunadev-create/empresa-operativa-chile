@@ -1,9 +1,21 @@
-# Contribuir
+# 🤝 Contribuir
+
+<div align="center">
+
+[![Pruebas](https://img.shields.io/badge/pruebas-50_verdes-2e8b57?style=for-the-badge)](tests/)
+[![Dependencias](https://img.shields.io/badge/dependencias-0-2f81f7?style=for-the-badge)](package.json)
+[![Reglas](https://img.shields.io/badge/toda_tasa-con_fuente_oficial-8957e5?style=for-the-badge)](docs/SOURCES-2026.md)
+
+[🏠 Inicio](README.md) · [🏗️ Arquitectura](docs/ARCHITECTURE.md) · [🔐 Seguridad](SECURITY.md) · [📜 Código de conducta](CODE_OF_CONDUCT.md)
+
+</div>
+
+---
 
 Gracias por el interés. Este proyecto calcula impuestos de empresas reales, así que las reglas
 son un poco más estrictas de lo habitual — y todas tienen un motivo concreto.
 
-## Antes de nada
+## 🚀 Antes de nada
 
 ```bash
 npm run check    # sincronía de reglas + validación + 50 pruebas
@@ -13,7 +25,7 @@ npm run build    # deja apps/web/dist listo
 No hace falta `npm install` para trabajar en el motor, la web ni la CLI: no hay dependencias
 de producción, y CI falla si aparece alguna.
 
-## Cambiar una regla tributaria
+## 🏛️ Cambiar una regla tributaria
 
 Es el cambio más delicado del repositorio. Una tasa equivocada no rompe nada visiblemente:
 produce números plausibles que aparecen meses después como una diferencia con el SII.
@@ -39,7 +51,7 @@ obtener lo que se declaró entonces, no lo que se declararía hoy.
 `loadRules(2027)` sin `rules/2027.json` **debe fallar**. Devolver silenciosamente las reglas de
 2026 sería el peor error posible de este sistema.
 
-## Añadir un año
+## 📅 Añadir un año
 
 ```bash
 cp packages/chile-tax-rules/rules/2026.json packages/chile-tax-rules/rules/2027.json
@@ -51,7 +63,7 @@ npm test
 Las pruebas de `tests/rules.test.mjs` exigen que **toda** regla numérica del año nuevo declare
 fuente y fecha de verificación. Si falta una, el año no entra.
 
-## Tocar el motor operativo
+## ⚙️ Tocar el motor operativo
 
 `packages/company-operations/workspace.mjs` corre en el navegador, en Android y en Windows.
 
@@ -61,7 +73,7 @@ fuente y fecha de verificación. Si falta una, el año no entra.
 - Lo que necesite disco va en `node-store.mjs` o `index.mjs`, que sólo carga Node.
 - Toda mutación tiene que dejar una línea en la bitácora (`this.audit(...)`).
 
-## Tocar la interfaz
+## 🎨 Tocar la interfaz
 
 - Una vista por archivo en `apps/web/src/views/`, exportando
   `{ id, label, title, icon, render() }` y opcionalmente `mount(root, rerender)` y `badge()`.
@@ -71,7 +83,7 @@ fuente y fecha de verificación. Si falta una, el año no entra.
 - Sin dependencias externas ni recursos remotos: la CSP los bloquea y el APK debe funcionar
   sin conexión.
 
-## Reglas de integridad que no se negocian
+## 🔐 Reglas de integridad que no se negocian
 
 Si una propuesta relaja alguna de estas, la respuesta será que no, aunque el código esté bien:
 
@@ -81,7 +93,7 @@ Si una propuesta relaja alguna de estas, la respuesta será que no, aunque el c�
 - la bitácora **no** expone ninguna operación de borrado o edición;
 - el sandbox **nunca** escribe en la empresa real.
 
-## Pruebas
+## 🧪 Pruebas
 
 Runner nativo de Node, sin framework:
 
@@ -96,7 +108,7 @@ test('un período cerrado es inmutable en las dos direcciones', ...)   // sí
 test('closePeriod pushea a closed-periods.json', ...)                 // no
 ```
 
-## Datos
+## 🚫 Datos
 
 **Nunca** subas al repositorio contabilidad real, respaldos exportados de EMPRESA REAL,
 certificados digitales, claves privadas ni cartolas. El workflow de seguridad los busca en cada
@@ -104,13 +116,13 @@ push, pero el filtro de verdad eres tú. Para datos de prueba está `data/scenar
 
 Ver [`SECURITY.md`](SECURITY.md).
 
-## Estilo
+## ✍️ Estilo
 
 - Español en el código de usuario, los mensajes de error y la documentación.
 - Comentarios que expliquen **por qué**, no qué. El qué ya está en el código.
 - Mensajes de error escritos para una persona que no programó esto.
 
-## Pull requests
+## 📬 Pull requests
 
 Explica qué problema resuelve y cómo lo comprobaste. Si toca una tasa, incluye el enlace a la
 fuente oficial en la descripción. CI debe quedar en verde antes de la revisión.

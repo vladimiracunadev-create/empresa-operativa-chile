@@ -1,4 +1,15 @@
-# Roadmap
+# 🗺️ Roadmap
+
+<div align="center">
+
+[![Actual](https://img.shields.io/badge/actual-v1.0.0-e8590c?style=for-the-badge)](../CHANGELOG.md)
+[![Siguiente](https://img.shields.io/badge/siguiente-v1.1_·_importador_RCV-2f81f7?style=for-the-badge)](#-v11--lo-que-más-falta)
+
+[🏠 Inicio](../README.md) · [📓 Changelog](../CHANGELOG.md) · [🏗️ Arquitectura](ARCHITECTURE.md)
+
+</div>
+
+---
 
 Estado a **2026-08-14**, versión 1.0.0.
 
@@ -29,7 +40,7 @@ Ordenado por lo que hoy obliga a trabajo manual:
 5. **Feriados legales** en el cálculo de vencimientos.
 6. **Recordatorios de vencimiento** en Android.
 
-## v1.2 — contabilidad más completa
+## 📗 v1.2 — contabilidad más completa
 
 - Plan de cuentas configurable y libro mayor.
 - Balance y estado de resultados educativos.
@@ -37,14 +48,14 @@ Ordenado por lo que hoy obliga a trabajo manual:
 - Más códigos del F29 y proporcionalidad de IVA.
 - Multi-empresa dentro del mismo entorno real.
 
-## v1.3 — cierre anual
+## 📘 v1.3 — cierre anual
 
 - Declaraciones juradas según perfil.
 - Asistente de F22 / Operación Renta.
 - Expediente anual con toda la evidencia del ejercicio.
 - Exportaciones y servicios prestados al exterior.
 
-## v2.0 — endurecimiento
+## 🛡️ v2.0 — endurecimiento
 
 - **Firma de código** de los instaladores de Windows (hoy SmartScreen avisa).
 - **APK firmado para release** y publicación en Google Play.
@@ -53,14 +64,14 @@ Ordenado por lo que hoy obliga a trabajo manual:
 - Actualizador firmado.
 - Recuperación asistida ante corrupción de datos.
 
-## v2.x — asistencia normativa
+## 🤖 v2.x — asistencia normativa
 
 - Actualización de reglas asistida: diff contra la fuente oficial y aprobación humana explícita.
 - Pruebas de regresión por año tributario.
 - Agente local que responda usando **únicamente** reglas versionadas y fuentes citadas, capaz de
   decir "esto excede lo que sé" en lugar de improvisar.
 
-## Reglas que ninguna versión romperá
+## ⛔ Reglas que ninguna versión romperá
 
 Estas no son funcionalidades pendientes: son límites del producto.
 

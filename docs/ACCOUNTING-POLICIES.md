@@ -1,4 +1,4 @@
-# Políticas contables educativas del caso guía
+# 📗 Políticas contables educativas del caso guía
 
 1. Moneda funcional: CLP.
 2. Empresa y propietario se tratan como entidades separadas.

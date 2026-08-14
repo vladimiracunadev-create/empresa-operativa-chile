@@ -121,14 +121,20 @@ function renderView(keepScroll = false) {
   view.mount?.(main, () => render(true));
 
   main.querySelectorAll('[data-go]').forEach(btn =>
-    btn.addEventListener('click', () => {
-      state.view = btn.dataset.go;
-      render();
-    })
+    btn.addEventListener('click', () => goTo(btn.dataset.go))
   );
 
   document.title = `${view.title} · Empresa Operativa Chile`;
   globalThis.scrollTo({ top: scroll });
+}
+
+/** Cambia de vista y refleja el cambio en la URL, para poder enlazarla. */
+function goTo(view) {
+  state.view = view;
+  if (location.hash.replace('#', '') !== view) {
+    history.replaceState(null, '', `#${view}`);
+  }
+  render();
 }
 
 /** Redibuja el shell completo (para que las insignias de navegación se actualicen). */
@@ -137,10 +143,7 @@ export function render(keepScroll = false) {
   app.innerHTML = shell();
 
   app.querySelectorAll('[data-view]').forEach(btn =>
-    btn.addEventListener('click', () => {
-      state.view = btn.dataset.view;
-      render();
-    })
+    btn.addEventListener('click', () => goTo(btn.dataset.view))
   );
 
   app.querySelectorAll('[data-mode]').forEach(btn =>
@@ -163,11 +166,39 @@ export function render(keepScroll = false) {
   renderView(keepScroll);
 }
 
+/**
+ * Estado inicial desde la URL.
+ *
+ * `#impuestos` abre directamente esa vista: es lo que hace que funcionen los
+ * accesos directos del manifiesto PWA (mantener pulsado el icono en Android) y
+ * lo que permite enlazar a una pantalla concreta desde la documentación.
+ * `?modo=sandbox` y `?tema=claro` existen para que las capturas del manual se
+ * generen de forma reproducible, sin depender del estado guardado.
+ */
+function applyUrlState() {
+  const params = new URLSearchParams(location.search);
+  if (params.get('modo')) setMode(params.get('modo'));
+  if (params.get('tema')) setTheme(params.get('tema') === 'claro' ? 'light' : 'dark');
+  if (params.get('periodo')) state.period = params.get('periodo');
+
+  const hash = location.hash.replace('#', '');
+  if (hash && VIEWS[hash]) state.view = hash;
+}
+
 async function boot() {
   setTheme(state.theme);
   await hydrateFromDisk();
   ensureSandboxSeeded();
+  applyUrlState();
   render();
+
+  globalThis.addEventListener('hashchange', () => {
+    const hash = location.hash.replace('#', '');
+    if (hash && VIEWS[hash] && hash !== state.view) {
+      state.view = hash;
+      render();
+    }
+  });
 
   // Atajos de teclado: en escritorio se navega mucho más rápido así.
   document.addEventListener('keydown', e => {
@@ -176,8 +207,7 @@ async function boot() {
       const index = Number(e.key) - 1;
       if (index >= 0 && index < all.length) {
         e.preventDefault();
-        state.view = all[index].id;
-        render();
+        goTo(all[index].id);
       }
     }
   });

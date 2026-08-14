@@ -1,4 +1,4 @@
-# Aplicación de Windows
+# 💻 Aplicación de Windows
 
 ## Arquitectura actual
 

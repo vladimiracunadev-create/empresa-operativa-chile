@@ -1,4 +1,4 @@
-# Runbook mensual — SpA pequeña sin empleados
+# 📋 Runbook mensual — SpA pequeña sin empleados
 
 ## Durante el mes
 

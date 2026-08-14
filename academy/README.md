@@ -1,4 +1,4 @@
-# Academia / Sandbox
+# 🎓 Academia / Sandbox
 
 El aprendizaje es una capacidad del producto, no su objetivo principal.
 

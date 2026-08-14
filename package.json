@@ -26,6 +26,9 @@
     "desktop:dev": "npm --prefix apps/contador-desktop run dev",
     "desktop:build": "node scripts/build-all.mjs && npm --prefix apps/contador-desktop run build",
     "android:prepare": "node scripts/build-all.mjs && node apps/android/copiar-www.mjs",
-    "android:verify": "node scripts/verify-apk.mjs"
+    "android:verify": "node scripts/verify-apk.mjs",
+    "capturas": "node scripts/capture-screenshots.mjs",
+    "manual": "node scripts/build-manual-pdf.mjs",
+    "docs": "node scripts/capture-screenshots.mjs && node scripts/build-manual-pdf.mjs"
   }
 }

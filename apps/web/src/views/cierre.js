@@ -74,7 +74,7 @@ export default {
 
       <div class="card">
         <div class="card__head"><h2>Historial de cierres</h2></div>
-        <div class="tablewrap">
+        <div class="tablewrap tablewrap--wide">
           <table>
             <thead><tr><th>Período</th><th>Cerrado</th><th class="num">Ventas netas</th><th class="num">IVA débito</th><th class="num">IVA crédito</th><th>Control</th></tr></thead>
             <tbody>

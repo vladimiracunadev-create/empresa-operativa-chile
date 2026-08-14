@@ -1,4 +1,4 @@
-# Glosario mínimo
+# 📖 Glosario mínimo
 
 - **Activo:** recurso controlado por la empresa.
 - **Pasivo:** obligación frente a terceros.

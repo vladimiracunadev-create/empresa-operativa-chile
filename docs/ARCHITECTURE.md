@@ -1,8 +1,20 @@
-# Arquitectura
+# 🏗️ Arquitectura
+
+<div align="center">
+
+![Motor](https://img.shields.io/badge/motor-1_para_3_plataformas-7c5cff?style=for-the-badge)
+![Bundler](https://img.shields.io/badge/bundler-ninguno-2f81f7?style=for-the-badge)
+![Artefactos](https://img.shields.io/badge/artefactos-verificados_por_dentro-2e8b57?style=for-the-badge)
+
+[🏠 Inicio](../README.md) · [📘 Manual](MANUAL.md) · [🤝 Contribuir](../CONTRIBUTING.md)
+
+</div>
+
+---
 
 Documento de decisiones. Explica **por qué** el proyecto está construido así, no sólo cómo.
 
-## El mapa
+## 🗂️ El mapa
 
 ```text
 empresa-operativa-chile/
@@ -37,7 +49,7 @@ empresa-operativa-chile/
 └── curriculum/ labs/ cases/        material de aprendizaje
 ```
 
-## Decisión 1 — Un motor, tres plataformas
+## 1️⃣ Decisión 1 — Un motor, tres plataformas
 
 **Problema.** Un producto que existe en web, Android y Windows tiende a convertirse en tres
 productos parecidos que se separan con el tiempo. En una aplicación contable eso significa que
@@ -51,7 +63,7 @@ viaja al dispositivo importa `node:*`, y una prueba lo verifica también sobre e
 Ese fallo, sin la comprobación, produce una pantalla en blanco dentro del APK sin ningún error
 visible ni ninguna señal roja en CI.
 
-## Decisión 2 — Almacenamiento conectable
+## 2️⃣ Decisión 2 — Almacenamiento conectable
 
 **Problema.** El motor operativo necesita persistir, pero cada plataforma persiste distinto:
 archivos en Node, `localStorage` en el navegador, memoria en las pruebas.
@@ -64,7 +76,7 @@ construido.
 pruebas corren en memoria sin tocar disco, y la separación real/sandbox se consigue simplemente
 dando a cada modo su propio almacén — no con una bandera que alguien pueda olvidar de comprobar.
 
-## Decisión 3 — Las reglas son datos, no código
+## 3️⃣ Decisión 3 — Las reglas son datos, no código
 
 **Problema.** Una tasa escrita como constante en el código es una bomba de relojería: sigue
 calculando con toda confianza el año en que deja de ser cierta.
@@ -77,7 +89,7 @@ calculando con toda confianza el año en que deja de ser cierta.
 Un cálculo plausible con la tasa equivocada es el peor fallo posible de este sistema: no se ve,
 no avisa, y aparece meses después como una diferencia con el SII.
 
-## Decisión 4 — Sin bundler
+## 4️⃣ Decisión 4 — Sin bundler
 
 **Problema.** Un bundler añade dependencias, configuración y una diferencia entre el código que
 se escribe y el que se ejecuta.
@@ -89,7 +101,7 @@ los cargan de forma nativa.
 `dist` completo pesa unos 260 KB; y `npm install` no hace falta para desarrollar la web ni la CLI.
 El coste es que no hay minificación ni tree-shaking — irrelevante a esta escala.
 
-## Decisión 5 — Re-render completo
+## 5️⃣ Decisión 5 — Re-render completo
 
 **Problema.** Mantener sincronizados vista y datos a mano es la fuente clásica de errores de UI.
 
@@ -99,7 +111,7 @@ El coste es que no hay minificación ni tree-shaking — irrelevante a esta esca
 completa de errores. Los dos sitios donde sí se nota —los campos de búsqueda— restauran foco y
 posición del cursor explícitamente.
 
-## Decisión 6 — Se verifica el artefacto, no el build
+## 6️⃣ Decisión 6 — Se verifica el artefacto, no el build
 
 **Problema.** Un APK sin contenido compila perfectamente. La WebView arranca, muestra una pantalla
 en blanco, y todas las señales del build quedan en verde.
@@ -109,7 +121,7 @@ sin `unzip` ni librerías— y **cuenta** las vistas, los módulos del núcleo, 
 tributarias. En Windows, donde Tauri comprime los recursos y ya no se pueden contar, se verifica
 la interfaz **antes** de sellarla y se comprueba que el ejecutable arranca y sigue vivo.
 
-## Decisión 7 — La integridad por encima de la comodidad
+## 7️⃣ Decisión 7 — La integridad por encima de la comodidad
 
 El producto se niega a hacer cosas que serían más cómodas:
 
@@ -121,7 +133,7 @@ El producto se niega a hacer cosas que serían más cómodas:
 | Borrar una línea de la bitácora | No existe la operación. Una bitácora editable no es evidencia. |
 | Decir "todo en orden" con evidencias faltantes | El objetivo es detectar el hueco, no tranquilizar. |
 
-## Flujo de datos de una operación
+## 🔀 Flujo de datos de una operación
 
 ```mermaid
 sequenceDiagram
@@ -144,7 +156,7 @@ sequenceDiagram
 Si cualquier validación falla, el motor lanza un error con un mensaje escrito para una persona
 —no un código— y la vista lo muestra tal cual. El mensaje **es** la explicación de la regla.
 
-## Qué NO está resuelto
+## ⚠️ Qué NO está resuelto
 
 Documentado aquí para que nadie lo descubra en producción:
 

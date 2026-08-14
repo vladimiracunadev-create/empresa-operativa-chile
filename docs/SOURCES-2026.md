@@ -1,4 +1,4 @@
-# Fuentes oficiales verificadas — Chile 2026
+# 🔗 Fuentes oficiales verificadas — Chile 2026
 
 Última revisión del repositorio: **9 de agosto de 2026**.
 

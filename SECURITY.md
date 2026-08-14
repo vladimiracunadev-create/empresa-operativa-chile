@@ -1,6 +1,19 @@
-# Seguridad y privacidad
+# 🔐 Seguridad y privacidad
 
-## Modelo de amenazas de este proyecto
+<div align="center">
+
+[![Telemetría](https://img.shields.io/badge/telemetría-cero-3fb950?style=for-the-badge)](#-qué-garantiza-la-aplicación)
+[![Servidor](https://img.shields.io/badge/servidor-ninguno-2f81f7?style=for-the-badge)](apps/empresa-operativa/server.mjs)
+[![CodeQL](https://img.shields.io/badge/CodeQL-activo-8957e5?style=for-the-badge)](.github/workflows/security.yml)
+
+[🔒 **Reportar una vulnerabilidad**](https://github.com/vladimiracunadev-create/empresa-operativa-chile/security/advisories/new) ·
+[🏠 Inicio](README.md) · [🏗️ Arquitectura](docs/ARCHITECTURE.md)
+
+</div>
+
+---
+
+## 🎯 Modelo de amenazas de este proyecto
 
 No es una aplicación con servidor, cuentas ni datos de terceros. Los riesgos reales son otros
 tres, en este orden:
@@ -12,7 +25,7 @@ tres, en este orden:
 3. **Perder los datos.** No hay servidor que respalde por ti. Desinstalar la app o borrar los
    datos del navegador sin exportar es una pérdida definitiva.
 
-## Nunca subas al repositorio
+## 🚫 Nunca subas al repositorio
 
 - Clave Tributaria del SII.
 - Certificado digital o clave privada (`.pfx`, `.p12`, `.pem`, `.key`, `.jks`, `.keystore`).
@@ -28,7 +41,7 @@ cada pull request, y falla si lo encuentra. `.gitignore` cubre además `.local-d
 
 Para datos de prueba usa [`data/scenarios/`](data/scenarios/) o el entorno **SANDBOX** de la app.
 
-## Qué garantiza la aplicación
+## ✅ Qué garantiza la aplicación
 
 | Garantía | Cómo está implementada |
 | --- | --- |
@@ -40,7 +53,7 @@ Para datos de prueba usa [`data/scenarios/`](data/scenarios/) o el entorno **SAN
 | El espejo en disco no se corrompe a medias | Escritura atómica: temporal + `rename` |
 | El texto del usuario no puede inyectar marcado | Plantilla `html` que escapa por defecto |
 
-## Qué NO garantiza
+## ⚠️ Qué NO garantiza
 
 Con la misma claridad:
 
@@ -54,12 +67,12 @@ Con la misma claridad:
 
 Están en el roadmap y documentados en [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
-## Respalda
+## 💾 Respalda
 
 La contrapartida de que no haya servidor es que el respaldo es tuyo. Exporta desde la pestaña
 **Datos** cada vez que cierres un período, y guarda el archivo fuera del dispositivo.
 
-## Reportar una vulnerabilidad
+## 📮 Reportar una vulnerabilidad
 
 Abre un [Security Advisory privado](https://github.com/vladimiracunadev-create/empresa-operativa-chile/security/advisories/new)
 en lugar de una incidencia pública.
@@ -67,7 +80,7 @@ en lugar de una incidencia pública.
 Incluye qué encontraste, cómo reproducirlo y qué impacto tendría. Respuesta en un plazo
 razonable; este es un proyecto mantenido por una persona.
 
-## Fuera de alcance
+## 📭 Fuera de alcance
 
 - Que los binarios no estén firmados (conocido y documentado).
 - Que los datos locales no estén cifrados (conocido y documentado).

@@ -1,4 +1,16 @@
-# Changelog
+# 📓 Changelog
+
+<div align="center">
+
+[![Versión](https://img.shields.io/badge/versión_actual-1.0.0-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
+[![Formato](https://img.shields.io/badge/formato-Keep_a_Changelog-7c5cff?style=for-the-badge)](https://keepachangelog.com/es-ES/1.1.0/)
+[![SemVer](https://img.shields.io/badge/versionado-SemVer-2f81f7?style=for-the-badge)](https://semver.org/lang/es/)
+
+[🏠 Inicio](README.md) · [📘 Manual](docs/MANUAL.md) · [🗺️ Roadmap](docs/ROADMAP.md) · [🤝 Contribuir](CONTRIBUTING.md)
+
+</div>
+
+---
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 Versionado según [SemVer](https://semver.org/lang/es/).
@@ -8,7 +20,7 @@ Versionado según [SemVer](https://semver.org/lang/es/).
 Primera versión distribuible. El proyecto pasa de prototipo con tres interfaces distintas a
 **un producto con una sola interfaz en Android, Windows y navegador**.
 
-### Añadido
+### ✨ Añadido
 
 - **Aplicación Android (APK)** con Capacitor 7. Empaqueta la misma interfaz que la web.
 - **Aplicación de Windows** con Tauri 2: instalador MSI, instalador NSIS y ejecutable portable.
@@ -34,11 +46,21 @@ Primera versión distribuible. El proyecto pasa de prototipo con tres interfaces
 - **Verificador de APK** (`scripts/verify-apk.mjs`): abre el ZIP y cuenta lo que lleva dentro.
 - **Workflows:** CI en Ubuntu y Windows, Android, Windows, Release, Pages y Seguridad
   (CodeQL + detección de datos reales commiteados). Todas las acciones fijadas a un SHA.
+- **Manual de usuario ilustrado** ([`docs/MANUAL.md`](docs/MANUAL.md) y
+  [`docs/MANUAL.pdf`](docs/MANUAL.pdf)): 17 capítulos, 28 páginas, con las pantallas reales del
+  producto y tres diagramas propios.
+- **Capturas reproducibles** (`scripts/capture-screenshots.mjs`): la app acepta su estado por URL
+  (`?modo=`, `?tema=`, `?periodo=`, `#vista`) y las 15 imágenes del manual se regeneran con un
+  comando, así que no envejecen en silencio cuando cambia la interfaz.
+- **Generador de PDF sin dependencias** (`scripts/build-manual-pdf.mjs`): Markdown → HTML con las
+  imágenes embebidas → impresión con Chrome.
+- **Navegación por URL:** `#impuestos` abre esa vista directamente, lo que hace funcionar los
+  accesos directos del manifiesto PWA y permite enlazar a una pantalla desde la documentación.
 - **Documentación:** README nuevo, `docs/ARCHITECTURE.md`, código de conducta, plantillas de
   incidencia y de pull request, este changelog.
 - 40 pruebas nuevas (de 10 a 50).
 
-### Corregido
+### 🐛 Corregido
 
 - **La aplicación de escritorio no compilaba.** `src-tauri/src/lib.rs` usaba
   `format!("{\"id\":\"{}\"}", id)` con llaves sin escapar: error de compilación en dos sitios.
@@ -54,8 +76,12 @@ Primera versión distribuible. El proyecto pasa de prototipo con tres interfaces
 - **El catálogo de trámites de constitución quedaba congelado** en los datos: una empresa creada
   antes de añadir un paso nuevo no lo veía nunca.
 - **El texto escrito por el usuario se insertaba sin escapar** en tablas y bitácora.
+- **Las cifras desaparecían en las tarjetas estrechas.** `table { min-width: 520px }` desbordaba
+  cualquier tabla dentro de una tarjeta angosta, y el desplazamiento horizontal escondía justo la
+  columna de montos: el borrador del F29 mostraba los conceptos sin sus importes. El ancho mínimo
+  pasa a aplicarse sólo a las tablas de muchas columnas.
 
-### Cambiado
+### ♻️ Cambiado
 
 - El servidor local (`apps/empresa-operativa`) pasa a servir únicamente archivos estáticos;
   escucha en `127.0.0.1` en lugar de en todas las interfaces y envía cabeceras CSP.
@@ -66,7 +92,7 @@ Primera versión distribuible. El proyecto pasa de prototipo con tres interfaces
 - Versión unificada en `package.json`, `tauri.conf.json`, `Cargo.toml` y la aplicación, con una
   prueba que lo verifica.
 
-### Eliminado
+### 🗑️ Eliminado
 
 - **`apps/contador-web`** y **`apps/contador-desktop/ui`**: dos interfaces paralelas que
   duplicaban parcialmente la aplicación y ya no compartían su API. La nueva `apps/web` las
@@ -78,7 +104,7 @@ Primera versión distribuible. El proyecto pasa de prototipo con tres interfaces
   integridad pasa al `SHA256SUMS.txt` que acompaña a cada release, que sí se genera con el
   artefacto que se publica.
 
-### Seguridad
+### 🔐 Seguridad
 
 - CSP `default-src 'self'` en el servidor local y en la aplicación de Windows.
 - La ventana de Tauri declara únicamente `core:default`; todo el acceso a disco pasa por cuatro

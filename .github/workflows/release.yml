@@ -38,6 +38,10 @@ jobs:
           set -euo pipefail
           mkdir -p release
           find descargas -type f ! -name '*.sha256' ! -name 'SHA256SUMS.txt' -exec cp {} release/ \;
+
+          # El manual viaja con el release: quien descarga un instalador debería
+          # poder llevarse también las instrucciones sin volver al repositorio.
+          cp docs/MANUAL.pdf release/EmpresaOperativaChile-manual.pdf
           ls -la release
 
           # Un release sin la app de Android o sin el instalador de Windows es
@@ -70,6 +74,7 @@ jobs:
             echo "| 💻 Windows | \`EmpresaOperativaChile-windows.msi\` | Instalación desatendida o despliegue corporativo. |"
             echo "| 💻 Windows | \`EmpresaOperativaChile-windows-portable.exe\` | Sin instalar: se ejecuta y ya. |"
             echo "| 🌐 Navegador | [Abrir la app](https://vladimiracunadev-create.github.io/empresa-operativa-chile/) | Instalable como PWA, funciona sin conexión. |"
+            echo "| 📕 Manual | \`EmpresaOperativaChile-manual.pdf\` | 17 capítulos con las pantallas del producto. |"
             echo ""
             echo "Verifica lo que descargues con \`SHA256SUMS.txt\`."
             echo ""

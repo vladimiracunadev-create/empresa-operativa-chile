@@ -1,4 +1,4 @@
-# Árbol de decisión: ¿lo hago yo o escalo a especialista?
+# 🌳 Árbol de decisión: ¿lo hago yo o escalo a especialista?
 
 ## Puedes resolverlo con el programa + SII cuando
 
