@@ -73,10 +73,18 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node apps/contador-cli/src/index.mjs venta --neto 100000 | grep -q '"iva": 19000'
-          node apps/contador-cli/src/index.mjs rut 76.000.000-0 | grep -q '"valid": true'
-          node apps/contador-cli/src/index.mjs f29 --ventas-netas 1000000 --compras-netas 300000 | grep -q '"vatPayable": 133000'
-          node apps/contador-cli/src/index.mjs vencimientos --periodo 2026-08 | grep -q '2026-09'
+          cli() { node apps/contador-cli/src/index.mjs "$@"; }
+          # A archivo y después `grep`: encadenar `| grep -q` mata al proceso de
+          # Node con SIGPIPE en cuanto grep encuentra la coincidencia, y con
+          # `pipefail` eso tumba el paso aunque el resultado sea correcto.
+          cli venta --neto 100000 > /tmp/venta.json
+          grep -q '"iva": 19000' /tmp/venta.json
+          cli rut 76.000.000-0 > /tmp/rut.json
+          grep -q '"valid": true' /tmp/rut.json
+          cli f29 --ventas-netas 1000000 --compras-netas 300000 > /tmp/f29.json
+          grep -q '"vatPayable": 133000' /tmp/f29.json
+          cli vencimientos --periodo 2026-08 > /tmp/venc.json
+          grep -q '2026-09' /tmp/venc.json
 
   servidor:
     name: El servidor local sirve la aplicación
@@ -97,15 +105,21 @@ jobs:
           node apps/empresa-operativa/server.mjs &
           SERVER=$!
           trap 'kill $SERVER 2>/dev/null || true' EXIT
-          for i in $(seq 1 20); do
+          for _ in $(seq 1 20); do
             curl -sf http://127.0.0.1:4180/ > /dev/null && break
             sleep 0.5
           done
 
-          curl -sf http://127.0.0.1:4180/ | grep -q "Empresa Operativa Chile"
-          curl -sf http://127.0.0.1:4180/app.js > /dev/null
-          curl -sf http://127.0.0.1:4180/core/accounting-engine/index.mjs | grep -q "f29Basic"
-          curl -sf http://127.0.0.1:4180/manifest.webmanifest > /dev/null
+          # Se descarga a archivo antes de inspeccionar: `curl | grep -q` cierra
+          # la tubería en cuanto encuentra la coincidencia, curl muere con
+          # error de escritura (23) y `pipefail` tumba el paso aunque todo esté
+          # bien.
+          curl -sf http://127.0.0.1:4180/ -o /tmp/index.html
+          grep -q "Empresa Operativa Chile" /tmp/index.html
+          curl -sf http://127.0.0.1:4180/app.js -o /dev/null
+          curl -sf http://127.0.0.1:4180/core/accounting-engine/index.mjs -o /tmp/engine.mjs
+          grep -q "f29Basic" /tmp/engine.mjs
+          curl -sf http://127.0.0.1:4180/manifest.webmanifest -o /dev/null
 
           # El servidor sirve datos contables en la máquina de alguien: que un
           # `..` escape del directorio no puede volver a pasar sin que CI lo vea.
