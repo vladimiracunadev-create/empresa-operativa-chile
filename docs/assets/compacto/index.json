@@ -1,0 +1,114 @@
+[
+  {
+    "name": "empezar",
+    "view": "empezar",
+    "alt": "Empezar aquí: la ruta completa ordenada por tiempo, con el avance real de los trámites",
+    "w": 1180,
+    "h": 1700
+  },
+  {
+    "name": "panel",
+    "view": "panel",
+    "alt": "Panel de control con los indicadores del mes y el diagnóstico",
+    "w": 1180,
+    "h": 940
+  },
+  {
+    "name": "operaciones",
+    "view": "operaciones",
+    "alt": "Listado de operaciones del período con sus totales",
+    "w": 1180,
+    "h": 940
+  },
+  {
+    "name": "impuestos",
+    "view": "impuestos",
+    "alt": "Borrador del F29 con el remanente arrastrado y los vencimientos",
+    "w": 1180,
+    "h": 1180
+  },
+  {
+    "name": "constitucion",
+    "view": "constitucion",
+    "alt": "Los nueve trámites de constitución con su evidencia",
+    "w": 1180,
+    "h": 1180
+  },
+  {
+    "name": "obligaciones",
+    "view": "obligaciones",
+    "alt": "Calendario de obligaciones y comprobantes",
+    "w": 1180,
+    "h": 900
+  },
+  {
+    "name": "cierre",
+    "view": "cierre",
+    "alt": "Cierre mensual con su lista de control",
+    "w": 1180,
+    "h": 980
+  },
+  {
+    "name": "empresa",
+    "view": "empresa",
+    "alt": "Ficha de la empresa y patente municipal estimada",
+    "w": 1180,
+    "h": 1020
+  },
+  {
+    "name": "auditoria",
+    "view": "auditoria",
+    "alt": "Bitácora de auditoría",
+    "w": 1180,
+    "h": 900
+  },
+  {
+    "name": "datos",
+    "view": "datos",
+    "alt": "Exportación, importación y respaldos",
+    "w": 1180,
+    "h": 980
+  },
+  {
+    "name": "capital",
+    "view": "capital",
+    "alt": "Capital y patrimonio: las seis magnitudes, el CPT con su desglose y la patente municipal",
+    "w": 1180,
+    "h": 1400
+  },
+  {
+    "name": "academia",
+    "view": "academia",
+    "alt": "Academia: una venta y un honorario explicados paso a paso",
+    "w": 1180,
+    "h": 1020
+  },
+  {
+    "name": "glosario",
+    "view": "glosario",
+    "alt": "Glosario buscable con las definiciones del sistema",
+    "w": 1180,
+    "h": 1020
+  },
+  {
+    "name": "ayuda",
+    "view": "ayuda",
+    "alt": "Ayuda: los manuales dentro de la aplicación y la tabla de atajos de teclado",
+    "w": 1180,
+    "h": 1400
+  },
+  {
+    "name": "panel-claro",
+    "view": "panel",
+    "alt": "El panel en tema claro",
+    "w": 1180,
+    "h": 940
+  },
+  {
+    "name": "panel-real",
+    "view": "panel",
+    "alt": "El panel en EMPRESA REAL, con la franja ámbar de advertencia",
+    "w": 1180,
+    "h": 800
+  }
+]

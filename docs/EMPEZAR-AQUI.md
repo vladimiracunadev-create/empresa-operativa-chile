@@ -54,7 +54,7 @@ constituido, ni la patente sin domicilio, ni cerrar el año sin haber cerrado lo
 La misma secuencia está en la pestaña **Empezar aquí**, con una diferencia que en papel no se puede tener: muestra **tu**
 avance real y cada etapa tiene un botón que abre la ventana donde se hace.
 
-![La pantalla Empezar aquí de la aplicación](assets/guia/empezar.png)
+![La pantalla Empezar aquí de la aplicación](assets/compacto/empezar.png)
 
 ## Cómo leer cada etapa
 
@@ -113,7 +113,7 @@ Lo primero no es un trámite: es una decisión. Todo lo que viene después —el
 
 Abre **empresa** → Anotar lo que decidiste en la ficha. El trámite queda registrado en **Constitución**, donde no se puede marcar como hecho sin evidencia.
 
-![Anotar lo que decidiste en la ficha — pantalla empresa de la aplicación](assets/guia/empresa.png)
+![Anotar lo que decidiste en la ficha — pantalla empresa de la aplicación](assets/compacto/empresa.png)
 
 <sub>La pantalla **empresa** en modo SANDBOX. Es la misma en el navegador, en Android y en Windows.</sub>
 
@@ -170,7 +170,7 @@ Aquí es donde la mayoría se confunde, y es la confusión más cara del princip
 
 Abre **capital** → Registrar capital social, suscrito y enterado.
 
-![Registrar capital social, suscrito y enterado — pantalla capital de la aplicación](assets/guia/capital.png)
+![Registrar capital social, suscrito y enterado — pantalla capital de la aplicación](assets/compacto/capital.png)
 
 <sub>La pantalla **capital** en modo SANDBOX. Es la misma en el navegador, en Android y en Windows.</sub>
 
@@ -270,7 +270,7 @@ Hasta aquí la empresa no existe. Constituirla es el acto que la hace nacer jur�
 
 Abre **constitucion** → Marcar el trámite y guardar el certificado. El trámite queda registrado en **Constitución**, donde no se puede marcar como hecho sin evidencia.
 
-![Marcar el trámite y guardar el certificado — pantalla constitucion de la aplicación](assets/guia/constitucion.png)
+![Marcar el trámite y guardar el certificado — pantalla constitucion de la aplicación](assets/compacto/constitucion.png)
 
 <sub>La pantalla **constitucion** en modo SANDBOX. Es la misma en el navegador, en Android y en Windows.</sub>
 
@@ -441,7 +441,7 @@ En Chile los documentos tributarios son electrónicos. Para emitir una factura n
 
 Abre **operaciones** → Registrar las facturas que emitas. El trámite queda registrado en **Constitución**, donde no se puede marcar como hecho sin evidencia.
 
-![Registrar las facturas que emitas — pantalla operaciones de la aplicación](assets/guia/operaciones.png)
+![Registrar las facturas que emitas — pantalla operaciones de la aplicación](assets/compacto/operaciones.png)
 
 <sub>La pantalla **operaciones** en modo SANDBOX. Es la misma en el navegador, en Android y en Windows.</sub>
 
@@ -630,7 +630,7 @@ Cada mes se declara el F29, que reúne el IVA, el PPM y las retenciones. El IVA 
 
 Abre **impuestos** → Ver el borrador del F29.
 
-![Ver el borrador del F29 — pantalla impuestos de la aplicación](assets/guia/impuestos.png)
+![Ver el borrador del F29 — pantalla impuestos de la aplicación](assets/compacto/impuestos.png)
 
 <sub>La pantalla **impuestos** en modo SANDBOX. Es la misma en el navegador, en Android y en Windows.</sub>
 

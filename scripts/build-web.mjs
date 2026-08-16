@@ -33,7 +33,8 @@ const CORE = [
   ['company-operations/store.mjs', 'company-operations/store.mjs'],
   ['company-operations/rut.mjs', 'company-operations/rut.mjs'],
   ['glossary/index.mjs', 'glossary/index.mjs'],
-  ['onboarding/index.mjs', 'onboarding/index.mjs']
+  ['onboarding/index.mjs', 'onboarding/index.mjs'],
+  ['shortcuts/index.mjs', 'shortcuts/index.mjs']
 ];
 
 const copyDir = (from, to) => {
@@ -65,20 +66,33 @@ for (const [from, to] of CORE) {
   fs.copyFileSync(src, dest);
 }
 
-// La guía "Empezar aquí" viaja dentro del bundle en sus dos formatos leíbles:
-// el HTML autocontenido, que la app abre sin salir de sí misma, y el PDF, para
-// que se pueda descargar también sin conexión. Es el único contenido pesado que
-// se embarca, y se hace a propósito: una guía que necesita internet no sirve
-// justo cuando alguien la necesita.
-const GUIDE = ['EMPEZAR-AQUI.html', 'EMPEZAR-AQUI.pdf'];
-const guideDest = path.join(distDir, 'guia');
+// Los manuales viajan dentro del bundle: la guía "Empezar aquí" en HTML y PDF, y
+// el manual de usuario en HTML. Es el único contenido pesado que se embarca, y se
+// hace a propósito: un manual que necesita internet no sirve justo cuando alguien
+// lo necesita. El PDF del manual (7,7 MB) se queda fuera y vive en el repositorio
+// y en cada release — engordar la instalación cuatro veces por un archivo que se
+// descarga una vez no compensa.
+const GUIDE = ['EMPEZAR-AQUI.html', 'EMPEZAR-AQUI.pdf', 'MANUAL.html'];
+const guideDest = path.join(distDir, 'ayuda');
 fs.mkdirSync(guideDest, { recursive: true });
 for (const name of GUIDE) {
   const src = path.join(root, 'docs', name);
   if (!fs.existsSync(src)) {
-    throw new Error(`Falta docs/${name}. Genérala con: node scripts/build-guide.mjs`);
+    const generador = name.startsWith('MANUAL') ? 'build-manual' : 'build-guide';
+    throw new Error(`Falta docs/${name}. Genérala con: node scripts/${generador}.mjs`);
   }
   fs.copyFileSync(src, path.join(guideDest, name));
+}
+
+// La presentación se publica junto a la app para poder proyectarla desde el
+// sitio sin descargar nada.
+const DECK = ['presentacion.html', 'PRESENTACION.pdf', 'PAUTA.pdf'];
+const deckDest = path.join(distDir, 'presentacion');
+fs.mkdirSync(deckDest, { recursive: true });
+for (const name of DECK) {
+  const src = path.join(root, 'docs/presentacion', name);
+  if (!fs.existsSync(src)) throw new Error(`Falta docs/presentacion/${name}. Genérala con: node scripts/build-presentation.mjs`);
+  fs.copyFileSync(src, path.join(deckDest, name));
 }
 
 // Ningún archivo publicado puede importar `node:*`: si eso llega al APK, la

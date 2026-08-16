@@ -15,9 +15,9 @@ motor de cálculo en Android, Windows y navegador. Tus datos no salen del dispos
 [![Seguridad](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/security.yml/badge.svg?branch=main)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/security.yml)
 [![Pages](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/pages.yml)
 
-[![Versión](https://img.shields.io/badge/versión-1.3.0-e8590c?style=for-the-badge)](CHANGELOG.md)
+[![Versión](https://img.shields.io/badge/versión-1.4.0-e8590c?style=for-the-badge)](CHANGELOG.md)
 [![Plataformas](https://img.shields.io/badge/plataformas-Android_·_Windows_·_Web-7c5cff?style=for-the-badge)](#-descargas)
-[![Pruebas](https://img.shields.io/badge/pruebas-137_verdes-2e8b57?style=for-the-badge)](tests/)
+[![Pruebas](https://img.shields.io/badge/pruebas-153_verdes-2e8b57?style=for-the-badge)](tests/)
 [![Dependencias](https://img.shields.io/badge/dependencias_de_producción-0-2f81f7?style=for-the-badge)](package.json)
 [![Telemetría](https://img.shields.io/badge/telemetría-cero-3fb950?style=for-the-badge)](#-privacidad-que-se-puede-comprobar)
 [![Reglas](https://img.shields.io/badge/reglas-año_comercial_2026-8957e5?style=for-the-badge)](docs/SOURCES-2026.md)
@@ -36,6 +36,7 @@ motor de cálculo en Android, Windows y navegador. Tus datos no salen del dispos
 [🌐 **Abrir la app**](https://vladimiracunadev-create.github.io/empresa-operativa-chile/) ·
 [📥 **Descargas**](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest) ·
 [🧭 **Empezar aquí**](docs/EMPEZAR-AQUI.md) ·
+[🎤 Presentación](docs/presentacion/presentacion.html) ·
 [📘 Manual de usuario](docs/MANUAL.md) ·
 [📕 Manual en PDF](docs/MANUAL.pdf) ·
 [📋 Runbook mensual](docs/RUNBOOK-MENSUAL.md) ·
@@ -51,7 +52,7 @@ motor de cálculo en Android, Windows y navegador. Tus datos no salen del dispos
 
 | 🖥️ Vistas | 🧮 Motor | ✅ Pruebas | 📦 Dependencias | 📱 Plataformas | 📄 Manual |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| **13** | **1** | **137** | **0** | **3** | **33 pág.** |
+| **14** | **1** | **153** | **0** | **3** | **33 pág.** |
 
 </div>
 
@@ -150,6 +151,9 @@ Catorce etapas desde antes de que la empresa exista, cada una con su decisión, 
 | Tasas municipales por comuna | ⚪ **ninguna viene inventada** — el usuario registra la suya con fuente y fecha |
 | Cierre anual | ✅ snapshot inmutable con la versión de las reglas usadas |
 | Glosario | ✅ 54 términos, fuente única, sincronía comprobada en CI |
+| Manuales dentro de la app | ✅ guía ilustrada y manual completos, leíbles **sin conexión** desde la pestaña Ayuda |
+| Ayuda contextual | ✅ al pasar el cursor sobre cualquier término marcado |
+| Atajos de teclado | ✅ 12, con buscador `Ctrl+K` y ayuda en `F1` |
 | Remanente de crédito fiscal | ✅ arrastrado entre períodos · 🟡 **sin reajuste** (declarado como limitación) |
 | Borrador F29 | 🟡 IVA, PPM y retenciones — **no cubre todos los códigos** del formulario |
 | Vencimientos | ✅ los tres plazos, con traslado por fin de semana · ⚪ **feriados legales no modelados** |
@@ -160,7 +164,7 @@ Catorce etapas desde antes de que la empresa exista, cada una con su decisión, 
 | App de Android | ✅ APK **con el contenido contado dentro del binario** en CI |
 | App de Windows | ✅ MSI, NSIS y portable; **arranca y se comprueba vivo** en CI |
 | Web / PWA | ✅ publicada en Pages, instalable y sin conexión |
-| Pruebas | ✅ 137 en Ubuntu y Windows, Node 20 y 22 |
+| Pruebas | ✅ 153 en Ubuntu y Windows, Node 20 y 22 |
 | Seguridad | ✅ CodeQL + detección de contabilidad real commiteada + acciones fijadas a SHA |
 | Integración con el SII | ⚪ **no existe** — por diseño, no por falta de tiempo |
 | Cifrado de datos locales | ⚪ pendiente ([roadmap](docs/ROADMAP.md)) |
@@ -180,6 +184,8 @@ Catorce etapas desde antes de que la empresa exista, cada una con su decisión, 
   y CI falla si eso cambia.
 - **Explica con tus propios números.** La academia usa el motor real: si cambia una tasa, la
   explicación cambia sola.
+- **La documentación no puede mentir.** Glosario, guía y atajos se **generan** desde el código y CI
+  falla si el documento se desvía. Lo que lees en el repositorio es lo que hace la app.
 - **No confunde capital con capital.** Capital social, capital suscrito, capital enterado,
   patrimonio contable, Capital Propio Tributario y capital base de patente son **seis** magnitudes
   distintas, cada una con su momento, su fuente legal y su evidencia. Hay una prueba que falla si
@@ -357,7 +363,7 @@ npm run start        # build + servidor en http://127.0.0.1:4180
 |---|---|
 | `npm run build` | Reglas embebidas → iconos → `apps/web/dist` |
 | `npm run app` | Sirve la app ya construida |
-| `npm test` | 137 pruebas con el runner nativo de Node |
+| `npm test` | 153 pruebas con el runner nativo de Node |
 | `npm run check` | Sincronía de reglas + validación + pruebas |
 | `npm run cli -- ayuda` | Todos los comandos de la CLI |
 | `npm run desktop:build` | Instaladores de Windows (necesita Rust) |
@@ -386,7 +392,7 @@ arranca y se comprueba que sigue vivo. Un build en verde no prueba que la app es
 
 ## 🧪 Pruebas
 
-137 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
+153 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
 hacen confiable al producto:
 
 - un período cerrado es inmutable **en las dos direcciones** (no se agrega y no se borra);
@@ -424,6 +430,8 @@ tiempo dejen de coincidir:
 | 🌳 | [Árbol de decisión](docs/DECISION-TREE.md) | Cuándo resolverlo solo y cuándo escalar |
 | 📗 | [Políticas contables](docs/ACCOUNTING-POLICIES.md) | Criterios del caso guía |
 | 📖 | [Glosario](docs/GLOSSARY.md) | 54 términos, generado desde el propio sistema |
+| ⌨️ | [Atajos de teclado](docs/ATAJOS-DE-TECLADO.md) | 12 atajos, sobre todo para la versión de Windows |
+| 🎤 | [Presentación](docs/presentacion.md) · [Diapositivas](docs/presentacion/presentacion.html) · [PDF](docs/presentacion/PRESENTACION.pdf) · [Pauta](docs/presentacion/PAUTA.pdf) | 8 láminas y guion del expositor para presentar el producto en media hora |
 | 💰 | [Capital y patrimonio](docs/accounting/CAPITAL-PATRIMONIO.md) | Las cinco magnitudes que no son sinónimos |
 | 🧮 | [Capital Propio Tributario](docs/tax/CAPITAL-PROPIO-TRIBUTARIO.md) | Art. 41 y CPT simplificado Pro Pyme |
 | 🏛️ | [Patente municipal](docs/municipal/PATENTE-MUNICIPAL.md) | Por qué el año 2 no usa el capital de constitución |

@@ -44,6 +44,7 @@ de la instalación al cierre del mes, con las pantallas reales del producto.**
 | 12 | [Datos y respaldos](#cap-12) | Sacar tus datos del dispositivo |
 | 13 | [Academia](#cap-13) | Entender lo que estás haciendo |
 | 13b | [Glosario](#cap-13b) | Qué significa cada término, y con qué no confundirlo |
+| 13c | [Ayuda y atajos](#cap-13c) | Los manuales dentro de la app y el teclado |
 | 14 | [La rutina mensual](#cap-14) | El resumen práctico |
 | 15 | [Preguntas frecuentes](#cap-15) | Lo que se pregunta al empezar |
 | 16 | [Si algo va mal](#cap-16) | Solución de problemas |
@@ -665,6 +666,54 @@ Estas mismas definiciones son las que aparecen al pulsar **?** junto a cualquier
 aplicación, y las que forman [`docs/GLOSSARY.md`](GLOSSARY.md). Hay **una sola copia** de cada
 texto, en `packages/glossary/index.mjs`, y la integración continua comprueba que el documento no se
 desvíe de ella. Un glosario escrito en tres sitios se contradice en dos semanas; éste no puede.
+
+---
+
+<a id="cap-13c"></a>
+
+## 13c · 🆘 Ayuda, manuales y teclado
+
+La pestaña **Ayuda** reúne todo el material de apoyo **dentro de la propia aplicación**: no hay que salir,
+buscar el repositorio y volver.
+
+### Los manuales, sin salir de la app
+
+| Documento | Qué es | Formato |
+|---|---|---|
+| 🧭 **Empezar aquí** | La ruta completa para quien nunca ha creado una empresa | Se lee dentro · PDF descargable |
+| 📘 **Manual de usuario** | Este documento: el detalle de cada pantalla | Se lee dentro |
+
+Los dos viajan **en el mismo paquete que instalaste**, así que se leen sin conexión, igual en el navegador,
+en Android y en Windows. El PDF del manual (7,7 MB) es lo único que no viaja dentro, para no cuadruplicar el
+tamaño de la instalación por un archivo que se descarga una vez: está en el repositorio y en cada release.
+
+### Qué significa esta palabra
+
+Junto a los rótulos aparece una marca **?**. Al **pasar el cursor** por encima muestra en una línea qué es
+ese término; al **pulsarla**, la definición completa y —lo más útil de este dominio— con qué **no** hay que
+confundirlo. Las mismas definiciones están en la pestaña **Glosario** y en [`docs/GLOSSARY.md`](GLOSSARY.md).
+
+### Atajos de teclado
+
+Pensados sobre todo para la versión de escritorio, donde la aplicación se usa sentado y durante un rato largo.
+La lista completa se abre con <kbd>F1</kbd> y está en [`docs/ATAJOS-DE-TECLADO.md`](ATAJOS-DE-TECLADO.md).
+
+Si sólo vas a aprender uno, que sea <kbd>Ctrl</kbd> + <kbd>K</kbd>: abre el buscador, escribes tres letras y
+saltas a cualquier pantalla o a cualquier término del glosario.
+
+| Atajo | Qué hace |
+|---|---|
+| <kbd>Ctrl</kbd> + <kbd>K</kbd> | Buscador: salta a cualquier pantalla o término |
+| <kbd>Alt</kbd> + <kbd>1</kbd> … <kbd>9</kbd> | Va a la pantalla N de la barra lateral |
+| <kbd>F1</kbd> | Muestra todos los atajos |
+| <kbd>Alt</kbd> + <kbd>M</kbd> | Cambia entre EMPRESA REAL y SANDBOX |
+| <kbd>Alt</kbd> + <kbd>T</kbd> | Tema claro / oscuro |
+| <kbd>Alt</kbd> + <kbd>←</kbd> <kbd>→</kbd> | Período anterior / siguiente |
+| <kbd>Alt</kbd> + <kbd>N</kbd> | Acción principal de la pantalla |
+
+> [!NOTE]
+> Un atajo que se dispara mientras escribes es peor que no tener atajos. Dentro de un campo de texto sólo
+> pasan los que llevan modificador y <kbd>Esc</kbd>: escribir «no» en una descripción no abre nada.
 
 ---
 

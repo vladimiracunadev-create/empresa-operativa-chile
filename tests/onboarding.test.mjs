@@ -139,13 +139,13 @@ test('el documento ilustra cada pantalla que la guía manda abrir', () => {
   const md = fs.readFileSync(path.join(root, 'docs/EMPEZAR-AQUI.md'), 'utf8');
   const vistas = [...new Set(STAGES.map(s => s.doInApp?.view).filter(Boolean))];
   for (const view of vistas) {
-    assert.ok(fs.existsSync(path.join(root, `docs/assets/guia/${view}.png`)), `falta la captura de la pantalla ${view}`);
-    assert.ok(md.includes(`assets/guia/${view}.png`), `la guía no muestra la pantalla ${view}`);
+    assert.ok(fs.existsSync(path.join(root, `docs/assets/compacto/${view}.png`)), `falta la captura de la pantalla ${view}`);
+    assert.ok(md.includes(`assets/compacto/${view}.png`), `la guía no muestra la pantalla ${view}`);
   }
   // Cada captura aparece UNA vez: repetirla no enseña nada y en el HTML y el
   // PDF la imagen va embebida, así que duplicarla duplica el peso de verdad.
   for (const view of vistas) {
-    const veces = md.split(`assets/guia/${view}.png`).length - 1;
+    const veces = md.split(`assets/compacto/${view}.png`).length - 1;
     assert.equal(veces, 1, `la captura de ${view} aparece ${veces} veces en la guía`);
   }
 });
@@ -177,8 +177,8 @@ test('el bundle de la aplicación embarca la guía en sus dos formatos leíbles'
   const view = fs.readFileSync(path.join(root, 'apps/web/src/views/empezar.js'), 'utf8');
   // Rutas relativas al bundle: así funcionan igual servidas por el navegador,
   // dentro del APK y dentro del ejecutable de Windows.
-  assert.match(view, /\.\/guia\/EMPEZAR-AQUI\.html/, 'la vista no muestra la guía embarcada');
-  assert.match(view, /\.\/guia\/EMPEZAR-AQUI\.pdf/, 'la vista no ofrece el PDF embarcado');
+  assert.match(view, /\.\/ayuda\/EMPEZAR-AQUI\.html/, 'la vista no muestra la guía embarcada');
+  assert.match(view, /\.\/ayuda\/EMPEZAR-AQUI\.pdf/, 'la vista no ofrece el PDF embarcado');
   assert.match(view, /<iframe class="guiaframe"/, 'la guía debe leerse DENTRO de la aplicación, no sólo en otra pestaña');
 
   // El servidor local tiene que poder enmarcar su propio contenido, o el marco

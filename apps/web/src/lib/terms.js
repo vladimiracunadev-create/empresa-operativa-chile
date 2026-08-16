@@ -16,12 +16,24 @@ import { term } from '../core/glossary/index.mjs';
 export function termChip(id) {
   const t = term(id);
   if (!t) return '';
-  return `<button type="button" class="termchip" data-term="${esc(id)}" title="Qué significa: ${esc(t.term)}" aria-label="Qué significa ${esc(t.term)}">?</button>`;
+  return `<button type="button" class="termchip" data-term="${esc(id)}" aria-label="Qué significa ${esc(t.term)}">?</button>`;
 }
 
 /** Rótulo + marca de ayuda, para usar dentro de `raw()`. */
 export function labelWithTerm(label, id) {
   return `${esc(label)} ${termChip(id)}`;
+}
+
+/**
+ * Palabra del texto que explica qué es al pasar el cursor por encima.
+ *
+ * Distinto de `termChip`: aquí no hay un signo aparte, se subraya la palabra
+ * misma. Sirve dentro de una frase, donde un `?` interrumpiría la lectura.
+ */
+export function termWord(id, label) {
+  const t = term(id);
+  if (!t) return esc(label ?? id);
+  return `<button type="button" class="termword" data-term="${esc(id)}" aria-label="Qué significa ${esc(t.term)}">${esc(label ?? t.term)}</button>`;
 }
 
 /** Cuerpo explicativo de un término, reutilizado por el modal y por la vista Glosario. */
@@ -50,22 +62,83 @@ export function termBody(t) {
     }`;
 }
 
+/* ------------------------------------------------------------- tooltip --- */
+
+/**
+ * Un único globo de ayuda, colocado por JavaScript sobre `document.body`.
+ *
+ * Se hizo así y no con CSS puro por una razón concreta: la mitad de las marcas
+ * viven dentro de tablas, y `.tablewrap` tiene `overflow-x: auto` — un globo
+ * posicionado dentro quedaría recortado. Colgándolo del `body` con posición
+ * fija se sale de cualquier contenedor y además se puede voltear cuando no cabe
+ * arriba.
+ */
+let tip;
+
+function ensureTip() {
+  if (tip) return tip;
+  tip = document.createElement('div');
+  tip.className = 'termtip';
+  tip.setAttribute('role', 'tooltip');
+  tip.hidden = true;
+  document.body.append(tip);
+  return tip;
+}
+
+function showTip(anchor, t) {
+  const el = ensureTip();
+  el.innerHTML = `<strong>${esc(t.term)}</strong><span>${esc(t.short)}</span><em>Pulsa para la definición completa</em>`;
+  el.hidden = false;
+
+  const box = anchor.getBoundingClientRect();
+  const size = el.getBoundingClientRect();
+  const margin = 8;
+
+  let left = box.left + box.width / 2 - size.width / 2;
+  left = Math.max(margin, Math.min(left, globalThis.innerWidth - size.width - margin));
+
+  // Debajo si cabe; si no, encima. Un globo que se sale de la pantalla no
+  // explica nada.
+  const below = box.bottom + margin;
+  const top = below + size.height < globalThis.innerHeight ? below : box.top - size.height - margin;
+
+  el.style.left = `${Math.round(left)}px`;
+  el.style.top = `${Math.round(Math.max(margin, top))}px`;
+}
+
+function hideTip() {
+  if (tip) tip.hidden = true;
+}
+
 /**
  * Conecta todas las marcas de ayuda de un contenedor.
- * Se llama desde el `mount()` de cada vista que use `termChip()`.
+ *
+ * Al pasar el cursor (o al tabular hasta ella) muestra qué es en una línea; al
+ * pulsar, la definición completa con aquello con lo que NO hay que confundirla.
+ * Se llama desde el `mount()` de cada vista que use `termChip()` o `termWord()`.
  */
 export function mountTerms(root) {
-  root.querySelectorAll('[data-term]').forEach(btn =>
+  root.querySelectorAll('[data-term]').forEach(btn => {
+    const t = term(btn.dataset.term);
+    if (!t) return;
+
+    btn.addEventListener('mouseenter', () => showTip(btn, t));
+    btn.addEventListener('focus', () => showTip(btn, t));
+    btn.addEventListener('mouseleave', hideTip);
+    btn.addEventListener('blur', hideTip);
+
     btn.addEventListener('click', e => {
       e.preventDefault();
-      const t = term(btn.dataset.term);
-      if (!t) return;
+      hideTip();
       openModal({
         title: t.term,
         body: html`${raw(termBody(t))}`,
         submitLabel: 'Entendido',
         onSubmit: () => true
       });
-    })
-  );
+    });
+  });
+
+  // Al redibujar la vista el ancla desaparece pero el globo seguiría flotando.
+  hideTip();
 }

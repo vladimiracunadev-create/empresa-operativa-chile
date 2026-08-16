@@ -22,6 +22,7 @@
 | [`DECISION-TREE.md`](DECISION-TREE.md) | Cuando dudas si resolverlo solo o escalar a un especialista |
 | [`GLOSSARY.md`](GLOSSARY.md) | Cuando aparece un término que no manejas (generado desde el propio sistema) |
 | [`guides/OFICINA-VIRTUAL.md`](guides/OFICINA-VIRTUAL.md) | Si operas sin oficina física y quieres saber qué cambia |
+| [`ATAJOS-DE-TECLADO.md`](ATAJOS-DE-TECLADO.md) | Para moverte con el teclado, sobre todo en la versión de Windows |
 | [`ACCOUNTING-POLICIES.md`](ACCOUNTING-POLICIES.md) | Para entender los criterios contables del caso guía |
 | [`SOURCES-2026.md`](SOURCES-2026.md) | Para verificar cualquier tasa o plazo contra su fuente |
 
@@ -31,6 +32,7 @@
 | --- | --- |
 | [`ARCHITECTURE.md`](ARCHITECTURE.md) | Cómo está construido y **por qué** cada decisión |
 | [`ROADMAP.md`](ROADMAP.md) | Qué está hecho, qué viene y qué nunca se hará |
+| [`presentacion.md`](presentacion.md) | Muestra del producto: 8 diapositivas y pauta del expositor ([HTML](presentacion/presentacion.html) · [PDF](presentacion/PRESENTACION.pdf)) |
 | [`product/PRODUCT-VISION.md`](product/PRODUCT-VISION.md) | Qué problema resuelve |
 | [`product/COMPANY-LIFECYCLE.md`](product/COMPANY-LIFECYCLE.md) | El ciclo de vida completo de la empresa |
 | [`product/REAL-VS-SANDBOX.md`](product/REAL-VS-SANDBOX.md) | Por qué son dos entornos separados |

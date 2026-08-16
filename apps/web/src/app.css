@@ -575,8 +575,93 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-sp
 }
 .termchip:hover { border-color: var(--brand); color: var(--brand); }
 
+/* Palabra explicable dentro de una frase: se subraya en punteado en vez de
+   añadir un signo aparte, que interrumpiría la lectura. */
+.termword {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: help;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--brand);
+}
+.termword:hover, .termword:focus-visible { color: var(--brand); }
+
+/* Globo de ayuda. Cuelga del <body> con posición fija para no quedar recortado
+   dentro de las tablas, que tienen scroll horizontal propio. */
+.termtip {
+  position: fixed;
+  z-index: 80;
+  max-width: min(320px, calc(100vw - 24px));
+  padding: 9px 12px;
+  border-radius: var(--radius);
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  pointer-events: none;
+  display: grid;
+  gap: 3px;
+}
+.termtip strong { color: var(--text); }
+.termtip span { color: var(--text-dim); }
+.termtip em { color: var(--text-faint); font-size: 0.72rem; font-style: normal; }
+.termtip[hidden] { display: none; }
+
 .termlist { margin: 0; padding-left: 18px; font-size: 0.84rem; }
 .termlist li + li { margin-top: 4px; }
+
+/* ------------------------------------------------- teclado y buscador ---- */
+
+kbd {
+  display: inline-block;
+  min-width: 20px;
+  padding: 1px 6px;
+  border-radius: 5px;
+  border: 1px solid var(--border-strong);
+  border-bottom-width: 2px;
+  background: var(--bg-elev-2);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  text-align: center;
+  line-height: 1.5;
+}
+.kbd__plus { color: var(--text-faint); font-size: 0.7rem; margin: 0 3px; }
+.kbd__hint { margin-left: 8px; opacity: 0.75; }
+/* En pantallas sin teclado la pista sobra y ocupa sitio. */
+@media (max-width: 900px) { .kbd__hint { display: none; } }
+
+.palette { margin-top: 12px; max-height: 46vh; overflow-y: auto; display: grid; gap: 4px; }
+.palette__item {
+  display: grid;
+  grid-template-columns: 78px 1fr;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+.palette__item:hover { background: var(--bg-elev-2); }
+.palette__item[aria-selected="true"] { background: var(--brand-soft); border-color: var(--brand); }
+.palette__kind {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+.palette__item strong { display: block; font-size: 0.9rem; }
+.palette__item small { display: block; color: var(--text-faint); font-size: 0.78rem; }
 
 /* Flujo temporal numerado de la Academia. */
 .flow { list-style: none; margin: 0; padding: 0; counter-reset: flow; }

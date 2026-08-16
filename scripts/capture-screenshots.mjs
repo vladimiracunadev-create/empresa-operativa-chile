@@ -25,7 +25,7 @@ import { STAGES } from '../packages/onboarding/index.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'docs/assets/capturas');
-const guideDir = path.join(root, 'docs/assets/guia');
+const compactDir = path.join(root, 'docs/assets/compacto');
 const base = process.env.CAPTURE_URL || 'http://127.0.0.1:4180';
 
 /* Cada captura: nombre, vista, tamaño y estado que se pide por URL. */
@@ -43,6 +43,7 @@ const SHOTS = [
   { name: 'capital', view: 'capital', w: 1440, h: 1400, alt: 'Capital y patrimonio: las seis magnitudes, el CPT con su desglose y la patente municipal' },
   { name: 'academia', view: 'academia', w: 1440, h: 1020, alt: 'Academia: una venta y un honorario explicados paso a paso' },
   { name: 'glosario', view: 'glosario', w: 1440, h: 1020, alt: 'Glosario buscable con las definiciones del sistema' },
+  { name: 'ayuda', view: 'ayuda', w: 1440, h: 1400, alt: 'Ayuda: los manuales dentro de la aplicación y la tabla de atajos de teclado' },
   { name: 'panel-claro', view: 'panel', w: 1440, h: 940, tema: 'claro', alt: 'El panel en tema claro' },
   { name: 'panel-real', view: 'panel', w: 1440, h: 800, modo: 'real', alt: 'El panel en EMPRESA REAL, con la franja ámbar de advertencia' },
   // Móvil: es la forma en que se usa el APK, y la navegación cambia a barra inferior.
@@ -52,28 +53,32 @@ const SHOTS = [
 ];
 
 /**
- * Capturas de la guía "Empezar aquí".
+ * Juego COMPACTO de las mismas capturas.
  *
- * Van aparte de las del manual por una razón de peso, literalmente: éstas se
- * embeben como data URI dentro del HTML de la guía, que a su vez viaja dentro
- * del APK y del ejecutable de Windows. Por eso se toman a densidad 1 y algo más
- * angostas — pesan una fracción y siguen siendo perfectamente legibles al
+ * Existe por una razón de peso, literalmente: la guía y el manual en HTML
+ * embeben sus imágenes como data URI y viajan dentro del APK y del ejecutable
+ * de Windows. A densidad 2 el manual pasaría de diez megas; a densidad 1 y algo
+ * más angostas pesan una fracción y siguen siendo perfectamente legibles al
  * tamaño en que se leen.
  *
- * La lista se DERIVA de las etapas de `packages/onboarding`: cada vista que una
- * etapa manda abrir tiene su captura, sin listas paralelas que se desincronicen.
+ * Es un espejo de `SHOTS`, no una lista aparte: si mañana se agrega una captura
+ * al manual, su versión compacta aparece sola.
  */
-const GUIDE_VIEWS = [...new Set(STAGES.map(s => s.doInApp?.view).filter(Boolean))];
-const GUIDE_HEIGHT = { capital: 1500, empresa: 1120, constitucion: 1240, operaciones: 1040, impuestos: 1240 };
+const COMPACT_WIDTH = 1180;
+const COMPACT_SHOTS = SHOTS.filter(s => s.w >= 900);
 
-const GUIDE_SHOTS = [
-  { name: 'empezar', view: 'empezar', h: 1700, alt: 'La pantalla “Empezar aquí” con las etapas y el avance real' },
-  ...GUIDE_VIEWS.map(view => ({ name: view, view, h: GUIDE_HEIGHT[view] ?? 1100, alt: `La pantalla ${view} de la aplicación` }))
-];
+// Toda vista que la guía manda abrir tiene que tener captura, o el documento
+// saldría con un hueco. Falla aquí antes que en la revisión.
+const missing = [...new Set(STAGES.map(s => s.doInApp?.view).filter(Boolean))].filter(
+  view => !COMPACT_SHOTS.some(s => s.name === view)
+);
+if (missing.length) {
+  throw new Error(`La guía manda abrir pantallas sin captura declarada en SHOTS: ${missing.join(', ')}`);
+}
 
 const browser = findBrowser();
 fs.mkdirSync(outDir, { recursive: true });
-fs.mkdirSync(guideDir, { recursive: true });
+fs.mkdirSync(compactDir, { recursive: true });
 console.log(`Navegador: ${browser}`);
 console.log(`Aplicación: ${base}\n`);
 
@@ -90,10 +95,10 @@ for (const shot of SHOTS) {
 }
 
 console.log('');
-for (const shot of GUIDE_SHOTS) {
-  const dest = path.join(guideDir, `${shot.name}.png`);
-  const bytes = screenshot({ url: urlFor(shot), out: dest, width: 1180, height: shot.h, scale: 1 });
-  console.log(`  guia/${shot.name}.png — ${(bytes / 1024).toFixed(0)} KB (1180×${shot.h})`);
+for (const shot of COMPACT_SHOTS) {
+  const dest = path.join(compactDir, `${shot.name}.png`);
+  const bytes = screenshot({ url: urlFor(shot), out: dest, width: COMPACT_WIDTH, height: shot.h, scale: 1 });
+  console.log(`  compacto/${shot.name}.png — ${(bytes / 1024).toFixed(0)} KB (${COMPACT_WIDTH}×${shot.h})`);
 }
 
 // Índice con los textos alternativos: el manual y el README los usan para no
@@ -103,8 +108,8 @@ fs.writeFileSync(
   JSON.stringify(SHOTS.map(({ name, view, alt, w, h }) => ({ name, view, alt, w, h })), null, 2)
 );
 fs.writeFileSync(
-  path.join(guideDir, 'index.json'),
-  JSON.stringify(GUIDE_SHOTS.map(({ name, view, alt, h }) => ({ name, view, alt, w: 1180, h })), null, 2)
+  path.join(compactDir, 'index.json'),
+  JSON.stringify(COMPACT_SHOTS.map(({ name, view, alt, h }) => ({ name, view, alt, w: COMPACT_WIDTH, h })), null, 2)
 );
 
-console.log(`\n${SHOTS.length} capturas del manual y ${GUIDE_SHOTS.length} de la guía.`);
+console.log(`\n${SHOTS.length} capturas a densidad 2 y ${COMPACT_SHOTS.length} compactas.`);

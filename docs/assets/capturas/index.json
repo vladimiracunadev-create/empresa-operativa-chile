@@ -91,6 +91,13 @@
     "h": 1020
   },
   {
+    "name": "ayuda",
+    "view": "ayuda",
+    "alt": "Ayuda: los manuales dentro de la aplicación y la tabla de atajos de teclado",
+    "w": 1440,
+    "h": 1400
+  },
+  {
     "name": "panel-claro",
     "view": "panel",
     "alt": "El panel en tema claro",

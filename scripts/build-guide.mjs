@@ -84,8 +84,8 @@ if (!check) {
  * verdad. Las etapas siguientes remiten a la que ya la mostró.
  */
 const guideShots = new Set(
-  fs.existsSync(path.join(docsDir, 'assets/guia'))
-    ? fs.readdirSync(path.join(docsDir, 'assets/guia')).filter(f => f.endsWith('.png')).map(f => f.replace('.png', ''))
+  fs.existsSync(path.join(docsDir, 'assets/compacto'))
+    ? fs.readdirSync(path.join(docsDir, 'assets/compacto')).filter(f => f.endsWith('.png')).map(f => f.replace('.png', ''))
     : []
 );
 
@@ -135,7 +135,7 @@ const stageSection = (s, index) => {
         (s.formationStep ? ` El trámite queda registrado en **Constitución**, donde no se puede marcar como hecho sin evidencia.` : '')
     );
     if (owner === s.id) {
-      parts.push(``, `![${s.doInApp.label} — pantalla ${view} de la aplicación](assets/guia/${view}.png)`);
+      parts.push(``, `![${s.doInApp.label} — pantalla ${view} de la aplicación](assets/compacto/${view}.png)`);
       parts.push(``, `<sub>La pantalla **${view}** en modo SANDBOX. Es la misma en el navegador, en Android y en Windows.</sub>`);
     } else if (owner) {
       parts.push(``, `<sub>Es la misma pantalla que viste en la etapa [«${stage(owner).title}»](#${owner}).</sub>`);
@@ -225,7 +225,7 @@ ${FIRST_QUESTIONS.map(q => `| ${q.question} | [${stage(q.stage).title}](#${q.sta
 La misma secuencia está en la pestaña **Empezar aquí**, con una diferencia que en papel no se puede tener: muestra **tu**
 avance real y cada etapa tiene un botón que abre la ventana donde se hace.
 
-![La pantalla Empezar aquí de la aplicación](assets/guia/empezar.png)
+![La pantalla Empezar aquí de la aplicación](assets/compacto/empezar.png)
 
 ## Cómo leer cada etapa
 

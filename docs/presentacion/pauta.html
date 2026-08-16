@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Pauta del expositor · Empresa Operativa Chile</title>
+<style>
+  @page { size:A4; margin:16mm 15mm 18mm; }
+  body { font-family:"Segoe UI",system-ui,Arial,sans-serif; font-size:11pt; line-height:1.55; color:#16202e; margin:0;
+         -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  h1 { font-size:26pt; margin:0 0 6px; }
+  .sub { color:#4a5a72; font-size:12pt; margin-bottom:26px; }
+  .lamina { page-break-inside:avoid; border-top:2px solid #dde3ed; padding-top:14px; margin-top:20px; }
+  .lamina h2 { font-size:15pt; margin:0 0 4px; color:#0d1826; }
+  .meta { font-size:9.5pt; color:#6b7a94; margin-bottom:10px; }
+  .cols { display:grid; grid-template-columns:1fr 1.25fr; gap:18px; }
+  .caja { border:1px solid #dde3ed; border-radius:8px; padding:11px 13px; }
+  .caja h3 { font-size:9pt; text-transform:uppercase; letter-spacing:.07em; color:#6b7a94; margin:0 0 7px; }
+  .caja--pantalla { background:#f6f8fb; }
+  .caja--guion { background:#fffdf5; border-color:#e5c07b; }
+  .caja p, .caja li { font-size:9.6pt; line-height:1.5; }
+  .caja ul, .caja ol { margin:0; padding-left:17px; }
+  .caja table { width:100%; border-collapse:collapse; font-size:8.6pt; }
+  .caja th, .caja td { border:1px solid #dde3ed; padding:4px 6px; text-align:left; }
+  .caja .tablewrap { overflow:visible; }
+  code { font-family:"Cascadia Mono",Consolas,monospace; font-size:.9em; background:#eef1f7; padding:1px 4px; border-radius:4px; }
+  .total { margin-top:24px; padding:12px 15px; background:#eef3fb; border-radius:8px; font-size:10pt; }
+</style></head><body>
+<h1>Pauta del expositor</h1>
+<div class="sub">Empresa Operativa Chile · v1.4.0 · 8 diapositivas · 28 minutos</div>
+
+<div class="lamina">
+  <h2>1 · Empresa Operativa Chile</h2>
+  <div class="meta">2 min · acumulado 2 min</div>
+  <div class="cols">
+    <div class="caja caja--pantalla"><h3>Lo que se ve proyectado</h3><p class="lead">Crear, operar y controlar una empresa chilena a través del tiempo.</p>
+<ul>
+<li>Acompaña a una SpA <strong>desde antes de existir</strong> hasta el cierre de su segundo ejercicio.</li>
+<li>La misma interfaz y el mismo motor en <strong>Android, Windows y navegador</strong>.</li>
+<li>Los datos <strong>no salen del dispositivo</strong>: sin servidor, sin cuentas, sin telemetría.</li>
+<li>Código MIT · cero dependencias de producción.</li>
+</ul></div>
+    <div class="caja caja--guion"><h3>Lo que dices</h3><p>Preséntate y presenta el producto en una frase. Esto no es una calculadora de impuestos: es el sistema operativo de una empresa pequeña, que además enseña mientras se usa. Aclara el encuadre antes de que alguien lo pregunte: <strong>no presenta ni paga nada ante el SII</strong>; calcula, explica y guarda evidencia. Menciona ya la licencia y el cero-telemetría: con público institucional, ese dato cambia la conversación desde el primer minuto.</p></div>
+  </div>
+</div>
+<div class="lamina">
+  <h2>2 · El problema que resuelve</h2>
+  <div class="meta">3 min · acumulado 5 min</div>
+  <div class="cols">
+    <div class="caja caja--pantalla"><h3>Lo que se ve proyectado</h3><p class="lead">Llevar una empresa pequeña en Chile no falla por no saber sumar. Falla por perder el hilo.</p>
+<ul>
+<li>Una factura que nunca se respaldó.</li>
+<li>Un remanente de IVA que no se arrastró y se perdió.</li>
+<li>Un trámite que se dio por hecho sin guardar el comprobante.</li>
+<li>Un mes que se cerró sin conciliar y que nadie puede reconstruir un año después.</li>
+</ul></div>
+    <div class="caja caja--guion"><h3>Lo que dices</h3><p>Esta es la lámina que conecta con quien ha llevado una empresa chica. No hables de software todavía: describe la experiencia. La contabilidad no se rompe por un error aritmético, se rompe por acumulación de huecos pequeños. Pregunta al público si alguien ha tenido que reconstruir un año anterior sin respaldos — suele haber alguien asintiendo. Ahí introduce la idea central: el producto no intenta tranquilizar, intenta <strong>detectar el hueco</strong>.</p></div>
+  </div>
+</div>
+<div class="lamina">
+  <h2>3 · El principio: se niega a mentir</h2>
+  <div class="meta">4 min · acumulado 9 min</div>
+  <div class="cols">
+    <div class="caja caja--pantalla"><h3>Lo que se ve proyectado</h3><p class="lead">Una aplicación de cumplimiento que se marca sola las tareas como hechas da tranquilidad, no cumplimiento.</p>
+<ul>
+<li>Un trámite <strong>no</strong> se marca como hecho sin su evidencia: folio, certificado o comprobante.</li>
+<li>Un período cerrado es <strong>inmutable en las dos direcciones</strong>: no se agrega y no se borra.</li>
+<li>La bitácora es <strong>append-only</strong>: no existe operación de borrado.</li>
+<li>Cuando falta un dato, la app lo <strong>dice</strong>; no rellena con un supuesto plausible.</li>
+</ul></div>
+    <div class="caja caja--guion"><h3>Lo que dices</h3><p>Este es el corazón del producto y conviene detenerse. Cuenta el caso del capital: hasta hace poco había un solo campo llamado «capital» que además se usaba para estimar la patente municipal. Era cómodo y era falso — capital social, capital enterado, patrimonio contable, capital propio tributario y capital base de patente son cinco cosas distintas. Corregirlo obligó a rehacer el modelo, y hay una prueba automatizada que <strong>falla si esos cinco números coinciden</strong>. Ese es el estándar: preferimos un error visible a una cifra plausible y equivocada.</p></div>
+  </div>
+</div>
+<div class="lamina">
+  <h2>4 · Las reglas son datos, con fuente y fecha</h2>
+  <div class="meta">4 min · acumulado 13 min</div>
+  <div class="cols">
+    <div class="caja caja--pantalla"><h3>Lo que se ve proyectado</h3><p class="lead">Ninguna tasa está escrita en el código: viven en <code>rules/&lt;año&gt;.json</code> con su fuente oficial.</p>
+<div class="tablewrap"><table><thead><tr><th style="text-align:center"></th><th style="text-align:left">Regla</th><th style="text-align:left">Por qué</th></tr></thead><tbody><tr><td style="text-align:center">1</td><td style="text-align:left">Nunca se reescribe una regla histórica</td><td style="text-align:left">Recalcular un período antiguo devuelve lo que se declaró entonces</td></tr><tr><td style="text-align:center">2</td><td style="text-align:left">Pedir un año sin reglas <strong>falla</strong></td><td style="text-align:left">Un cálculo plausible con la tasa equivocada no se ve y no avisa</td></tr><tr><td style="text-align:center">3</td><td style="text-align:left">El JSON y el módulo embebido no pueden desincronizarse</td><td style="text-align:left">Si no, se edita una tasa y se publica un APK que calcula con la anterior</td></tr></tbody></table></div></div>
+    <div class="caja caja--guion"><h3>Lo que dices</h3><p>Muestra un fragmento de regla si tienes pantalla: cada una declara <code>source</code> y <code>lastVerified</code>. Cuenta el hallazgo concreto: el tope legal de la patente municipal estaba en 4.000 UTM, que es el texto <strong>anterior</strong> a la Ley 20.280; el vigente son 8.000. Se corrigió y se añadió una validación que falla si alguien lo revierte. Ese es el tipo de error que un repositorio con reglas versionadas encuentra y uno con números mágicos no.</p></div>
+  </div>
+</div>
+<div class="lamina">
+  <h2>5 · Enseña mientras operas</h2>
+  <div class="meta">4 min · acumulado 17 min</div>
+  <div class="cols">
+    <div class="caja caja--pantalla"><h3>Lo que se ve proyectado</h3><p class="lead">El objetivo no es que aprendas contabilidad para usar el sistema, sino que el sistema te enseñe mientras opera la empresa.</p>
+<ul>
+<li><strong>Empezar aquí:</strong> 14 etapas ordenadas por tiempo, con la decisión de cada punto y el documento que queda.</li>
+<li><strong>Glosario de 54 términos</strong>, con lo que <strong>no</strong> hay que confundir con qué; se explica al pasar el cursor.</li>
+<li>Cada cifra responde <strong>«¿de dónde salió este número?»</strong> con su desglose y su base legal.</li>
+<li>Estados explícitos: <code>ESTIMADO · CALCULADO · DECLARADO · VERIFICADO · PAGADO</code>.</li>
+</ul></div>
+    <div class="caja caja--guion"><h3>Lo que dices</h3><p>Aquí conviene una demostración corta y concreta. Abre Capital y patrimonio y muestra las seis cifras una al lado de la otra; despliega «¿Cómo llegamos a este valor?» del capital propio tributario. Insiste en el último punto: la aplicación <strong>nunca</strong> presenta un cálculo propio como acreditado. Una estimación interna dice que lo es. Si el público es docente, menciona que la academia usa el motor real, así que si cambia una tasa la explicación cambia sola.</p></div>
+  </div>
+</div>
+<div class="lamina">
+  <h2>6 · Qué NO hace, dicho antes de que lo pregunten</h2>
+  <div class="meta">4 min · acumulado 21 min</div>
+  <div class="cols">
+    <div class="caja caja--pantalla"><h3>Lo que se ve proyectado</h3><p class="lead">Un vacío declarado se puede trabajar; uno silencioso se descubre tarde y caro.</p>
+<ul>
+<li><strong>No</strong> presenta ni paga nada ante el SII ni ante ninguna municipalidad.</li>
+<li><strong>No</strong> está conectada a ningún sistema oficial, y no lo simula.</li>
+<li><strong>No</strong> publica tasas municipales por comuna: no existe una tasa nacional, y no se inventan.</li>
+<li><strong>No</strong> cubre remuneraciones, comercio exterior, inventario ni corrección monetaria — y lo dice en pantalla.</li>
+</ul></div>
+    <div class="caja caja--guion"><h3>Lo que dices</h3><p>Esta lámina genera confianza, no dudas. Explica por qué está en la presentación y no escondida en un anexo: quien evalúa una herramienta de cumplimiento necesita saber dónde termina. Lo de las tasas municipales es un buen ejemplo para el público: la ley fija un rango de 2,5‰ a 5‰ y cada municipalidad elige la suya, así que publicar una tabla nacional sería fabricar decenas de cifras que nadie verificó. La app pide la tasa con su fuente y su fecha, y hasta entonces marca la cifra como simulación.</p></div>
+  </div>
+</div>
+<div class="lamina">
+  <h2>7 · Cómo se verifica que esto es cierto</h2>
+  <div class="meta">4 min · acumulado 25 min</div>
+  <div class="cols">
+    <div class="caja caja--pantalla"><h3>Lo que se ve proyectado</h3><p class="lead">Un build en verde no es prueba de un artefacto correcto: hay que abrir el binario y contar lo que lleva dentro.</p>
+<ul>
+<li>El <strong>APK se abre en CI</strong> y se cuentan las vistas, los módulos del motor y las reglas que contiene.</li>
+<li>El ejecutable de Windows <strong>arranca en CI</strong> y se comprueba que sigue vivo pasados 12 segundos.</li>
+<li>El build es <strong>reproducible</strong>: dos compilaciones seguidas tienen que dar el mismo identificador.</li>
+<li>Documentación <strong>generada</strong>: glosario, guía y atajos se comprueban contra su fuente en cada commit.</li>
+</ul></div>
+    <div class="caja caja--guion"><h3>Lo que dices</h3><p>Este es el argumento para un público técnico. La afirmación fuerte: un APK vacío compila perfectamente y su checksum cuadra — por eso el pipeline lo descomprime y cuenta el contenido. Lo mismo con la documentación: el glosario que ve el usuario y el que está en el repositorio no pueden divergir porque uno se <strong>genera</strong> del otro y CI lo verifica. Si alguien pregunta por dependencias: cero en producción, y hay una comprobación que falla si aparece una.</p></div>
+  </div>
+</div>
+<div class="lamina">
+  <h2>8 · Dónde está y cómo se prueba</h2>
+  <div class="meta">3 min · acumulado 28 min</div>
+  <div class="cols">
+    <div class="caja caja--pantalla"><h3>Lo que se ve proyectado</h3><p class="lead">Abierto, instalable y sin registro: se prueba en un minuto.</p>
+<ul>
+<li>🌐 <strong>Navegador / PWA</strong> — funciona sin conexión, instalable, con datos de práctica listos.</li>
+<li>📱 <strong>Android (APK)</strong> · 💻 <strong>Windows</strong> (instalador, MSI y portable) · ⌨️ <strong>CLI</strong> para scripts.</li>
+<li><strong>SANDBOX</strong> integrado: una empresa ficticia completa para practicar sin tocar datos reales.</li>
+<li>Manual, guía ilustrada y atajos <strong>dentro de la propia aplicación</strong>.</li>
+</ul></div>
+    <div class="caja caja--guion"><h3>Lo que dices</h3><p>Cierra invitando a probarlo ahí mismo: la demo pública abre sin instalar nada y el sandbox ya viene con un año completo de operaciones, cierre anual incluido. Recuerda que EMPRESA REAL y SANDBOX son almacenes distintos y que ninguna ruta de código copia datos de uno al otro. Deja el enlace del sitio en pantalla y ofrece resolver preguntas concretas: es cuando aparecen los casos reales del público.</p></div>
+  </div>
+</div>
+<div class="total">
+  <strong>Duración estimada: 28 minutos</strong> sin contar preguntas.
+  Reserva otros 10 para el turno de preguntas: en este tema siempre aparecen casos concretos del público.
+</div>
+</body></html>

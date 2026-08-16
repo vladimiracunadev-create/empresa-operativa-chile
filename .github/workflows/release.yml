@@ -39,9 +39,12 @@ jobs:
           mkdir -p release
           find descargas -type f ! -name '*.sha256' ! -name 'SHA256SUMS.txt' -exec cp {} release/ \;
 
-          # El manual viaja con el release: quien descarga un instalador debería
-          # poder llevarse también las instrucciones sin volver al repositorio.
+          # La documentación viaja con el release: quien descarga un instalador
+          # debería poder llevarse también las instrucciones, la guía para
+          # principiantes y la presentación sin volver al repositorio.
           cp docs/MANUAL.pdf release/EmpresaOperativaChile-manual.pdf
+          cp docs/EMPEZAR-AQUI.pdf release/EmpresaOperativaChile-empezar-aqui.pdf
+          cp docs/presentacion/PRESENTACION.pdf release/EmpresaOperativaChile-presentacion.pdf
           ls -la release
 
           # Un release sin la app de Android o sin el instalador de Windows es
@@ -50,6 +53,8 @@ jobs:
           test -f release/EmpresaOperativaChile-windows.msi
           test -f release/EmpresaOperativaChile-windows-setup.exe
           test -f release/EmpresaOperativaChile-windows-portable.exe
+          test -f release/EmpresaOperativaChile-manual.pdf
+          test -f release/EmpresaOperativaChile-empezar-aqui.pdf
 
           cd release
           sha256sum ./* > SHA256SUMS.txt
@@ -74,15 +79,26 @@ jobs:
             echo "| 💻 Windows | \`EmpresaOperativaChile-windows.msi\` | Instalación desatendida o despliegue corporativo. |"
             echo "| 💻 Windows | \`EmpresaOperativaChile-windows-portable.exe\` | Sin instalar: se ejecuta y ya. |"
             echo "| 🌐 Navegador | [Abrir la app](https://vladimiracunadev-create.github.io/empresa-operativa-chile/) | Instalable como PWA, funciona sin conexión. |"
-            echo "| 📕 Manual | \`EmpresaOperativaChile-manual.pdf\` | 17 capítulos con las pantallas del producto. |"
+            echo "| 📕 Manual | \`EmpresaOperativaChile-manual.pdf\` | 20 capítulos con las pantallas reales del producto. |"
+            echo "| 🧭 Empezar aquí | \`EmpresaOperativaChile-empezar-aqui.pdf\` | Guía para quien nunca ha creado una empresa: 14 etapas ilustradas. |"
+            echo "| 🎤 Presentación | \`EmpresaOperativaChile-presentacion.pdf\` | 8 diapositivas para presentar el producto. |"
             echo ""
             echo "Verifica lo que descargues con \`SHA256SUMS.txt\`."
+            echo ""
+            echo "### Novedades de esta versión"
+            echo ""
+            echo "- **Capital, CPT y patente municipal** dejan de ser el mismo número: seis magnitudes con su fuente legal, su momento y su evidencia."
+            echo "- **Empezar aquí**: la ruta completa para quien nunca ha creado una empresa, dentro de la app y en PDF."
+            echo "- **Manuales dentro de la aplicación**, leíbles sin conexión, y ayuda contextual al pasar el cursor sobre cualquier término."
+            echo "- **Atajos de teclado** con buscador (\`Ctrl+K\`) y ayuda (\`F1\`), pensados para la versión de Windows."
+            echo "- **Glosario de 54 términos** generado desde el propio sistema."
             echo ""
             echo "### Lo que estos artefactos SÍ tienen verificado"
             echo ""
             echo "- El APK se abre en CI y se cuentan las vistas, los módulos del motor y las reglas tributarias que lleva dentro."
             echo "- El ejecutable de Windows arranca en CI y se comprueba que sigue vivo pasados 12 segundos."
             echo "- La interfaz se verifica completa antes de sellarla dentro del binario."
+            echo "- La documentación (glosario, guía y atajos) se genera desde el código y CI falla si el documento se desvía."
             echo ""
             echo "### Advertencias honestas"
             echo ""

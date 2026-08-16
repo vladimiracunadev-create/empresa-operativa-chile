@@ -9,6 +9,8 @@
 import { html, raw, fmtPeriod } from './lib/dom.js';
 import { state, ws, setMode, setTheme, toggleTheme, ensureSandboxSeeded, selectablePeriods } from './lib/state.js';
 import { hydrateFromDisk, PLATFORM_LABEL } from './lib/platform.js';
+import { installShortcuts } from './lib/shortcuts.js';
+import { TERMS } from './core/glossary/index.mjs';
 
 import empezar from './views/empezar.js';
 import panel from './views/panel.js';
@@ -23,8 +25,9 @@ import auditoria from './views/auditoria.js';
 import datos from './views/datos.js';
 import academia from './views/academia.js';
 import glosario from './views/glosario.js';
+import ayuda from './views/ayuda.js';
 
-export const APP_VERSION = '1.3.0';
+export const APP_VERSION = '1.4.0';
 
 const NAV = [
   // "Empezar aquí" va primero y solo: es la única pantalla ordenada por tiempo
@@ -33,7 +36,7 @@ const NAV = [
   { group: 'Operar', views: [panel, operaciones, impuestos, obligaciones, cierre] },
   { group: 'Empresa', views: [constitucion, empresa, capital] },
   { group: 'Control', views: [auditoria, datos] },
-  { group: 'Aprender', views: [academia, glosario] }
+  { group: 'Aprender', views: [academia, glosario, ayuda] }
 ];
 
 const VIEWS = Object.fromEntries(NAV.flatMap(g => g.views).map(v => [v.id, v]));
@@ -206,14 +209,32 @@ async function boot() {
     }
   });
 
-  // Atajos de teclado: en escritorio se navega mucho más rápido así.
-  document.addEventListener('keydown', e => {
-    if (e.altKey && !e.ctrlKey && !e.metaKey) {
-      const all = NAV.flatMap(g => g.views);
-      const index = Number(e.key) - 1;
-      if (index >= 0 && index < all.length) {
-        e.preventDefault();
-        goTo(all[index].id);
+  // Atajos de teclado. En escritorio la aplicación se usa sentado y durante un
+  // rato largo; levantar la mano al ratón para cambiar de pantalla cuesta más de
+  // lo que parece. La tabla vive en `packages/shortcuts` y de ahí salen también
+  // la ayuda de la app y `docs/ATAJOS-DE-TECLADO.md`.
+  installShortcuts({
+    views: NAV.flatMap(g => g.views),
+    terms: TERMS,
+    goTo,
+    onAction: action => {
+      if (action === 'toggle-mode') {
+        setMode(state.mode === 'real' ? 'sandbox' : 'real');
+        render();
+      }
+      if (action === 'toggle-theme') {
+        toggleTheme();
+        render(true);
+      }
+      if (action === 'period-prev' || action === 'period-next') {
+        // `selectablePeriods()` va del más nuevo al más viejo: "anterior" en el
+        // tiempo es avanzar en el arreglo.
+        const periods = selectablePeriods();
+        const i = periods.indexOf(state.period);
+        const next = periods[i + (action === 'period-prev' ? 1 : -1)];
+        if (!next) return;
+        state.period = next;
+        render(true);
       }
     }
   });

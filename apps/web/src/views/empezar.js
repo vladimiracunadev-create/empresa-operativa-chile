@@ -77,12 +77,12 @@ export default {
         </p>
         <div class="btn__row" style="margin-top:12px">
           <button class="btn btn--primary" data-guia-toggle>${this.guiaAbierta ? 'Cerrar la guía' : 'Leer la guía ilustrada'}</button>
-          <a class="btn" href="./guia/EMPEZAR-AQUI.pdf" download="Empezar-aqui.pdf">Descargar el PDF</a>
+          <a class="btn" href="./ayuda/EMPEZAR-AQUI.pdf" download="Empezar-aqui.pdf">Descargar el PDF</a>
           <button class="btn btn--ghost" data-guia-nueva>Abrirla en otra ventana</button>
         </div>
         ${raw(
           this.guiaAbierta
-            ? `<iframe class="guiaframe" src="./guia/EMPEZAR-AQUI.html" title="Guía Empezar aquí" loading="lazy"></iframe>`
+            ? `<iframe class="guiaframe" src="./ayuda/EMPEZAR-AQUI.html" title="Guía Empezar aquí" loading="lazy"></iframe>`
             : ''
         )}
       </div>
@@ -211,7 +211,7 @@ export default {
     });
 
     root.querySelector('[data-guia-nueva]')?.addEventListener('click', () =>
-      openExternal(new URL('./guia/EMPEZAR-AQUI.html', location.href).href)
+      openExternal(new URL('./ayuda/EMPEZAR-AQUI.html', location.href).href)
     );
   }
 };

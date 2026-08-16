@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Empresa Operativa Chile · Presentación</title><style>
+  :root { --tinta:#0d1826; --suave:#6b7a94; --acento:#2563eb; --verde:#047857; --linea:#dde3ed; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; padding:0; background:#20242c; }
+  body { font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif; color:#0d1826; }
+  .slide { width:1280px; height:720px; background:#fff; position:relative; overflow:hidden;
+           page-break-after:always; break-after:page; margin:0 auto 24px; padding:46px 72px 92px;
+           display:flex; flex-direction:column; }
+  .slide:last-child { page-break-after:auto; break-after:auto; margin-bottom:0; }
+  .slide::before { content:""; position:absolute; inset:0 0 auto 0; height:10px;
+                   background:linear-gradient(90deg,#4f8cff,#34d399); }
+  .tope { display:flex; justify-content:space-between; align-items:center; font-size:19px; color:#6b7a94; }
+  .tope .marca { font-weight:600; }
+  h2 { font-size:52px; line-height:1.1; margin:26px 0 0; letter-spacing:-.015em; }
+  h2::after { content:""; display:block; width:104px; height:7px; border-radius:4px; background:#4f8cff; margin-top:18px; }
+  .zona { flex:1; min-height:0; overflow:hidden; display:flex; align-items:flex-start; margin-top:24px; }
+  .contenido { width:100%; flex:0 0 auto; transform-origin:top left; }
+  .lead { font-size:33px; line-height:1.32; font-weight:700; color:#1d4ed8; margin:0 0 22px; }
+  .contenido p { font-size:28px; line-height:1.42; margin:0 0 18px; }
+  .contenido ul, .contenido ol { font-size:29px; line-height:1.42; margin:0; padding-left:1.15em; }
+  .contenido li { margin-bottom:15px; }
+  .contenido li::marker { color:#4f8cff; }
+  .contenido code { font-family:"Cascadia Mono",Consolas,monospace; font-size:.86em;
+                    background:#eef1f7; color:#b5265f; padding:.1em .32em; border-radius:5px; }
+  .contenido table { border-collapse:collapse; width:100%; font-size:25px; }
+  .contenido th, .contenido td { border-bottom:2px solid #dde3ed; padding:11px 16px; text-align:left; }
+  .contenido th { background:#eef3fb; font-size:22px; text-transform:uppercase; letter-spacing:.04em; color:#6b7a94; }
+  .contenido .tablewrap { overflow:visible; }
+  .contenido.densa .lead { font-size:30px; margin-bottom:16px; }
+  .contenido.densa ul, .contenido.densa ol { font-size:26px; }
+  .contenido.densa li { margin-bottom:10px; }
+  .contenido.densa table { font-size:23px; }
+  .contenido.densa th, .contenido.densa td { padding:7px 14px; }
+  .pie { position:absolute; left:72px; right:72px; bottom:26px; display:flex; justify-content:space-between;
+         font-size:16px; color:#6b7a94; border-top:2px solid #dde3ed; padding-top:12px; }
+  .slide.portada { justify-content:center; text-align:center;
+                   background:linear-gradient(160deg,#0b1017 0%,#132038 60%,#1b2c4d 100%); color:#fff; }
+  .slide.portada .tope, .slide.portada .pie { color:#9fb2d0; border-color:#2a3f63; }
+  .slide.portada h2 { font-size:76px; margin:0; color:#fff; }
+  .slide.portada h2::after { margin:26px auto 0; background:#34d399; }
+  /* La portada no se recorta: flex:0 con overflow:hidden dejaría la zona a
+     altura cero y el contenido invisible. Aquí crece con lo que tiene. */
+  .slide.portada .zona { flex:0 0 auto; overflow:visible; justify-content:center; margin-top:26px; }
+  .slide.portada .contenido { max-width:960px; }
+  .slide.portada .lead { color:#7aa7ff; font-size:36px; }
+  .slide.portada .contenido ul { list-style:none; padding:0; }
+  .slide.portada .contenido li { color:#e3ebf7; }
+  .slide.portada .contenido strong { color:#fff; }
+  @page { size:1280px 720px; margin:0; }
+  @media print { body { background:#fff; } .slide { margin:0; } }
+</style></head>
+<body>
+<section class="slide portada">
+  <div class="tope"><span class="marca">🎤 Presentación del producto</span><span>1 / 8</span></div>
+  <h2>Empresa Operativa Chile</h2>
+  <div class="zona"><div class="contenido"><p class="lead">Crear, operar y controlar una empresa chilena a través del tiempo.</p>
+<ul>
+<li>Acompaña a una SpA <strong>desde antes de existir</strong> hasta el cierre de su segundo ejercicio.</li>
+<li>La misma interfaz y el mismo motor en <strong>Android, Windows y navegador</strong>.</li>
+<li>Los datos <strong>no salen del dispositivo</strong>: sin servidor, sin cuentas, sin telemetría.</li>
+<li>Código MIT · cero dependencias de producción.</li>
+</ul></div></div>
+  <div class="pie"><span>v1.4.0 · 28 min · Android · Windows · Web</span><span>vladimiracunadev-create.github.io/empresa-operativa-chile</span></div>
+</section>
+
+<section class="slide">
+  <div class="tope"><span class="marca">🏢 Empresa Operativa Chile</span><span>2 / 8</span></div>
+  <h2>El problema que resuelve</h2>
+  <div class="zona"><div class="contenido"><p class="lead">Llevar una empresa pequeña en Chile no falla por no saber sumar. Falla por perder el hilo.</p>
+<ul>
+<li>Una factura que nunca se respaldó.</li>
+<li>Un remanente de IVA que no se arrastró y se perdió.</li>
+<li>Un trámite que se dio por hecho sin guardar el comprobante.</li>
+<li>Un mes que se cerró sin conciliar y que nadie puede reconstruir un año después.</li>
+</ul></div></div>
+  <div class="pie"><span>v1.4.0 · 28 min · Android · Windows · Web</span><span>vladimiracunadev-create.github.io/empresa-operativa-chile</span></div>
+</section>
+
+<section class="slide">
+  <div class="tope"><span class="marca">🏢 Empresa Operativa Chile</span><span>3 / 8</span></div>
+  <h2>El principio: se niega a mentir</h2>
+  <div class="zona"><div class="contenido"><p class="lead">Una aplicación de cumplimiento que se marca sola las tareas como hechas da tranquilidad, no cumplimiento.</p>
+<ul>
+<li>Un trámite <strong>no</strong> se marca como hecho sin su evidencia: folio, certificado o comprobante.</li>
+<li>Un período cerrado es <strong>inmutable en las dos direcciones</strong>: no se agrega y no se borra.</li>
+<li>La bitácora es <strong>append-only</strong>: no existe operación de borrado.</li>
+<li>Cuando falta un dato, la app lo <strong>dice</strong>; no rellena con un supuesto plausible.</li>
+</ul></div></div>
+  <div class="pie"><span>v1.4.0 · 28 min · Android · Windows · Web</span><span>vladimiracunadev-create.github.io/empresa-operativa-chile</span></div>
+</section>
+
+<section class="slide">
+  <div class="tope"><span class="marca">🏢 Empresa Operativa Chile</span><span>4 / 8</span></div>
+  <h2>Las reglas son datos, con fuente y fecha</h2>
+  <div class="zona"><div class="contenido"><p class="lead">Ninguna tasa está escrita en el código: viven en <code>rules/&lt;año&gt;.json</code> con su fuente oficial.</p>
+<div class="tablewrap"><table><thead><tr><th style="text-align:center"></th><th style="text-align:left">Regla</th><th style="text-align:left">Por qué</th></tr></thead><tbody><tr><td style="text-align:center">1</td><td style="text-align:left">Nunca se reescribe una regla histórica</td><td style="text-align:left">Recalcular un período antiguo devuelve lo que se declaró entonces</td></tr><tr><td style="text-align:center">2</td><td style="text-align:left">Pedir un año sin reglas <strong>falla</strong></td><td style="text-align:left">Un cálculo plausible con la tasa equivocada no se ve y no avisa</td></tr><tr><td style="text-align:center">3</td><td style="text-align:left">El JSON y el módulo embebido no pueden desincronizarse</td><td style="text-align:left">Si no, se edita una tasa y se publica un APK que calcula con la anterior</td></tr></tbody></table></div></div></div>
+  <div class="pie"><span>v1.4.0 · 28 min · Android · Windows · Web</span><span>vladimiracunadev-create.github.io/empresa-operativa-chile</span></div>
+</section>
+
+<section class="slide">
+  <div class="tope"><span class="marca">🏢 Empresa Operativa Chile</span><span>5 / 8</span></div>
+  <h2>Enseña mientras operas</h2>
+  <div class="zona"><div class="contenido"><p class="lead">El objetivo no es que aprendas contabilidad para usar el sistema, sino que el sistema te enseñe mientras opera la empresa.</p>
+<ul>
+<li><strong>Empezar aquí:</strong> 14 etapas ordenadas por tiempo, con la decisión de cada punto y el documento que queda.</li>
+<li><strong>Glosario de 54 términos</strong>, con lo que <strong>no</strong> hay que confundir con qué; se explica al pasar el cursor.</li>
+<li>Cada cifra responde <strong>«¿de dónde salió este número?»</strong> con su desglose y su base legal.</li>
+<li>Estados explícitos: <code>ESTIMADO · CALCULADO · DECLARADO · VERIFICADO · PAGADO</code>.</li>
+</ul></div></div>
+  <div class="pie"><span>v1.4.0 · 28 min · Android · Windows · Web</span><span>vladimiracunadev-create.github.io/empresa-operativa-chile</span></div>
+</section>
+
+<section class="slide">
+  <div class="tope"><span class="marca">🏢 Empresa Operativa Chile</span><span>6 / 8</span></div>
+  <h2>Qué NO hace, dicho antes de que lo pregunten</h2>
+  <div class="zona"><div class="contenido"><p class="lead">Un vacío declarado se puede trabajar; uno silencioso se descubre tarde y caro.</p>
+<ul>
+<li><strong>No</strong> presenta ni paga nada ante el SII ni ante ninguna municipalidad.</li>
+<li><strong>No</strong> está conectada a ningún sistema oficial, y no lo simula.</li>
+<li><strong>No</strong> publica tasas municipales por comuna: no existe una tasa nacional, y no se inventan.</li>
+<li><strong>No</strong> cubre remuneraciones, comercio exterior, inventario ni corrección monetaria — y lo dice en pantalla.</li>
+</ul></div></div>
+  <div class="pie"><span>v1.4.0 · 28 min · Android · Windows · Web</span><span>vladimiracunadev-create.github.io/empresa-operativa-chile</span></div>
+</section>
+
+<section class="slide">
+  <div class="tope"><span class="marca">🏢 Empresa Operativa Chile</span><span>7 / 8</span></div>
+  <h2>Cómo se verifica que esto es cierto</h2>
+  <div class="zona"><div class="contenido"><p class="lead">Un build en verde no es prueba de un artefacto correcto: hay que abrir el binario y contar lo que lleva dentro.</p>
+<ul>
+<li>El <strong>APK se abre en CI</strong> y se cuentan las vistas, los módulos del motor y las reglas que contiene.</li>
+<li>El ejecutable de Windows <strong>arranca en CI</strong> y se comprueba que sigue vivo pasados 12 segundos.</li>
+<li>El build es <strong>reproducible</strong>: dos compilaciones seguidas tienen que dar el mismo identificador.</li>
+<li>Documentación <strong>generada</strong>: glosario, guía y atajos se comprueban contra su fuente en cada commit.</li>
+</ul></div></div>
+  <div class="pie"><span>v1.4.0 · 28 min · Android · Windows · Web</span><span>vladimiracunadev-create.github.io/empresa-operativa-chile</span></div>
+</section>
+
+<section class="slide">
+  <div class="tope"><span class="marca">🏢 Empresa Operativa Chile</span><span>8 / 8</span></div>
+  <h2>Dónde está y cómo se prueba</h2>
+  <div class="zona"><div class="contenido"><p class="lead">Abierto, instalable y sin registro: se prueba en un minuto.</p>
+<ul>
+<li>🌐 <strong>Navegador / PWA</strong> — funciona sin conexión, instalable, con datos de práctica listos.</li>
+<li>📱 <strong>Android (APK)</strong> · 💻 <strong>Windows</strong> (instalador, MSI y portable) · ⌨️ <strong>CLI</strong> para scripts.</li>
+<li><strong>SANDBOX</strong> integrado: una empresa ficticia completa para practicar sin tocar datos reales.</li>
+<li>Manual, guía ilustrada y atajos <strong>dentro de la propia aplicación</strong>.</li>
+</ul></div></div>
+  <div class="pie"><span>v1.4.0 · 28 min · Android · Windows · Web</span><span>vladimiracunadev-create.github.io/empresa-operativa-chile</span></div>
+</section>
+<script>
+(function () {
+  document.querySelectorAll('.slide').forEach(function (slide) {
+    if (slide.classList.contains('portada')) return;
+    var zona = slide.querySelector('.zona');
+    var caja = slide.querySelector('.contenido');
+    if (!zona || !caja) return;
+    var disponible = zona.clientHeight - 2;
+    if (disponible <= 0 || caja.scrollHeight <= disponible) return;
+
+    function aplicar(e) {
+      caja.style.transform = e < 1 ? 'scale(' + e + ')' : '';
+      caja.style.width = (100 / e) + '%';
+    }
+    var segura = Math.max(0.62, disponible / caja.scrollHeight);
+    aplicar(segura);
+    var alta = 1;
+    for (var i = 0; i < 5 && alta - segura > 0.015; i++) {
+      var media = (segura + alta) / 2;
+      aplicar(media);
+      if (caja.scrollHeight * media <= disponible) segura = media;
+      else alta = media;
+    }
+    aplicar(segura);
+  });
+})();
+</script></body></html>

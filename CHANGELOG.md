@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Versión](https://img.shields.io/badge/versión_actual-1.3.0-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
+[![Versión](https://img.shields.io/badge/versión_actual-1.4.0-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
 [![Formato](https://img.shields.io/badge/formato-Keep_a_Changelog-7c5cff?style=for-the-badge)](https://keepachangelog.com/es-ES/1.1.0/)
 [![SemVer](https://img.shields.io/badge/versionado-SemVer-2f81f7?style=for-the-badge)](https://semver.org/lang/es/)
 
@@ -14,6 +14,57 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 Versionado según [SemVer](https://semver.org/lang/es/).
+
+## [1.4.0] — 2026-08-16
+
+Los manuales entran en la aplicación, el teclado se vuelve una forma de trabajar
+y el producto tiene presentación.
+
+### ✨ Añadido
+
+- **Pestaña «Ayuda»**: la guía ilustrada y el **manual completo** se leen **dentro** de la
+  aplicación, en un marco del mismo origen. Los dos viajan en el paquete instalado, así que
+  funcionan sin conexión igual en navegador, Android y Windows.
+- **`docs/MANUAL.html`** — el manual en HTML autocontenido, con índice lateral y sin JavaScript.
+  Usa un juego **compacto** de capturas (`docs/assets/compacto/`, densidad 1): con las de
+  densidad 2 el archivo pasaría de diez megas y engordaría el APK.
+- **Ayuda contextual al pasar el cursor.** La marca **?** junto a cada rótulo ya no exige pulsar:
+  al pasar por encima muestra en una línea qué es el término; al pulsar, la definición completa
+  con aquello con lo que **no** hay que confundirlo. El globo cuelga del `body` con posición fija
+  para no quedar recortado dentro de las tablas, que tienen scroll propio.
+- **`termWord()`**: subraya una palabra dentro de una frase, sin añadir un signo que interrumpa la lectura.
+- **12 atajos de teclado** (`packages/shortcuts`), pensados sobre todo para Windows:
+  - <kbd>Ctrl</kbd>+<kbd>K</kbd> — **buscador**: salta a cualquier pantalla o término del glosario,
+    con navegación por flechas. Es el único que hace falta aprender.
+  - <kbd>Alt</kbd>+<kbd>1…9</kbd> pantallas · <kbd>F1</kbd> ayuda · <kbd>Alt</kbd>+<kbd>M</kbd> modo ·
+    <kbd>Alt</kbd>+<kbd>T</kbd> tema · <kbd>Alt</kbd>+<kbd>←</kbd><kbd>→</kbd> período ·
+    <kbd>Alt</kbd>+<kbd>N</kbd> acción principal · <kbd>/</kbd> buscar · <kbd>Esc</kbd> cerrar.
+  - Dentro de un campo de texto **sólo pasan los atajos con modificador** y <kbd>Esc</kbd>: escribir
+    «no» en una descripción no abre nada.
+- **`docs/ATAJOS-DE-TECLADO.md`**, generado desde el mismo módulo; CI comprueba la sincronía.
+- **Presentación del producto** (`docs/presentacion.md` → `scripts/build-presentation.mjs`):
+  8 diapositivas 16:9 en HTML y PDF, más la **pauta del expositor** con el guion hablado y los
+  minutos de cada lámina. La duración total se calcula sola. Fuente única: el guion y las láminas
+  viven en el mismo archivo, que es lo que impide que a la segunda edición cuenten cosas distintas.
+  Se publica junto a la app, así que se puede proyectar desde el sitio sin descargar nada.
+
+### 🔁 Cambiado
+
+- `scripts/build-manual-pdf.mjs` pasa a ser **`scripts/build-manual.mjs`** y produce los dos formatos.
+- Las capturas se toman en dos juegos: `assets/capturas/` (densidad 2, para el PDF y el README) y
+  `assets/compacto/` (densidad 1, para los HTML embarcados). El segundo es un **espejo** del primero,
+  no una lista aparte.
+- El manejo de teclas antiguo (Alt+número, escrito a mano en `app.js`) se reemplazó por la tabla
+  declarativa; hay una prueba que falla si vuelve a duplicarse.
+- `npm run check` valida también los atajos y la estructura de la presentación.
+
+### 🧪 Pruebas
+
+De 137 a **153**. Las nuevas comprueban que no haya dos atajos con la misma combinación, que
+escribir en un campo no dispare atajos sin modificador, que los HTML embarcados no lleven
+JavaScript —la política de seguridad de la app los bloquearía— ni imágenes externas, que el manual
+en HTML no supere el tamaño que lo haría inviable dentro del APK, y que ninguna diapositiva se
+publique sin pauta ni minutos.
 
 ## [1.3.0] — 2026-08-16
 
