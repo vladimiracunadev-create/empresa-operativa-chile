@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Versión](https://img.shields.io/badge/versión_actual-1.2.0-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
+[![Versión](https://img.shields.io/badge/versión_actual-1.3.0-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
 [![Formato](https://img.shields.io/badge/formato-Keep_a_Changelog-7c5cff?style=for-the-badge)](https://keepachangelog.com/es-ES/1.1.0/)
 [![SemVer](https://img.shields.io/badge/versionado-SemVer-2f81f7?style=for-the-badge)](https://semver.org/lang/es/)
 
@@ -14,6 +14,56 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 Versionado según [SemVer](https://semver.org/lang/es/).
+
+## [1.3.0] — 2026-08-16
+
+La guía «Empezar aquí», ilustrada y en tres formatos.
+
+La versión anterior daba la ruta en texto. Faltaba lo que hace que una guía se
+pueda seguir sin conocer el sistema: **ver** la pantalla donde se hace cada cosa,
+y un mapa de quién hace qué.
+
+### ✨ Añadido
+
+- **Dos diagramas generados** (`scripts/lib/diagrams.mjs`), no dibujados a mano —
+  si mañana se agrega una etapa, aparecen solos:
+  - **Casos de uso:** los actores (quien crea la empresa, contador, Registro de
+    Empresas, SII, municipalidad, banco) y el **límite del sistema**. Todo lo que
+    cruza hacia un organismo va con línea discontinua, para que no se malinterprete
+    nunca que la aplicación presenta o paga algo.
+  - **La ruta completa:** las 14 etapas agrupadas por fase, numeradas y encadenadas.
+- **Una captura de cada pantalla** donde se hace cada etapa, dentro del propio
+  documento. Se toman a densidad 1 y algo más angostas que las del manual porque
+  viajan embebidas: cada vista se ilustra **una vez**, en la primera etapa que la usa.
+- **`docs/EMPEZAR-AQUI.html`** — autocontenido (imágenes en data URI), con índice
+  lateral pegajoso, tema claro y oscuro, y **cero JavaScript**: se abre dentro de la
+  aplicación, cuya política de seguridad prohíbe scripts en línea.
+- **`docs/EMPEZAR-AQUI.pdf`** — 34 páginas, para descargar, imprimir o enviar.
+- **La guía se lee DENTRO de la aplicación.** La pestaña «Empezar aquí» la muestra
+  en un marco del mismo origen —no en una pestaña nueva—, con botón para descargar
+  el PDF. Ambos archivos viajan en el bundle: se leen y se descargan **sin conexión**,
+  igual en el navegador, en Android y en Windows.
+
+### 🔁 Cambiado
+
+- El conversor Markdown → HTML y el envoltorio de Chrome se extrajeron a
+  `scripts/lib/` (`markdown.mjs`, `chrome.mjs`, `print-style.mjs`), compartidos por
+  el manual y la guía. Antes vivían dentro del script del manual; ahora los dos
+  documentos salen del mismo motor y no pueden divergir de aspecto.
+- El servidor local declara `application/pdf` y deja de añadir `charset` a los
+  binarios.
+- `frame-ancestors` pasa de `'none'` a `'self'`: sigue impidiendo que cualquier sitio
+  externo enmarque la aplicación —que es de lo que protege esa directiva— y permite
+  lo único que hacía falta, que la app se enmarque a sí misma para mostrar la guía.
+- `npm run docs` genera también la guía.
+
+### 🧪 Pruebas
+
+De 131 a **137**. Las nuevas comprueban que el HTML no referencie ni una imagen
+externa (una ruta relativa haría que la guía se viera rota dentro del APK), que cada
+pantalla que la guía manda abrir tenga su captura y aparezca **exactamente una vez**,
+que los diagramas estén generados y describan su contenido para lectores de pantalla,
+y que el bundle embarque los dos formatos.
 
 ## [1.2.0] — 2026-08-16
 

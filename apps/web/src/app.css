@@ -607,6 +607,19 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-sp
 .flow > li > span.btn__row { display: flex; }
 .flow > li .btn { font-size: 0.79rem; color: var(--text); }
 
+/* La guía ilustrada, leída dentro de la propia aplicación. Mismo origen, así
+   que no hay nada que cruce a la red: el archivo viaja en el bundle. */
+.guiaframe {
+  display: block;
+  width: 100%;
+  height: min(78vh, 900px);
+  margin-top: 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--bg-elev-2);
+}
+@media (max-width: 900px) { .guiaframe { height: 70vh; } }
+
 /* Ficha desplegada de una etapa de la ruta ("Empezar aquí"). Se separa del
    resto de la fila para que se lea como una tarjeta dentro del paso. */
 .stagebox {

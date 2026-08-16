@@ -69,6 +69,24 @@ export default {
         <p>Esta aplicación <strong>no presenta ni paga</strong> nada ante el SII ni ante ninguna municipalidad, y no es asesoría tributaria.
         Calcula, te dice de dónde salió cada número y guarda la evidencia. Los trámites los haces tú en los portales oficiales.</p></div>
 
+      <div class="card" style="margin-top:14px">
+        <div class="card__head"><h2>La guía completa, ilustrada</h2>${raw(this.guiaAbierta ? '<span class="tag tag--ok">abierta</span>' : '')}</div>
+        <p class="card__hint">
+          Las mismas ${STAGES.length} etapas con los diagramas de la ruta y de casos de uso, y una captura de la pantalla donde se hace cada cosa.
+          Va <strong>dentro</strong> de la aplicación: se lee y se descarga sin conexión.
+        </p>
+        <div class="btn__row" style="margin-top:12px">
+          <button class="btn btn--primary" data-guia-toggle>${this.guiaAbierta ? 'Cerrar la guía' : 'Leer la guía ilustrada'}</button>
+          <a class="btn" href="./guia/EMPEZAR-AQUI.pdf" download="Empezar-aqui.pdf">Descargar el PDF</a>
+          <button class="btn btn--ghost" data-guia-nueva>Abrirla en otra ventana</button>
+        </div>
+        ${raw(
+          this.guiaAbierta
+            ? `<iframe class="guiaframe" src="./guia/EMPEZAR-AQUI.html" title="Guía Empezar aquí" loading="lazy"></iframe>`
+            : ''
+        )}
+      </div>
+
       ${next
         ? raw(html`
             <div class="card" style="margin-top:14px">
@@ -180,6 +198,20 @@ export default {
         e.preventDefault();
         openExternal(a.getAttribute('href'));
       })
+    );
+
+    // La guía viaja dentro del bundle (`scripts/build-web.mjs`), así que la ruta
+    // es relativa y funciona igual servida por el navegador, dentro del APK y
+    // dentro del ejecutable de Windows, con o sin conexión. Se muestra en un
+    // marco del mismo origen —no en una pestaña nueva— porque "verla dentro de
+    // la aplicación" es justamente el punto: no hay que salir para leerla.
+    root.querySelector('[data-guia-toggle]')?.addEventListener('click', () => {
+      this.guiaAbierta = !this.guiaAbierta;
+      rerender(true);
+    });
+
+    root.querySelector('[data-guia-nueva]')?.addEventListener('click', () =>
+      openExternal(new URL('./guia/EMPEZAR-AQUI.html', location.href).href)
     );
   }
 };

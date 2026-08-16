@@ -19,33 +19,14 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import os from 'node:os';
-import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { screenshot, findBrowser } from './lib/chrome.mjs';
+import { STAGES } from '../packages/onboarding/index.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'docs/assets/capturas');
+const guideDir = path.join(root, 'docs/assets/guia');
 const base = process.env.CAPTURE_URL || 'http://127.0.0.1:4180';
-
-/** Localiza Chrome o Edge. Ambos sirven: los dos son Chromium. */
-function findBrowser() {
-  if (process.env.CHROME_PATH) return process.env.CHROME_PATH;
-  const candidates =
-    process.platform === 'win32'
-      ? [
-          'C:/Program Files/Google/Chrome/Application/chrome.exe',
-          'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
-          'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
-          'C:/Program Files/Microsoft/Edge/Application/msedge.exe'
-        ]
-      : process.platform === 'darwin'
-        ? ['/Applications/Google Chrome.app/Contents/MacOS/Google Chrome']
-        : ['/usr/bin/google-chrome', '/usr/bin/chromium', '/usr/bin/chromium-browser'];
-
-  const found = candidates.find(p => fs.existsSync(p));
-  if (!found) throw new Error('No se encontró Chrome ni Edge. Define CHROME_PATH.');
-  return found;
-}
 
 /* Cada captura: nombre, vista, tamaño y estado que se pide por URL. */
 const SHOTS = [
@@ -70,43 +51,49 @@ const SHOTS = [
   { name: 'movil-impuestos', view: 'impuestos', w: 412, h: 915, alt: 'El borrador del F29 en un teléfono' }
 ];
 
+/**
+ * Capturas de la guía "Empezar aquí".
+ *
+ * Van aparte de las del manual por una razón de peso, literalmente: éstas se
+ * embeben como data URI dentro del HTML de la guía, que a su vez viaja dentro
+ * del APK y del ejecutable de Windows. Por eso se toman a densidad 1 y algo más
+ * angostas — pesan una fracción y siguen siendo perfectamente legibles al
+ * tamaño en que se leen.
+ *
+ * La lista se DERIVA de las etapas de `packages/onboarding`: cada vista que una
+ * etapa manda abrir tiene su captura, sin listas paralelas que se desincronicen.
+ */
+const GUIDE_VIEWS = [...new Set(STAGES.map(s => s.doInApp?.view).filter(Boolean))];
+const GUIDE_HEIGHT = { capital: 1500, empresa: 1120, constitucion: 1240, operaciones: 1040, impuestos: 1240 };
+
+const GUIDE_SHOTS = [
+  { name: 'empezar', view: 'empezar', h: 1700, alt: 'La pantalla “Empezar aquí” con las etapas y el avance real' },
+  ...GUIDE_VIEWS.map(view => ({ name: view, view, h: GUIDE_HEIGHT[view] ?? 1100, alt: `La pantalla ${view} de la aplicación` }))
+];
+
 const browser = findBrowser();
 fs.mkdirSync(outDir, { recursive: true });
+fs.mkdirSync(guideDir, { recursive: true });
 console.log(`Navegador: ${browser}`);
 console.log(`Aplicación: ${base}\n`);
 
-for (const shot of SHOTS) {
+const urlFor = shot => {
   const params = new URLSearchParams({ modo: shot.modo ?? 'sandbox', periodo: '2026-08' });
   if (shot.tema) params.set('tema', shot.tema);
-  const url = `${base}/?${params}#${shot.view}`;
+  return `${base}/?${params}#${shot.view}`;
+};
+
+for (const shot of SHOTS) {
   const dest = path.join(outDir, `${shot.name}.png`);
+  const bytes = screenshot({ url: urlFor(shot), out: dest, width: shot.w, height: shot.h, scale: 2 });
+  console.log(`  ${shot.name}.png — ${(bytes / 1024).toFixed(0)} KB (${shot.w}×${shot.h})`);
+}
 
-  // Perfil temporal por captura: sin él, Chrome reutiliza el perfil del usuario,
-  // arrastra su `localStorage` y las capturas dejarían de ser reproducibles.
-  const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'eoc-shot-'));
-
-  execFileSync(
-    browser,
-    [
-      '--headless=new',
-      '--disable-gpu',
-      '--hide-scrollbars',
-      '--force-device-scale-factor=2',
-      `--user-data-dir=${profile}`,
-      `--window-size=${shot.w},${shot.h}`,
-      '--virtual-time-budget=4000',
-      `--screenshot=${dest}`,
-      url
-    ],
-    { stdio: 'pipe' }
-  );
-
-  fs.rmSync(profile, { recursive: true, force: true });
-
-  if (!fs.existsSync(dest) || fs.statSync(dest).size < 5000) {
-    throw new Error(`La captura ${shot.name} salió vacía o no se generó`);
-  }
-  console.log(`  ${shot.name}.png — ${(fs.statSync(dest).size / 1024).toFixed(0)} KB (${shot.w}×${shot.h})`);
+console.log('');
+for (const shot of GUIDE_SHOTS) {
+  const dest = path.join(guideDir, `${shot.name}.png`);
+  const bytes = screenshot({ url: urlFor(shot), out: dest, width: 1180, height: shot.h, scale: 1 });
+  console.log(`  guia/${shot.name}.png — ${(bytes / 1024).toFixed(0)} KB (1180×${shot.h})`);
 }
 
 // Índice con los textos alternativos: el manual y el README los usan para no
@@ -115,5 +102,9 @@ fs.writeFileSync(
   path.join(outDir, 'index.json'),
   JSON.stringify(SHOTS.map(({ name, view, alt, w, h }) => ({ name, view, alt, w, h })), null, 2)
 );
+fs.writeFileSync(
+  path.join(guideDir, 'index.json'),
+  JSON.stringify(GUIDE_SHOTS.map(({ name, view, alt, h }) => ({ name, view, alt, w: 1180, h })), null, 2)
+);
 
-console.log(`\n${SHOTS.length} capturas en docs/assets/capturas/`);
+console.log(`\n${SHOTS.length} capturas del manual y ${GUIDE_SHOTS.length} de la guía.`);

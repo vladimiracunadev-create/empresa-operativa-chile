@@ -1,0 +1,44 @@
+[
+  {
+    "name": "empezar",
+    "view": "empezar",
+    "alt": "La pantalla “Empezar aquí” con las etapas y el avance real",
+    "w": 1180,
+    "h": 1700
+  },
+  {
+    "name": "empresa",
+    "view": "empresa",
+    "alt": "La pantalla empresa de la aplicación",
+    "w": 1180,
+    "h": 1120
+  },
+  {
+    "name": "capital",
+    "view": "capital",
+    "alt": "La pantalla capital de la aplicación",
+    "w": 1180,
+    "h": 1500
+  },
+  {
+    "name": "constitucion",
+    "view": "constitucion",
+    "alt": "La pantalla constitucion de la aplicación",
+    "w": 1180,
+    "h": 1240
+  },
+  {
+    "name": "operaciones",
+    "view": "operaciones",
+    "alt": "La pantalla operaciones de la aplicación",
+    "w": 1180,
+    "h": 1040
+  },
+  {
+    "name": "impuestos",
+    "view": "impuestos",
+    "alt": "La pantalla impuestos de la aplicación",
+    "w": 1180,
+    "h": 1240
+  }
+]

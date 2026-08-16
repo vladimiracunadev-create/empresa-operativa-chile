@@ -5,6 +5,10 @@
 
 **Guía para quien nunca ha creado una empresa y no sabe por dónde empezar.**
 
+Disponible también en [HTML](EMPEZAR-AQUI.html), que se abre dentro de la propia aplicación en la pestaña
+*Empezar aquí*, y en [PDF](EMPEZAR-AQUI.pdf) para descargar o imprimir. Los tres formatos salen del mismo
+sitio: [`packages/onboarding/index.mjs`](../packages/onboarding/index.mjs).
+
 El [manual de usuario](MANUAL.md) explica **pantallas**: qué hace cada botón. Sirve cuando ya sabes qué quieres hacer.
 Este documento explica el **camino**: qué hacer primero, qué decidir en cada punto, qué papel te va a quedar y cómo sabes
 que terminaste. No supone que sepas contabilidad. Si algo no se entiende, es un defecto de este documento, no tuyo.
@@ -12,6 +16,21 @@ que terminaste. No supone que sepas contabilidad. Si algo no se entiende, es un 
 > [!IMPORTANT]
 > Esta aplicación **no presenta ni paga nada** ante el SII ni ante ninguna municipalidad, y **no es asesoría tributaria**.
 > Calcula, te dice de dónde salió cada número y guarda la evidencia. Los trámites los haces tú en los portales oficiales.
+
+## Quién hace qué
+
+![Casos de uso: quien crea la empresa usa el sistema para decidir, llevar capital, registrar operaciones, calcular impuestos, determinar el CPT, estimar la patente y auditar; los organismos externos quedan fuera](assets/diagramas/casos-de-uso.svg)
+
+Lo que está **dentro** del recuadro lo hace la aplicación. Todo lo que cruza hacia el Registro de Empresas, el SII, la
+municipalidad o el banco lo haces **tú**, en el portal del organismo: la aplicación no está conectada con ninguno de ellos,
+y la línea discontinua está ahí para que eso no se malinterprete nunca.
+
+## El camino completo
+
+![La ruta completa: 14 etapas agrupadas en 5 fases](assets/diagramas/ruta-empresa.svg)
+
+Las 5 fases no son sugerencias de orden: cada una necesita la anterior. No puedes obtener el RUT sin haber
+constituido, ni la patente sin domicilio, ni cerrar el año sin haber cerrado los meses.
 
 ## Si sólo tienes una pregunta
 
@@ -30,20 +49,12 @@ que terminaste. No supone que sepas contabilidad. Si algo no se entiende, es un 
 | ¿Qué pasa a fin de año? | [Cerrar el año y determinar el capital propio tributario](#anual) |
 | ¿Por qué la patente del año 2 es distinta? | [El año 2 en adelante](#siguiente) |
 
-## El camino completo
+## La ruta, dentro de la aplicación
 
-**Antes de existir** — [Decidir qué empresa vas a crear](#decidir) → [Definir el capital: cuánto, quién lo pone y cuándo](#capital) → [Decidir dónde va a estar domiciliada](#domicilio)
+La misma secuencia está en la pestaña **Empezar aquí**, con una diferencia que en papel no se puede tener: muestra **tu**
+avance real y cada etapa tiene un botón que abre la ventana donde se hace.
 
-**Hacerla nacer** — [Constituir la sociedad](#constituir) → [Obtener el RUT de la empresa](#rut) → [Hacer el inicio de actividades](#inicio)
-
-**Habilitarla para operar** — [Elegir el régimen tributario](#regimen) → [Habilitar la facturación electrónica](#dte) → [Obtener la patente municipal](#patente) → [Abrir la cuenta bancaria de la empresa](#banco)
-
-**Operar mes a mes** — [Registrar lo que pasa, el día que pasa](#registrar) → [Cerrar el mes: IVA, PPM y F29](#mes)
-
-**Cerrar el año** — [Cerrar el año y determinar el capital propio tributario](#anual) → [El año 2 en adelante](#siguiente)
-
-Las cinco fases no son sugerencias de orden: cada una necesita la anterior. No puedes obtener el RUT sin haber
-constituido, ni la patente sin domicilio, ni cerrar el año sin haber cerrado los meses.
+![La pantalla Empezar aquí de la aplicación](assets/guia/empezar.png)
 
 ## Cómo leer cada etapa
 
@@ -53,7 +64,7 @@ Todas tienen la misma estructura, para que puedas saltar a la que necesites:
 - **por qué** importa, en lenguaje corriente;
 - **qué necesitas tener antes** de empezar;
 - **las decisiones** con sus alternativas y con qué tener cuidado en cada una;
-- **dónde**, en la aplicación;
+- **dónde**, en la aplicación, con la pantalla donde se hace;
 - **qué documento te queda** y quién lo emite;
 - **errores típicos**;
 - **cómo sabes que terminaste**.
@@ -101,6 +112,10 @@ Lo primero no es un trámite: es una decisión. Todo lo que viene después —el
 **Dónde, en la aplicación**
 
 Abre **empresa** → Anotar lo que decidiste en la ficha. El trámite queda registrado en **Constitución**, donde no se puede marcar como hecho sin evidencia.
+
+![Anotar lo que decidiste en la ficha — pantalla empresa de la aplicación](assets/guia/empresa.png)
+
+<sub>La pantalla **empresa** en modo SANDBOX. Es la misma en el navegador, en Android y en Windows.</sub>
 
 **Qué documento te queda**
 
@@ -155,6 +170,10 @@ Aquí es donde la mayoría se confunde, y es la confusión más cara del princip
 
 Abre **capital** → Registrar capital social, suscrito y enterado.
 
+![Registrar capital social, suscrito y enterado — pantalla capital de la aplicación](assets/guia/capital.png)
+
+<sub>La pantalla **capital** en modo SANDBOX. Es la misma en el navegador, en Android y en Windows.</sub>
+
 **Qué documento te queda**
 
 | Documento | Quién lo emite | Por qué importa |
@@ -203,6 +222,8 @@ Sí. La empresa necesita un domicilio, que es una dirección legal, no necesaria
 
 Abre **empresa** → Registrar domicilio, tipo y comuna. El trámite queda registrado en **Constitución**, donde no se puede marcar como hecho sin evidencia.
 
+<sub>Es la misma pantalla que viste en la etapa [«Decidir qué empresa vas a crear»](#decidir).</sub>
+
 **Qué documento te queda**
 
 | Documento | Quién lo emite | Por qué importa |
@@ -249,6 +270,10 @@ Hasta aquí la empresa no existe. Constituirla es el acto que la hace nacer jur�
 
 Abre **constitucion** → Marcar el trámite y guardar el certificado. El trámite queda registrado en **Constitución**, donde no se puede marcar como hecho sin evidencia.
 
+![Marcar el trámite y guardar el certificado — pantalla constitucion de la aplicación](assets/guia/constitucion.png)
+
+<sub>La pantalla **constitucion** en modo SANDBOX. Es la misma en el navegador, en Android y en Windows.</sub>
+
 **Qué documento te queda**
 
 | Documento | Quién lo emite | Por qué importa |
@@ -284,6 +309,8 @@ La empresa necesita su propio número de identificación tributaria, distinto de
 
 Abre **constitucion** → Registrar el RUT obtenido. El trámite queda registrado en **Constitución**, donde no se puede marcar como hecho sin evidencia.
 
+<sub>Es la misma pantalla que viste en la etapa [«Constituir la sociedad»](#constituir).</sub>
+
 **Qué documento te queda**
 
 | Documento | Quién lo emite | Por qué importa |
@@ -317,6 +344,8 @@ Es la declaración ante el SII de que vas a empezar a realizar actividades econ�
 **Dónde, en la aplicación**
 
 Abre **capital** → Anotar la fecha de inicio de actividades. El trámite queda registrado en **Constitución**, donde no se puede marcar como hecho sin evidencia.
+
+<sub>Es la misma pantalla que viste en la etapa [«Definir el capital: cuánto, quién lo pone y cuándo»](#capital).</sub>
 
 **Qué documento te queda**
 
@@ -367,6 +396,8 @@ El régimen define cómo se calcula el impuesto de tu empresa y qué contabilida
 
 Abre **empresa** → Declarar el régimen en la ficha. El trámite queda registrado en **Constitución**, donde no se puede marcar como hecho sin evidencia.
 
+<sub>Es la misma pantalla que viste en la etapa [«Decidir qué empresa vas a crear»](#decidir).</sub>
+
 **Qué documento te queda**
 
 | Documento | Quién lo emite | Por qué importa |
@@ -409,6 +440,10 @@ En Chile los documentos tributarios son electrónicos. Para emitir una factura n
 **Dónde, en la aplicación**
 
 Abre **operaciones** → Registrar las facturas que emitas. El trámite queda registrado en **Constitución**, donde no se puede marcar como hecho sin evidencia.
+
+![Registrar las facturas que emitas — pantalla operaciones de la aplicación](assets/guia/operaciones.png)
+
+<sub>La pantalla **operaciones** en modo SANDBOX. Es la misma en el navegador, en Android y en Windows.</sub>
 
 **Qué documento te queda**
 
@@ -457,6 +492,8 @@ Es un tributo anual que cobra la municipalidad por ejercer una actividad. Se cal
 
 Abre **capital** → Registrar comuna, tasa y ver el cálculo con su desglose. El trámite queda registrado en **Constitución**, donde no se puede marcar como hecho sin evidencia.
 
+<sub>Es la misma pantalla que viste en la etapa [«Definir el capital: cuánto, quién lo pone y cuándo»](#capital).</sub>
+
 **Qué documento te queda**
 
 | Documento | Quién lo emite | Por qué importa |
@@ -494,6 +531,8 @@ No conviene, y es el error que más desorden causa. La empresa es un patrimonio 
 **Dónde, en la aplicación**
 
 Abre **operaciones** → Registrar los movimientos desde la cartola. El trámite queda registrado en **Constitución**, donde no se puede marcar como hecho sin evidencia.
+
+<sub>Es la misma pantalla que viste en la etapa [«Habilitar la facturación electrónica»](#dte).</sub>
 
 **Qué documento te queda**
 
@@ -550,6 +589,8 @@ Todo movimiento de dinero, y algunos que no mueven dinero. La regla práctica es
 
 Abre **operaciones** → Registrar una operación.
 
+<sub>Es la misma pantalla que viste en la etapa [«Habilitar la facturación electrónica»](#dte).</sub>
+
 **Qué documento te queda**
 
 | Documento | Quién lo emite | Por qué importa |
@@ -588,6 +629,10 @@ Cada mes se declara el F29, que reúne el IVA, el PPM y las retenciones. El IVA 
 **Dónde, en la aplicación**
 
 Abre **impuestos** → Ver el borrador del F29.
+
+![Ver el borrador del F29 — pantalla impuestos de la aplicación](assets/guia/impuestos.png)
+
+<sub>La pantalla **impuestos** en modo SANDBOX. Es la misma en el navegador, en Android y en Windows.</sub>
 
 **Qué documento te queda**
 
@@ -629,6 +674,8 @@ Al 31 de diciembre se hace un corte. Se determinan los activos, los pasivos, el 
 
 Abre **capital** → Cerrar el ejercicio y ver el CPT con su desglose.
 
+<sub>Es la misma pantalla que viste en la etapa [«Definir el capital: cuánto, quién lo pone y cuándo»](#capital).</sub>
+
 **Qué documento te queda**
 
 | Documento | Quién lo emite | Por qué importa |
@@ -665,6 +712,8 @@ Casi. La diferencia importante es que ya no eres una empresa nueva. La base de t
 **Dónde, en la aplicación**
 
 Abre **capital** → Ver el historial año por año.
+
+<sub>Es la misma pantalla que viste en la etapa [«Definir el capital: cuánto, quién lo pone y cuándo»](#capital).</sub>
 
 **Qué documento te queda**
 

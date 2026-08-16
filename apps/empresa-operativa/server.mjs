@@ -35,8 +35,12 @@ const TYPES = {
   '.webmanifest': 'application/manifest+json',
   '.svg': 'image/svg+xml',
   '.png': 'image/png',
-  '.ico': 'image/x-icon'
+  '.ico': 'image/x-icon',
+  '.pdf': 'application/pdf'
 };
+
+/** Sólo los formatos de texto llevan charset; declararlo en un PNG o un PDF es ruido. */
+const TEXTUAL = new Set(['.html', '.js', '.mjs', '.css', '.json', '.webmanifest', '.svg']);
 
 /**
  * Resuelve una ruta pedida dentro de `distDir`.
@@ -67,12 +71,20 @@ const server = http.createServer((req, res) => {
   }
 
   res.writeHead(200, {
-    'content-type': `${TYPES[path.extname(full)] ?? 'application/octet-stream'}; charset=utf-8`,
+    'content-type': (() => {
+      const ext = path.extname(full);
+      const type = TYPES[ext] ?? 'application/octet-stream';
+      return TEXTUAL.has(ext) ? `${type}; charset=utf-8` : type;
+    })(),
     'cache-control': 'no-cache',
     // La app no carga nada de terceros: la política lo hace explícito y
     // convierte cualquier futura dependencia externa en un error visible.
     'content-security-policy':
-      "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'",
+      // `frame-ancestors 'self'` y no `'none'`: la aplicación muestra la guía
+      // ilustrada dentro de un marco del MISMO origen. Sigue impidiendo que
+      // cualquier sitio externo enmarque la app, que es de lo que protege esta
+      // directiva; lo único que se permite es que la app se enmarque a sí misma.
+      "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; form-action 'none'; base-uri 'none'; frame-ancestors 'self'",
     'x-content-type-options': 'nosniff',
     'referrer-policy': 'no-referrer'
   });

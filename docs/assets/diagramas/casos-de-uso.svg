@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 700" width="1240" height="700" role="img" aria-label="Casos de uso: quien crea la empresa usa el sistema para decidir, llevar capital, registrar operaciones, calcular impuestos, determinar el capital propio tributario, estimar la patente y auditar. Los organismos externos (Registro de Empresas, SII, municipalidad y banco) quedan fuera del sistema: la aplicación no se conecta con ellos.">
+  <style>
+    .t  { font-family: "Segoe UI", system-ui, sans-serif; }
+    .n  { font-size: 13.5px; font-weight: 620; fill: #e8edf5; }
+    .s  { font-size: 11px; fill: #9aa8bf; }
+    .h  { font-size: 12px; font-weight: 700; letter-spacing: 0.09em; }
+    .num{ font-size: 12px; font-weight: 700; fill: #0b1017; }</style>
+  <rect width="1240" height="700" rx="14" fill="#0f1521"/>
+  <text class="t h" x="24" y="30" fill="#e8edf5">CASOS DE USO — QUIÉN HACE QUÉ</text>
+  <text class="t s" x="24" y="48">La línea discontinua marca lo que ocurre FUERA de la aplicación: ahí va la persona, no el sistema.</text>
+
+  <rect x="340" y="60" width="560" height="500" rx="16" fill="rgba(255,255,255,0.025)" stroke="rgba(79,140,255,0.4)" stroke-width="1.5"/>
+  <text class="t h" x="620" y="86" text-anchor="middle" fill="#4f8cff">EMPRESA OPERATIVA CHILE</text>
+  
+    <g>
+      <ellipse cx="620" cy="118" rx="168" ry="25" fill="rgba(79,140,255,0.10)" stroke="rgba(79,140,255,0.5)"/>
+      <text class="t n" x="620" y="115.5" text-anchor="middle">Decidir y registrar</text><text class="t n" x="620" y="130.5" text-anchor="middle">la estructura</text>
+    </g>
+    <g>
+      <ellipse cx="620" cy="185.33333333333331" rx="168" ry="25" fill="rgba(79,140,255,0.10)" stroke="rgba(79,140,255,0.5)"/>
+      <text class="t n" x="620" y="182.83333333333331" text-anchor="middle">Llevar capital,</text><text class="t n" x="620" y="197.83333333333331" text-anchor="middle">aportes y préstamos</text>
+    </g>
+    <g>
+      <ellipse cx="620" cy="252.66666666666666" rx="168" ry="25" fill="rgba(79,140,255,0.10)" stroke="rgba(79,140,255,0.5)"/>
+      <text class="t n" x="620" y="250.16666666666666" text-anchor="middle">Registrar operaciones</text><text class="t n" x="620" y="265.16666666666663" text-anchor="middle">con su evidencia</text>
+    </g>
+    <g>
+      <ellipse cx="620" cy="320" rx="168" ry="25" fill="rgba(79,140,255,0.10)" stroke="rgba(79,140,255,0.5)"/>
+      <text class="t n" x="620" y="317.5" text-anchor="middle">Calcular IVA, PPM</text><text class="t n" x="620" y="332.5" text-anchor="middle">y borrador F29</text>
+    </g>
+    <g>
+      <ellipse cx="620" cy="387.3333333333333" rx="168" ry="25" fill="rgba(79,140,255,0.10)" stroke="rgba(79,140,255,0.5)"/>
+      <text class="t n" x="620" y="384.8333333333333" text-anchor="middle">Determinar el CPT</text><text class="t n" x="620" y="399.8333333333333" text-anchor="middle">y cerrar el ejercicio</text>
+    </g>
+    <g>
+      <ellipse cx="620" cy="454.66666666666663" rx="168" ry="25" fill="rgba(79,140,255,0.10)" stroke="rgba(79,140,255,0.5)"/>
+      <text class="t n" x="620" y="452.16666666666663" text-anchor="middle">Estimar la patente</text><text class="t n" x="620" y="467.16666666666663" text-anchor="middle">y su base legal</text>
+    </g>
+    <g>
+      <ellipse cx="620" cy="522" rx="168" ry="25" fill="rgba(79,140,255,0.10)" stroke="rgba(79,140,255,0.5)"/>
+      <text class="t n" x="620" y="519.5" text-anchor="middle">Auditar, respaldar</text><text class="t n" x="620" y="534.5" text-anchor="middle">y exportar expediente</text>
+    </g>
+  <path d="M140 120 C 296 120, 296 118, 452 118" stroke="#4f8cff" stroke-opacity="0.45" stroke-width="1.5" fill="none"/><path d="M140 120 C 296 120, 296 185.33333333333331, 452 185.33333333333331" stroke="#4f8cff" stroke-opacity="0.45" stroke-width="1.5" fill="none"/><path d="M140 120 C 296 120, 296 252.66666666666666, 452 252.66666666666666" stroke="#4f8cff" stroke-opacity="0.45" stroke-width="1.5" fill="none"/><path d="M140 120 C 296 120, 296 320, 452 320" stroke="#4f8cff" stroke-opacity="0.45" stroke-width="1.5" fill="none"/><path d="M140 120 C 296 120, 296 387.3333333333333, 452 387.3333333333333" stroke="#4f8cff" stroke-opacity="0.45" stroke-width="1.5" fill="none"/><path d="M140 120 C 296 120, 296 454.66666666666663, 452 454.66666666666663" stroke="#4f8cff" stroke-opacity="0.45" stroke-width="1.5" fill="none"/><path d="M140 120 C 296 120, 296 522, 452 522" stroke="#4f8cff" stroke-opacity="0.45" stroke-width="1.5" fill="none"/>
+      <circle cx="118" cy="94" r="13" fill="none" stroke="#4f8cff" stroke-width="2"/>
+      <path d="M118 107 V134 M102 116 H134 M118 134 L105 152 M118 134 L131 152"
+            stroke="#4f8cff" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <text class="t n" x="118" y="170" text-anchor="middle">Quien crea</text><text class="t n" x="118" y="185" text-anchor="middle">la empresa</text>
+      <path d="M140 500 C 296 500, 296 387.3333333333333, 452 387.3333333333333" stroke="#34d399" stroke-opacity="0.45" stroke-width="1.5" fill="none"/><path d="M140 500 C 296 500, 296 320, 452 320" stroke="#34d399" stroke-opacity="0.45" stroke-width="1.5" fill="none"/>
+      <circle cx="118" cy="474" r="13" fill="none" stroke="#34d399" stroke-width="2"/>
+      <path d="M118 487 V514 M102 496 H134 M118 514 L105 532 M118 514 L131 532"
+            stroke="#34d399" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <text class="t n" x="118" y="550" text-anchor="middle">Contador</text><text class="t n" x="118" y="565" text-anchor="middle">(opcional)</text>
+      <path d="M1100 120 C 944 120, 944 118, 788 118" stroke="#f0a83c" stroke-opacity="0.45" stroke-width="1.5" fill="none" stroke-dasharray="5 5"/>
+      <circle cx="1122" cy="94" r="13" fill="none" stroke="#f0a83c" stroke-width="2"/>
+      <path d="M1122 107 V134 M1106 116 H1138 M1122 134 L1109 152 M1122 134 L1135 152"
+            stroke="#f0a83c" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <text class="t n" x="1122" y="170" text-anchor="middle">Registro de</text><text class="t n" x="1122" y="185" text-anchor="middle">Empresas</text>
+      <text class="t s" x="1122" y="200" text-anchor="middle">organismo externo</text><path d="M1100 246.66666666666669 C 944 246.66666666666669, 944 320, 788 320" stroke="#f0a83c" stroke-opacity="0.45" stroke-width="1.5" fill="none" stroke-dasharray="5 5"/><path d="M1100 246.66666666666669 C 944 246.66666666666669, 944 387.3333333333333, 788 387.3333333333333" stroke="#f0a83c" stroke-opacity="0.45" stroke-width="1.5" fill="none" stroke-dasharray="5 5"/>
+      <circle cx="1122" cy="220.66666666666669" r="13" fill="none" stroke="#f0a83c" stroke-width="2"/>
+      <path d="M1122 233.66666666666669 V260.6666666666667 M1106 242.66666666666669 H1138 M1122 260.6666666666667 L1109 278.6666666666667 M1122 260.6666666666667 L1135 278.6666666666667"
+            stroke="#f0a83c" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <text class="t n" x="1122" y="296.6666666666667" text-anchor="middle">SII</text>
+      <text class="t s" x="1122" y="311.6666666666667" text-anchor="middle">organismo externo</text><path d="M1100 373.33333333333337 C 944 373.33333333333337, 944 454.66666666666663, 788 454.66666666666663" stroke="#f0a83c" stroke-opacity="0.45" stroke-width="1.5" fill="none" stroke-dasharray="5 5"/>
+      <circle cx="1122" cy="347.33333333333337" r="13" fill="none" stroke="#f0a83c" stroke-width="2"/>
+      <path d="M1122 360.33333333333337 V387.33333333333337 M1106 369.33333333333337 H1138 M1122 387.33333333333337 L1109 405.33333333333337 M1122 387.33333333333337 L1135 405.33333333333337"
+            stroke="#f0a83c" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <text class="t n" x="1122" y="423.33333333333337" text-anchor="middle">Municipalidad</text>
+      <text class="t s" x="1122" y="438.33333333333337" text-anchor="middle">organismo externo</text><path d="M1100 500 C 944 500, 944 252.66666666666666, 788 252.66666666666666" stroke="#f0a83c" stroke-opacity="0.45" stroke-width="1.5" fill="none" stroke-dasharray="5 5"/>
+      <circle cx="1122" cy="474" r="13" fill="none" stroke="#f0a83c" stroke-width="2"/>
+      <path d="M1122 487 V514 M1106 496 H1138 M1122 514 L1109 532 M1122 514 L1135 532"
+            stroke="#f0a83c" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <text class="t n" x="1122" y="550" text-anchor="middle">Banco</text>
+      <text class="t s" x="1122" y="565" text-anchor="middle">organismo externo</text>
+
+  <g transform="translate(24, 674)">
+    <path d="M0 0 H26" stroke="#4f8cff" stroke-width="1.5"/>
+    <text class="t s" x="34" y="4">usa el sistema</text>
+    <path d="M150 0 H176" stroke="#f0a83c" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <text class="t s" x="184" y="4">trámite fuera del sistema: lo haces tú en el portal del organismo</text>
+  </g>
+</svg>

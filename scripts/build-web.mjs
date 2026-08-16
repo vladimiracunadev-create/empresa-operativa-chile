@@ -65,6 +65,22 @@ for (const [from, to] of CORE) {
   fs.copyFileSync(src, dest);
 }
 
+// La guía "Empezar aquí" viaja dentro del bundle en sus dos formatos leíbles:
+// el HTML autocontenido, que la app abre sin salir de sí misma, y el PDF, para
+// que se pueda descargar también sin conexión. Es el único contenido pesado que
+// se embarca, y se hace a propósito: una guía que necesita internet no sirve
+// justo cuando alguien la necesita.
+const GUIDE = ['EMPEZAR-AQUI.html', 'EMPEZAR-AQUI.pdf'];
+const guideDest = path.join(distDir, 'guia');
+fs.mkdirSync(guideDest, { recursive: true });
+for (const name of GUIDE) {
+  const src = path.join(root, 'docs', name);
+  if (!fs.existsSync(src)) {
+    throw new Error(`Falta docs/${name}. Genérala con: node scripts/build-guide.mjs`);
+  }
+  fs.copyFileSync(src, path.join(guideDest, name));
+}
+
 // Ningún archivo publicado puede importar `node:*`: si eso llega al APK, la
 // pantalla queda en blanco sin un error visible. Se comprueba aquí, en el
 // build, y no en un test que quizá nadie corra antes de publicar.

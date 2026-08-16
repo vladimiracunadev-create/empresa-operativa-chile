@@ -1,6 +1,6 @@
 {
   "name": "empresa-operativa-chile",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "private": true,
   "type": "module",
   "description": "Aplicación local-first para crear, operar y controlar una empresa chilena a través del tiempo, con contabilidad y tributación explicables.",
@@ -31,6 +31,7 @@
     "android:verify": "node scripts/verify-apk.mjs",
     "capturas": "node scripts/capture-screenshots.mjs",
     "manual": "node scripts/build-manual-pdf.mjs",
-    "docs": "node scripts/capture-screenshots.mjs && node scripts/build-manual-pdf.mjs"
+    "guia": "node scripts/build-guide.mjs",
+    "docs": "node scripts/capture-screenshots.mjs && node scripts/build-guide.mjs && node scripts/build-manual-pdf.mjs"
   }
 }

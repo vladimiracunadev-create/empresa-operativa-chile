@@ -24,7 +24,7 @@ import datos from './views/datos.js';
 import academia from './views/academia.js';
 import glosario from './views/glosario.js';
 
-export const APP_VERSION = '1.2.0';
+export const APP_VERSION = '1.3.0';
 
 const NAV = [
   // "Empezar aquí" va primero y solo: es la única pantalla ordenada por tiempo

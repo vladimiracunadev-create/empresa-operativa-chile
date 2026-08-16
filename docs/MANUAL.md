@@ -19,9 +19,11 @@ de la instalación al cierre del mes, con las pantallas reales del producto.**
 
 > [!TIP]
 > **¿Nunca has creado una empresa?** Este manual explica **pantallas**, y eso sirve cuando ya sabes qué quieres hacer.
-> Si tu pregunta es *«no sé por dónde empezar»*, parte por **[🧭 Empezar aquí](EMPEZAR-AQUI.md)**, que explica el **camino**:
-> qué hacer primero, qué decidir en cada punto y qué documento te va a quedar. La misma ruta está dentro de la aplicación,
-> en la pestaña **Empezar aquí**, con botones que te llevan a cada pantalla.
+> Si tu pregunta es *«no sé por dónde empezar»*, parte por **[🧭 Empezar aquí](EMPEZAR-AQUI.md)**
+> ([HTML](EMPEZAR-AQUI.html) · [PDF](EMPEZAR-AQUI.pdf)), que explica el **camino**: qué hacer primero, qué decidir en
+> cada punto y qué documento te va a quedar, con un diagrama de casos de uso, el mapa de la ruta y una captura de la
+> pantalla donde se hace cada cosa. La misma ruta está dentro de la aplicación, en la pestaña **Empezar aquí**, donde
+> además puedes leer la guía ilustrada sin salir de ella y descargar el PDF sin conexión.
 
 ## 🧭 Contenido
 

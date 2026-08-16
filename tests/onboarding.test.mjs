@@ -110,3 +110,80 @@ test('la vista Empezar aquí consume el módulo y no una copia propia', () => {
   const view = fs.readFileSync(path.join(root, 'apps/web/src/views/empezar.js'), 'utf8');
   assert.match(view, /from '\.\.\/core\/onboarding\/index\.mjs'/);
 });
+
+/* ------------------------------------------- los tres formatos de la guía - */
+
+test('la guía existe en Markdown, HTML y PDF', () => {
+  for (const [file, minBytes] of [
+    ['docs/EMPEZAR-AQUI.md', 20_000],
+    ['docs/EMPEZAR-AQUI.html', 500_000],
+    ['docs/EMPEZAR-AQUI.pdf', 500_000]
+  ]) {
+    const full = path.join(root, file);
+    assert.ok(fs.existsSync(full), `falta ${file} — genérala con node scripts/build-guide.mjs`);
+    assert.ok(fs.statSync(full).size > minBytes, `${file} es sospechosamente pequeño: probablemente se generó sin imágenes`);
+  }
+});
+
+test('el HTML es autocontenido: no referencia ninguna imagen externa', () => {
+  const html = fs.readFileSync(path.join(root, 'docs/EMPEZAR-AQUI.html'), 'utf8');
+  // Todas las imágenes tienen que ir embebidas. Una ruta relativa haría que la
+  // guía se viera rota al abrirla desde otra carpeta o dentro del APK.
+  const externas = [...html.matchAll(/<img[^>]+src="(?!data:)([^"]+)"/g)].map(m => m[1]);
+  assert.deepEqual(externas, [], `el HTML de la guía referencia imágenes no embebidas: ${externas.join(', ')}`);
+  assert.match(html, /<img src="data:image\/png;base64,/, 'no hay ninguna captura embebida');
+  assert.match(html, /<img src="data:image\/svg\+xml;base64,/, 'no hay ningún diagrama embebido');
+});
+
+test('el documento ilustra cada pantalla que la guía manda abrir', () => {
+  const md = fs.readFileSync(path.join(root, 'docs/EMPEZAR-AQUI.md'), 'utf8');
+  const vistas = [...new Set(STAGES.map(s => s.doInApp?.view).filter(Boolean))];
+  for (const view of vistas) {
+    assert.ok(fs.existsSync(path.join(root, `docs/assets/guia/${view}.png`)), `falta la captura de la pantalla ${view}`);
+    assert.ok(md.includes(`assets/guia/${view}.png`), `la guía no muestra la pantalla ${view}`);
+  }
+  // Cada captura aparece UNA vez: repetirla no enseña nada y en el HTML y el
+  // PDF la imagen va embebida, así que duplicarla duplica el peso de verdad.
+  for (const view of vistas) {
+    const veces = md.split(`assets/guia/${view}.png`).length - 1;
+    assert.equal(veces, 1, `la captura de ${view} aparece ${veces} veces en la guía`);
+  }
+});
+
+test('la guía incluye los dos diagramas, y están generados', () => {
+  const md = fs.readFileSync(path.join(root, 'docs/EMPEZAR-AQUI.md'), 'utf8');
+  for (const svg of ['casos-de-uso', 'ruta-empresa']) {
+    const file = path.join(root, `docs/assets/diagramas/${svg}.svg`);
+    assert.ok(fs.existsSync(file), `falta el diagrama ${svg}.svg`);
+    assert.match(fs.readFileSync(file, 'utf8'), /<svg[^>]+role="img"[^>]+aria-label=/, `${svg}.svg no describe su contenido para lectores de pantalla`);
+    assert.ok(md.includes(`assets/diagramas/${svg}.svg`), `la guía no muestra el diagrama ${svg}`);
+  }
+});
+
+test('el diagrama de la ruta se genera desde las etapas, no a mano', () => {
+  const svg = fs.readFileSync(path.join(root, 'docs/assets/diagramas/ruta-empresa.svg'), 'utf8');
+  assert.ok(svg.includes(`${STAGES.length} ETAPAS`), 'el diagrama no refleja el número real de etapas');
+  for (const s of STAGES) {
+    // El título va partido en líneas; basta comprobar su primera palabra larga.
+    const palabra = s.title.split(' ').find(w => w.length > 6) ?? s.title;
+    assert.ok(svg.includes(palabra), `el diagrama de la ruta no incluye la etapa "${s.title}"`);
+  }
+});
+
+test('el bundle de la aplicación embarca la guía en sus dos formatos leíbles', () => {
+  const buildWeb = fs.readFileSync(path.join(root, 'scripts/build-web.mjs'), 'utf8');
+  assert.match(buildWeb, /EMPEZAR-AQUI\.html/);
+  assert.match(buildWeb, /EMPEZAR-AQUI\.pdf/);
+  const view = fs.readFileSync(path.join(root, 'apps/web/src/views/empezar.js'), 'utf8');
+  // Rutas relativas al bundle: así funcionan igual servidas por el navegador,
+  // dentro del APK y dentro del ejecutable de Windows.
+  assert.match(view, /\.\/guia\/EMPEZAR-AQUI\.html/, 'la vista no muestra la guía embarcada');
+  assert.match(view, /\.\/guia\/EMPEZAR-AQUI\.pdf/, 'la vista no ofrece el PDF embarcado');
+  assert.match(view, /<iframe class="guiaframe"/, 'la guía debe leerse DENTRO de la aplicación, no sólo en otra pestaña');
+
+  // El servidor local tiene que poder enmarcar su propio contenido, o el marco
+  // quedaría en blanco sin explicación.
+  const server = fs.readFileSync(path.join(root, 'apps/empresa-operativa/server.mjs'), 'utf8');
+  assert.match(server, /frame-ancestors 'self'/, 'la política de seguridad impediría leer la guía dentro de la app');
+  assert.match(server, /'\.pdf': 'application\/pdf'/, 'el servidor no declara el tipo del PDF');
+});

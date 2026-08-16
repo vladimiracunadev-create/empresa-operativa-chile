@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 684" width="1240" height="684" role="img" aria-label="La ruta completa: 14 etapas agrupadas en 5 fases, desde antes de que la empresa exista hasta el cierre del año">
+  <style>
+    .t  { font-family: "Segoe UI", system-ui, sans-serif; }
+    .n  { font-size: 13.5px; font-weight: 620; fill: #e8edf5; }
+    .s  { font-size: 11px; fill: #9aa8bf; }
+    .h  { font-size: 12px; font-weight: 700; letter-spacing: 0.09em; }
+    .num{ font-size: 12px; font-weight: 700; fill: #0b1017; }</style>
+  <defs>
+    <marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#3c4a63"/>
+    </marker>
+  </defs>
+  <rect width="1240" height="684" rx="14" fill="#0f1521"/>
+  <text class="t h" x="28" y="44" fill="#e8edf5">LA RUTA COMPLETA — 14 ETAPAS</text>
+  <text class="t s" x="28" y="62">Cada fase necesita la anterior. Las etapas marcadas exigen evidencia antes de darse por hechas.</text>
+  <text class="t h" x="28" y="96" fill="#4f8cff">ANTES DE EXISTIR</text>
+      <g>
+        <rect x="192" y="70" width="330.6666666666667" height="78" rx="10" fill="rgba(255,255,255,0.035)" stroke="#4f8cff" stroke-opacity="0.45"/>
+        <circle cx="212" cy="92" r="12" fill="#4f8cff"/>
+        <text class="t num" x="212" y="96" text-anchor="middle">1</text>
+        <text class="t n" x="230" y="96">Decidir qué empresa vas a crear</text>
+        <text class="t s" x="204" y="136">trámite con evidencia</text>
+      </g><path d="M524.6666666666667 109 H534.6666666666667" stroke="#3c4a63" stroke-width="1.6" marker-end="url(#fl)"/>
+      <g>
+        <rect x="538.6666666666667" y="70" width="330.6666666666667" height="78" rx="10" fill="rgba(255,255,255,0.035)" stroke="#4f8cff" stroke-opacity="0.45"/>
+        <circle cx="558.6666666666667" cy="92" r="12" fill="#4f8cff"/>
+        <text class="t num" x="558.6666666666667" y="96" text-anchor="middle">2</text>
+        <text class="t n" x="576.6666666666667" y="96">Definir el capital: cuánto, quién lo pone y</text><text class="t n" x="576.6666666666667" y="112">cuándo</text>
+        
+      </g><path d="M871.3333333333335 109 H881.3333333333335" stroke="#3c4a63" stroke-width="1.6" marker-end="url(#fl)"/>
+      <g>
+        <rect x="885.3333333333334" y="70" width="330.6666666666667" height="78" rx="10" fill="rgba(255,255,255,0.035)" stroke="#4f8cff" stroke-opacity="0.45"/>
+        <circle cx="905.3333333333334" cy="92" r="12" fill="#4f8cff"/>
+        <text class="t num" x="905.3333333333334" y="96" text-anchor="middle">3</text>
+        <text class="t n" x="923.3333333333334" y="96">Decidir dónde va a estar domiciliada</text>
+        <text class="t s" x="897.3333333333334" y="136">trámite con evidencia</text>
+      </g><path d="M168 148 V184" stroke="#3c4a63" stroke-width="1.6" marker-end="url(#fl)"/><text class="t h" x="28" y="214" fill="#34d399">HACERLA NACER</text>
+      <g>
+        <rect x="192" y="188" width="330.6666666666667" height="78" rx="10" fill="rgba(255,255,255,0.035)" stroke="#34d399" stroke-opacity="0.45"/>
+        <circle cx="212" cy="210" r="12" fill="#34d399"/>
+        <text class="t num" x="212" y="214" text-anchor="middle">4</text>
+        <text class="t n" x="230" y="214">Constituir la sociedad</text>
+        <text class="t s" x="204" y="254">trámite con evidencia</text>
+      </g><path d="M524.6666666666667 227 H534.6666666666667" stroke="#3c4a63" stroke-width="1.6" marker-end="url(#fl)"/>
+      <g>
+        <rect x="538.6666666666667" y="188" width="330.6666666666667" height="78" rx="10" fill="rgba(255,255,255,0.035)" stroke="#34d399" stroke-opacity="0.45"/>
+        <circle cx="558.6666666666667" cy="210" r="12" fill="#34d399"/>
+        <text class="t num" x="558.6666666666667" y="214" text-anchor="middle">5</text>
+        <text class="t n" x="576.6666666666667" y="214">Obtener el RUT de la empresa</text>
+        <text class="t s" x="550.6666666666667" y="254">trámite con evidencia</text>
+      </g><path d="M871.3333333333335 227 H881.3333333333335" stroke="#3c4a63" stroke-width="1.6" marker-end="url(#fl)"/>
+      <g>
+        <rect x="885.3333333333334" y="188" width="330.6666666666667" height="78" rx="10" fill="rgba(255,255,255,0.035)" stroke="#34d399" stroke-opacity="0.45"/>
+        <circle cx="905.3333333333334" cy="210" r="12" fill="#34d399"/>
+        <text class="t num" x="905.3333333333334" y="214" text-anchor="middle">6</text>
+        <text class="t n" x="923.3333333333334" y="214">Hacer el inicio de actividades</text>
+        <text class="t s" x="897.3333333333334" y="254">trámite con evidencia</text>
+      </g><path d="M168 266 V302" stroke="#3c4a63" stroke-width="1.6" marker-end="url(#fl)"/><text class="t h" x="28" y="332" fill="#f0a83c">HABILITARLA PARA</text><text class="t h" x="28" y="348" fill="#f0a83c">OPERAR</text>
+      <g>
+        <rect x="192" y="306" width="244" height="78" rx="10" fill="rgba(255,255,255,0.035)" stroke="#f0a83c" stroke-opacity="0.45"/>
+        <circle cx="212" cy="328" r="12" fill="#f0a83c"/>
+        <text class="t num" x="212" y="332" text-anchor="middle">7</text>
+        <text class="t n" x="230" y="332">Elegir el régimen tributario</text>
+        <text class="t s" x="204" y="372">trámite con evidencia</text>
+      </g><path d="M438 345 H448" stroke="#3c4a63" stroke-width="1.6" marker-end="url(#fl)"/>
+      <g>
+        <rect x="452" y="306" width="244" height="78" rx="10" fill="rgba(255,255,255,0.035)" stroke="#f0a83c" stroke-opacity="0.45"/>
+        <circle cx="472" cy="328" r="12" fill="#f0a83c"/>
+        <text class="t num" x="472" y="332" text-anchor="middle">8</text>
+        <text class="t n" x="490" y="332">Habilitar la facturación</text><text class="t n" x="490" y="348">electrónica</text>
+        <text class="t s" x="464" y="372">trámite con evidencia</text>
+      </g><path d="M698 345 H708" stroke="#3c4a63" stroke-width="1.6" marker-end="url(#fl)"/>
+      <g>
+        <rect x="712" y="306" width="244" height="78" rx="10" fill="rgba(255,255,255,0.035)" stroke="#f0a83c" stroke-opacity="0.45"/>
+        <circle cx="732" cy="328" r="12" fill="#f0a83c"/>
+        <text class="t num" x="732" y="332" text-anchor="middle">9</text>
+        <text class="t n" x="750" y="332">Obtener la patente municipal</text>
+        <text class="t s" x="724" y="372">trámite con evidencia</text>
+      </g><path d="M958 345 H968" stroke="#3c4a63" stroke-width="1.6" marker-end="url(#fl)"/>
+      <g>
+        <rect x="972" y="306" width="244" height="78" rx="10" fill="rgba(255,255,255,0.035)" stroke="#f0a83c" stroke-opacity="0.45"/>
+        <circle cx="992" cy="328" r="12" fill="#f0a83c"/>
+        <text class="t num" x="992" y="332" text-anchor="middle">10</text>
+        <text class="t n" x="1010" y="332">Abrir la cuenta bancaria de la</text><text class="t n" x="1010" y="348">empresa</text>
+        <text class="t s" x="984" y="372">trámite con evidencia</text>
+      </g><path d="M168 384 V420" stroke="#3c4a63" stroke-width="1.6" marker-end="url(#fl)"/><text class="t h" x="28" y="450" fill="#c084fc">OPERAR MES A MES</text>
+      <g>
+        <rect x="192" y="424" width="504" height="78" rx="10" fill="rgba(255,255,255,0.035)" stroke="#c084fc" stroke-opacity="0.45"/>
+        <circle cx="212" cy="446" r="12" fill="#c084fc"/>
+        <text class="t num" x="212" y="450" text-anchor="middle">11</text>
+        <text class="t n" x="230" y="450">Registrar lo que pasa, el día que pasa</text>
+        
+      </g><path d="M698 463 H708" stroke="#3c4a63" stroke-width="1.6" marker-end="url(#fl)"/>
+      <g>
+        <rect x="712" y="424" width="504" height="78" rx="10" fill="rgba(255,255,255,0.035)" stroke="#c084fc" stroke-opacity="0.45"/>
+        <circle cx="732" cy="446" r="12" fill="#c084fc"/>
+        <text class="t num" x="732" y="450" text-anchor="middle">12</text>
+        <text class="t n" x="750" y="450">Cerrar el mes: IVA, PPM y F29</text>
+        
+      </g><path d="M168 502 V538" stroke="#3c4a63" stroke-width="1.6" marker-end="url(#fl)"/><text class="t h" x="28" y="568" fill="#f472b6">CERRAR EL AÑO</text>
+      <g>
+        <rect x="192" y="542" width="504" height="78" rx="10" fill="rgba(255,255,255,0.035)" stroke="#f472b6" stroke-opacity="0.45"/>
+        <circle cx="212" cy="564" r="12" fill="#f472b6"/>
+        <text class="t num" x="212" y="568" text-anchor="middle">13</text>
+        <text class="t n" x="230" y="568">Cerrar el año y determinar el capital propio tributario</text>
+        
+      </g><path d="M698 581 H708" stroke="#3c4a63" stroke-width="1.6" marker-end="url(#fl)"/>
+      <g>
+        <rect x="712" y="542" width="504" height="78" rx="10" fill="rgba(255,255,255,0.035)" stroke="#f472b6" stroke-opacity="0.45"/>
+        <circle cx="732" cy="564" r="12" fill="#f472b6"/>
+        <text class="t num" x="732" y="568" text-anchor="middle">14</text>
+        <text class="t n" x="750" y="568">El año 2 en adelante</text>
+        
+      </g>
+</svg>
