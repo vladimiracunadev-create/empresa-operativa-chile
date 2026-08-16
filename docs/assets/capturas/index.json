@@ -63,9 +63,23 @@
     "h": 980
   },
   {
+    "name": "capital",
+    "view": "capital",
+    "alt": "Capital y patrimonio: las seis magnitudes, el CPT con su desglose y la patente municipal",
+    "w": 1440,
+    "h": 1400
+  },
+  {
     "name": "academia",
     "view": "academia",
     "alt": "Academia: una venta y un honorario explicados paso a paso",
+    "w": 1440,
+    "h": 1020
+  },
+  {
+    "name": "glosario",
+    "view": "glosario",
+    "alt": "Glosario buscable con las definiciones del sistema",
     "w": 1440,
     "h": 1020
   },

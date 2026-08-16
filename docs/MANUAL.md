@@ -26,6 +26,7 @@ de la instalación al cierre del mes, con las pantallas reales del producto.**
 | 3 | [Los dos entornos](#cap-3) | EMPRESA REAL y SANDBOX |
 | 4 | [Anatomía de la pantalla](#cap-4) | Dónde está cada cosa |
 | 5 | [Ficha de la empresa](#cap-5) | Los datos que usan las demás pantallas |
+| 5b | [Capital y patrimonio](#cap-5b) | Capital social, enterado, CPT y patente municipal |
 | 6 | [Constitución](#cap-6) | Los nueve trámites, con su evidencia |
 | 7 | [Operaciones](#cap-7) | Registrar ventas, compras, gastos y más |
 | 8 | [Impuestos y F29](#cap-8) | El borrador de control del mes |
@@ -34,6 +35,7 @@ de la instalación al cierre del mes, con las pantallas reales del producto.**
 | 11 | [Auditoría](#cap-11) | Qué cambió y cuándo |
 | 12 | [Datos y respaldos](#cap-12) | Sacar tus datos del dispositivo |
 | 13 | [Academia](#cap-13) | Entender lo que estás haciendo |
+| 13b | [Glosario](#cap-13b) | Qué significa cada término, y con qué no confundirlo |
 | 14 | [La rutina mensual](#cap-14) | El resumen práctico |
 | 15 | [Preguntas frecuentes](#cap-15) | Lo que se pregunta al empezar |
 | 16 | [Si algo va mal](#cap-16) | Solución de problemas |
@@ -245,17 +247,121 @@ El botón de la esquina superior derecha alterna claro y oscuro, y recuerda tu e
 | Régimen tributario | Contexto para las explicaciones | ✅ |
 | Giro o actividad | Ayuda a decidir si un gasto es del giro | — |
 | Tipo de domicilio y dirección | Oficina virtual, propia, arrendada o coworking | — |
-| **Capital enterado** | Calcula la **patente municipal estimada** | — |
-| Comuna | Contexto de la patente | — |
+| Comuna | Determina la municipalidad competente para la patente | — |
+| Tipo de sociedad | SpA, Ltda., EIRL… | — |
 | Notas internas | Lo que quieras recordar | — |
+
+> [!IMPORTANT]
+> **El capital ya no se edita aquí.** Hasta la versión 1.0.0 esta pantalla tenía un único campo
+> “Capital enterado” que además se usaba para estimar la patente municipal de cualquier año. Eso
+> trataba como sinónimos seis magnitudes distintas. Ahora el capital vive en su propia pantalla
+> —**[Capital y patrimonio](#cap-5b)**— con un campo por magnitud. Esta ficha muestra el resumen
+> y la patente calculada, y enlaza allí.
 
 > [!NOTE]
 > El RUT se valida de verdad, con módulo 11. Un RUT mal tipeado no falla el día que se escribe:
 > se propaga a documentos y conciliaciones, y reaparece meses después como un descuadre cuyo
 > origen ya nadie recuerda.
 
-La tarjeta **Patente municipal estimada** aparece en cuanto pones un capital. Es una referencia:
-cada municipalidad fija su tasa dentro del rango legal y puede pedir requisitos propios.
+La tarjeta **Patente municipal estimada** muestra la cifra que produce el motor, indicando si la
+calculó como empresa nueva o como empresa en funcionamiento. Es una referencia: cada municipalidad
+fija su tasa dentro del rango legal y puede pedir requisitos propios.
+
+---
+
+<a id="cap-5b"></a>
+
+## 5b · 💰 Capital y patrimonio
+
+La pantalla que existe porque **capital no es una sola cosa**.
+
+![Capital y patrimonio](assets/capturas/capital.png)
+
+### Las seis magnitudes
+
+| Magnitud | Qué es | Cuándo cambia |
+|---|---|---|
+| **Capital social** | Lo que dice el estatuto | Sólo con un acto societario |
+| **Capital suscrito** | Lo que el accionista se comprometió a aportar | Al suscribir o modificar |
+| **Capital enterado** | Lo que efectivamente entró (dinero o bienes) | Con cada aporte |
+| **Capital por enterar** | Suscrito menos enterado | Al enterar lo pendiente |
+| **Patrimonio contable** | Activos menos pasivos, en libros | Con cada utilidad y cada pérdida |
+| **Capital Propio Tributario** | Activo menos pasivo exigible, a valores tributarios | Una vez al año, al cerrar |
+
+Y una séptima, derivada de las anteriores pero distinta de todas: el **capital base de patente**,
+que es el capital propio que la ley manda usar **para ese período concreto**.
+
+Junto a cada rótulo hay un botón **?**: abre la definición del glosario, con qué es, con qué **no**
+hay que confundirlo y su base legal.
+
+### Movimientos de capital
+
+Al pulsar **Registrar movimiento**, la aplicación pregunta primero **qué fue** el dinero:
+
+| Naturaleza | Efecto |
+|---|---|
+| **Aporte de capital** | Aumenta el patrimonio y el capital enterado |
+| **Préstamo del accionista** | Aumenta el pasivo exigible. **No es capital**, y baja el CPT |
+| **Ingreso operacional** | Es una venta: aumenta el resultado y puede llevar IVA |
+| **Otro** | Hay que definirlo antes de registrarlo |
+
+> [!WARNING]
+> En la cartola bancaria las cuatro se ven exactamente igual: un depósito. En el balance, en el
+> capital propio tributario y en la patente municipal, no. Por eso la aplicación pregunta en vez de
+> suponer que todo lo que pone el dueño es capital.
+
+También se registran aportes **en bienes** (un notebook, un servidor, mobiliario), con su valor de
+aporte, su valor contable y su valor tributario **por separado** — porque no tienen por qué coincidir.
+
+### Capital Propio Tributario
+
+La tarjeta muestra la cifra y, debajo, **¿Cómo llegamos a este valor?**: el desglose partida a
+partida, el método aplicado (art. 41 de la LIR o CPT simplificado Pro Pyme), la base legal y la
+fecha en que se verificó la regla. Y **¿Está confirmado?**, que dice sin rodeos si es una estimación
+interna o una cifra que quedó guardada en un cierre anual.
+
+> [!NOTE]
+> El CPT simplificado sólo aplica al régimen **Pro Pyme General (14 D N.º 3)**. Si tu empresa está
+> en otro régimen, la aplicación usa el método general y lo dice, en vez de aplicar una fórmula que
+> no te corresponde.
+
+### Municipalidad
+
+Aquí se registra la comuna y —esto es lo importante— **la tasa de tu municipalidad con su fuente y
+la fecha en que la verificaste**. Mientras no lo hagas, la aplicación usa el mínimo legal como
+supuesto y muestra:
+
+> *Tasa municipal no verificada. La cifra es una simulación y debe contrastarse con la
+> municipalidad correspondiente.*
+
+Esto no es pereza del programa: el D.L. 3.063 fija un **rango** (2,5‰ a 5‰) y cada municipalidad
+elige su tasa dentro de él. No existe una tasa nacional, y publicar una inventada sería peor que no
+tener ninguna.
+
+### Cierre anual
+
+Cerrar el ejercicio produce una **fotografía inmutable**: activos, pasivos, patrimonio, CPT y su
+método, movimientos de capital, la base municipal del período siguiente y **la versión de las reglas
+legales con que se calculó**. Ese último punto importa: dentro de tres años el archivo de reglas
+puede haber cambiado, y el cierre tiene que seguir explicando con qué normas se calculó ese día.
+
+Desde ahí se exporta el **expediente anual**, un JSON con todo lo que explica el ejercicio.
+
+### Por qué la patente del año 2 no usa el capital de constitución
+
+Porque la ley cambia la base (art. 24, inciso tercero del D.L. 3.063):
+
+| Ejercicio | Base legal |
+|---|---|
+| **Actividades nuevas** | El capital propio **inicial declarado** |
+| **Ejercicios posteriores** | El capital propio del **balance terminado el 31 de diciembre anterior** |
+
+El historial de la pantalla muestra ambos años uno debajo del otro, con su base, su tasa, su UTM y
+su patente. Un ejercicio cerrado nunca se recalcula: se muestra lo que quedó guardado.
+
+Detalle completo en [`docs/accounting/CAPITAL-PATRIMONIO.md`](accounting/CAPITAL-PATRIMONIO.md),
+[`docs/tax/CAPITAL-PROPIO-TRIBUTARIO.md`](tax/CAPITAL-PROPIO-TRIBUTARIO.md) y
+[`docs/municipal/PATENTE-MUNICIPAL.md`](municipal/PATENTE-MUNICIPAL.md).
 
 ---
 
@@ -525,8 +631,32 @@ preguntas que aparecen operando: por qué una compra genera IVA crédito y otra 
 retiro no es un gasto, qué es el PPM y por qué se paga aunque no haya utilidad, qué es el
 remanente, por qué la app no marca sola un trámite como cumplido y qué evidencia guardar.
 
+Incluye además el **ciclo temporal completo** de una empresa —de la constitución a la patente del
+ejercicio siguiente— y una tabla con las cinco magnitudes de capital una al lado de la otra,
+calculadas sobre la empresa demo con el mismo motor que opera la tuya.
+
 Las explicaciones usan el **motor real**: si cambia una tasa en las reglas, la academia lo dice
 sola. No son textos escritos aparte que con el tiempo dejen de coincidir con lo que calcula.
+
+---
+
+<a id="cap-13b"></a>
+
+## 13b · 📖 Glosario
+
+![Glosario](assets/capturas/glosario.png)
+
+54 términos, buscables (la búsqueda ignora tildes y mayúsculas). Cada uno tiene:
+
+- un **resumen** de una línea;
+- una **definición** escrita para que la entienda alguien que no es contador;
+- **con qué no hay que confundirlo** — que en este dominio es lo que evita el error caro;
+- su **base legal**, cuando la tiene, con la fecha en que se verificó.
+
+Estas mismas definiciones son las que aparecen al pulsar **?** junto a cualquier campo de la
+aplicación, y las que forman [`docs/GLOSSARY.md`](GLOSSARY.md). Hay **una sola copia** de cada
+texto, en `packages/glossary/index.mjs`, y la integración continua comprueba que el documento no se
+desvíe de ella. Un glosario escrito en tres sitios se contradice en dos semanas; éste no puede.
 
 ---
 
@@ -560,6 +690,77 @@ sola. No son textos escritos aparte que con el tiempo dejen de coincidir con lo 
 <a id="cap-15"></a>
 
 ## 15 · ❓ Preguntas frecuentes
+
+### Sobre el capital y la patente
+
+<details>
+<summary><b>¿Cuánto capital puse al crear mi empresa, y cuánto me queda por enterar?</b></summary>
+
+En **Capital y patrimonio** están las cuatro cifras separadas: capital social (lo que dice el
+estatuto), capital suscrito (lo que te comprometiste a aportar), capital enterado (lo que
+efectivamente entró) y capital por enterar (la diferencia). Si migraste desde una versión anterior,
+el social y el suscrito aparecerán marcados como pendientes de confirmar: la aplicación no los
+inventa, porque no puede deducirlos del capital enterado.
+</details>
+
+<details>
+<summary><b>¿Cuál es mi Capital Propio Tributario y cómo se calculó?</b></summary>
+
+En **Capital y patrimonio**, tarjeta *Capital Propio Tributario estimado*. Debajo de la cifra,
+**¿Cómo llegamos a este valor?** despliega el desglose partida a partida, el método aplicado y su
+base legal. Y **¿Está confirmado?** dice si es una estimación interna o quedó guardado en un cierre
+anual. La aplicación **nunca** presenta un cálculo propio como cifra acreditada.
+</details>
+
+<details>
+<summary><b>¿Qué cifra usa la municipalidad para mi patente, y por qué no es el capital con que constituí la SpA?</b></summary>
+
+Porque la ley cambia la base. El art. 24 del D.L. 3.063 manda usar el capital propio **inicial
+declarado** cuando se trata de actividades nuevas, y el capital propio del **balance terminado el
+31 de diciembre inmediatamente anterior** en los ejercicios posteriores. Así que el primer año sí
+parte de lo que declaraste al iniciar, y desde el segundo la base es tu capital propio tributario —
+que incluye lo que ganaste y no retiraste, y descuenta pérdidas y retiros.
+
+El historial de la pantalla muestra, año por año, qué base se usó, con qué tasa y con qué UTM.
+</details>
+
+<details>
+<summary><b>Si el dueño deposita plata en la empresa, ¿es aporte de capital?</b></summary>
+
+**No necesariamente, y la diferencia importa.** Puede ser un aporte de capital (sube el patrimonio),
+un préstamo del accionista (sube el pasivo y **baja** el capital propio tributario) o el pago de un
+servicio que la empresa le prestó (es una venta). En la cartola las tres se ven igual. Por eso la
+aplicación pregunta la naturaleza al registrar el movimiento, en vez de suponer que todo es capital.
+</details>
+
+<details>
+<summary><b>Tengo oficina virtual. ¿Eso cambia mi capital o mi patente?</b></summary>
+
+No. Una oficina virtual acredita domicilio ante el SII y determina qué municipalidad es la
+competente. No es capital, no hace que el capital sea cero y no hace que la patente sea cero: la
+base sigue siendo el capital propio. Con capitales pequeños la patente no baja indefinidamente —
+choca contra el mínimo de 1 UTM. Detalle en [`docs/guides/OFICINA-VIRTUAL.md`](guides/OFICINA-VIRTUAL.md).
+</details>
+
+<details>
+<summary><b>¿Por qué la app dice que mi tasa municipal “no está verificada”?</b></summary>
+
+Porque no existe una tasa nacional: el D.L. 3.063 fija un rango de 2,5‰ a 5‰ y cada municipalidad
+elige la suya por ordenanza. El repositorio no publica ninguna tasa por comuna, porque serían
+decenas de cifras que nadie comprobó. Registra la de tu comuna en **Capital y patrimonio →
+Municipalidad**, junto con su fuente y la fecha en que la verificaste, y el aviso desaparece.
+</details>
+
+<details>
+<summary><b>¿Qué documento respalda cada cifra?</b></summary>
+
+Cada movimiento de capital tiene su campo de evidencia (escritura, cartola, contrato de mutuo, acta
+de aporte) y aparece marcado *sin evidencia* mientras no lo registres. El cierre anual guarda las
+evidencias del ejercicio, y el expediente anual exportable las reúne con las reglas y las fuentes
+legales usadas.
+</details>
+
+### Sobre la aplicación
 
 <details>
 <summary><b>¿Necesito internet?</b></summary>

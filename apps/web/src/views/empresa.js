@@ -1,8 +1,8 @@
 import { html, raw, fmtCLP, fmtDateTime, attempt } from '../lib/dom.js';
-import { ws } from '../lib/state.js';
-import { municipalPatent } from '../core/accounting-engine/index.mjs';
+import { state, ws } from '../lib/state.js';
 import { loadRules } from '../core/chile-tax-rules/index.mjs';
 import { validateRut } from '../core/company-operations/rut.mjs';
+import { termChip, mountTerms } from '../lib/terms.js';
 
 const REGIMES = ['Pro Pyme General (14 D N.º 3)', 'Pro Pyme Transparente (14 D N.º 8)', 'Régimen General semi integrado (14 A)', 'Por definir'];
 const OFFICE = [
@@ -22,13 +22,26 @@ export default {
     const w = ws();
     const c = w.getCompany() ?? {};
     const rules = loadRules(2026);
-    const capital = Number(c.capital || 0);
-    const patente = capital > 0 ? municipalPatent({ capital }) : null;
+    const year = Number(String(state.period).slice(0, 4));
+    const position = w.capitalPosition();
+
+    // La patente ya no se estima aquí con “capital × tasa mínima”: eso trataba
+    // el capital enterado como si fuera siempre la base legal. Ahora la calcula
+    // el motor, que distingue empresa nueva de empresa en funcionamiento, y la
+    // ficha sólo muestra el resultado y remite a la pantalla que lo explica.
+    let patente = null;
+    let patenteError = null;
+    try {
+      patente = w.municipalPatentFor(year);
+    } catch (error) {
+      patenteError = error.message;
+    }
 
     return html`
       <div class="page__head">
         <h1>Ficha de la empresa</h1>
-        <p>Los datos de identidad que usan el resto de las pestañas. Cambiarlos queda registrado en la bitácora.</p>
+        <p>Los datos de identidad que usan el resto de las pestañas. Cambiarlos queda registrado en la bitácora.
+        El capital vive ahora en <strong>Capital y patrimonio</strong>, donde cada magnitud tiene su propio campo.</p>
       </div>
 
       <div class="grid grid--2">
@@ -65,10 +78,11 @@ export default {
                 <input type="text" name="address" value="${c.address || ''}" placeholder="Calle 123, oficina 4, comuna"></label>
             </div>
             <div class="form__row">
-              <label class="field"><span class="field__label">Capital enterado (CLP)</span>
-                <input type="number" name="capital" min="0" step="1" value="${capital}"></label>
               <label class="field"><span class="field__label">Comuna de la patente</span>
-                <input type="text" name="commune" value="${c.commune || ''}" placeholder="Providencia"></label>
+                <input type="text" name="commune" value="${c.commune || ''}" placeholder="Providencia">
+                <span class="field__hint">Determina la municipalidad competente, no el capital.</span></label>
+              <label class="field"><span class="field__label">Tipo de sociedad</span>
+                <input type="text" name="companyType" value="${c.companyType || 'SpA'}" placeholder="SpA"></label>
             </div>
             <label class="field"><span class="field__label">Notas internas</span>
               <textarea name="notes" placeholder="Contexto que quieras recordar: contador, plazos propios, acuerdos.">${c.notes || ''}</textarea></label>
@@ -79,17 +93,43 @@ export default {
 
         <div class="stack">
           <div class="card">
+            <div class="card__head"><h2>Capital, en cuatro cifras distintas</h2></div>
+            <div class="tablewrap"><table><tbody>
+              <tr><td>${raw(`Capital social ${termChip('capital-social')}`)}</td>
+                <td class="num">${position.capitalSocial === null ? '—' : fmtCLP(position.capitalSocial)}</td></tr>
+              <tr><td>${raw(`Capital suscrito ${termChip('capital-suscrito')}`)}</td>
+                <td class="num">${position.capitalSuscrito === null ? '—' : fmtCLP(position.capitalSuscrito)}</td></tr>
+              <tr><td>${raw(`Capital enterado ${termChip('capital-enterado')}`)}</td>
+                <td class="num">${fmtCLP(position.capitalEnterado)}</td></tr>
+              <tr><td>${raw(`Capital por enterar ${termChip('capital-por-enterar')}`)}</td>
+                <td class="num">${position.capitalPorEnterar === null ? '—' : fmtCLP(position.capitalPorEnterar)}</td></tr>
+            </tbody></table></div>
+            ${position.pendingConfirmation.length
+              ? raw(html`<div class="note note--warn" style="margin-top:10px"><span class="note__icon">!</span>
+                  <p>Faltan por confirmar: <strong>${position.pendingConfirmation.join(', ')}</strong>.
+                  Se migraron desde el antiguo campo único “capital” y la aplicación no los inventa.</p></div>`)
+              : ''}
+            <div class="btn__row" style="margin-top:12px"><button class="btn btn--sm btn--primary" data-go="capital">Abrir Capital y patrimonio</button></div>
+          </div>
+
+          <div class="card">
             <div class="card__head"><h2>Patente municipal estimada</h2></div>
-            ${patente
-              ? raw(html`
+            ${patenteError
+              ? raw(html`<div class="note note--err"><span class="note__icon">✕</span><p>${patenteError}</p></div>`)
+              : raw(html`
                   <div class="kpi__value">${fmtCLP(patente.annualPatent)}</div>
                   <p class="card__hint" style="margin-top:6px">
-                    Capital ${fmtCLP(patente.capital)} × tasa mínima ${(patente.rate * 100).toFixed(2)}%,
-                    acotado entre ${fmtCLP(patente.min)} y ${fmtCLP(patente.max)} (1 y 4.000 UTM de ${fmtCLP(patente.utm)}).
+                    ${patente.businessStage === 'NEW_BUSINESS'
+                      ? 'Empresa nueva: base = capital propio inicial declarado'
+                      : 'Empresa en funcionamiento: base = capital propio del cierre anterior'}
+                    ${fmtCLP(patente.baseCapital)} × ${(patente.rate * 1000).toFixed(2)}‰,
+                    acotado entre ${fmtCLP(patente.minimumPatent)} y ${fmtCLP(patente.maximumPatent)}
+                    (1 y 8.000 UTM de ${fmtCLP(patente.utm)}).
                   </p>
-                  <div class="note note--warn" style="margin-top:10px"><span class="note__icon">!</span>
-                    <p>Cada municipalidad fija su tasa dentro del rango legal y puede pedir requisitos propios. Esta cifra es una referencia, no la boleta.</p></div>`)
-              : raw(html`<p class="card__hint">Ingresa el capital enterado para estimar la patente municipal anual.</p>`)}
+                  ${patente.warnings
+                    .map(warning => html`<div class="note note--warn" style="margin-top:10px"><span class="note__icon">!</span><p>${warning}</p></div>`)
+                    .join('')}
+                  <div class="btn__row" style="margin-top:10px"><button class="btn btn--sm" data-go="capital">Ver cómo se calculó</button></div>`)}
           </div>
 
           <div class="card">
@@ -102,6 +142,8 @@ export default {
                   <tr><td>Retención de honorarios</td><td class="num">${(rules.honorarios.retentionRate * 100).toFixed(2)}%</td></tr>
                   <tr><td>PPM inicial Pro Pyme</td><td class="num">${(rules.ppmProPyme.initialYearRate * 100).toFixed(2)}%</td></tr>
                   <tr><td>UTM de referencia</td><td class="num">${fmtCLP(rules.utm['2026-08'])}</td></tr>
+                  <tr><td>Patente municipal (rango legal)</td><td class="num">${(rules.municipalPatent.minRate * 1000).toFixed(1)}‰ – ${(rules.municipalPatent.maxRate * 1000).toFixed(1)}‰</td></tr>
+                  <tr><td>Tope de la patente</td><td class="num">${rules.municipalPatent.minUtm} – ${rules.municipalPatent.maxUtm.toLocaleString('es-CL')} UTM</td></tr>
                   <tr><td>Última verificación</td><td class="num">${rules.lastVerified}</td></tr>
                 </tbody>
               </table>
@@ -113,6 +155,7 @@ export default {
 
   mount(root, rerender) {
     const w = ws();
+    mountTerms(root);
     const rutInput = root.querySelector('[data-rut]');
     const rutHint = root.querySelector('[data-rut-hint]');
 
@@ -138,8 +181,9 @@ export default {
         toast('Corrige el RUT antes de guardar', 'err');
         return;
       }
+      // `capital` ya no se edita aquí: lo gobierna la ficha de capital. Si se
+      // enviara vacío desde este formulario, borraría el capital enterado.
       const data = Object.fromEntries(new FormData(e.target));
-      data.capital = Number(data.capital || 0);
       if (await attempt(() => w.saveCompany(data), 'Ficha guardada')) rerender();
     });
   }

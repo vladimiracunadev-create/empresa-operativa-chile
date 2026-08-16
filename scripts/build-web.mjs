@@ -24,10 +24,15 @@ const distDir = path.join(root, 'apps/web/dist');
 const CORE = [
   ['chile-tax-rules/index.mjs', 'chile-tax-rules/index.mjs'],
   ['chile-tax-rules/rules.generated.mjs', 'chile-tax-rules/rules.generated.mjs'],
+  ['chile-tax-rules/municipalities.mjs', 'chile-tax-rules/municipalities.mjs'],
   ['accounting-engine/index.mjs', 'accounting-engine/index.mjs'],
+  ['accounting-engine/tax-equity.mjs', 'accounting-engine/tax-equity.mjs'],
+  ['accounting-engine/municipal-patent.mjs', 'accounting-engine/municipal-patent.mjs'],
   ['company-operations/workspace.mjs', 'company-operations/workspace.mjs'],
+  ['company-operations/capital.mjs', 'company-operations/capital.mjs'],
   ['company-operations/store.mjs', 'company-operations/store.mjs'],
-  ['company-operations/rut.mjs', 'company-operations/rut.mjs']
+  ['company-operations/rut.mjs', 'company-operations/rut.mjs'],
+  ['glossary/index.mjs', 'glossary/index.mjs']
 ];
 
 const copyDir = (from, to) => {

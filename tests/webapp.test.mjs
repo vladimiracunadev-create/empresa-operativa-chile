@@ -25,10 +25,15 @@ const walk = dir =>
 const BROWSER_CORE = [
   'packages/chile-tax-rules/index.mjs',
   'packages/chile-tax-rules/rules.generated.mjs',
+  'packages/chile-tax-rules/municipalities.mjs',
   'packages/accounting-engine/index.mjs',
+  'packages/accounting-engine/tax-equity.mjs',
+  'packages/accounting-engine/municipal-patent.mjs',
   'packages/company-operations/workspace.mjs',
+  'packages/company-operations/capital.mjs',
   'packages/company-operations/store.mjs',
-  'packages/company-operations/rut.mjs'
+  'packages/company-operations/rut.mjs',
+  'packages/glossary/index.mjs'
 ];
 
 test('ningún módulo que viaja al navegador importa node:*', () => {

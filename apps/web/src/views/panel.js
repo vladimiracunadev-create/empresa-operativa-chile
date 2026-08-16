@@ -33,6 +33,20 @@ export default {
     });
 
     const due = f29DueDates(period);
+
+    // Indicadores de capital y patente: son accionables (falta capital por
+    // enterar, falta el cierre que produce la base municipal) y no se ven en
+    // ninguna otra pantalla del flujo mensual.
+    const year = Number(String(period).slice(0, 4));
+    const capital = w.capitalPosition();
+    const ultimoCierre = w.listAnnualCloses().at(-1) ?? null;
+    let patente = null;
+    try {
+      patente = w.municipalPatentFor(year);
+    } catch {
+      /* Sin reglas del año no hay patente que mostrar; la vista Capital lo explica. */
+    }
+
     const pendientes = w.listObligations().filter(o => o.status !== 'done');
     const vencidas = pendientes.filter(o => o.dueDate && o.dueDate < new Date().toISOString().slice(0, 10));
 
@@ -57,6 +71,46 @@ export default {
         ${raw(kpi('IVA a pagar', fmtCLP(f29.vatPayable), f29.nextVatCredit > 0 ? `Remanente a favor: ${fmtCLP(f29.nextVatCredit)}` : 'Débito menos crédito disponible', f29.vatPayable > 0 ? 'kpi--warn' : 'kpi--ok'))}
         ${raw(kpi('F29 estimado', fmtCLP(f29.estimatedF29Payment), `IVA + PPM + retenciones`))}
         ${raw(kpi('Flujo del mes', fmtCLP(summary.netCash), `Entradas ${fmtCLP(summary.cashIn)} · salidas ${fmtCLP(summary.cashOut)}`, summary.netCash < 0 ? 'kpi--err' : 'kpi--ok'))}
+      </div>
+
+      <div class="grid" style="margin-bottom:16px">
+        ${raw(
+          kpi(
+            'Capital enterado',
+            fmtCLP(capital.capitalEnterado),
+            capital.capitalPorEnterar === null
+              ? 'Falta declarar el capital suscrito'
+              : capital.capitalPorEnterar > 0
+                ? `Quedan ${fmtCLP(capital.capitalPorEnterar)} por enterar`
+                : 'Capital suscrito íntegramente enterado',
+            capital.capitalPorEnterar > 0 ? 'kpi--warn' : ''
+          )
+        )}
+        ${raw(
+          kpi(
+            'CPT último cierre',
+            ultimoCierre ? fmtCLP(ultimoCierre.CPT) : '—',
+            ultimoCierre ? `Ejercicio ${ultimoCierre.fiscalYear} · ${ultimoCierre.CPTMethod}` : 'Aún no has cerrado ningún ejercicio',
+            ultimoCierre ? '' : 'kpi--warn'
+          )
+        )}
+        ${raw(
+          kpi(
+            `Patente ${year}`,
+            patente ? fmtCLP(patente.annualPatent) : '—',
+            patente
+              ? `${patente.businessStage === 'NEW_BUSINESS' ? 'Empresa nueva' : 'En funcionamiento'} · base ${fmtCLP(patente.baseCapital)}`
+              : 'Faltan las reglas del año o el cierre anterior'
+          )
+        )}
+        ${raw(
+          kpi(
+            'Cierre anual',
+            w.getAnnualClose(year) ? 'cerrado' : 'abierto',
+            w.getAnnualClose(year) ? `Ejercicio ${year} congelado` : `Ejercicio ${year} todavía se puede modificar`,
+            w.getAnnualClose(year) ? 'kpi--ok' : ''
+          )
+        )}
       </div>
 
       <div class="grid grid--2">
@@ -94,6 +148,7 @@ export default {
           </p>
           <div class="btn__row" style="margin-top:12px">
             <button class="btn btn--sm" data-go="constitucion">Ver constitución</button>
+            <button class="btn btn--sm" data-go="capital">Capital y patrimonio</button>
             <button class="btn btn--sm" data-go="operaciones">Registrar operación</button>
           </div>
         </div>

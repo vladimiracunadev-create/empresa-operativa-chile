@@ -553,6 +553,56 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-sp
 .qa__body { padding: 12px 14px; border-top: 1px solid var(--border); }
 .qa__body p:last-child { margin-bottom: 0; }
 
+/* -------------------------------------------- glosario y ayuda contextual - */
+
+/* Marca "?" junto a un rótulo. Deliberadamente pequeña y discreta: aparece
+   decenas de veces por pantalla y no debe competir con el dato. */
+.termchip {
+  display: inline-grid;
+  place-items: center;
+  width: 16px; height: 16px;
+  margin-left: 4px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elev-2);
+  color: var(--text-faint);
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.termchip:hover { border-color: var(--brand); color: var(--brand); }
+
+.termlist { margin: 0; padding-left: 18px; font-size: 0.84rem; }
+.termlist li + li { margin-top: 4px; }
+
+/* Flujo temporal numerado de la Academia. */
+.flow { list-style: none; margin: 0; padding: 0; counter-reset: flow; }
+.flow li {
+  counter-increment: flow;
+  position: relative;
+  padding: 9px 0 9px 34px;
+  border-bottom: 1px solid var(--border);
+}
+.flow li:last-child { border-bottom: 0; }
+.flow li::before {
+  content: counter(flow);
+  position: absolute;
+  left: 0; top: 9px;
+  width: 22px; height: 22px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border-strong);
+  font-size: 0.7rem;
+  font-family: var(--mono);
+  color: var(--text-faint);
+}
+.flow li strong { display: block; font-size: 0.9rem; }
+.flow li span { font-size: 0.8rem; color: var(--text-faint); }
+
 /* -------------------------------------------------------------- móvil ---- */
 
 .mobile-only { display: none; }

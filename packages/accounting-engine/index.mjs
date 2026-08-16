@@ -11,6 +11,9 @@
  */
 import { loadRules } from '../chile-tax-rules/index.mjs';
 
+export { calculateTaxEquity, allowsSimplifiedTaxEquity, TAX_EQUITY_METHODS } from './tax-equity.mjs';
+export { calculateMunicipalPatent, BUSINESS_STAGES } from './municipal-patent.mjs';
+
 export const clp = n => Math.round(Number(n || 0));
 
 const assertNonNegative = (name, value) => {
@@ -166,6 +169,15 @@ export function f29DueDates(period, year = 2026) {
 /* Otros cálculos                                                      */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Estimación rápida de patente sobre una cifra de capital dada.
+ *
+ * Se conserva porque la CLI y los laboratorios la usan para enseñar el tope
+ * mínimo, pero NO decide qué capital corresponde usar: aplica una tasa a la
+ * cifra que le pasen. Para el cálculo real —que depende de si la empresa es
+ * nueva o está en funcionamiento, de las deducciones y del prorrateo entre
+ * sucursales— usa `calculateMunicipalPatent` de `./municipal-patent.mjs`.
+ */
 export function municipalPatent({ capital, rate, utm }, year = 2026) {
   assertNonNegative('capital', capital);
   const r = loadRules(year);
@@ -200,6 +212,30 @@ export function journal(operation, year = 2026) {
   if (type === 'capital_contribution') {
     return [{ debit: 'Banco', credit: 'Capital', amount, explanation: 'El aporte aumenta el activo Banco y el patrimonio Capital.' }];
   }
+  // El préstamo del accionista entra por el mismo banco que un aporte y es su
+  // opuesto contable: acredita un PASIVO, no el patrimonio. Que sean dos
+  // asientos distintos es la razón de que la app obligue a elegir la naturaleza
+  // del depósito en vez de suponer que todo lo que pone el dueño es capital.
+  if (type === 'shareholder_loan') {
+    return [
+      {
+        debit: 'Banco',
+        credit: 'Cuenta por pagar al accionista',
+        amount,
+        explanation: 'La empresa recibe dinero y queda debiéndolo. Aumenta el pasivo exigible, no el capital.'
+      }
+    ];
+  }
+  if (type === 'shareholder_loan_repayment') {
+    return [
+      {
+        debit: 'Cuenta por pagar al accionista',
+        credit: 'Banco',
+        amount,
+        explanation: 'Se extingue la deuda con el accionista. No es retiro ni gasto: no toca ninguna cuenta de resultado.'
+      }
+    ];
+  }
   if (type === 'sale') {
     const s = saleFromNet(amount, year);
     return [
@@ -232,7 +268,7 @@ export function journal(operation, year = 2026) {
 
 export function simulateScenario(scenario, year = 2026) {
   const ops = scenario.operations ?? [];
-  let salesNet = 0, purchasesNet = 0, honorariaGross = 0, capital = 0, withdrawals = 0;
+  let salesNet = 0, purchasesNet = 0, honorariaGross = 0, capital = 0, withdrawals = 0, shareholderLoans = 0;
   const entries = [];
   for (const op of ops) {
     if (op.type === 'sale') salesNet += clp(op.amount);
@@ -240,13 +276,29 @@ export function simulateScenario(scenario, year = 2026) {
     if (op.type === 'honorarium_paid' || op.type === 'honorarium') honorariaGross += clp(op.amount);
     if (op.type === 'capital_contribution') capital += clp(op.amount);
     if (op.type === 'owner_withdrawal') withdrawals += clp(op.amount);
-    if (['capital_contribution', 'sale', 'purchase', 'expense', 'honorarium', 'owner_withdrawal', 'tax_payment'].includes(op.type)) {
+    if (op.type === 'shareholder_loan') shareholderLoans += clp(op.amount);
+    if (op.type === 'shareholder_loan_repayment') shareholderLoans -= clp(op.amount);
+    if (
+      [
+        'capital_contribution',
+        'shareholder_loan',
+        'shareholder_loan_repayment',
+        'sale',
+        'purchase',
+        'expense',
+        'honorarium',
+        'owner_withdrawal',
+        'tax_payment'
+      ].includes(op.type)
+    ) {
       entries.push(...journal(op, year));
     }
   }
   return {
     profile: scenario.profile,
-    totals: { capital, salesNet, purchasesNet, honorariaGross, withdrawals },
+    // `capital` y `shareholderLoans` se cuentan por separado a propósito: son
+    // dos entradas de dinero del mismo dueño con efectos patrimoniales opuestos.
+    totals: { capital, salesNet, purchasesNet, honorariaGross, withdrawals, shareholderLoans },
     f29: f29Basic({ salesNet, purchasesNet, previousVatCredit: scenario.previousVatCredit ?? 0, honorariaGross }, year),
     entries
   };

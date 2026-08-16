@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Versión](https://img.shields.io/badge/versión_actual-1.0.0-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
+[![Versión](https://img.shields.io/badge/versión_actual-1.1.0-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
 [![Formato](https://img.shields.io/badge/formato-Keep_a_Changelog-7c5cff?style=for-the-badge)](https://keepachangelog.com/es-ES/1.1.0/)
 [![SemVer](https://img.shields.io/badge/versionado-SemVer-2f81f7?style=for-the-badge)](https://semver.org/lang/es/)
 
@@ -14,6 +14,104 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 Versionado según [SemVer](https://semver.org/lang/es/).
+
+## [1.1.0] — 2026-08-16
+
+Capital, Capital Propio Tributario y patente municipal dejan de ser el mismo número.
+
+Hasta aquí la ficha de empresa tenía **un solo campo `capital`**, rotulado “capital enterado”, y esa
+misma cifra se usaba para estimar la patente municipal de cualquier año. Eso trata como sinónimos
+seis magnitudes que jurídica y contablemente no lo son, y produce una cifra plausible y equivocada
+—que es el peor resultado posible en una herramienta de cumplimiento—.
+
+### ✨ Añadido
+
+- **Módulo Capital y Patrimonio** (`apps/web/src/views/capital.js`, vista nueva): capital social,
+  suscrito, enterado y por enterar como campos separados; accionistas (admite uno solo al 100 %);
+  número de acciones y valor nominal; fechas de constitución e inicio de actividades.
+- **Ledger de movimientos patrimoniales** (`packages/company-operations/capital.mjs`): aporte
+  inicial, aporte posterior, capital pendiente enterado, aumento y disminución de capital, aporte en
+  bienes, **préstamo del accionista**, devolución del préstamo y retiro/distribución. Cada tipo
+  declara su efecto sobre el patrimonio y sobre el pasivo.
+- **Aporte ≠ préstamo.** Un depósito del dueño obliga a declarar su naturaleza —aporte de capital,
+  préstamo del accionista, ingreso operacional u otro— en vez de registrarse automáticamente como
+  capital. Dos tipos de operación nuevos: `shareholder_loan` y `shareholder_loan_repayment`, con sus
+  asientos explicados.
+- **Aportes en bienes** con `tipoActivo`, valor de aporte, **valor contable y valor tributario por
+  separado**, documento de respaldo y accionista aportante.
+- **Motor de Capital Propio Tributario** (`packages/accounting-engine/tax-equity.mjs`):
+  `calculateTaxEquity(...)` con los dos métodos —art. 41 N.º 1 de la LIR y **CPT simplificado** del
+  art. 14 letra D) N.º 3 letra (j)—. Devuelve el desglose partida a partida, el método, la base
+  legal, los supuestos, las advertencias y la evidencia. **Nunca devuelve sólo un número.**
+- **Motor de patente municipal** (`packages/accounting-engine/municipal-patent.mjs`):
+  `calculateMunicipalPatent(...)` distingue `NEW_BUSINESS` de `ESTABLISHED_BUSINESS`, aplica las
+  deducciones por inversiones en otros negocios afectos a patente (art. 24 inciso final) y el
+  prorrateo entre sucursales (art. 25), y explica de dónde salió cada peso.
+- **Maestro municipal extensible** (`packages/chile-tax-rules/municipalities.mjs`) con identidad de
+  comunas y **cero tasas inventadas**: todas nacen `UNVERIFIED` y sólo pasan a `VERIFIED` cuando el
+  usuario registra la tasa con su fuente y su fecha de verificación.
+- **Cierre anual** con snapshot inmutable: activos, pasivos, patrimonio contable, CPT y su método,
+  ajustes, régimen, movimientos de capital, base municipal del período siguiente, evidencias y **la
+  versión de las reglas legales** con que se calculó. Reabrirlo exige motivo; importar un respaldo
+  no puede pisarlo.
+- **Expediente anual exportable** en JSON, con empresa, ejercicio, patente, municipalidad y bitácora.
+- **Historial por año** de capital, patrimonio, CPT, base y patente. Un ejercicio cerrado nunca se
+  recalcula: se muestra lo que quedó guardado.
+- **Glosario del sistema** (`packages/glossary/index.mjs`): 54 términos con resumen, definición
+  pedagógica, base legal y —lo decisivo en este dominio— **con qué no hay que confundirlos**. Tres
+  consumidores desde una sola copia: la vista **Glosario** con búsqueda insensible a tildes, las
+  ayudas contextuales `?` junto a cada campo, y `docs/GLOSSARY.md` generado con
+  `node scripts/build-glossary.mjs`. CI comprueba la sincronía.
+- **Simulador educativo** en SANDBOX: escenarios de capital inicial ($500.000 / $1.000.000 /
+  $5.000.000) mostrando el efecto en la patente y el choque contra el mínimo legal.
+- **Caso de referencia completo** en el sandbox: SpA de desarrollo de software, un accionista al
+  100 %, sin trabajadores, oficina virtual, notebook aportado al capital, préstamo del accionista y
+  el ejercicio 2026 entero hasta el cierre y la base municipal de 2027.
+- **Estados y origen del dato**: `ESTIMADO · CALCULADO · DECLARADO · VERIFICADO · PAGADO` y
+  `usuario · calculado · importado · sii · municipalidad`, para no presentar una estimación interna
+  como un hecho acreditado.
+- **Indicadores nuevos en el panel**: capital enterado, CPT del último cierre, patente del período y
+  estado del cierre anual.
+- **Comandos de CLI**: `patente-municipal`, `cpt` y `glosario`.
+- **Documentación nueva**: [`docs/accounting/CAPITAL-PATRIMONIO.md`](docs/accounting/CAPITAL-PATRIMONIO.md),
+  [`docs/tax/CAPITAL-PROPIO-TRIBUTARIO.md`](docs/tax/CAPITAL-PROPIO-TRIBUTARIO.md),
+  [`docs/municipal/PATENTE-MUNICIPAL.md`](docs/municipal/PATENTE-MUNICIPAL.md) y
+  [`docs/guides/OFICINA-VIRTUAL.md`](docs/guides/OFICINA-VIRTUAL.md).
+
+### 🛠️ Corregido
+
+- **Tope de la patente municipal: 4.000 → 8.000 UTM.** El art. 24 del D.L. 3.063 fija el máximo en
+  8.000 UTM; el repositorio traía el texto anterior a la Ley N.º 20.280. `scripts/validate-rules.mjs`
+  ahora falla si alguien lo revierte.
+- **La patente ya no se estima con `capital enterado × tasa mínima` para cualquier año.** La base
+  legal cambia entre el primer ejercicio y los siguientes, y ahora el motor lo refleja.
+- Se unificó el `idNorma` de BCN del D.L. 3.063, que aparecía con dos valores distintos en el
+  repositorio (6942 en las reglas y 7054 en las fuentes).
+
+### 🔁 Cambiado
+
+- El campo `capital` de la ficha **se conserva** y se mantiene sincronizado con el capital enterado,
+  para no romper respaldos, exportaciones ni vistas anteriores. El formulario de la ficha ya no lo
+  edita: lo gobierna el módulo de capital.
+- Formato de respaldo **v2** (añade capital, movimientos patrimoniales, cierres anuales y ficha
+  municipal). Los respaldos **v1 se siguen importando** sin cambios.
+- `validate-rules.mjs` pasa de comprobar cuatro tasas a validar también el rango y los topes de la
+  patente, los dos métodos de CPT y que **toda** regla declare fuente y fecha de verificación.
+
+### 🔒 Migración
+
+Una ficha antigua con sólo `capital` migra **en lectura**: esa cifra pasa a `capitalEnterado`, y
+`capitalSocial` y `capitalSuscrito` quedan marcados `PENDING_CONFIRMATION` en vez de inventarse.
+La migración **no escribe en el almacén**, así que instalar esta versión no puede alterar datos
+existentes: si el usuario nunca vuelve a guardar, el archivo original queda intacto.
+
+### 🧪 Pruebas
+
+De 50 a **119**. Las nuevas protegen distinciones, no aritmética: que un préstamo del accionista
+nunca sume capital enterado, que el CPT simplificado no se aplique a quien no califica, que la base
+de la patente cambie entre el año 1 y el año 2, que un CPT negativo se lleve a $0 como manda la ley,
+que una tasa fuera del rango legal se rechace, que la UTM de otro período se declare, y que las
+cinco magnitudes del caso de referencia sean **cinco números distintos**.
 
 ## [1.0.0] — 2026-08-14
 

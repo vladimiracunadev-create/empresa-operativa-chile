@@ -13,6 +13,7 @@ import { hydrateFromDisk, PLATFORM_LABEL } from './lib/platform.js';
 import panel from './views/panel.js';
 import constitucion from './views/constitucion.js';
 import empresa from './views/empresa.js';
+import capital from './views/capital.js';
 import operaciones from './views/operaciones.js';
 import impuestos from './views/impuestos.js';
 import obligaciones from './views/obligaciones.js';
@@ -20,14 +21,15 @@ import cierre from './views/cierre.js';
 import auditoria from './views/auditoria.js';
 import datos from './views/datos.js';
 import academia from './views/academia.js';
+import glosario from './views/glosario.js';
 
-export const APP_VERSION = '1.0.0';
+export const APP_VERSION = '1.1.0';
 
 const NAV = [
   { group: 'Operar', views: [panel, operaciones, impuestos, obligaciones, cierre] },
-  { group: 'Empresa', views: [constitucion, empresa] },
+  { group: 'Empresa', views: [constitucion, empresa, capital] },
   { group: 'Control', views: [auditoria, datos] },
-  { group: 'Aprender', views: [academia] }
+  { group: 'Aprender', views: [academia, glosario] }
 ];
 
 const VIEWS = Object.fromEntries(NAV.flatMap(g => g.views).map(v => [v.id, v]));

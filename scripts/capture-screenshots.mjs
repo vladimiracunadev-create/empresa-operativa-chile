@@ -58,7 +58,9 @@ const SHOTS = [
   { name: 'empresa', view: 'empresa', w: 1440, h: 1020, alt: 'Ficha de la empresa y patente municipal estimada' },
   { name: 'auditoria', view: 'auditoria', w: 1440, h: 900, alt: 'Bitácora de auditoría' },
   { name: 'datos', view: 'datos', w: 1440, h: 980, alt: 'Exportación, importación y respaldos' },
+  { name: 'capital', view: 'capital', w: 1440, h: 1400, alt: 'Capital y patrimonio: las seis magnitudes, el CPT con su desglose y la patente municipal' },
   { name: 'academia', view: 'academia', w: 1440, h: 1020, alt: 'Academia: una venta y un honorario explicados paso a paso' },
+  { name: 'glosario', view: 'glosario', w: 1440, h: 1020, alt: 'Glosario buscable con las definiciones del sistema' },
   { name: 'panel-claro', view: 'panel', w: 1440, h: 940, tema: 'claro', alt: 'El panel en tema claro' },
   { name: 'panel-real', view: 'panel', w: 1440, h: 800, modo: 'real', alt: 'El panel en EMPRESA REAL, con la franja ámbar de advertencia' },
   // Móvil: es la forma en que se usa el APK, y la navegación cambia a barra inferior.

@@ -43,6 +43,12 @@ jobs:
       - name: Las reglas embebidas están sincronizadas con los JSON
         run: node scripts/build-rules.mjs --check
 
+      - name: El glosario del repositorio está sincronizado con el del sistema
+        # docs/GLOSSARY.md se genera desde packages/glossary. Si alguien edita
+        # el documento a mano, la app y la documentación empiezan a decir cosas
+        # distintas sin que nadie lo note.
+        run: node scripts/build-glossary.mjs --check
+
       - name: Las tasas del año en curso son las esperadas
         run: node scripts/validate-rules.mjs
 

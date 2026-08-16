@@ -15,9 +15,9 @@ motor de cálculo en Android, Windows y navegador. Tus datos no salen del dispos
 [![Seguridad](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/security.yml/badge.svg?branch=main)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/security.yml)
 [![Pages](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/pages.yml)
 
-[![Versión](https://img.shields.io/badge/versión-1.0.0-e8590c?style=for-the-badge)](CHANGELOG.md)
+[![Versión](https://img.shields.io/badge/versión-1.1.0-e8590c?style=for-the-badge)](CHANGELOG.md)
 [![Plataformas](https://img.shields.io/badge/plataformas-Android_·_Windows_·_Web-7c5cff?style=for-the-badge)](#-descargas)
-[![Pruebas](https://img.shields.io/badge/pruebas-50_verdes-2e8b57?style=for-the-badge)](tests/)
+[![Pruebas](https://img.shields.io/badge/pruebas-120_verdes-2e8b57?style=for-the-badge)](tests/)
 [![Dependencias](https://img.shields.io/badge/dependencias_de_producción-0-2f81f7?style=for-the-badge)](package.json)
 [![Telemetría](https://img.shields.io/badge/telemetría-cero-3fb950?style=for-the-badge)](#-privacidad-que-se-puede-comprobar)
 [![Reglas](https://img.shields.io/badge/reglas-año_comercial_2026-8957e5?style=for-the-badge)](docs/SOURCES-2026.md)
@@ -50,7 +50,7 @@ motor de cálculo en Android, Windows y navegador. Tus datos no salen del dispos
 
 | 🖥️ Vistas | 🧮 Motor | ✅ Pruebas | 📦 Dependencias | 📱 Plataformas | 📄 Manual |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| **10** | **1** | **50** | **0** | **3** | **28 pág.** |
+| **12** | **1** | **120** | **0** | **3** | **33 pág.** |
 
 </div>
 
@@ -95,6 +95,14 @@ evidencia** antes de dar algo por cumplido y deja registro de todo lo que cambi�
 <td align="center"><sub>📜 <b>Constitución</b> — nueve trámites, cada uno con su evidencia</sub></td>
 <td align="center"><sub>🔒 <b>Cierre</b> — congela el mes y deja constancia de qué se revisó</sub></td>
 </tr>
+<tr>
+<td width="50%"><img src="docs/assets/capturas/capital.png" alt="Capital y patrimonio: las seis magnitudes, el CPT y la patente municipal"></td>
+<td width="50%"><img src="docs/assets/capturas/glosario.png" alt="Glosario buscable con las definiciones del sistema"></td>
+</tr>
+<tr>
+<td align="center"><sub>💰 <b>Capital y patrimonio</b> — seis magnitudes que no son la misma cifra</sub></td>
+<td align="center"><sub>📖 <b>Glosario</b> — qué significa cada término y con qué <i>no</i> confundirlo</sub></td>
+</tr>
 </table>
 
 <div align="center">
@@ -128,6 +136,12 @@ evidencia** antes de dar algo por cumplido y deja registro de todo lo que cambi�
 | Superficie | Estado |
 |---|---|
 | Motor tributario | ✅ IVA, PPM, honorarios, patente municipal, IDPC y asientos explicados |
+| Capital societario | ✅ social, suscrito, enterado, por enterar y movimientos, como magnitudes separadas |
+| Capital Propio Tributario | ✅ art. 41 y CPT simplificado Pro Pyme, con desglose · 🟡 **sin corrección monetaria ni reorganizaciones** |
+| Patente municipal | ✅ distingue empresa nueva de empresa en funcionamiento, con base legal citada |
+| Tasas municipales por comuna | ⚪ **ninguna viene inventada** — el usuario registra la suya con fuente y fecha |
+| Cierre anual | ✅ snapshot inmutable con la versión de las reglas usadas |
+| Glosario | ✅ 54 términos, fuente única, sincronía comprobada en CI |
 | Remanente de crédito fiscal | ✅ arrastrado entre períodos · 🟡 **sin reajuste** (declarado como limitación) |
 | Borrador F29 | 🟡 IVA, PPM y retenciones — **no cubre todos los códigos** del formulario |
 | Vencimientos | ✅ los tres plazos, con traslado por fin de semana · ⚪ **feriados legales no modelados** |
@@ -138,7 +152,7 @@ evidencia** antes de dar algo por cumplido y deja registro de todo lo que cambi�
 | App de Android | ✅ APK **con el contenido contado dentro del binario** en CI |
 | App de Windows | ✅ MSI, NSIS y portable; **arranca y se comprueba vivo** en CI |
 | Web / PWA | ✅ publicada en Pages, instalable y sin conexión |
-| Pruebas | ✅ 50 en Ubuntu y Windows, Node 20 y 22 |
+| Pruebas | ✅ 120 en Ubuntu y Windows, Node 20 y 22 |
 | Seguridad | ✅ CodeQL + detección de contabilidad real commiteada + acciones fijadas a SHA |
 | Integración con el SII | ⚪ **no existe** — por diseño, no por falta de tiempo |
 | Cifrado de datos locales | ⚪ pendiente ([roadmap](docs/ROADMAP.md)) |
@@ -158,6 +172,13 @@ evidencia** antes de dar algo por cumplido y deja registro de todo lo que cambi�
   y CI falla si eso cambia.
 - **Explica con tus propios números.** La academia usa el motor real: si cambia una tasa, la
   explicación cambia sola.
+- **No confunde capital con capital.** Capital social, capital suscrito, capital enterado,
+  patrimonio contable, Capital Propio Tributario y capital base de patente son **seis** magnitudes
+  distintas, cada una con su momento, su fuente legal y su evidencia. Hay una prueba que falla si
+  alguna vez coinciden.
+- **No inventa tasas municipales.** El D.L. 3.063 fija un rango; la tasa la elige cada comuna. El
+  repositorio no publica ninguna: mientras el usuario no registre la suya con fuente y fecha, la
+  cifra se muestra marcada como simulación.
 
 ## 🔐 El principio que ordena todo el producto
 
@@ -255,6 +276,28 @@ flowchart TB
 </td></tr>
 </table>
 
+Y el ciclo **anual**, que es donde el capital de constitución deja de ser la respuesta:
+
+```mermaid
+flowchart LR
+    A["📜 Constitución<br/>capital social"] --> B["💰 Capital enterado"]
+    B --> C["📋 Inicio de actividades"]
+    C --> D["🏛️ Patente inicial<br/><i>capital propio inicial declarado</i>"]
+    D --> E["📅 Operaciones del año"]
+    E --> F["🔒 Cierre anual"]
+    F --> G["🧮 Capital Propio Tributario"]
+    G --> H["🏛️ Patente siguiente<br/><i>capital propio del cierre anterior</i>"]
+    H --> E
+    style D fill:#3d2f14,stroke:#f0a92c,color:#e8edf5
+    style H fill:#3d2f14,stroke:#f0a92c,color:#e8edf5
+    style G fill:#123f31,stroke:#34d399,color:#e8edf5
+```
+
+Las dos cajas naranjas usan **bases legales distintas** (art. 24, inciso tercero del D.L. 3.063):
+la primera, el capital propio inicial declarado; la segunda, el capital propio del balance al 31 de
+diciembre anterior. Por eso la patente del año 2 casi nunca coincide con la del año 1.
+Detalle en [patente municipal](docs/municipal/PATENTE-MUNICIPAL.md).
+
 La rutina completa, con capturas, está en el **[manual de usuario](docs/MANUAL.md)**.
 
 ## 🏛️ Reglas tributarias versionadas por año
@@ -306,7 +349,7 @@ npm run start        # build + servidor en http://127.0.0.1:4180
 |---|---|
 | `npm run build` | Reglas embebidas → iconos → `apps/web/dist` |
 | `npm run app` | Sirve la app ya construida |
-| `npm test` | 50 pruebas con el runner nativo de Node |
+| `npm test` | 120 pruebas con el runner nativo de Node |
 | `npm run check` | Sincronía de reglas + validación + pruebas |
 | `npm run cli -- ayuda` | Todos los comandos de la CLI |
 | `npm run desktop:build` | Instaladores de Windows (necesita Rust) |
@@ -335,7 +378,7 @@ arranca y se comprueba que sigue vivo. Un build en verde no prueba que la app es
 
 ## 🧪 Pruebas
 
-50 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
+120 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
 hacen confiable al producto:
 
 - un período cerrado es inmutable **en las dos direcciones** (no se agrega y no se borra);
@@ -344,7 +387,12 @@ hacen confiable al producto:
 - real y sandbox no se contaminan aunque compartan el mismo origen;
 - exportar e importar reproduce el espacio de trabajo completo;
 - ningún módulo que viaja al dispositivo importa `node:*`;
-- la versión coincide en `package.json`, Tauri, Cargo y la app.
+- la versión coincide en `package.json`, Tauri, Cargo y la app;
+- **un préstamo del accionista nunca suma capital enterado**, aunque entre por el mismo banco;
+- **el CPT simplificado no se aplica a quien no califica** para él;
+- la base de la patente **cambia** entre el año 1 y el año 2 de la misma empresa;
+- un ejercicio cerrado no se recalcula, no se cierra dos veces y **un respaldo importado no lo pisa**;
+- `docs/GLOSSARY.md` no puede desviarse de `packages/glossary/index.mjs`.
 
 ## 🎓 Academia
 
@@ -361,12 +409,16 @@ tiempo dejen de coincidir:
 
 | | Documento | Contenido |
 |:---:|---|---|
-| 📘 | [**Manual de usuario**](docs/MANUAL.md) · [**PDF**](docs/MANUAL.pdf) | 17 capítulos con las pantallas reales del producto |
+| 📘 | [**Manual de usuario**](docs/MANUAL.md) · [**PDF**](docs/MANUAL.pdf) | 19 capítulos con las pantallas reales del producto |
 | 📋 | [Runbook mensual](docs/RUNBOOK-MENSUAL.md) | Qué hacer cada mes, en orden |
 | 📆 | [Runbook anual](docs/RUNBOOK-ANUAL.md) | Ciclo anual y Operación Renta |
 | 🌳 | [Árbol de decisión](docs/DECISION-TREE.md) | Cuándo resolverlo solo y cuándo escalar |
 | 📗 | [Políticas contables](docs/ACCOUNTING-POLICIES.md) | Criterios del caso guía |
-| 📖 | [Glosario](docs/GLOSSARY.md) | Términos mínimos |
+| 📖 | [Glosario](docs/GLOSSARY.md) | 54 términos, generado desde el propio sistema |
+| 💰 | [Capital y patrimonio](docs/accounting/CAPITAL-PATRIMONIO.md) | Las cinco magnitudes que no son sinónimos |
+| 🧮 | [Capital Propio Tributario](docs/tax/CAPITAL-PROPIO-TRIBUTARIO.md) | Art. 41 y CPT simplificado Pro Pyme |
+| 🏛️ | [Patente municipal](docs/municipal/PATENTE-MUNICIPAL.md) | Por qué el año 2 no usa el capital de constitución |
+| 🏠 | [Oficina virtual](docs/guides/OFICINA-VIRTUAL.md) | Qué cambia y qué no si no tienes oficina física |
 | 🔗 | [Fuentes oficiales](docs/SOURCES-2026.md) | Verificación de cada tasa y plazo |
 | 🏗️ | [Arquitectura](docs/ARCHITECTURE.md) | Cómo está construido y **por qué** |
 | 🗺️ | [Roadmap](docs/ROADMAP.md) | Qué viene y qué nunca se hará |

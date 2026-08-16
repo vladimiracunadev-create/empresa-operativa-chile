@@ -110,7 +110,9 @@ test('el almacén web aísla real de sandbox en el mismo origen', () => {
 
 test('el sandbox sembrado deja un remanente visible y un IVA no recuperable', () => {
   const sandbox = seedSandboxWorkspace(ws('sandbox'));
-  assert.equal(sandbox.vatCarryForwardInto('2026-08'), 95000);
+  // Julio: crédito 125.400 (cloud + dominio + equipamiento) contra débito
+  // 76.000 de la primera factura. Sobran 49.400 que tienen que llegar a agosto.
+  assert.equal(sandbox.vatCarryForwardInto('2026-08'), 49400);
   assert.ok(sandbox.periodSummary('2026-08').rejectedVat > 0);
 });
 

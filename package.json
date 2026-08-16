@@ -1,6 +1,6 @@
 {
   "name": "empresa-operativa-chile",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "description": "Aplicación local-first para crear, operar y controlar una empresa chilena a través del tiempo, con contabilidad y tributación explicables.",
@@ -16,13 +16,14 @@
   "scripts": {
     "build": "node scripts/build-all.mjs",
     "build:rules": "node scripts/build-rules.mjs",
+    "build:glossary": "node scripts/build-glossary.mjs",
     "build:icons": "node scripts/build-icons.mjs",
     "build:web": "node scripts/build-web.mjs",
     "start": "node scripts/build-all.mjs && node apps/empresa-operativa/server.mjs",
     "app": "node apps/empresa-operativa/server.mjs",
     "cli": "node apps/contador-cli/src/index.mjs",
     "test": "node --test tests/*.test.mjs",
-    "check": "node scripts/build-rules.mjs --check && node scripts/validate-rules.mjs && node --test tests/*.test.mjs",
+    "check": "node scripts/build-rules.mjs --check && node scripts/build-glossary.mjs --check && node scripts/validate-rules.mjs && node --test tests/*.test.mjs",
     "desktop:dev": "npm --prefix apps/contador-desktop run dev",
     "desktop:build": "node scripts/build-all.mjs && npm --prefix apps/contador-desktop run build",
     "android:prepare": "node scripts/build-all.mjs && node apps/android/copiar-www.mjs",

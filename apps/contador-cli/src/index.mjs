@@ -21,10 +21,13 @@ import {
   f29Basic,
   f29DueDates,
   municipalPatent,
+  calculateMunicipalPatent,
+  calculateTaxEquity,
   idpcProPyme,
   simulateScenario,
   journal
 } from '../../../packages/accounting-engine/index.mjs';
+import { termsByCategory, searchTerms } from '../../../packages/glossary/index.mjs';
 import { CompanyWorkspace, seedSandbox } from '../../../packages/company-operations/index.mjs';
 import { loadRules, availableYears } from '../../../packages/chile-tax-rules/index.mjs';
 import { validateRut } from '../../../packages/company-operations/rut.mjs';
@@ -64,12 +67,17 @@ CÁLCULO (no toca disco)
   honorario    --bruto N
   f29          --ventas-netas N --compras-netas N [--remanente N] [--honorarios N]
   vencimientos --periodo YYYY-MM
-  patente      --capital N [--tasa 0.0025] [--utm N]
+  patente      --capital N [--tasa 0.0025] [--utm N]        (estimación rápida sobre una cifra dada)
+  patente-municipal --etapa nueva|funcionamiento --anio 2026
+               [--capital-inicial N] [--cpt N] [--tasa 0.0025] [--deducciones N] [--asignado N] [--utm N]
+  cpt          --anio 2026 --regimen "Pro Pyme General (14 D N.º 3)"
+               [--activos N] [--pasivos N] [--capital-aportado N] [--base-imponible N] [--perdidas N] [--retiros N]
   idpc         --ingresos N --gastos N [--ajustes N]
-  asiento      --tipo sale|purchase|expense|honorarium|capital_contribution|owner_withdrawal|tax_payment --monto N
+  asiento      --tipo sale|purchase|expense|honorarium|capital_contribution|shareholder_loan|shareholder_loan_repayment|owner_withdrawal|tax_payment --monto N
   escenario    archivo.json
   rut          76.123.456-7
   reglas       [--anio 2026]
+  glosario     [término a buscar]
 
 ESPACIO DE TRABAJO (archivos en --datos, por defecto ./.local-data)
   registrar    --fecha YYYY-MM-DD --tipo sale --descripcion "..." --neto N [--iva N] [--documento N]
@@ -137,6 +145,61 @@ try {
         )
       );
       break;
+
+    // A diferencia de `patente`, este comando decide qué capital corresponde
+    // usar según la etapa de la empresa, que es la bifurcación del art. 24.
+    case 'patente-municipal': {
+      const etapa = flag('etapa');
+      if (!['nueva', 'funcionamiento'].includes(etapa)) fail('indica --etapa nueva|funcionamiento');
+      out(
+        calculateMunicipalPatent({
+          businessStage: etapa === 'nueva' ? 'NEW_BUSINESS' : 'ESTABLISHED_BUSINESS',
+          year: anio(),
+          initialOwnCapital: has('capital-inicial') ? num('capital-inicial') : undefined,
+          taxEquity: has('cpt') ? num('cpt') : undefined,
+          deductibleInvestments: num('deducciones'),
+          allocatedCapital: has('asignado') ? num('asignado') : undefined,
+          municipalRate: has('tasa') ? num('tasa') : undefined,
+          utm: has('utm') ? num('utm') : undefined,
+          utmPeriod: flag('utm-periodo')
+        })
+      );
+      break;
+    }
+
+    case 'cpt':
+      out(
+        calculateTaxEquity({
+          fiscalYear: anio(),
+          taxRegime: flag('regimen') ?? '',
+          assets: has('activos') ? num('activos') : undefined,
+          liabilities: has('pasivos') ? num('pasivos') : undefined,
+          nonEffectiveValues: num('valores-sin-inversion'),
+          equityMovements: {
+            capitalEnteradoPorMovimientos: num('capital-aportado'),
+            disminucionesDeCapital: num('disminuciones'),
+            retiros: num('retiros')
+          },
+          operations: {
+            taxableBase: has('base-imponible') ? num('base-imponible') : undefined,
+            losses: num('perdidas'),
+            participationIncome: num('participaciones'),
+            article21Paid: num('art21')
+          },
+          method: flag('metodo')
+        })
+      );
+      break;
+
+    case 'glosario': {
+      const query = args.slice(1).filter(a => !a.startsWith('--')).join(' ');
+      out(
+        query
+          ? searchTerms(query).map(t => ({ id: t.id, termino: t.term, resumen: t.short, definicion: t.long, noConfundirCon: t.notToConfuseWith ?? [], baseLegal: t.legalReference ?? null }))
+          : termsByCategory().map(g => ({ categoria: g.category, terminos: g.terms.map(t => ({ id: t.id, termino: t.term, resumen: t.short })) }))
+      );
+      break;
+    }
 
     case 'idpc':
       out(idpcProPyme({ incomeReceived: num('ingresos'), expensesPaid: num('gastos'), adjustments: num('ajustes') }, anio()));
