@@ -49,6 +49,7 @@ function findBrowser() {
 
 /* Cada captura: nombre, vista, tamaño y estado que se pide por URL. */
 const SHOTS = [
+  { name: 'empezar', view: 'empezar', w: 1440, h: 1700, alt: 'Empezar aquí: la ruta completa ordenada por tiempo, con el avance real de los trámites' },
   { name: 'panel', view: 'panel', w: 1440, h: 940, alt: 'Panel de control con los indicadores del mes y el diagnóstico' },
   { name: 'operaciones', view: 'operaciones', w: 1440, h: 940, alt: 'Listado de operaciones del período con sus totales' },
   { name: 'impuestos', view: 'impuestos', w: 1440, h: 1180, alt: 'Borrador del F29 con el remanente arrastrado y los vencimientos' },

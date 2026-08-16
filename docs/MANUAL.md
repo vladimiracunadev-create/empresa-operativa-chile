@@ -17,6 +17,12 @@ de la instalación al cierre del mes, con las pantallas reales del producto.**
 
 ---
 
+> [!TIP]
+> **¿Nunca has creado una empresa?** Este manual explica **pantallas**, y eso sirve cuando ya sabes qué quieres hacer.
+> Si tu pregunta es *«no sé por dónde empezar»*, parte por **[🧭 Empezar aquí](EMPEZAR-AQUI.md)**, que explica el **camino**:
+> qué hacer primero, qué decidir en cada punto y qué documento te va a quedar. La misma ruta está dentro de la aplicación,
+> en la pestaña **Empezar aquí**, con botones que te llevan a cada pantalla.
+
 ## 🧭 Contenido
 
 | | Capítulo | De qué trata |

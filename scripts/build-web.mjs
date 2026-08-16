@@ -32,7 +32,8 @@ const CORE = [
   ['company-operations/capital.mjs', 'company-operations/capital.mjs'],
   ['company-operations/store.mjs', 'company-operations/store.mjs'],
   ['company-operations/rut.mjs', 'company-operations/rut.mjs'],
-  ['glossary/index.mjs', 'glossary/index.mjs']
+  ['glossary/index.mjs', 'glossary/index.mjs'],
+  ['onboarding/index.mjs', 'onboarding/index.mjs']
 ];
 
 const copyDir = (from, to) => {

@@ -49,6 +49,12 @@ jobs:
         # distintas sin que nadie lo note.
         run: node scripts/build-glossary.mjs --check
 
+      - name: La guía para principiantes está sincronizada con la ruta del sistema
+        # docs/EMPEZAR-AQUI.md se genera desde packages/onboarding. Si el
+        # documento y la pantalla "Empezar aquí" se editan por separado, en un
+        # mes mandan a la gente a sitios distintos.
+        run: node scripts/build-guide.mjs --check
+
       - name: Las tasas del año en curso son las esperadas
         run: node scripts/validate-rules.mjs
 

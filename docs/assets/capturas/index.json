@@ -1,5 +1,12 @@
 [
   {
+    "name": "empezar",
+    "view": "empezar",
+    "alt": "Empezar aquí: la ruta completa ordenada por tiempo, con el avance real de los trámites",
+    "w": 1440,
+    "h": 1700
+  },
+  {
     "name": "panel",
     "view": "panel",
     "alt": "Panel de control con los indicadores del mes y el diagnóstico",

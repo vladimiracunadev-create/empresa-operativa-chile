@@ -33,7 +33,8 @@ const BROWSER_CORE = [
   'packages/company-operations/capital.mjs',
   'packages/company-operations/store.mjs',
   'packages/company-operations/rut.mjs',
-  'packages/glossary/index.mjs'
+  'packages/glossary/index.mjs',
+  'packages/onboarding/index.mjs'
 ];
 
 test('ningún módulo que viaja al navegador importa node:*', () => {

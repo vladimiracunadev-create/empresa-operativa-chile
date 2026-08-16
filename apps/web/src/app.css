@@ -580,14 +580,16 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-sp
 
 /* Flujo temporal numerado de la Academia. */
 .flow { list-style: none; margin: 0; padding: 0; counter-reset: flow; }
-.flow li {
+/* Sólo los hijos directos: dentro de un paso puede haber listas propias, y no
+   deben heredar ni la numeración ni el borde del paso que las contiene. */
+.flow > li {
   counter-increment: flow;
   position: relative;
   padding: 9px 0 9px 34px;
   border-bottom: 1px solid var(--border);
 }
-.flow li:last-child { border-bottom: 0; }
-.flow li::before {
+.flow > li:last-child { border-bottom: 0; }
+.flow > li::before {
   content: counter(flow);
   position: absolute;
   left: 0; top: 9px;
@@ -600,8 +602,26 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-sp
   font-family: var(--mono);
   color: var(--text-faint);
 }
-.flow li strong { display: block; font-size: 0.9rem; }
-.flow li span { font-size: 0.8rem; color: var(--text-faint); }
+.flow > li > strong { display: block; font-size: 0.9rem; }
+.flow > li > span { font-size: 0.8rem; color: var(--text-faint); display: block; }
+.flow > li > span.btn__row { display: flex; }
+.flow > li .btn { font-size: 0.79rem; color: var(--text); }
+
+/* Ficha desplegada de una etapa de la ruta ("Empezar aquí"). Se separa del
+   resto de la fila para que se lea como una tarjeta dentro del paso. */
+.stagebox {
+  margin-top: 12px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--brand);
+  border-radius: var(--radius);
+  background: var(--bg-elev-2);
+  font-size: 0.86rem;
+  color: var(--text);
+}
+.stagebox p { margin-bottom: 8px; }
+.stagebox p:last-child { margin-bottom: 0; }
+.stagebox table { font-size: 0.82rem; }
 
 /* -------------------------------------------------------------- móvil ---- */
 

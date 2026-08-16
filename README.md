@@ -15,9 +15,9 @@ motor de cálculo en Android, Windows y navegador. Tus datos no salen del dispos
 [![Seguridad](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/security.yml/badge.svg?branch=main)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/security.yml)
 [![Pages](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/pages.yml)
 
-[![Versión](https://img.shields.io/badge/versión-1.1.0-e8590c?style=for-the-badge)](CHANGELOG.md)
+[![Versión](https://img.shields.io/badge/versión-1.2.0-e8590c?style=for-the-badge)](CHANGELOG.md)
 [![Plataformas](https://img.shields.io/badge/plataformas-Android_·_Windows_·_Web-7c5cff?style=for-the-badge)](#-descargas)
-[![Pruebas](https://img.shields.io/badge/pruebas-120_verdes-2e8b57?style=for-the-badge)](tests/)
+[![Pruebas](https://img.shields.io/badge/pruebas-131_verdes-2e8b57?style=for-the-badge)](tests/)
 [![Dependencias](https://img.shields.io/badge/dependencias_de_producción-0-2f81f7?style=for-the-badge)](package.json)
 [![Telemetría](https://img.shields.io/badge/telemetría-cero-3fb950?style=for-the-badge)](#-privacidad-que-se-puede-comprobar)
 [![Reglas](https://img.shields.io/badge/reglas-año_comercial_2026-8957e5?style=for-the-badge)](docs/SOURCES-2026.md)
@@ -35,6 +35,7 @@ motor de cálculo en Android, Windows y navegador. Tus datos no salen del dispos
 
 [🌐 **Abrir la app**](https://vladimiracunadev-create.github.io/empresa-operativa-chile/) ·
 [📥 **Descargas**](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest) ·
+[🧭 **Empezar aquí**](docs/EMPEZAR-AQUI.md) ·
 [📘 Manual de usuario](docs/MANUAL.md) ·
 [📕 Manual en PDF](docs/MANUAL.pdf) ·
 [📋 Runbook mensual](docs/RUNBOOK-MENSUAL.md) ·
@@ -50,7 +51,7 @@ motor de cálculo en Android, Windows y navegador. Tus datos no salen del dispos
 
 | 🖥️ Vistas | 🧮 Motor | ✅ Pruebas | 📦 Dependencias | 📱 Plataformas | 📄 Manual |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| **12** | **1** | **120** | **0** | **3** | **33 pág.** |
+| **13** | **1** | **131** | **0** | **3** | **33 pág.** |
 
 </div>
 
@@ -71,6 +72,13 @@ evidencia** antes de dar algo por cumplido y deja registro de todo lo que cambi�
 ## 🖼️ Así se ve
 
 <div align="center">
+
+![Empezar aquí](docs/assets/capturas/empezar.png)
+
+<sub><b>Empezar aquí</b> — la única pantalla ordenada por <i>tiempo</i> en vez de por función.
+Catorce etapas desde antes de que la empresa exista, cada una con su decisión, su documento y un botón que abre la ventana donde se hace.</sub>
+
+<br><br>
 
 ![Panel de control](docs/assets/capturas/panel.png)
 
@@ -152,7 +160,7 @@ evidencia** antes de dar algo por cumplido y deja registro de todo lo que cambi�
 | App de Android | ✅ APK **con el contenido contado dentro del binario** en CI |
 | App de Windows | ✅ MSI, NSIS y portable; **arranca y se comprueba vivo** en CI |
 | Web / PWA | ✅ publicada en Pages, instalable y sin conexión |
-| Pruebas | ✅ 120 en Ubuntu y Windows, Node 20 y 22 |
+| Pruebas | ✅ 131 en Ubuntu y Windows, Node 20 y 22 |
 | Seguridad | ✅ CodeQL + detección de contabilidad real commiteada + acciones fijadas a SHA |
 | Integración con el SII | ⚪ **no existe** — por diseño, no por falta de tiempo |
 | Cifrado de datos locales | ⚪ pendiente ([roadmap](docs/ROADMAP.md)) |
@@ -349,7 +357,7 @@ npm run start        # build + servidor en http://127.0.0.1:4180
 |---|---|
 | `npm run build` | Reglas embebidas → iconos → `apps/web/dist` |
 | `npm run app` | Sirve la app ya construida |
-| `npm test` | 120 pruebas con el runner nativo de Node |
+| `npm test` | 131 pruebas con el runner nativo de Node |
 | `npm run check` | Sincronía de reglas + validación + pruebas |
 | `npm run cli -- ayuda` | Todos los comandos de la CLI |
 | `npm run desktop:build` | Instaladores de Windows (necesita Rust) |
@@ -378,7 +386,7 @@ arranca y se comprueba que sigue vivo. Un build en verde no prueba que la app es
 
 ## 🧪 Pruebas
 
-120 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
+131 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
 hacen confiable al producto:
 
 - un período cerrado es inmutable **en las dos direcciones** (no se agrega y no se borra);
@@ -409,6 +417,7 @@ tiempo dejen de coincidir:
 
 | | Documento | Contenido |
 |:---:|---|---|
+| 🧭 | [**Empezar aquí**](docs/EMPEZAR-AQUI.md) | **Si nunca has creado una empresa y no sabes por dónde partir.** 14 etapas: qué decidir, qué documento te queda, cómo sabes que terminaste — y qué NO cubre el sistema |
 | 📘 | [**Manual de usuario**](docs/MANUAL.md) · [**PDF**](docs/MANUAL.pdf) | 19 capítulos con las pantallas reales del producto |
 | 📋 | [Runbook mensual](docs/RUNBOOK-MENSUAL.md) | Qué hacer cada mes, en orden |
 | 📆 | [Runbook anual](docs/RUNBOOK-ANUAL.md) | Ciclo anual y Operación Renta |

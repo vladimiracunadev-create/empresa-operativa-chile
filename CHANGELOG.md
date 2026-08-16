@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Versión](https://img.shields.io/badge/versión_actual-1.1.0-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
+[![Versión](https://img.shields.io/badge/versión_actual-1.2.0-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
 [![Formato](https://img.shields.io/badge/formato-Keep_a_Changelog-7c5cff?style=for-the-badge)](https://keepachangelog.com/es-ES/1.1.0/)
 [![SemVer](https://img.shields.io/badge/versionado-SemVer-2f81f7?style=for-the-badge)](https://semver.org/lang/es/)
 
@@ -14,6 +14,49 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 Versionado según [SemVer](https://semver.org/lang/es/).
+
+## [1.2.0] — 2026-08-16
+
+Una ruta para quien nunca ha creado una empresa.
+
+El manual describe **pantallas**, y eso sirve cuando ya sabes qué quieres hacer. No sirve para quien
+abre la aplicación por primera vez y su pregunta es *«no sé por dónde empezar»*. Esa persona necesita
+otra cosa: una secuencia en el tiempo, con la decisión de cada punto, el papel que le va a quedar y
+cómo sabe que terminó.
+
+### ✨ Añadido
+
+- **Pantalla “Empezar aquí”** (`apps/web/src/views/empezar.js`), primera en la navegación y la única
+  ordenada por **tiempo** en vez de por función. **14 etapas** en 5 fases —antes de existir, hacerla
+  nacer, habilitarla, operar mes a mes, cerrar el año—, cada una con:
+  la pregunta que te estás haciendo, por qué importa, qué necesitas tener antes, las **alternativas**
+  de cada decisión con sus riesgos, **qué documento te queda y quién lo emite**, los errores típicos,
+  y cómo sabes que terminaste.
+- **Ventanas vinculadas:** cada etapa tiene un botón que abre la pantalla donde se hace, y muestra el
+  estado real del trámite (pendiente / en trámite / hecho) leído del espacio de trabajo, no de una
+  lista paralela. Arriba, un bloque **“Por dónde sigues”** apunta a la primera etapa sin terminar.
+- **Sección “Qué cubre este sistema y qué no”**, con los vacíos declarados y qué significa cada uno
+  para el usuario: remuneraciones, comercio exterior, inventario, activo fijo y depreciación,
+  corrección monetaria, reorganizaciones, registros empresariales completos, término de giro,
+  conexión con el SII y tasas municipales por comuna.
+- **[`docs/EMPEZAR-AQUI.md`](docs/EMPEZAR-AQUI.md)**, generado desde el mismo módulo con
+  `node scripts/build-guide.mjs`. CI comprueba la sincronía, igual que con el glosario: si el
+  documento y la pantalla se editaran por separado, en un mes mandarían a la gente a sitios distintos.
+- **Índice “Si sólo tienes una pregunta”** con las doce dudas más frecuentes de quien recién parte,
+  cada una enlazada a la etapa que la responde.
+- Sección de errores caros y **cuándo dejar de leer y llamar a un contador**.
+
+### 🔁 Cambiado
+
+- El manual de usuario abre con un aviso que remite a la guía nueva cuando la pregunta es
+  “no sé por dónde empezar”.
+- `npm run check` valida también la sincronía de la guía.
+
+### 🧪 Pruebas
+
+De 120 a **131**. Las nuevas comprueban que la guía no prometa pantallas inexistentes, que cubra los
+nueve trámites de constitución sin dejar ninguno huérfano, que toda etapa de trámite diga qué
+documento queda, y que la lista de limitaciones no se quede corta.
 
 ## [1.1.0] — 2026-08-16
 

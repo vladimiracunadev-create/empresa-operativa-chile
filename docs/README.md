@@ -16,6 +16,7 @@
 
 | Documento | Cuándo leerlo |
 | --- | --- |
+| [`EMPEZAR-AQUI.md`](EMPEZAR-AQUI.md) | **Primero, si nunca has creado una empresa.** La ruta completa ordenada por tiempo |
 | [`RUNBOOK-MENSUAL.md`](RUNBOOK-MENSUAL.md) | Cada mes, en orden, hasta que se vuelva automático |
 | [`RUNBOOK-ANUAL.md`](RUNBOOK-ANUAL.md) | Enero, y antes de la Operación Renta |
 | [`DECISION-TREE.md`](DECISION-TREE.md) | Cuando dudas si resolverlo solo o escalar a un especialista |

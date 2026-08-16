@@ -10,6 +10,7 @@ import { html, raw, fmtPeriod } from './lib/dom.js';
 import { state, ws, setMode, setTheme, toggleTheme, ensureSandboxSeeded, selectablePeriods } from './lib/state.js';
 import { hydrateFromDisk, PLATFORM_LABEL } from './lib/platform.js';
 
+import empezar from './views/empezar.js';
 import panel from './views/panel.js';
 import constitucion from './views/constitucion.js';
 import empresa from './views/empresa.js';
@@ -23,9 +24,12 @@ import datos from './views/datos.js';
 import academia from './views/academia.js';
 import glosario from './views/glosario.js';
 
-export const APP_VERSION = '1.1.0';
+export const APP_VERSION = '1.2.0';
 
 const NAV = [
+  // "Empezar aquí" va primero y solo: es la única pantalla ordenada por tiempo
+  // en vez de por función, y es la respuesta a "no sé por dónde empezar".
+  { group: 'Empezar', views: [empezar] },
   { group: 'Operar', views: [panel, operaciones, impuestos, obligaciones, cierre] },
   { group: 'Empresa', views: [constitucion, empresa, capital] },
   { group: 'Control', views: [auditoria, datos] },
