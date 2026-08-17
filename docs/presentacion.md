@@ -3,20 +3,29 @@
 > 🧭 [Volver al proyecto](../README.md) · [Empezar aquí](EMPEZAR-AQUI.md) · [Manual](MANUAL.md) · [Glosario](GLOSSARY.md)
 
 Este documento es la **fuente única** de la presentación: de aquí salen, sin escribirse dos veces,
-los formatos que se publican en cada despliegue.
+los tres formatos que se publican en cada despliegue.
 
-| Formato | Para qué sirve | Dónde |
+| Formato | Para qué sirve | Dónde está |
 |---|---|---|
-| 🖥️ **Diapositivas (HTML)** | Proyectar desde el navegador, sin instalar nada | [presentacion.html](presentacion/presentacion.html) |
-| 🎞️ **Diapositivas (PDF)** | Proyectar sin conexión y repartir | [PRESENTACION.pdf](presentacion/PRESENTACION.pdf) |
-| 🧾 **Pauta del expositor (PDF)** | Guion hablado, tiempos y qué se ve en pantalla | [PAUTA.pdf](presentacion/PAUTA.pdf) |
+| 🖥️ **Diapositivas (HTML)** | Proyectar desde el navegador, sin instalar nada | [Ver online](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/presentacion.html) |
+| 🎞️ **Diapositivas (PDF)** | Proyectar sin conexión y repartir como material | [PRESENTACION.pdf](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/PRESENTACION.pdf) |
+| 🧾 **Pauta del expositor (PDF)** | Guion hablado, tiempos y qué se ve en pantalla | [PAUTA.pdf](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/PAUTA.pdf) |
+
+Los enlaces apuntan al **sitio publicado** y no a los archivos del repositorio a propósito: en GitHub, un
+enlace relativo a un `.html` muestra el código fuente, no las diapositivas.
+
+**Ocho diapositivas, no más.** La muestra está pensada para exponerse en media hora (≈28 min): ocho láminas
+con letra grande y lo esencial en pantalla, y **todo el detalle en la pauta**, que es el documento de apoyo
+que lee quien expone. Si hay que profundizar, el [manual](MANUAL.md) y la
+[guía de entrada](EMPEZAR-AQUI.md) están a un enlace.
 
 **Cómo se estructura cada diapositiva.** Cada sección numerada de abajo es una diapositiva: el encabezado
 es su título, el cuerpo es **lo que se ve proyectado** (letra grande, poco texto) y la cita final
 (`> **Pauta · N min.**`) es **lo que dice quien expone** — no aparece en pantalla, sólo en la pauta impresa.
-Los minutos se suman solos para calcular la duración de la charla.
+Los minutos se suman solos para calcular la duración de la charla, así que añadir una lámina actualiza el
+total sin que nadie tenga que acordarse.
 
-**Para generarlo todo:**
+**Para generarlo todo desde el repositorio:**
 
 ```bash
 npm run presentacion

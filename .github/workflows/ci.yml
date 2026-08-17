@@ -61,6 +61,9 @@ jobs:
       - name: La presentación tiene diapositivas numeradas y pauta con tiempos
         run: node scripts/build-presentation.mjs --check
 
+      - name: Los PDF de la presentación tienen las páginas que anuncia el README
+        run: node scripts/check-presentation.mjs
+
       - name: Las tasas del año en curso son las esperadas
         run: node scripts/validate-rules.mjs
 

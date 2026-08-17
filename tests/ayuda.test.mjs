@@ -122,6 +122,12 @@ test('el bundle embarca los dos manuales y la presentación', () => {
   // APK y dentro del ejecutable de Windows.
   assert.match(view, /\.\/ayuda\/\$\{doc\.file\}/, 'la vista Ayuda no abre los manuales embarcados');
   assert.match(view, /<iframe class="guiaframe"/, 'los manuales deben leerse DENTRO de la aplicación');
+
+  // La presentación viaja en el paquete: si nada la enlaza, es peso muerto en el
+  // APK y en el instalador, y quien tiene que exponer no la encuentra.
+  for (const file of ['presentacion.html', 'PRESENTACION.pdf', 'PAUTA.pdf']) {
+    assert.ok(view.includes(file), `la vista Ayuda no ofrece ${file}, que sí se embarca`);
+  }
 });
 
 /* ------------------------------------------------------- presentación --- */

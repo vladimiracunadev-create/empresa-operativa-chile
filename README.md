@@ -36,7 +36,7 @@ motor de cálculo en Android, Windows y navegador. Tus datos no salen del dispos
 [🌐 **Abrir la app**](https://vladimiracunadev-create.github.io/empresa-operativa-chile/) ·
 [📥 **Descargas**](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest) ·
 [🧭 **Empezar aquí**](docs/EMPEZAR-AQUI.md) ·
-[🎤 Presentación](docs/presentacion/presentacion.html) ·
+[🎤 **Presentación**](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/presentacion.html) ·
 [📘 Manual de usuario](docs/MANUAL.md) ·
 [📕 Manual en PDF](docs/MANUAL.pdf) ·
 [📋 Runbook mensual](docs/RUNBOOK-MENSUAL.md) ·
@@ -139,6 +139,24 @@ Catorce etapas desde antes de que la empresa exista, cada una con su decisión, 
 > [!NOTE]
 > Los binarios **no están firmados** con certificado de código: Windows SmartScreen y Android
 > avisarán la primera vez. Verifica lo que descargues con el `SHA256SUMS.txt` del release.
+
+## 🎤 Presenta el producto: diapositivas y pauta
+
+¿Tienes que **mostrar esto** en una clase, un comité o una reunión con un contador? Está hecho: una
+presentación de **8 diapositivas** con letra grande y lo esencial en pantalla, y una **pauta del expositor**
+con el guion hablado, el tiempo de cada lámina y qué se ve proyectado. La charla completa dura
+≈**28 minutos**, así que la muestra cabe en media hora dejando margen para preguntas.
+
+| Documento | Abrir | Para qué sirve |
+|---|---|---|
+| 🖥️ **Diapositivas en el navegador** | [Ver online](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/presentacion.html) | Proyectar sin instalar nada |
+| 🎞️ **Diapositivas (PDF)** | [PRESENTACION.pdf](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/PRESENTACION.pdf) | Proyectar sin conexión y repartir como material |
+| 🧾 **Pauta del expositor (PDF)** | [PAUTA.pdf](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/PAUTA.pdf) | Guion, tiempos y qué decir en cada lámina |
+| ✍️ **Guion editable** | [docs/presentacion.md](docs/presentacion.md) | La fuente: edítala y regenera los tres formatos |
+
+Los tres formatos salen del **mismo archivo**, así que el guion y las láminas no se separan a la segunda
+edición. Para regenerarlos: `npm run presentacion`. Una comprobación abre los PDF, cuenta sus páginas y
+falla si una lámina se desbordó o si las cifras de arriba dejaron de cuadrar con la fuente.
 
 ## ✅ Estado verificable
 
@@ -431,7 +449,7 @@ tiempo dejen de coincidir:
 | 📗 | [Políticas contables](docs/ACCOUNTING-POLICIES.md) | Criterios del caso guía |
 | 📖 | [Glosario](docs/GLOSSARY.md) | 54 términos, generado desde el propio sistema |
 | ⌨️ | [Atajos de teclado](docs/ATAJOS-DE-TECLADO.md) | 12 atajos, sobre todo para la versión de Windows |
-| 🎤 | [Presentación](docs/presentacion.md) · [Diapositivas](docs/presentacion/presentacion.html) · [PDF](docs/presentacion/PRESENTACION.pdf) · [Pauta](docs/presentacion/PAUTA.pdf) | 8 láminas y guion del expositor para presentar el producto en media hora |
+| 🎤 | [Presentación](docs/presentacion.md) · [Ver online](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/presentacion.html) · [PDF](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/PRESENTACION.pdf) · [Pauta](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/PAUTA.pdf) | 8 láminas y guion del expositor para presentar el producto en media hora |
 | 💰 | [Capital y patrimonio](docs/accounting/CAPITAL-PATRIMONIO.md) | Las cinco magnitudes que no son sinónimos |
 | 🧮 | [Capital Propio Tributario](docs/tax/CAPITAL-PROPIO-TRIBUTARIO.md) | Art. 41 y CPT simplificado Pro Pyme |
 | 🏛️ | [Patente municipal](docs/municipal/PATENTE-MUNICIPAL.md) | Por qué el año 2 no usa el capital de constitución |

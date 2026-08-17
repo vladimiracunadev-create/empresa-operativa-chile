@@ -87,6 +87,21 @@ export default {
         : ''}
 
       <div class="card" style="margin-top:14px">
+        <div class="card__head"><h2>🎤 Presentar el producto</h2><span class="tag">8 diapositivas · ≈28 min</span></div>
+        <p class="card__hint">
+          Para mostrar esto en una clase, un comité o una reunión con un contador. Las diapositivas se abren
+          <strong>en otra ventana</strong>, no aquí dentro: están compuestas a pantalla completa para proyectar.
+          La <strong>pauta del expositor</strong> lleva el guion hablado y el tiempo de cada lámina, para llevarla
+          impresa o en un segundo monitor. Las tres viajan en el paquete: funcionan sin conexión.
+        </p>
+        <div class="btn__row" style="margin-top:12px">
+          <button class="btn btn--sm btn--primary" data-deck="presentacion.html">Proyectar</button>
+          <a class="btn btn--sm" href="./presentacion/PRESENTACION.pdf" download>Diapositivas (PDF)</a>
+          <a class="btn btn--sm btn--ghost" href="./presentacion/PAUTA.pdf" download>Pauta del expositor</a>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px">
         <div class="card__head"><h2>Atajos de teclado</h2>
           <span class="tag">${PLATFORM === 'android' ? 'con teclado externo' : PLATFORM === 'windows' ? 'escritorio' : 'navegador'}</span></div>
         <p class="card__hint">
@@ -158,6 +173,13 @@ export default {
         const doc = DOCS.find(d => d.id === btn.dataset.docNueva);
         openExternal(new URL(`./ayuda/${doc.file}`, location.href).href);
       })
+    );
+
+    // Las diapositivas se abren fuera: llevan un script en línea que las ajusta al
+    // alto de la lámina y la política de seguridad de la app lo bloquearía dentro
+    // de un marco, dejando la última línea de cada lámina cortada.
+    root.querySelector('[data-deck]')?.addEventListener('click', e =>
+      openExternal(new URL(`./presentacion/${e.currentTarget.dataset.deck}`, location.href).href)
     );
 
     root.querySelector('[data-atajos]')?.addEventListener('click', openShortcutHelp);

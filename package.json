@@ -24,7 +24,7 @@
     "app": "node apps/empresa-operativa/server.mjs",
     "cli": "node apps/contador-cli/src/index.mjs",
     "test": "node --test tests/*.test.mjs",
-    "check": "node scripts/build-rules.mjs --check && node scripts/build-glossary.mjs --check && node scripts/build-guide.mjs --check && node scripts/build-shortcuts.mjs --check && node scripts/build-presentation.mjs --check && node scripts/validate-rules.mjs && node --test tests/*.test.mjs",
+    "check": "node scripts/build-rules.mjs --check && node scripts/build-glossary.mjs --check && node scripts/build-guide.mjs --check && node scripts/build-shortcuts.mjs --check && node scripts/build-presentation.mjs --check && node scripts/check-presentation.mjs && node scripts/validate-rules.mjs && node --test tests/*.test.mjs",
     "desktop:dev": "npm --prefix apps/contador-desktop run dev",
     "desktop:build": "node scripts/build-all.mjs && npm --prefix apps/contador-desktop run build",
     "android:prepare": "node scripts/build-all.mjs && node apps/android/copiar-www.mjs",
@@ -34,6 +34,6 @@
     "guia": "node scripts/build-guide.mjs",
     "docs": "node scripts/capture-screenshots.mjs && node scripts/build-guide.mjs && node scripts/build-manual.mjs && node scripts/build-presentation.mjs",
     "build:shortcuts": "node scripts/build-shortcuts.mjs",
-    "presentacion": "node scripts/build-presentation.mjs"
+    "presentacion": "node scripts/build-presentation.mjs && node scripts/check-presentation.mjs"
   }
 }

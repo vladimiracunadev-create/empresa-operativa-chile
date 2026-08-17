@@ -191,7 +191,11 @@ const FIT = `
 </script>`;
 
 const deck = `<!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="es"><head><meta charset="utf-8">
+<!-- La lámina es un lienzo fijo de 1280×720. Con \`width=device-width\` un teléfono
+     enseñaría la esquina superior izquierda recortada; declarando el ancho real, el
+     navegador encoge la diapositiva entera y se ve como se proyecta. -->
+<meta name="viewport" content="width=1280">
 <title>Empresa Operativa Chile · Presentación</title><style>${DECK_CSS}</style></head>
 <body>${deckSlides}${FIT}</body></html>`;
 
@@ -199,49 +203,103 @@ const deck = `<!doctype html>
 
 const PAUTA_CSS = `
   @page { size:A4; margin:16mm 15mm 18mm; }
-  body { font-family:"Segoe UI",system-ui,Arial,sans-serif; font-size:11pt; line-height:1.55; color:#16202e; margin:0;
+  * { box-sizing:border-box; }
+  body { font-family:"Segoe UI",system-ui,Arial,sans-serif; font-size:11.5pt; line-height:1.55; color:#16202e; margin:0;
          -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-  h1 { font-size:26pt; margin:0 0 6px; }
-  .sub { color:#4a5a72; font-size:12pt; margin-bottom:26px; }
-  .lamina { page-break-inside:avoid; border-top:2px solid #dde3ed; padding-top:14px; margin-top:20px; }
-  .lamina h2 { font-size:15pt; margin:0 0 4px; color:#0d1826; }
-  .meta { font-size:9.5pt; color:#6b7a94; margin-bottom:10px; }
-  .cols { display:grid; grid-template-columns:1fr 1.25fr; gap:18px; }
-  .caja { border:1px solid #dde3ed; border-radius:8px; padding:11px 13px; }
-  .caja h3 { font-size:9pt; text-transform:uppercase; letter-spacing:.07em; color:#6b7a94; margin:0 0 7px; }
-  .caja--pantalla { background:#f6f8fb; }
-  .caja--guion { background:#fffdf5; border-color:#e5c07b; }
-  .caja p, .caja li { font-size:9.6pt; line-height:1.5; }
-  .caja ul, .caja ol { margin:0; padding-left:17px; }
-  .caja table { width:100%; border-collapse:collapse; font-size:8.6pt; }
-  .caja th, .caja td { border:1px solid #dde3ed; padding:4px 6px; text-align:left; }
-  .caja .tablewrap { overflow:visible; }
+  /* Portada: la pauta se imprime y se lleva a la sala, así que se abre como un
+     documento y no como el volcado de un archivo. */
+  .portada { text-align:center; padding:56px 0 34px; border-bottom:4px solid #2563eb; margin-bottom:24px; }
+  .portada .escudo { font-size:56pt; line-height:1; }
+  .portada h1 { font-size:27pt; margin:12px 0 6px; letter-spacing:-.02em; }
+  .portada p { font-size:12.5pt; color:#4a5a72; margin:5px 0; }
+  .portada .meta { display:inline-flex; gap:12px; margin-top:16px; font-size:10.5pt; color:#4a5a72; }
+  .portada .meta span { border:2px solid #dde3ed; border-radius:999px; padding:5px 15px; }
+  h2 { font-size:16pt; margin:24px 0 9px; }
+  .aviso { background:#eef3fb; border-left:6px solid #2563eb; padding:13px 17px; border-radius:0 8px 8px 0; font-size:10.8pt; }
+  .resumen { border-collapse:collapse; width:100%; font-size:10.5pt; margin:10px 0 18px; }
+  .resumen th, .resumen td { border:1.5px solid #dde3ed; padding:7px 10px; text-align:left; }
+  .resumen thead th { background:#eef3fb; color:#4a5a72; text-transform:uppercase; font-size:9pt; letter-spacing:.05em; }
+  .lamina { border:2px solid #dde3ed; border-radius:12px; padding:16px 20px; margin:0 0 16px;
+            page-break-inside:avoid; break-inside:avoid; }
+  .lamina .cab { display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+                 border-bottom:2px solid #dde3ed; padding-bottom:9px; margin-bottom:11px; }
+  .lamina h3 { font-size:14pt; margin:0; }
+  .lamina .num { font-size:11pt; color:#fff; background:#2563eb; border-radius:8px; padding:2px 11px; font-weight:700; }
+  .lamina .tiempo { font-size:10.5pt; color:#6b7a94; white-space:nowrap; }
+  .rot { font-size:9pt; text-transform:uppercase; letter-spacing:.07em; color:#2563eb; font-weight:700; margin:0 0 6px; }
+  .pantalla { font-size:10.5pt; color:#33405a; background:#f6f8fb; border-radius:8px; padding:9px 15px; }
+  .pantalla p { margin:0 0 5px; }
+  .pantalla ul, .pantalla ol { margin:0; padding-left:1.1em; }
+  .pantalla li { margin-bottom:3px; }
+  .pantalla table { width:100%; border-collapse:collapse; font-size:9.4pt; margin:6px 0 0; }
+  .pantalla th, .pantalla td { border:1px solid #dde3ed; padding:4px 7px; text-align:left; }
+  .pantalla .tablewrap { overflow:visible; }
+  .guion { margin-top:11px; font-size:11pt; }
+  .guion p { margin:0 0 7px; }
+  .guion ul { margin:0 0 7px; padding-left:1.1em; }
   code { font-family:"Cascadia Mono",Consolas,monospace; font-size:.9em; background:#eef1f7; padding:1px 4px; border-radius:4px; }
-  .total { margin-top:24px; padding:12px 15px; background:#eef3fb; border-radius:8px; font-size:10pt; }
+  .cierre { margin-top:22px; border-top:2px solid #dde3ed; padding-top:11px; font-size:9.5pt; color:#6b7a94; }
 `;
+
+const filasResumen = slides
+  .map(
+    s => `<tr><td style="text-align:right;width:8%">${s.n}</td><td>${esc(s.title)}</td>
+    <td style="text-align:right;width:16%">${s.minutes} min</td></tr>`
+  )
+  .join('\n');
+
+const laminas = slides
+  .map(
+    s => `
+<div class="lamina">
+  <div class="cab">
+    <h3><span class="num">${s.n}</span> ${esc(s.title)}</h3>
+    <span class="tiempo">⏱ ${s.minutes} min</span>
+  </div>
+  <p class="rot">En pantalla</p>
+  <div class="pantalla">${bodyHtml(s)}</div>
+  <p class="rot" style="margin-top:13px">Qué decir</p>
+  <div class="guion">${markdownToHtml(s.script, { resolveImage: embed })}</div>
+</div>`
+  )
+  .join('\n');
 
 const pauta = `<!doctype html>
 <html lang="es"><head><meta charset="utf-8"><title>Pauta del expositor · Empresa Operativa Chile</title>
 <style>${PAUTA_CSS}</style></head><body>
-<h1>Pauta del expositor</h1>
-<div class="sub">Empresa Operativa Chile · v${version} · ${slides.length} diapositivas · ${duration} minutos</div>
-${slides
-  .map(
-    s => `
-<div class="lamina">
-  <h2>${s.n} · ${esc(s.title)}</h2>
-  <div class="meta">${s.minutes} min · acumulado ${slides.slice(0, s.n).reduce((t, x) => t + x.minutes, 0)} min</div>
-  <div class="cols">
-    <div class="caja caja--pantalla"><h3>Lo que se ve proyectado</h3>${bodyHtml(s)}</div>
-    <div class="caja caja--guion"><h3>Lo que dices</h3>${markdownToHtml(s.script, { resolveImage: embed })}</div>
-  </div>
-</div>`
-  )
-  .join('')}
-<div class="total">
-  <strong>Duración estimada: ${duration} minutos</strong> sin contar preguntas.
-  Reserva otros 10 para el turno de preguntas: en este tema siempre aparecen casos concretos del público.
+<div class="portada">
+  <div class="escudo">🏢</div>
+  <h1>Pauta del expositor</h1>
+  <p><strong>Empresa Operativa Chile</strong> · presentación del producto</p>
+  <p>Crear, operar y controlar una empresa chilena a través del tiempo</p>
+  <div class="meta"><span>v${version}</span><span>${slides.length} diapositivas</span><span>≈ ${duration} min</span></div>
 </div>
+
+<div class="aviso">
+  <strong>Cómo se usa.</strong> Proyecta <code>PRESENTACION.pdf</code> a pantalla completa y ten esta pauta
+  impresa o en un segundo monitor. Para cada diapositiva encontrarás <strong>lo que el público ve</strong> y
+  <strong>lo que conviene decir</strong>, con el tiempo previsto. Los tiempos suman ${duration} minutos sobre
+  ${slides.length} láminas, así que la muestra cabe en media hora dejando margen para preguntas —y en este
+  tema siempre aparecen casos concretos del público. Si vas corto, recorta en «Las reglas son datos»:
+  dos frases y adelante.
+</div>
+
+<h2>Guion en un vistazo</h2>
+<table class="resumen">
+  <thead><tr><th>#</th><th>Diapositiva</th><th style="text-align:right">Tiempo</th></tr></thead>
+  <tbody>
+${filasResumen}
+    <tr><th colspan="2" style="text-align:right">Total</th><th style="text-align:right">${duration} min</th></tr>
+  </tbody>
+</table>
+
+<h2>Diapositiva a diapositiva</h2>
+${laminas}
+
+<p class="cierre">
+  Generado desde <code>docs/presentacion.md</code> · v${version} · ${SITE} · Código MIT.
+  La fuente es una sola: si editas el guion, las láminas cambian con él.
+</p>
 </body></html>`;
 
 /* ------------------------------------------------------------ escribir --- */

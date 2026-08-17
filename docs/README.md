@@ -32,7 +32,7 @@
 | --- | --- |
 | [`ARCHITECTURE.md`](ARCHITECTURE.md) | Cómo está construido y **por qué** cada decisión |
 | [`ROADMAP.md`](ROADMAP.md) | Qué está hecho, qué viene y qué nunca se hará |
-| [`presentacion.md`](presentacion.md) | Muestra del producto: 8 diapositivas y pauta del expositor ([HTML](presentacion/presentacion.html) · [PDF](presentacion/PRESENTACION.pdf)) |
+| [`presentacion.md`](presentacion.md) | Muestra del producto: 8 diapositivas y pauta del expositor ([ver online](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/presentacion.html) · [PDF](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/PRESENTACION.pdf) · [pauta](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/PAUTA.pdf)) |
 | [`product/PRODUCT-VISION.md`](product/PRODUCT-VISION.md) | Qué problema resuelve |
 | [`product/COMPANY-LIFECYCLE.md`](product/COMPANY-LIFECYCLE.md) | El ciclo de vida completo de la empresa |
 | [`product/REAL-VS-SANDBOX.md`](product/REAL-VS-SANDBOX.md) | Por qué son dos entornos separados |
