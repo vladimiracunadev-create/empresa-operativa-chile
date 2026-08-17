@@ -27,7 +27,7 @@ body:
     id: version
     attributes:
       label: Versión
-      description: Aparece bajo el nombre de la aplicación, arriba a la izquierda. Ej.: 1.0.0
+      description: "Aparece bajo el nombre de la aplicación, arriba a la izquierda. Ej.: 1.0.0"
     validations:
       required: true
 
