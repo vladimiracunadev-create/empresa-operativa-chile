@@ -20,7 +20,7 @@
  * embebe para mostrarlo sin salir de ella.
  *
  * `--check` no escribe nada: falla si el Markdown quedó desfasado. CI lo ejecuta
- * en ese modo. El HTML y el PDF se regeneran con `npm run docs`, no en `check`,
+ * en ese modo. El HTML y el PDF se regeneran con `pnpm docs`, no en `check`,
  * porque necesitan Chrome y CI no lo tiene garantizado.
  */
 import fs from 'node:fs';

@@ -13,6 +13,7 @@
   "engines": {
     "node": ">=20"
   },
+  "packageManager": "pnpm@11.2.2",
   "scripts": {
     "build": "node scripts/build-all.mjs",
     "build:rules": "node scripts/build-rules.mjs",
@@ -25,8 +26,8 @@
     "cli": "node apps/contador-cli/src/index.mjs",
     "test": "node --test tests/*.test.mjs",
     "check": "node scripts/build-rules.mjs --check && node scripts/build-glossary.mjs --check && node scripts/build-guide.mjs --check && node scripts/build-shortcuts.mjs --check && node scripts/build-presentation.mjs --check && node scripts/check-presentation.mjs && node scripts/validate-rules.mjs && node --test tests/*.test.mjs",
-    "desktop:dev": "npm --prefix apps/contador-desktop run dev",
-    "desktop:build": "node scripts/build-all.mjs && npm --prefix apps/contador-desktop run build",
+    "desktop:dev": "pnpm --dir apps/contador-desktop run dev",
+    "desktop:build": "node scripts/build-all.mjs && pnpm --dir apps/contador-desktop run build",
     "android:prepare": "node scripts/build-all.mjs && node apps/android/copiar-www.mjs",
     "android:verify": "node scripts/verify-apk.mjs",
     "capturas": "node scripts/capture-screenshots.mjs",

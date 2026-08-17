@@ -8,7 +8,7 @@
 
 ## Lista de control
 
-- [ ] `npm run check` pasa en verde
+- [ ] `pnpm check` pasa en verde
 - [ ] Los comentarios nuevos explican **por qué**, no qué
 - [ ] Ningún archivo que viaje al navegador o al APK importa `node:*`
 - [ ] No se sube contabilidad real, certificados ni claves

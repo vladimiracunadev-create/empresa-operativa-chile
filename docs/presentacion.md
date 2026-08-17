@@ -28,7 +28,7 @@ total sin que nadie tenga que acordarse.
 **Para generarlo todo desde el repositorio:**
 
 ```bash
-npm run presentacion
+pnpm presentacion
 ```
 
 ---

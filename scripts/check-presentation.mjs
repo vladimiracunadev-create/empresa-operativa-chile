@@ -50,7 +50,7 @@ if (minutos === 0) fallar('Ninguna diapositiva declara sus minutos: la duración
 function paginas(rel) {
   const full = path.join(root, rel);
   if (!fs.existsSync(full)) {
-    fallar(`No existe ${rel}. Genéralo con: npm run presentacion`);
+    fallar(`No existe ${rel}. Genéralo con: pnpm presentacion`);
     return null;
   }
   const total = (fs.readFileSync(full).toString('latin1').match(/\/Type\s*\/Page[^s]/g) ?? []).length;

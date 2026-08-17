@@ -18,11 +18,11 @@ son un poco más estrictas de lo habitual — y todas tienen un motivo concreto.
 ## 🚀 Antes de nada
 
 ```bash
-npm run check    # sincronía de reglas + validación + 153 pruebas
-npm run build    # deja apps/web/dist listo
+pnpm check    # sincronía de reglas + validación + 153 pruebas
+pnpm build    # deja apps/web/dist listo
 ```
 
-No hace falta `npm install` para trabajar en el motor, la web ni la CLI: no hay dependencias
+No hace falta `pnpm install` para trabajar en el motor, la web ni la CLI: no hay dependencias
 de producción, y CI falla si aparece alguna.
 
 ## 🏛️ Cambiar una regla tributaria
@@ -57,7 +57,7 @@ obtener lo que se declaró entonces, no lo que se declararía hoy.
 cp packages/chile-tax-rules/rules/2026.json packages/chile-tax-rules/rules/2027.json
 # editar valores, source y lastVerified de cada regla
 node scripts/build-rules.mjs
-npm test
+pnpm test
 ```
 
 Las pruebas de `tests/rules.test.mjs` exigen que **toda** regla numérica del año nuevo declare

@@ -134,7 +134,7 @@ Catorce etapas desde antes de que la empresa exista, cada una con su decisión, 
 | 💻 | **Windows** | [`-setup.exe`](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest) | Instalador recomendado (NSIS). |
 | 💻 | **Windows** | [`.msi`](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest) | Instalación desatendida o corporativa. |
 | 💻 | **Windows** | [`-portable.exe`](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest) | Sin instalar nada. |
-| ⌨️ | **Terminal** | `npm run cli -- ayuda` | Cálculo y operación desde scripts. |
+| ⌨️ | **Terminal** | `pnpm cli -- ayuda` | Cálculo y operación desde scripts. |
 
 > [!NOTE]
 > Los binarios **no están firmados** con certificado de código: Windows SmartScreen y Android
@@ -155,7 +155,7 @@ con el guion hablado, el tiempo de cada lámina y qué se ve proyectado. La char
 | ✍️ **Guion editable** | [docs/presentacion.md](docs/presentacion.md) | La fuente: edítala y regenera los tres formatos |
 
 Los tres formatos salen del **mismo archivo**, así que el guion y las láminas no se separan a la segunda
-edición. Para regenerarlos: `npm run presentacion`. Una comprobación abre los PDF, cuenta sus páginas y
+edición. Para regenerarlos: `pnpm presentacion`. Una comprobación abre los PDF, cuenta sus páginas y
 falla si una lámina se desbordó o si las cifras de arriba dejaron de cuadrar con la fuente.
 
 ## ✅ Estado verificable
@@ -374,27 +374,27 @@ Requiere **Node 20+**. Nada más para la web y la CLI.
 ```bash
 git clone https://github.com/vladimiracunadev-create/empresa-operativa-chile.git
 cd empresa-operativa-chile
-npm run start        # build + servidor en http://127.0.0.1:4180
+pnpm start        # build + servidor en http://127.0.0.1:4180
 ```
 
 | Comando | Qué hace |
 |---|---|
-| `npm run build` | Reglas embebidas → iconos → `apps/web/dist` |
-| `npm run app` | Sirve la app ya construida |
-| `npm test` | 153 pruebas con el runner nativo de Node |
-| `npm run check` | Sincronía de reglas + validación + pruebas |
-| `npm run cli -- ayuda` | Todos los comandos de la CLI |
-| `npm run desktop:build` | Instaladores de Windows (necesita Rust) |
-| `npm run android:prepare` | Deja `apps/android/www` listo para Capacitor |
-| `npm run capturas` | Regenera las capturas del manual |
-| `npm run manual` | Regenera `docs/MANUAL.pdf` |
+| `pnpm build` | Reglas embebidas → iconos → `apps/web/dist` |
+| `pnpm app` | Sirve la app ya construida |
+| `pnpm test` | 153 pruebas con el runner nativo de Node |
+| `pnpm check` | Sincronía de reglas + validación + pruebas |
+| `pnpm cli -- ayuda` | Todos los comandos de la CLI |
+| `pnpm desktop:build` | Instaladores de Windows (necesita Rust) |
+| `pnpm android:prepare` | Deja `apps/android/www` listo para Capacitor |
+| `pnpm capturas` | Regenera las capturas del manual |
+| `pnpm manual` | Regenera `docs/MANUAL.pdf` |
 
 Ejemplos de la CLI:
 
 ```bash
-npm run cli -- f29 --ventas-netas 1000000 --compras-netas 300000 --honorarios 250000
-npm run cli -- registrar --fecha 2026-08-05 --tipo sale --descripcion "Servicio" --neto 800000
-npm run cli -- resumen --periodo 2026-08
+pnpm cli -- f29 --ventas-netas 1000000 --compras-netas 300000 --honorarios 250000
+pnpm cli -- registrar --fecha 2026-08-05 --tipo sale --descripcion "Servicio" --neto 800000
+pnpm cli -- resumen --periodo 2026-08
 ```
 
 ### 📦 Cómo se compilan las apps

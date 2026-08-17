@@ -98,7 +98,7 @@ se escribe y el que se ejecuta.
 los cargan de forma nativa.
 
 **Consecuencia.** El código que se depura en producción es exactamente el del repositorio; el
-`dist` completo pesa unos 260 KB; y `npm install` no hace falta para desarrollar la web ni la CLI.
+`dist` completo pesa unos 260 KB; y `pnpm install` no hace falta para desarrollar la web ni la CLI.
 El coste es que no hay minificación ni tree-shaking — irrelevante a esta escala.
 
 ## 5️⃣ Decisión 5 — Re-render completo
