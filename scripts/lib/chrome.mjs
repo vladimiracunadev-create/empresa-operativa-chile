@@ -78,8 +78,16 @@ export function screenshot({ url, out, width, height, scale = 2, timeBudget = 40
   return fs.statSync(out).size;
 }
 
-/** Imprime un HTML a PDF. Devuelve `{ bytes, pages }`. */
-export function printPdf({ html, out, timeBudget = 15000 }) {
+/**
+ * Imprime un HTML a PDF. Devuelve `{ bytes, pages }`.
+ *
+ * `minBytes` es el suelo por debajo del cual se considera que el PDF salió mal.
+ * El valor por defecto está calibrado para el manual y la guía, que van llenos
+ * de capturas: si uno de ésos pesa menos de 50 KB, las imágenes no se
+ * embebieron. Un documento de sólo texto legítimamente pesa menos, y por eso el
+ * suelo se puede bajar en la llamada en vez de rebajarlo para todos.
+ */
+export function printPdf({ html, out, timeBudget = 15000, minBytes = 50_000 }) {
   const tmp = path.join(os.tmpdir(), `eoc-print-${process.pid}-${path.basename(out, '.pdf')}.html`);
   fs.writeFileSync(tmp, html);
   fs.mkdirSync(path.dirname(out), { recursive: true });
@@ -91,7 +99,7 @@ export function printPdf({ html, out, timeBudget = 15000 }) {
     else fs.rmSync(tmp, { force: true });
   }
 
-  if (!fs.existsSync(out) || fs.statSync(out).size < 50_000) {
+  if (!fs.existsSync(out) || fs.statSync(out).size < minBytes) {
     throw new Error(`${path.basename(out)} salió vacío o demasiado pequeño: probablemente no se embebieron las imágenes.`);
   }
 

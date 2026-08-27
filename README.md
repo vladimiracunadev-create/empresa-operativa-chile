@@ -459,6 +459,28 @@ tiempo dejen de coincidir:
 | 🗺️ | [Roadmap](docs/ROADMAP.md) | Qué viene y qué nunca se hará |
 | 📓 | [Changelog](CHANGELOG.md) | Historial de versiones |
 
+### 📕 Documentación de sistema
+
+Documentación técnica, funcional, arquitectónica y operativa del repositorio, escrita recorriendo el
+código fuente. Complementa —no reemplaza— los documentos de producto de arriba: cada uno declara cuál
+es la fuente de verdad de su tema.
+
+| | Documento | Contenido |
+|:---:|---|---|
+| 🗂️ | [**Índice general**](docs/system-documentation/README.md) | Portada, los 19 documentos, convenciones y lo que quedó pendiente de validar |
+| 🔭 | [Descripción general](docs/system-documentation/01-system-overview.md) | Qué es, qué resuelve, qué NO hace — con una sección para lectores no técnicos |
+| 🏗️ | [Arquitectura](docs/system-documentation/03-architecture.md) | Capas, diagramas y cómo se hace cumplir la regla `node:*` |
+| 🔎 | [Referencia técnica](docs/system-documentation/05-technical-reference.md) | Catálogo de funciones: firma, efectos y riesgo al modificar |
+| 💾 | [Persistencia](docs/system-documentation/07-database.md) | No hay base de datos: cuál es el mecanismo real y el diccionario de datos completo |
+| 🔐 | [Seguridad](docs/system-documentation/11-security.md) | Controles presentes, controles ausentes y superficie real |
+| ⚠️ | [Riesgos y deuda técnica](docs/system-documentation/15-risks-and-technical-debt.md) | 22 hallazgos clasificados. **Informativo: no se corrigió nada** |
+| 📊 | [Resumen ejecutivo](docs/system-documentation/17-executive-summary.md) | Para decisión, sin detalle técnico innecesario |
+| 🧑‍💻 | [Guía para nuevos desarrolladores](docs/system-documentation/18-new-developer-guide.md) | Itinerario de incorporación de cinco días y primeras tareas |
+| 🧾 | [Matriz de trazabilidad](docs/system-documentation/19-traceability-matrix.md) | De la pantalla al almacenamiento y a la prueba, en una fila |
+| 📄 | [Todo en PDF](docs/system-documentation/pdf/) | Un PDF por documento más el consolidado |
+
+Los PDF se regeneran con `node scripts/build-system-docs.mjs`.
+
 ## 🔗 Fuentes oficiales
 
 [Servicio de Impuestos Internos](https://www.sii.cl/) ·
