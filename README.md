@@ -6,18 +6,18 @@
 
 ## **Crear, operar y controlar una empresa chilena a través del tiempo**
 
-**Aplicación local-first que acompaña a una SpA desde antes de existir hasta el cierre de cada
-mes: constitución con evidencia obligatoria, operaciones, IVA con remanente arrastrado, borrador
-de F29, obligaciones, cierre inmutable y bitácora de auditoría. La misma interfaz y el mismo
-motor de cálculo en Android, Windows y navegador. Tus datos no salen del dispositivo.**
+**Aplicación local-first que acompaña a una empresa desde antes de existir hasta su operación y
+control: constitución, contabilidad explicable, procesos críticos con segregación de funciones,
+riesgos, conciliación y auditoría continua. La misma interfaz y el mismo motor en Android,
+Windows y navegador. Tus datos no salen del dispositivo.**
 
 [![CI](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/ci.yml)
 [![Seguridad](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/security.yml/badge.svg?branch=main)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/security.yml)
 [![Pages](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/pages.yml)
 
-[![Versión](https://img.shields.io/badge/versión-1.4.0-e8590c?style=for-the-badge)](CHANGELOG.md)
+[![Versión](https://img.shields.io/badge/versión-1.5.0-e8590c?style=for-the-badge)](CHANGELOG.md)
 [![Plataformas](https://img.shields.io/badge/plataformas-Android_·_Windows_·_Web-7c5cff?style=for-the-badge)](#-descargas)
-[![Pruebas](https://img.shields.io/badge/pruebas-153_verdes-2e8b57?style=for-the-badge)](tests/)
+[![Pruebas](https://img.shields.io/badge/pruebas-158_verdes-2e8b57?style=for-the-badge)](tests/)
 [![Dependencias](https://img.shields.io/badge/dependencias_de_producción-0-2f81f7?style=for-the-badge)](package.json)
 [![Telemetría](https://img.shields.io/badge/telemetría-cero-3fb950?style=for-the-badge)](#-privacidad-que-se-puede-comprobar)
 [![Reglas](https://img.shields.io/badge/reglas-año_comercial_2026-8957e5?style=for-the-badge)](docs/SOURCES-2026.md)
@@ -52,7 +52,7 @@ motor de cálculo en Android, Windows y navegador. Tus datos no salen del dispos
 
 | 🖥️ Vistas | 🧮 Motor | ✅ Pruebas | 📦 Dependencias | 📱 Plataformas | 📄 Manual |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| **14** | **1** | **153** | **0** | **3** | **33 pág.** |
+| **15** | **1** | **158** | **0** | **3** | **HTML + PDF** |
 
 </div>
 
@@ -69,6 +69,10 @@ dio por hecho sin guardar el comprobante, un mes que se cerró sin conciliar.
 
 **Empresa Operativa Chile** acompaña ese hilo. Calcula, explica por qué calcula así, **exige
 evidencia** antes de dar algo por cumplido y deja registro de todo lo que cambió.
+
+Desde v1.5, el mismo principio cubre operaciones críticas de bancos, fintech, e-commerce,
+marketplaces, tesorería, medios de pago, inventarios y activos digitales: nadie puede solicitar,
+aprobar, ejecutar, registrar, conciliar y auditar la misma operación. Cada etapa exige evidencia.
 
 ## 🖼️ Así se ve
 
@@ -182,7 +186,7 @@ falla si una lámina se desbordó o si las cifras de arriba dejaron de cuadrar c
 | App de Android | ✅ APK **con el contenido contado dentro del binario** en CI |
 | App de Windows | ✅ MSI, NSIS y portable; **arranca y se comprueba vivo** en CI |
 | Web / PWA | ✅ publicada en Pages, instalable y sin conexión |
-| Pruebas | ✅ 153 en Ubuntu y Windows, Node 20 y 22 |
+| Pruebas | ✅ 158 en Ubuntu y Windows, Node 20 y 22 |
 | Seguridad | ✅ CodeQL + detección de contabilidad real commiteada + acciones fijadas a SHA |
 | Integración con el SII | ⚪ **no existe** — por diseño, no por falta de tiempo |
 | Cifrado de datos locales | ⚪ pendiente ([roadmap](docs/ROADMAP.md)) |
@@ -381,7 +385,7 @@ pnpm start        # build + servidor en http://127.0.0.1:4180
 |---|---|
 | `pnpm build` | Reglas embebidas → iconos → `apps/web/dist` |
 | `pnpm app` | Sirve la app ya construida |
-| `pnpm test` | 153 pruebas con el runner nativo de Node |
+| `pnpm test` | 158 pruebas con el runner nativo de Node |
 | `pnpm check` | Sincronía de reglas + validación + pruebas |
 | `pnpm cli -- ayuda` | Todos los comandos de la CLI |
 | `pnpm desktop:build` | Instaladores de Windows (necesita Rust) |
@@ -410,7 +414,7 @@ arranca y se comprueba que sigue vivo. Un build en verde no prueba que la app es
 
 ## 🧪 Pruebas
 
-153 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
+158 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
 hacen confiable al producto:
 
 - un período cerrado es inmutable **en las dos direcciones** (no se agrega y no se borra);
@@ -425,6 +429,9 @@ hacen confiable al producto:
 - la base de la patente **cambia** entre el año 1 y el año 2 de la misma empresa;
 - un ejercicio cerrado no se recalcula, no se cierra dos veces y **un respaldo importado no lo pisa**;
 - `docs/GLOSSARY.md` no puede desviarse de `packages/glossary/index.mjs`.
+- un proceso crítico no puede saltar etapas ni reutilizar una persona en funciones incompatibles;
+- una investigación exige independencia, conflicto declarado y evidencia preservada;
+- los respaldos v3 conservan controles, riesgos, procesos y denuncias sin romper v1/v2.
 
 ## 🎓 Academia
 
@@ -432,7 +439,7 @@ El material de aprendizaje está integrado en la propia aplicación (pestaña **
 las explicaciones usan el mismo motor que opera tu empresa — no textos escritos aparte que con el
 tiempo dejen de coincidir:
 
-- 📚 [`curriculum/`](curriculum/) — 12 partes con clases
+- 📚 [`curriculum/`](curriculum/) — 17 partes y 70 clases
 - 🧪 [`labs/`](labs/) — 16 laboratorios
 - 📁 [`cases/`](cases/) — casos integrales
 - 🎲 [`data/scenarios/`](data/scenarios/) — escenarios sintéticos para la CLI
@@ -442,7 +449,8 @@ tiempo dejen de coincidir:
 | | Documento | Contenido |
 |:---:|---|---|
 | 🧭 | [**Empezar aquí**](docs/EMPEZAR-AQUI.md) · [**HTML**](docs/EMPEZAR-AQUI.html) · [**PDF**](docs/EMPEZAR-AQUI.pdf) | **Si nunca has creado una empresa y no sabes por dónde partir.** 14 etapas ilustradas con diagramas y las pantallas reales: qué decidir, qué documento te queda, cómo sabes que terminaste — y qué NO cubre el sistema |
-| 📘 | [**Manual de usuario**](docs/MANUAL.md) · [**PDF**](docs/MANUAL.pdf) | 19 capítulos con las pantallas reales del producto |
+| 📘 | [**Manual de usuario**](docs/MANUAL.md) · [**HTML**](docs/MANUAL.html) · [**PDF**](docs/MANUAL.pdf) | 21 capítulos, incluida la operación del módulo de control interno |
+| 🛡️ | [Control interno, SoD y auditoría](docs/CONTROL-INTERNO.md) | Gobierno, RACI, procesos, controles, riesgo, KRI, whistleblowing y custodia |
 | 📋 | [Runbook mensual](docs/RUNBOOK-MENSUAL.md) | Qué hacer cada mes, en orden |
 | 📆 | [Runbook anual](docs/RUNBOOK-ANUAL.md) | Ciclo anual y Operación Renta |
 | 🌳 | [Árbol de decisión](docs/DECISION-TREE.md) | Cuándo resolverlo solo y cuándo escalar |

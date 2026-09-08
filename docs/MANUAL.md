@@ -4,12 +4,12 @@
 
 # 📘 Manual de usuario
 
-### **Empresa Operativa Chile · versión 1.0.0**
+### **Empresa Operativa Chile · versión 1.5.0**
 
 **Cómo crear, operar y controlar una empresa chilena con esta aplicación —
 de la instalación al cierre del mes, con las pantallas reales del producto.**
 
-[![Versión](https://img.shields.io/badge/versión-1.0.0-4f8cff?style=for-the-badge)](../CHANGELOG.md)
+[![Versión](https://img.shields.io/badge/versión-1.5.0-4f8cff?style=for-the-badge)](../CHANGELOG.md)
 [![Manual PDF](https://img.shields.io/badge/📕_este_manual-en_PDF-e8590c?style=for-the-badge)](MANUAL.pdf)
 [![Reglas](https://img.shields.io/badge/reglas-año_comercial_2026-2e8b57?style=for-the-badge)](SOURCES-2026.md)
 
@@ -41,6 +41,7 @@ de la instalación al cierre del mes, con las pantallas reales del producto.**
 | 9 | [Obligaciones](#cap-9) | Qué debes y cuándo vence |
 | 10 | [Cierre mensual](#cap-10) | Congelar el mes |
 | 11 | [Auditoría](#cap-11) | Qué cambió y cuándo |
+| 11b | [Control interno](#cap-11b) | Gobierno, SoD, procesos, riesgos y auditoría continua |
 | 12 | [Datos y respaldos](#cap-12) | Sacar tus datos del dispositivo |
 | 13 | [Academia](#cap-13) | Entender lo que estás haciendo |
 | 13b | [Glosario](#cap-13b) | Qué significa cada término, y con qué no confundirlo |
@@ -582,6 +583,53 @@ Las eliminaciones aparecen en rojo. Que borres una operación no borra el hecho 
 
 ---
 
+<a id="cap-11b"></a>
+
+## 11b · 🛡️ Control interno
+
+La pestaña **Control interno** amplía la trazabilidad desde “qué cambió” hacia “quién podía hacer
+qué, quién lo revisó y con qué evidencia”. Sirve para pagos, transferencias, cambios de sistema,
+inventario, marketplaces, medios de pago y custodia digital.
+
+![Gobernanza y control interno](assets/capturas/control-interno.png)
+
+### Motor de procesos críticos
+
+Pulsa **Solicitar operación** y registra tipo, categoría, solicitante, valor, contraparte, libro
+auxiliar y evidencia. Después la aplicación habilita una sola etapa a la vez:
+
+```text
+Solicitud → Validación → Aprobación → Ejecución → Registro → Conciliación → Auditoría
+```
+
+Cada etapa exige una persona, una función autorizada y evidencia. Si intentas usar a la misma
+persona en funciones incompatibles, saltar una etapa o ejecutar con una función no autorizada,
+el motor rechaza la acción y explica el conflicto SoD.
+
+### Qué hay en la pantalla
+
+| Sección | Uso |
+|---|---|
+| KRI | Operaciones sin conciliar o aprobar, accesos privilegiados, antigüedad, contrapartes desconocidas y controles fallidos |
+| Catálogo de controles | Clasifica Preventive/Detective/Corrective y Manual/Automated/Hybrid |
+| Risk register | Registra riesgo, P×I, dueño, control, residual, KRI y estado |
+| RACI | Define quién responde, ejecuta, es consultado y es informado |
+| Auditoría continua | Configura conciliación diaria, revisión semanal, cierre mensual, revisión trimestral y revisión externa anual |
+| Whistleblowing | Preserva el reporte, exige investigador independiente, declara conflictos y documenta escalamiento |
+
+### Custodia y contabilidad
+
+Para un depósito de cliente selecciona **Custodia de activos digitales** e identifica la
+contraparte, el activo y el libro auxiliar. La conciliación compara obligaciones con clientes,
+detalle interno y saldo de banco/wallet/exchange. Que la comparación cuadre no reemplaza el
+criterio profesional sobre reconocimiento, medición, restricciones o revelaciones contables.
+
+El SANDBOX incluye un proceso de custodia ejecutado pero aún no registrado ni conciliado. Ese
+descalce intencional enciende los KRI y permite practicar sin usar información real. El marco
+completo y el caso capstone están en [Control interno, SoD y auditoría](CONTROL-INTERNO.md).
+
+---
+
 <a id="cap-12"></a>
 
 ## 12 · 💾 Datos y respaldos
@@ -844,7 +892,7 @@ respaldo y auméntalo en el otro (capítulo [12](#cap-12)).
 <details>
 <summary><b>¿Puedo llevar más de una empresa?</b></summary>
 
-En la versión 1.0.0, un entorno real por dispositivo. Como alternativa, exporta el respaldo de
+En la versión 1.5.0, hay un entorno real por dispositivo. Como alternativa, exporta el respaldo de
 una empresa, reemplaza con el de la otra, y ve alternando. Multi-empresa está en el roadmap.
 </details>
 
@@ -969,7 +1017,7 @@ Todo esto está en el [roadmap](ROADMAP.md).
 [🔗 Fuentes oficiales](SOURCES-2026.md) ·
 [🏗️ Arquitectura](ARCHITECTURE.md)
 
-<sub>Empresa Operativa Chile · v1.0.0 · Reglas del año comercial 2026 verificadas el 2026-08-09<br>
+<sub>Empresa Operativa Chile · v1.5.0 · Reglas del año comercial 2026 verificadas el 2026-08-09<br>
 MIT © Vladimir Acuña · Hecho en Chile 🇨🇱</sub>
 
 </div>

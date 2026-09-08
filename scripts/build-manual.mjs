@@ -75,8 +75,6 @@ ${portada}
 ${markdownToHtml(bodyMd, { resolveImage: embed })}
 </body></html>`;
 
-const { bytes, pages } = printPdf({ html: pdfHtml, out: pdfOut });
-
 /* -------------------------------------------------------------- HTML ---- */
 
 // Índice lateral construido desde los encabezados de capítulo del propio
@@ -110,6 +108,10 @@ const html = `<!doctype html>
 // cuya política de seguridad prohíbe scripts en línea.
 
 fs.writeFileSync(htmlOut, html);
+
+// Escribe primero el HTML: si Chrome no puede imprimir en un entorno sin GPU,
+// el artefacto que la app embarca no queda desincronizado con el Markdown.
+const { bytes, pages } = printPdf({ html: pdfHtml, out: pdfOut });
 
 console.log(`docs/MANUAL.pdf  — ${(bytes / 1024 / 1024).toFixed(1)} MB, ${pages} páginas`);
 console.log(`docs/MANUAL.html — ${(fs.statSync(htmlOut).size / 1024 / 1024).toFixed(1)} MB (autocontenido, ${chapters.length} capítulos)`);

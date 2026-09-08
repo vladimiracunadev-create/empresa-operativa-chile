@@ -144,3 +144,79 @@ test('los tipos de operación no soportados se rechazan', () => {
   assert.throws(() => w.addTransaction({ date: '2026-08-01', kind: 'criptomoneda', net: 1, vat: 0, total: 1 }), /kind no soportado/);
   assert.throws(() => w.addTransaction({ date: '01-08-2026', kind: 'sale', net: 1, vat: 0, total: 1 }), /YYYY-MM-DD/);
 });
+
+test('un proceso crítico exige secuencia, evidencia y segregación de funciones', () => {
+  const w = ws();
+  const process = w.addCriticalProcess({
+    process_id: 'PAY-001', type: 'Transferencia bancaria', requester: 'Ana', requesterRole: 'Finance',
+    value: 1000000, currency: 'CLP', evidence: 'Solicitud T-1', counterparty: 'Proveedor SpA', subsidiaryLedger: 'Bancos'
+  });
+  assert.equal(process.status, 'requested');
+  assert.throws(() => w.addCriticalProcess({ ...process, requesterRole: 'Finance', evidence: 'duplicada' }), /process_id/);
+  assert.throws(() => w.addCriticalProcess({ type: 'Inválida', requester: 'Ana', requesterRole: 'Finance', value: -1, evidence: 'REQ' }), /mayor o igual/);
+  assert.deepEqual(Object.keys(process).filter(key => ['process_id', 'requester', 'approver', 'executor', 'value', 'timestamp', 'evidence', 'status'].includes(key)).sort(), ['approver', 'evidence', 'executor', 'process_id', 'requester', 'status', 'timestamp', 'value']);
+  assert.throws(() => w.advanceCriticalProcess(process.process_id, { step: 'approved', actor: 'Luis', role: 'Management', evidence: 'APR-1' }), /próxima etapa/i);
+  assert.throws(() => w.advanceCriticalProcess(process.process_id, { actor: 'Ana', role: 'Finance', evidence: 'VAL-1' }), /SoD/);
+
+  w.advanceCriticalProcess(process.process_id, { actor: 'Beatriz', role: 'Compliance', evidence: 'VAL-1' });
+  w.advanceCriticalProcess(process.process_id, { actor: 'Carlos', role: 'Management', evidence: 'APR-1' });
+  assert.throws(() => w.advanceCriticalProcess(process.process_id, { actor: 'Carlos', role: 'Treasury', evidence: 'TX-1' }), /SoD/);
+  w.advanceCriticalProcess(process.process_id, { actor: 'Diana', role: 'Treasury', evidence: 'TX-1' });
+  w.advanceCriticalProcess(process.process_id, { actor: 'Elena', role: 'Accounting', evidence: 'AUX-1' });
+  w.advanceCriticalProcess(process.process_id, { actor: 'Fernando', role: 'Finance', evidence: 'REC-1' });
+  const done = w.advanceCriticalProcess(process.process_id, { actor: 'Gabriela', role: 'Internal Audit', evidence: 'AUD-1' });
+  assert.equal(done.status, 'audited');
+  assert.equal(done.evidence.length, 7);
+  assert.equal(done.approver, 'Carlos');
+  assert.equal(done.executor, 'Diana');
+});
+
+test('controles, riesgos y KRI son persistentes y medibles', () => {
+  const w = ws();
+  w.addControl({ name: 'Conciliación diaria', objective: 'Detectar diferencias', owner: 'Finance', nature: 'Detective', execution: 'Hybrid', frequencyDays: 1, evidence: 'Reporte firmado', status: 'failed' });
+  w.addRisk({ risk: 'Diferencia no detectada', probability: 4, impact: 5, owner: 'Management', control: 'Conciliación diaria', residualRisk: 'Corte horario', kri: 'Sin conciliar > 0', status: 'monitoring' });
+  const process = w.addCriticalProcess({ type: 'Pago', requester: 'Ana', requesterRole: 'Finance', value: 500, evidence: 'REQ', category: 'privileged_action' });
+  assert.equal(w.listControls().length, 1);
+  assert.equal(w.listRisks()[0].probability * w.listRisks()[0].impact, 20);
+  assert.equal(w.getKris().failedControls, 1);
+  assert.equal(w.getKris().privilegedActions, 1);
+  assert.equal(w.getKris().unknownCounterparties, 0, 'una solicitud aún no ejecutada no cuenta como contraparte desconocida');
+  assert.equal(process.status, 'requested');
+});
+
+test('las frecuencias de auditoría son configurables pero siempre positivas', () => {
+  const w = ws();
+  const schedule = w.saveAuditSchedule({ dailyReconciliation: 2, weeklyReview: 8, monthlyClose: 31, quarterlyControlReview: 92, annualExternalReview: 366 });
+  assert.equal(schedule.weeklyReview, 8);
+  assert.throws(() => w.saveAuditSchedule({ dailyReconciliation: 0 }), /positivos/);
+});
+
+test('whistleblowing preserva evidencia y exige investigación independiente', () => {
+  const w = ws();
+  const report = w.reportConcern({ reporter: 'Ana', description: 'Aprobación fuera de política', evidence: 'Hash EV-1 bajo custodia de Compliance' });
+  assert.throws(() => w.updateConcern(report.id, { status: 'investigation', investigator: 'Ana', conflictOfInterest: false }), /Conflicto de interés/);
+  assert.throws(() => w.updateConcern(report.id, { status: 'investigation', investigator: 'Bruno' }), /declararse/);
+  const investigated = w.updateConcern(report.id, { status: 'investigation', investigator: 'Bruno', conflictOfInterest: false, escalation: 'Internal Audit' });
+  assert.equal(investigated.investigator, 'Bruno');
+  assert.equal(investigated.evidence, report.evidence);
+});
+
+test('el respaldo v3 conserva la capa de gobierno y sigue aceptando v2', () => {
+  const origen = ws();
+  origen.addControl({ name: 'Límite', objective: 'Prevenir exceso', owner: 'Treasury', nature: 'Preventive', execution: 'Automated', frequencyDays: 1, evidence: 'Log' });
+  origen.reportConcern({ description: 'Caso', evidence: 'EV-1' });
+  const payload = origen.exportAll();
+  assert.equal(payload.formatVersion, 3);
+  const destino = ws();
+  destino.importAll(payload);
+  assert.equal(destino.listControls().length, 1);
+  assert.equal(destino.listWhistleblowingReports().length, 1);
+
+  const legacy = { ...payload, formatVersion: 2 };
+  delete legacy.controls;
+  delete legacy.risks;
+  delete legacy.criticalProcesses;
+  delete legacy.auditSchedule;
+  delete legacy.whistleblowing;
+  assert.doesNotThrow(() => ws().importAll(legacy));
+});

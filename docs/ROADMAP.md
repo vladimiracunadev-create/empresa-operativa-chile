@@ -2,8 +2,8 @@
 
 <div align="center">
 
-[![Actual](https://img.shields.io/badge/actual-v1.0.0-e8590c?style=for-the-badge)](../CHANGELOG.md)
-[![Siguiente](https://img.shields.io/badge/siguiente-v1.1_·_importador_RCV-2f81f7?style=for-the-badge)](#-v11--lo-que-más-falta)
+[![Actual](https://img.shields.io/badge/actual-v1.5.0-e8590c?style=for-the-badge)](../CHANGELOG.md)
+[![Siguiente](https://img.shields.io/badge/siguiente-v1.6_·_integraciones-2f81f7?style=for-the-badge)](#-v16--integraciones-y-conciliación)
 
 [🏠 Inicio](../README.md) · [📓 Changelog](../CHANGELOG.md) · [🏗️ Arquitectura](ARCHITECTURE.md)
 
@@ -11,7 +11,7 @@
 
 ---
 
-Estado a **2026-08-14**, versión 1.0.0.
+Estado a **2026-09-07**, versión 1.5.0.
 
 ## ✅ v1.0 — publicado
 
@@ -28,7 +28,18 @@ Estado a **2026-08-14**, versión 1.0.0.
 - Academia integrada en la app, usando el mismo motor.
 - 50 pruebas; artefactos verificados por dentro en CI.
 
-## 🔜 v1.1 — lo que más falta
+## ✅ v1.5 — gobierno y control interno
+
+- Diez funciones de gobierno y matriz RACI desde Board hasta External Audit.
+- Segregación ejecutable de request, validate, approve, execute, record, reconcile y audit.
+- Procesos críticos con identidad, valor, contraparte, libro auxiliar y evidencia por etapa.
+- Catálogo de controles Preventive/Detective/Corrective y Manual/Automated/Hybrid.
+- Risk register, seis KRI observables y frecuencias configurables de auditoría continua.
+- Whistleblowing con preservación, independencia, conflicto y escalamiento.
+- Escenario de custodia digital y caso capstone de descalce.
+- Respaldo portable v3 compatible en importación con v1/v2.
+
+## 🔜 v1.6 — integraciones y conciliación
 
 Ordenado por lo que hoy obliga a trabajo manual:
 
@@ -40,7 +51,7 @@ Ordenado por lo que hoy obliga a trabajo manual:
 5. **Feriados legales** en el cálculo de vencimientos.
 6. **Recordatorios de vencimiento** en Android.
 
-## 📗 v1.2 — contabilidad más completa
+## 📗 v1.7 — contabilidad más completa
 
 - Plan de cuentas configurable y libro mayor.
 - Balance y estado de resultados educativos.
@@ -48,7 +59,7 @@ Ordenado por lo que hoy obliga a trabajo manual:
 - Más códigos del F29 y proporcionalidad de IVA.
 - Multi-empresa dentro del mismo entorno real.
 
-## 📘 v1.3 — cierre anual
+## 📘 v1.8 — operación avanzada
 
 - Declaraciones juradas según perfil.
 - Asistente de F22 / Operación Renta.

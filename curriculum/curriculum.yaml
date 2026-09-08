@@ -242,3 +242,24 @@ parts:
       - id: C64
         title: "Diseño de un contador virtual seguro"
         duration_minutes: 90
+  - id: "16"
+    title: "Gobernanza, control interno y auditoría continua"
+    classes:
+      - id: C65
+        title: "Gobierno corporativo y RACI"
+        duration_minutes: 90
+      - id: C66
+        title: "Segregación de funciones"
+        duration_minutes: 90
+      - id: C67
+        title: "Diseño y clasificación de controles"
+        duration_minutes: 90
+      - id: C68
+        title: "Libros auxiliares, conciliación y custodia"
+        duration_minutes: 90
+      - id: C69
+        title: "Risk register, KRI y auditoría continua"
+        duration_minutes: 90
+      - id: C70
+        title: "Whistleblowing e investigación independiente"
+        duration_minutes: 90

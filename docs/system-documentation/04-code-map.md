@@ -4,7 +4,7 @@
 
 ---
 
-Inventario jerárquico de los **262 archivos versionados**. Cada elemento lleva su ubicación,
+Inventario jerárquico de los **330 archivos versionados** tras incorporar la capa v1.5. Cada elemento lleva su ubicación,
 responsabilidad, dependencias, quién lo usa y su **estado aparente**.
 
 **Estados usados en este documento:**
@@ -31,7 +31,7 @@ empresa-operativa-chile/
 ├── packages/                6 paquetes · el núcleo · ESM puro sin node:* (salvo node-store)
 ├── apps/                    5 aplicaciones · web, android, contador-desktop, empresa-operativa, contador-cli
 ├── scripts/                 13 scripts + 4 librerías · build, generación de docs y verificación
-├── tests/                   13 suites · 153 pruebas
+├── tests/                   13 suites · 158 pruebas
 ├── docs/                    23 documentos Markdown + assets + presentación + esta serie
 ├── curriculum/ labs/ cases/ material de aprendizaje: 16 partes, 16 laboratorios, 2 casos
 ├── data/scenarios/          1 escenario JSON para la CLI
@@ -77,12 +77,13 @@ propósito distinto, no duplicado.
 
 | Elemento | Líneas | Responsabilidad | Depende de | Quién lo usa | Estado |
 | --- | ---: | --- | --- | --- | --- |
-| `workspace.mjs` | **1.142** | **El orquestador central.** Clase `CompanyWorkspace`: ficha, capital, municipalidad, ejercicio anual, constitución, operaciones, obligaciones, períodos, respaldo y diagnóstico. Más `seedSandboxWorkspace()` | `capital.mjs`, `tax-equity.mjs`, `municipal-patent.mjs`, `municipalities.mjs`, `chile-tax-rules` | Todas las vistas vía `state.js`; `index.mjs`; CLI | Activo |
+| `workspace.mjs` | **1.349** | **El orquestador central.** Clase `CompanyWorkspace`: ficha, capital, gobierno, procesos críticos, riesgos, auditoría, períodos, respaldo y diagnóstico. Más `seedSandboxWorkspace()` | `governance.mjs`, `capital.mjs`, motores contables y reglas | Todas las vistas vía `state.js`; `index.mjs`; CLI | Activo |
+| `governance.mjs` | 185 | RACI, SoD, siete etapas, controles, riesgos, KRI y frecuencias de auditoría | — | `workspace.mjs`, vista `control-interno` | **Crítico** |
 | `capital.mjs` | 371 | Modelo societario: `EQUITY_MOVEMENT_KINDS` (9 tipos), `DATA_STATUS` (5), `DATA_ORIGIN` (5), `normalizeCapitalProfile`, `validateCapitalProfile`, `capitalPendingToPay`, `normalizeEquityMovement`, `summarizeEquityMovements` | — | `workspace.mjs`, vista `capital` | Activo |
 | `store.mjs` | 84 | `createMemoryStore()` y `createWebStore({namespace})`. Define el contrato de seis métodos | — | `platform.js`, pruebas | Activo |
-| `node-store.mjs` | 87 | Almacén de disco. Escritura atómica (temporal + `rename`) y bitácora NDJSON *append-only* | `node:fs`, `node:path` | `index.mjs` (Node) — **nunca** el navegador | Activo |
+| `node-store.mjs` | 95 | Almacén de disco. Escritura atómica (temporal + `rename`) y bitácora NDJSON *append-only* | `node:fs`, `node:path` | `index.mjs` (Node) — **nunca** el navegador | Activo |
 | `rut.mjs` | 43 | RUT chileno: `cleanRut`, `rutCheckDigit` (módulo 11), `validateRut` | — | Vista `empresa`, CLI | Activo |
-| `index.mjs` | 49 | Entrada de Node: `CompanyWorkspace` extendida con `rootDir`, `seedSandbox(rootDir)`, `file(name)`, `dir` | `workspace.mjs`, `node-store.mjs` | CLI, pruebas | Activo |
+| `index.mjs` | 57 | Entrada de Node y exportaciones del marco de gobierno | `workspace.mjs`, `node-store.mjs`, `governance.mjs` | CLI, pruebas | Activo |
 
 ### 1.4 Paquetes de contenido
 
@@ -149,7 +150,7 @@ en CI**— y es la razón de que la documentación de este repositorio no pueda 
 | --- | --- | --- |
 | `capacitor.config.json` | `appId: cl.vladimiracuna.empresaoperativa`, `webDir: www`, `allowMixedContent: false`, `webContentsDebuggingEnabled: false`, `CapacitorHttp` **desactivado** | Activo |
 | `copiar-www.mjs` (74) | Copia `dist` a `www` y **cuenta** vistas y núcleo antes de seguir; aplica iconos si el proyecto Android existe | Activo |
-| `package.json` (21) | 4 dependencias Capacitor + CLI. Versión `1.4.0`, sincronizada por una prueba | Activo |
+| `package.json` (21) | 4 dependencias Capacitor + CLI. Versión `1.5.0`, sincronizada por una prueba | Activo |
 | `res-icons/` | 15 PNG + 1 XML de icono adaptativo, en 6 densidades (`mipmap-mdpi` … `mipmap-xxxhdpi`) | Activo |
 | `pnpm-lock.yaml` (792) | Lockfile válido | Activo |
 | `package-lock.json` (1.186) | Lockfile de **npm** | **Duplicado** — ver nota |
@@ -170,11 +171,11 @@ en CI**— y es la razón de que la documentación de este repositorio no pueda 
 | `src-tauri/Cargo.toml` | 31 | `tauri 2`, `serde`, `serde_json`. **Sin base de datos embebida** — el comentario explica por qué se quitó `rusqlite` | Activo |
 | `src-tauri/tauri.conf.json` | 49 | Ventana, CSP, bundle MSI + NSIS, `identifier` igual al `appId` de Android | Activo |
 | `src-tauri/capabilities/default.json` | 7 | **`permissions: ["core:default"]` y nada más.** Sin red, sin shell, sin FS genérico | Activo |
-| `package.json` | 15 | Sólo `@tauri-apps/cli`. **`version: "1.0.0"`** | **Legado** — ver nota |
+| `package.json` | 15 | Sólo `@tauri-apps/cli`. **`version: "1.5.0"`** | Activo y sincronizado |
 
 > **Nota sobre la versión.** `apps/contador-desktop/package.json` declara `1.0.0`, mientras
 > `package.json` raíz, `tauri.conf.json`, `Cargo.toml`, `app.js` y `apps/android/package.json`
-> declaran `1.4.0`. La prueba «la versión de la app coincide en package.json, Tauri y Cargo»
+> declaran `1.5.0`. La prueba de versión también cubre Android, su lockfile y el package del shell de escritorio.
 > comprueba cinco de esos seis sitios y **no** incluye éste. Como ese `package.json` sólo sirve para
 > invocar el CLI de Tauri —que toma la versión de `tauri.conf.json`— el desfase no afecta al binario
 > producido. Registrado en [15 · Riesgos](15-risks-and-technical-debt.md).
@@ -217,7 +218,7 @@ en CI**— y es la razón de que la documentación de este repositorio no pueda 
 
 ---
 
-## 4 · `tests/` — 13 suites, 153 pruebas
+## 4 · `tests/` — 13 suites, 158 pruebas
 
 | Suite | Líneas | Pruebas | Qué protege |
 | --- | ---: | ---: | --- |
@@ -308,7 +309,7 @@ Recuento verificado con `node --test tests/*.test.mjs`: `tests 153 · pass 153 �
 
 | Archivo | Responsabilidad | Estado |
 | --- | --- | --- |
-| `package.json` | Versión `1.4.0`, `type: module`, `engines.node >= 20`, `packageManager: pnpm@11.2.2`, 21 scripts, **cero `dependencies`** | Activo |
+| `package.json` | Versión `1.5.0`, `type: module`, `engines.node >= 20`, `packageManager: pnpm@11.2.2`, 21 scripts, **cero `dependencies`** | Activo |
 | `pnpm-lock.yaml` | Lockfile raíz | Activo |
 | `.gitignore` | Excluye `node_modules`, artefactos de build y **datos operativos reales** | Activo |
 | `.gitattributes` | `eol=lf` global, CRLF para `.bat`/`.ps1`, binarios sin conversión, `linguist-generated` y `linguist-documentation` | Activo |

@@ -81,7 +81,7 @@ Está declarado por el propio producto, y esa franqueza es parte de su propuesta
 | Interfaz | Sin framework, sin bundler |
 | Almacenamiento | En el propio dispositivo. Sin base de datos y sin servidor |
 | Empaquetado | Capacitor (Android) y Tauri 2 (Windows) |
-| Pruebas | Runner nativo de Node — **153 pruebas, sin framework externo** |
+| Pruebas | Runner nativo de Node — **158 pruebas, sin framework externo** |
 | Automatización | 6 procesos de integración continua |
 
 **Cero dependencias de producción** no es una anécdota: significa que no hay una cadena de terceros
@@ -101,8 +101,8 @@ error en vez de un cálculo con las tasas del año pasado**.
 
 | Indicador | Valor · verificado el 27-08-2026 |
 | --- | --- |
-| Versión | 1.4.0 |
-| Archivos versionados | 262 |
+| Versión | 1.5.0 |
+| Archivos versionados | 330 al incorporar la capa v1.5 |
 | Código propio | 13.251 líneas |
 | Pruebas | **153, todas en verde** |
 | Duración de la suite | 0,64 segundos |

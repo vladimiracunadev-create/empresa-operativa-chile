@@ -6,7 +6,7 @@
 
 ## La conclusión, primero
 
-**153 pruebas en 13 suites, todas verdes, ejecutadas en esta revisión.** Corren con el runner nativo
+**158 pruebas en 13 suites, todas verdes, ejecutadas en la revisión v1.5.** Corren con el runner nativo
 de Node (`node --test`), sin framework, sin *mocks*, sin configuración y en **0,64 segundos**.
 
 Y una segunda capa que importa más de lo que parece: **el repositorio verifica cosas que un test
@@ -14,7 +14,7 @@ unitario no puede ver.** Que el APK lleve la app dentro. Que el build sea reprod
 documentación no se haya desviado del código. Que ninguna acción de CI esté sin fijar. Esa capa es
 lo distintivo de este proyecto, y está en `ci.yml` y en los scripts de verificación, no en `tests/`.
 
-**El hueco real:** la interfaz —las 14 vistas, 4.000 líneas de `apps/web/src/views/`— **no tiene
+**El hueco real:** la interfaz —las 15 vistas de `apps/web/src/views/`— **no tiene
 pruebas de comportamiento**. Se verifica su presencia y su contrato, no lo que hace al pulsar un
 botón.
 
@@ -235,7 +235,7 @@ No se mide, así que lo que sigue es un mapa cualitativo hecho leyendo qué toca
 | `company-operations` | `workspace.mjs`, `capital.mjs`, `rut.mjs`, `store.mjs` | **Alta** | 14 + 19 + 6 + 4 |
 | `glossary`, `onboarding`, `shortcuts` | | **Alta** | 11 + 17 + 16, más 4 gates `--check` |
 | Contrato de la web | `index.html`, manifiesto, iconos | **Media** | 8 pruebas, **de presencia y contrato, no de comportamiento** |
-| **Vistas** | `apps/web/src/views/*.js` (14) | ❌ **Ninguna** | Ninguna prueba las ejecuta |
+| **Vistas** | `apps/web/src/views/*.js` (15) | ❌ **Ninguna** | Ninguna prueba las ejecuta |
 | **`lib/dom.js`, `state.js`, `platform.js`** | | ❌ **Ninguna directa** | Ni siquiera el escapado, que es un control de seguridad |
 | `server.mjs` | | **Media** | Sin prueba unitaria; sí verificación en CI |
 | `node-store.mjs` | | **Baja** | Se ejercita indirectamente por la CLI en CI |
@@ -284,7 +284,7 @@ Reconstruidos a partir de lo que CI exige; el repositorio no los enuncia en un d
 
 Para que un cambio entre a `main`:
 
-1. Las 153 pruebas pasan en Ubuntu (Node 20 y 22) y Windows (Node 22).
+1. Las 158 pruebas pasan localmente; CI las ejecuta en Ubuntu (Node 20 y 22) y Windows (Node 22).
 2. Los cinco gates de sincronía documental pasan.
 3. `validate-rules.mjs` pasa.
 4. El build completo funciona **y es reproducible**.

@@ -12,6 +12,18 @@ const ACTION_LABEL = {
   'obligation.deleted': 'Obligación eliminada',
   'period.closed': 'Período cerrado',
   'period.reopened': 'Período reabierto',
+  'governance.audit-schedule.saved': 'Frecuencias de auditoría actualizadas',
+  'governance.control.added': 'Control registrado',
+  'governance.risk.added': 'Riesgo registrado',
+  'governance.process.requested': 'Proceso crítico solicitado',
+  'governance.process.validated': 'Proceso crítico validado',
+  'governance.process.approved': 'Proceso crítico aprobado',
+  'governance.process.executed': 'Proceso crítico ejecutado',
+  'governance.process.recorded': 'Proceso crítico contabilizado',
+  'governance.process.reconciled': 'Proceso crítico conciliado',
+  'governance.process.audited': 'Proceso crítico auditado',
+  'governance.concern.reported': 'Denuncia preservada',
+  'governance.concern.updated': 'Investigación actualizada',
   'backup.created': 'Respaldo creado',
   'backup.imported': 'Respaldo importado'
 };
@@ -22,6 +34,9 @@ const TONE = {
   'period.reopened': 'tag--warn',
   'backup.imported': 'tag--warn',
   'period.closed': 'tag--ok',
+  'governance.process.audited': 'tag--ok',
+  'governance.control.added': 'tag--ok',
+  'governance.concern.reported': 'tag--warn',
   'backup.created': 'tag--ok'
 };
 

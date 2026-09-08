@@ -16,6 +16,14 @@ export {
 } from './workspace.mjs';
 export { createMemoryStore, createWebStore } from './store.mjs';
 export { createNodeStore } from './node-store.mjs';
+export {
+  GOVERNANCE_ROLES,
+  PROCESS_STEPS,
+  DEFAULT_RACI,
+  CONTROL_NATURES,
+  CONTROL_EXECUTIONS,
+  DEFAULT_AUDIT_SCHEDULE
+} from './governance.mjs';
 
 /**
  * Espacio de trabajo respaldado en disco.

@@ -91,16 +91,16 @@ decisión tomada, no una tarea pendiente.
 | **Recomendación** | Borrar `apps/android/package-lock.json` |
 | **Prioridad** | **P1** — es un `git rm` |
 
-### H-05 · Un respaldo del almacén de disco no copia tres entidades como archivo
+### H-05 · ✅ Resuelto en v1.5: el respaldo de disco copia todas las entidades
 
 | | |
 | --- | --- |
 | **Ubicación** | `packages/company-operations/node-store.mjs` · `FILES` y `saveSnapshot` |
-| **Evidencia** | `FILES` mapea 7 claves. Las tres entidades de la versión 1.4.0 —`equity-movements`, `annual-closes`, `municipal-profile`— **no están**. `saveSnapshot` itera `Object.keys(FILES)` para copiar los archivos sueltos |
+| **Evidencia** | `FILES` incluye capital, cierres, perfil municipal y las cinco entidades de gobierno v1.5; `saveSnapshot` copia cada archivo además de `snapshot.json` |
 | **Severidad** | 🟨 Media · **Impacto**: el respaldo del almacén de disco queda incompleto **como copia de archivos** · **Probabilidad**: Baja — sólo afecta a la CLI |
 | **Atenuante importante** | El `snapshot.json` interior **sí** lleva los datos, porque sale de `exportAll()`. No hay pérdida real; hay una asimetría que engaña al mirar el directorio |
-| **Recomendación** | Añadir las tres claves a `FILES` |
-| **Prioridad** | **P2** |
+| **Recomendación** | Mantener una prueba de cobertura para nuevas claves persistidas |
+| **Prioridad** | **Resuelto** |
 
 ### H-06 · `append` en el almacén web reescribe la colección completa
 
@@ -145,15 +145,15 @@ decisión tomada, no una tarea pendiente.
 | **Recomendación** | Dos pruebas al lado de las que ya existen |
 | **Prioridad** | **P2** |
 
-### H-10 · Nada garantiza que las dos `version` coincidan
+### H-10 · ✅ Resuelto en v1.5: manifests y lockfile sincronizados
 
 | | |
 | --- | --- |
 | **Ubicación** | `package.json` y `apps/contador-desktop/src-tauri/tauri.conf.json` |
-| **Evidencia** | Hoy ambas dicen `1.4.0` — comprobado. **Ningún workflow menciona `tauri.conf`**: se buscó y no hay coincidencias |
+| **Evidencia** | `tests/webapp.test.mjs` compara la versión 1.5.0 de raíz con Tauri, Cargo, la app, Android, su lockfile y el package del shell de escritorio |
 | **Severidad** | 🟨 Media · **Impacto**: instaladores rotulados con una versión distinta de la que dice la documentación · **Probabilidad**: Media en el próximo bump |
-| **Recomendación** | Un paso de tres líneas en `ci.yml` que compare ambas |
-| **Prioridad** | **P2** |
+| **Recomendación** | Conservar el gate al preparar cada release |
+| **Prioridad** | **Resuelto** |
 
 ### H-11 · Cerrar un período son dos escrituras sin transacción
 

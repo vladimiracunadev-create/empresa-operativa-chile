@@ -22,12 +22,13 @@ import impuestos from './views/impuestos.js';
 import obligaciones from './views/obligaciones.js';
 import cierre from './views/cierre.js';
 import auditoria from './views/auditoria.js';
+import controlInterno from './views/control-interno.js';
 import datos from './views/datos.js';
 import academia from './views/academia.js';
 import glosario from './views/glosario.js';
 import ayuda from './views/ayuda.js';
 
-export const APP_VERSION = '1.4.0';
+export const APP_VERSION = '1.5.0';
 
 const NAV = [
   // "Empezar aquí" va primero y solo: es la única pantalla ordenada por tiempo
@@ -35,7 +36,7 @@ const NAV = [
   { group: 'Empezar', views: [empezar] },
   { group: 'Operar', views: [panel, operaciones, impuestos, obligaciones, cierre] },
   { group: 'Empresa', views: [constitucion, empresa, capital] },
-  { group: 'Control', views: [auditoria, datos] },
+  { group: 'Control', views: [controlInterno, auditoria, datos] },
   { group: 'Aprender', views: [academia, glosario, ayuda] }
 ];
 

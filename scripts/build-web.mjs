@@ -29,6 +29,7 @@ const CORE = [
   ['accounting-engine/tax-equity.mjs', 'accounting-engine/tax-equity.mjs'],
   ['accounting-engine/municipal-patent.mjs', 'accounting-engine/municipal-patent.mjs'],
   ['company-operations/workspace.mjs', 'company-operations/workspace.mjs'],
+  ['company-operations/governance.mjs', 'company-operations/governance.mjs'],
   ['company-operations/capital.mjs', 'company-operations/capital.mjs'],
   ['company-operations/store.mjs', 'company-operations/store.mjs'],
   ['company-operations/rut.mjs', 'company-operations/rut.mjs'],

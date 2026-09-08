@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Versión](https://img.shields.io/badge/versión_actual-1.4.0-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
+[![Versión](https://img.shields.io/badge/versión_actual-1.5.0-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
 [![Formato](https://img.shields.io/badge/formato-Keep_a_Changelog-7c5cff?style=for-the-badge)](https://keepachangelog.com/es-ES/1.1.0/)
 [![SemVer](https://img.shields.io/badge/versionado-SemVer-2f81f7?style=for-the-badge)](https://semver.org/lang/es/)
 
@@ -14,6 +14,36 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 Versionado según [SemVer](https://semver.org/lang/es/).
+
+## [1.5.0] — 2026-09-07
+
+Empresa Operativa Chile incorpora control interno ejecutable para que una falla técnica,
+financiera o humana deje evidencia y no dependa de una sola persona para ser detectada.
+
+### ✨ Añadido
+
+- **Vista «Control interno»** en Web, Android y Windows: KRI, procesos críticos, catálogo de
+  controles, risk register, RACI, auditoría continua y whistleblowing.
+- **Motor de procesos de siete etapas** con evidencia obligatoria y segregación de funciones que
+  rechaza saltos, roles no habilitados y personas en funciones incompatibles.
+- Gobierno con Board, Management, Finance, Accounting, Treasury, Technology, Security,
+  Compliance, Internal Audit y External Audit.
+- Controles Preventive/Detective/Corrective y Manual/Automated/Hybrid; frecuencias configurables
+  de revisión; y denuncias con independencia, conflicto y escalamiento.
+- Escenario SANDBOX de custodia digital, `docs/CONTROL-INTERNO.md`, parte 16 del currículo y caso
+  capstone de un descalce de CLP 84.000.000.
+
+### 🔁 Cambiado
+
+- El respaldo sube a formato v3 para incluir controles, riesgos, procesos, frecuencias y
+  denuncias; la importación de respaldos v1 y v2 permanece compatible.
+- Manual, HTML, arquitectura, roadmap y documentación principal incorporan la nueva capa sin
+  renombrar el producto ni reemplazar la operación contable existente.
+
+### 🧪 Pruebas
+
+De 153 a **158**. Las pruebas nuevas cubren secuencia y SoD, controles/riesgos/KRI, frecuencias,
+independencia del canal de denuncias y compatibilidad del respaldo v3.
 
 ## [1.4.0] — 2026-08-16
 
@@ -364,4 +394,5 @@ Primera versión distribuible. El proyecto pasa de prototipo con tres interfaces
 - Academia: currículo, 16 laboratorios y casos integrales.
 - Andamiaje de Tauri para Windows.
 
+[1.5.0]: https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/tag/v1.5.0
 [1.0.0]: https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/tag/v1.0.0

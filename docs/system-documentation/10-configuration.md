@@ -61,7 +61,7 @@ al repositorio sin darse cuenta.
 
 | Clave | Valor | Consecuencia |
 | --- | --- | --- |
-| `version` | `1.4.0` | La leen el generador de PDF y las portadas de los documentos |
+| `version` | `1.5.0` | La leen el generador de PDF y las portadas de los documentos |
 | `type` | `module` | Todo el repositorio es ESM. No hay `require` |
 | `private` | `true` | No se publica en npm |
 | `engines.node` | `>=20` | CI prueba en 20 y 22 |
@@ -100,7 +100,7 @@ esquema `https`.
 | Clave | Valor | Consecuencia |
 | --- | --- | --- |
 | `productName` | `Empresa Operativa Chile` | Nombre del ejecutable y del instalador |
-| `version` | `1.4.0` | **Duplicado del `package.json` raíz** — ver más abajo |
+| `version` | `1.5.0` | **Duplicado del `package.json` raíz**, protegido por una prueba |
 | `identifier` | `cl.vladimiracuna.empresaoperativa` | Determina `app_data_dir()`. Cambiarlo **deja los datos existentes huérfanos** |
 | `build.frontendDist` | `../../web/dist` | La interfaz embebida es la misma que la web |
 | `app.withGlobalTauri` | `true` | Expone `globalThis.__TAURI__`, que es como `platform.js` detecta Windows |
@@ -197,7 +197,7 @@ para que las capturas del manual se generen de forma reproducible:
 
 ## La versión, y el único punto donde se puede desincronizar
 
-`1.4.0` aparece en dos archivos que nadie sincroniza automáticamente:
+`1.5.0` se declara en los manifests de raíz, Android, escritorio, Tauri, Cargo y en la interfaz:
 
 | Archivo | Clave | Quién la usa |
 | --- | --- | --- |

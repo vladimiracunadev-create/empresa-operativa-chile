@@ -51,7 +51,7 @@ publica — sin tener que preguntar a nadie.
 | 09 | [APIs e integraciones](09-apis-and-integrations.md) | Se demuestra que no hay red; contratos de datos e interfaces de plataforma | ✅ |
 | 10 | [Configuración](10-configuration.md) | Variables de entorno, manifiestos, CSP, capacidades Tauri | ✅ |
 | 11 | [Seguridad](11-security.md) | Controles presentes y ausentes, superficie real, hallazgos | ✅ |
-| 12 | [Pruebas y calidad](12-testing-and-quality.md) | 13 suites, 153 pruebas, 6 workflows, gates propios | ✅ |
+| 12 | [Pruebas y calidad](12-testing-and-quality.md) | 13 suites, 158 pruebas, 6 workflows, gates propios | ✅ |
 | 13 | [Despliegue y operación](13-deployment-and-operations.md) | Pages, APK, instaladores Windows, release, generación de PDF | ✅ |
 | 14 | [Troubleshooting](14-troubleshooting.md) | Síntoma → causa → diagnóstico → solución → riesgo | ✅ |
 | 15 | [Riesgos y deuda técnica](15-risks-and-technical-debt.md) | Hallazgos clasificados. **Informativo: no se corrigió nada** | ✅ |
@@ -99,11 +99,11 @@ nada. La regla es: cuando dos documentos hablan del mismo tema, manda el de la c
 | Rama analizada | `main` |
 | Commit analizado | `2b0e006ba02c406346f08a23c739c81b89c93b0a` |
 | Fecha del commit | 2026-08-17 |
-| Versión del manifiesto | `1.4.0` (`package.json`) |
+| Versión del manifiesto | `1.5.0` (`package.json`) |
 | Fecha del análisis | 2026-08-27 |
-| Archivos versionados | 262 (`git ls-files`) |
+| Archivos versionados | 330 al incorporar la capa v1.5 |
 | Archivos de código analizados | 72 (`.mjs`, `.js`, `.rs`) — 13.251 líneas |
-| Suites de prueba | 13 · **153 pruebas, todas verdes** |
+| Suites de prueba | 13 · **158 pruebas, todas verdes** |
 | Workflows de CI | 6 |
 | Dependencias de producción | **0** |
 
@@ -138,7 +138,7 @@ No es una lista de intenciones: cada fila se ejecutó y su salida está en
 
 | Comprobación | Resultado |
 | --- | --- |
-| Las 153 pruebas | ✅ `pass 153 · fail 0` en 0,64 s |
+| Las 158 pruebas | ✅ `pass 158 · fail 0` en la verificación v1.5 |
 | Los 5 gates de sincronía documental | ✅ los cinco en verde |
 | `validate-rules.mjs` | ✅ reglas 2026 validadas |
 | Build completo | ✅ 49 archivos, build `630ed69fe514` |

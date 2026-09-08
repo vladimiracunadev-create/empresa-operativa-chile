@@ -1,7 +1,7 @@
 {
   "name": "empresa-operativa-desktop",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.5.0",
   "description": "Shell Tauri 2 que empaqueta apps/web/dist como aplicación de Windows",
   "scripts": {
     "tauri": "tauri",

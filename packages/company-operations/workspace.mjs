@@ -22,6 +22,18 @@ import { calculateTaxEquity, allowsSimplifiedTaxEquity } from '../accounting-eng
 import { calculateMunicipalPatent } from '../accounting-engine/municipal-patent.mjs';
 import { normalizeMunicipality } from '../chile-tax-rules/municipalities.mjs';
 import { loadRules, availableYears } from '../chile-tax-rules/index.mjs';
+import {
+  GOVERNANCE_ROLES,
+  DEFAULT_RACI,
+  DEFAULT_AUDIT_SCHEDULE,
+  WHISTLE_STATUSES,
+  normalizeControl,
+  normalizeRisk,
+  createCriticalProcess,
+  advanceCriticalProcess,
+  processKris,
+  validateAuditSchedule
+} from './governance.mjs';
 
 const isoNow = () => new Date().toISOString();
 const money = n => Math.round(Number(n || 0));
@@ -108,6 +120,11 @@ const KEY = {
   equityMovements: 'equity-movements',
   annualCloses: 'annual-closes',
   municipalProfile: 'municipal-profile',
+  controls: 'controls',
+  risks: 'risk-register',
+  criticalProcesses: 'critical-processes',
+  auditSchedule: 'audit-schedule',
+  whistleblowing: 'whistleblowing',
   audit: 'audit'
 };
 
@@ -137,6 +154,127 @@ export class CompanyWorkspace {
 
   listAudit() {
     return this.store.readAll(KEY.audit);
+  }
+
+  /* ---------------- gobierno y control interno ---------------- */
+
+  getGovernanceModel() {
+    return {
+      roles: GOVERNANCE_ROLES,
+      raci: DEFAULT_RACI,
+      auditSchedule: validateAuditSchedule(this.store.read(KEY.auditSchedule, DEFAULT_AUDIT_SCHEDULE))
+    };
+  }
+
+  saveAuditSchedule(schedule) {
+    const next = validateAuditSchedule(schedule);
+    this.store.write(KEY.auditSchedule, next);
+    this.audit('governance.audit-schedule.saved', next);
+    return next;
+  }
+
+  listControls() {
+    return this.store.read(KEY.controls, []);
+  }
+
+  addControl(control) {
+    const row = { id: control.id || uuid(), ...normalizeControl(control), createdAt: isoNow() };
+    this.store.write(KEY.controls, [...this.listControls(), row]);
+    this.audit('governance.control.added', { id: row.id, nature: row.nature, execution: row.execution });
+    return row;
+  }
+
+  listRisks() {
+    return this.store.read(KEY.risks, []);
+  }
+
+  addRisk(risk) {
+    const row = { id: risk.id || uuid(), ...normalizeRisk(risk), createdAt: isoNow() };
+    this.store.write(KEY.risks, [...this.listRisks(), row]);
+    this.audit('governance.risk.added', { id: row.id, score: row.probability * row.impact, owner: row.owner });
+    return row;
+  }
+
+  listCriticalProcesses() {
+    return this.store.read(KEY.criticalProcesses, []);
+  }
+
+  addCriticalProcess(input) {
+    const row = createCriticalProcess(input, { id: input.process_id || uuid(), now: isoNow() });
+    if (this.listCriticalProcesses().some(existing => existing.process_id === row.process_id)) throw new Error('Ya existe un proceso con ese process_id');
+    this.store.write(KEY.criticalProcesses, [...this.listCriticalProcesses(), row]);
+    this.audit('governance.process.requested', { process_id: row.process_id, value: row.value, evidence: row.evidence[0].reference });
+    return row;
+  }
+
+  advanceCriticalProcess(processId, transition) {
+    const rows = this.listCriticalProcesses();
+    const index = rows.findIndex(row => row.process_id === processId);
+    if (index < 0) throw new Error('Proceso crítico no encontrado');
+    const next = advanceCriticalProcess(rows[index], transition, isoNow());
+    rows[index] = next;
+    this.store.write(KEY.criticalProcesses, rows);
+    const evidence = next.evidence.at(-1);
+    this.audit(`governance.process.${next.status}`, { process_id: next.process_id, actor: evidence.actor, role: evidence.role, evidence: evidence.reference });
+    return next;
+  }
+
+  getKris(options) {
+    return processKris(this.listCriticalProcesses(), this.listControls(), options);
+  }
+
+  listWhistleblowingReports() {
+    return this.store.read(KEY.whistleblowing, []);
+  }
+
+  reportConcern(report) {
+    const description = String(report.description || '').trim();
+    const evidence = String(report.evidence || '').trim();
+    if (!description) throw new Error('La denuncia debe describir el hecho');
+    if (!evidence) throw new Error('La denuncia debe indicar cómo preservar su evidencia');
+    const now = isoNow();
+    const row = {
+      id: report.id || uuid(),
+      reporter: String(report.reporter || 'anonymous').trim() || 'anonymous',
+      description,
+      evidence,
+      status: 'reported',
+      investigator: null,
+      conflictOfInterest: null,
+      escalation: '',
+      createdAt: now,
+      updatedAt: now
+    };
+    this.store.write(KEY.whistleblowing, [...this.listWhistleblowingReports(), row]);
+    this.audit('governance.concern.reported', { id: row.id, evidencePreserved: true });
+    return row;
+  }
+
+  updateConcern(id, patch) {
+    const rows = this.listWhistleblowingReports();
+    const index = rows.findIndex(row => row.id === id);
+    if (index < 0) throw new Error('Denuncia no encontrada');
+    const current = rows[index];
+    const status = patch.status || current.status;
+    if (!WHISTLE_STATUSES.includes(status)) throw new Error('Estado de denuncia no soportado');
+    const investigator = String(patch.investigator ?? current.investigator ?? '').trim() || null;
+    if (['investigation', 'escalated', 'resolved'].includes(status) && !investigator) throw new Error('La investigación exige una persona independiente asignada');
+    if (investigator && investigator === current.reporter && current.reporter !== 'anonymous') throw new Error('Conflicto de interés: quien reporta no puede investigarse a sí mismo');
+    if (['investigation', 'escalated', 'resolved'].includes(status) && typeof patch.conflictOfInterest !== 'boolean' && typeof current.conflictOfInterest !== 'boolean') {
+      throw new Error('Antes de investigar debe declararse si existe conflicto de interés');
+    }
+    const next = {
+      ...current,
+      status,
+      investigator,
+      conflictOfInterest: typeof patch.conflictOfInterest === 'boolean' ? patch.conflictOfInterest : current.conflictOfInterest,
+      escalation: String(patch.escalation ?? current.escalation ?? '').trim(),
+      updatedAt: isoNow()
+    };
+    rows[index] = next;
+    this.store.write(KEY.whistleblowing, rows);
+    this.audit('governance.concern.updated', { id, status, investigator, conflictOfInterest: next.conflictOfInterest });
+    return next;
   }
 
   /* ---------------- ficha de empresa ---------------- */
@@ -904,9 +1042,9 @@ export class CompanyWorkspace {
   exportAll() {
     return {
       format: 'empresa-operativa-chile/backup',
-      // v2 agrega capital, movimientos patrimoniales, cierres anuales y ficha
-      // municipal. Los respaldos v1 se siguen importando (ver `importAll`).
-      formatVersion: 2,
+      // v3 agrega gobierno, controles, riesgos, procesos críticos y denuncias.
+      // Los respaldos v1/v2 se siguen importando (ver `importAll`).
+      formatVersion: 3,
       mode: this.mode,
       exportedAt: isoNow(),
       company: this.getCompany(),
@@ -918,6 +1056,11 @@ export class CompanyWorkspace {
       equityMovements: this.listEquityMovements(),
       annualCloses: this.listAnnualCloses(),
       municipalProfile: this.store.read(KEY.municipalProfile, null),
+      controls: this.listControls(),
+      risks: this.listRisks(),
+      criticalProcesses: this.listCriticalProcesses(),
+      auditSchedule: this.getGovernanceModel().auditSchedule,
+      whistleblowing: this.listWhistleblowingReports(),
       audit: this.listAudit()
     };
   }
@@ -931,7 +1074,7 @@ export class CompanyWorkspace {
     // Un respaldo v1 se importa igual: los campos nuevos simplemente no vienen y
     // quedan vacíos. Romper los respaldos que la gente ya tiene guardados sería
     // peor que cualquier ventaja de limpiar el formato.
-    if (![1, 2].includes(payload.formatVersion)) throw new Error(`Versión de respaldo no soportada: ${payload.formatVersion}`);
+    if (![1, 2, 3].includes(payload.formatVersion)) throw new Error(`Versión de respaldo no soportada: ${payload.formatVersion}`);
 
     if (replace) {
       this.store.write(KEY.company, payload.company ?? null);
@@ -943,6 +1086,11 @@ export class CompanyWorkspace {
       this.store.write(KEY.equityMovements, payload.equityMovements ?? []);
       this.store.write(KEY.annualCloses, payload.annualCloses ?? []);
       this.store.write(KEY.municipalProfile, payload.municipalProfile ?? null);
+      this.store.write(KEY.controls, payload.controls ?? []);
+      this.store.write(KEY.risks, payload.risks ?? []);
+      this.store.write(KEY.criticalProcesses, payload.criticalProcesses ?? []);
+      this.store.write(KEY.auditSchedule, payload.auditSchedule ?? DEFAULT_AUDIT_SCHEDULE);
+      this.store.write(KEY.whistleblowing, payload.whistleblowing ?? []);
     } else {
       const byId = new Map(this.listTransactions().map(t => [t.id, t]));
       for (const t of payload.transactions ?? []) byId.set(t.id, t);
@@ -957,6 +1105,16 @@ export class CompanyWorkspace {
       const closes = new Map(this.listAnnualCloses().map(c => [c.fiscalYear, c]));
       for (const c of payload.annualCloses ?? []) if (!closes.has(c.fiscalYear)) closes.set(c.fiscalYear, c);
       this.store.write(KEY.annualCloses, [...closes.values()].sort((a, b) => a.fiscalYear - b.fiscalYear));
+
+      const mergeById = (current, incoming, key = 'id') => {
+        const rows = new Map(current.map(row => [row[key], row]));
+        for (const row of incoming ?? []) rows.set(row[key], row);
+        return [...rows.values()];
+      };
+      this.store.write(KEY.controls, mergeById(this.listControls(), payload.controls));
+      this.store.write(KEY.risks, mergeById(this.listRisks(), payload.risks));
+      this.store.write(KEY.criticalProcesses, mergeById(this.listCriticalProcesses(), payload.criticalProcesses, 'process_id'));
+      this.store.write(KEY.whistleblowing, mergeById(this.listWhistleblowingReports(), payload.whistleblowing));
     }
     this.audit('backup.imported', { replace, transactions: (payload.transactions ?? []).length, sourceMode: payload.mode ?? null });
     return { imported: true, replace, transactions: this.listTransactions().length };
@@ -1024,6 +1182,15 @@ export class CompanyWorkspace {
         level: 'warn',
         code: 'annual-close.missing',
         message: `Sin el cierre anual ${currentYear - 1} no hay capital propio tributario con que determinar la base de la patente ${currentYear}.`
+      });
+    }
+    const kris = this.getKris();
+    const visibleKris = Object.values(kris).reduce((sum, count) => sum + count, 0);
+    if (visibleKris > 0) {
+      issues.push({
+        level: kris.unapprovedTransfers || kris.failedControls ? 'error' : 'warn',
+        code: 'governance.kri',
+        message: `${visibleKris} señal(es) de riesgo de control interno requieren revisión en la pestaña Control interno.`
       });
     }
 
@@ -1137,6 +1304,46 @@ export function seedSandboxWorkspace(ws) {
   ws.upsertObligation({ type: 'F29', period: '2026-08', dueDate: '2026-09-21', status: 'pending' });
   ws.upsertObligation({ type: 'Patente municipal (1.ª cuota)', period: '2026', dueDate: '2026-07-31', status: 'pending' });
   ws.upsertObligation({ type: 'Declaración de capital propio a la municipalidad', period: '2027', dueDate: '2027-05-31', status: 'pending' });
+
+  // Control interno: el sandbox parte con un proceso de custodia incompleto y
+  // un riesgo asociado para que los KRI muestren el descalce en vez de un
+  // tablero artificialmente perfecto.
+  ws.addControl({
+    name: 'Conciliación diaria de saldos custodiados',
+    objective: 'Detectar diferencias entre depósitos de clientes, libro auxiliar y custodios externos',
+    owner: 'Finance',
+    nature: 'Detective',
+    execution: 'Hybrid',
+    frequencyDays: 1,
+    evidence: 'Reporte de tres vías firmado y excepciones trazadas',
+    status: 'effective'
+  });
+  ws.addRisk({
+    risk: 'Descalce entre obligaciones con clientes y activos bajo custodia',
+    probability: 3,
+    impact: 5,
+    owner: 'Management',
+    control: 'Conciliación diaria de saldos custodiados',
+    residualRisk: 'Movimientos fuera de ventana o contrapartes no identificadas',
+    kri: 'Transacciones sin conciliar > 0 al cierre diario',
+    status: 'monitoring'
+  });
+  const custody = ws.addCriticalProcess({
+    process_id: 'CUSTODY-DEMO-001',
+    type: 'Depósito de cliente a custodio externo',
+    requester: 'Operaciones Demo',
+    requesterRole: 'Treasury',
+    value: 2500000,
+    currency: 'CLP',
+    evidence: 'Ticket DEP-001 + comprobante cliente',
+    counterparty: 'Exchange Demo',
+    subsidiaryLedger: 'Clientes / custodia',
+    asset: 'USDC',
+    category: 'digital_custody'
+  });
+  ws.advanceCriticalProcess(custody.process_id, { actor: 'Compliance Demo', role: 'Compliance', evidence: 'Validación KYC-001' });
+  ws.advanceCriticalProcess(custody.process_id, { actor: 'Gerencia Demo', role: 'Management', evidence: 'Aprobación APR-001' });
+  ws.advanceCriticalProcess(custody.process_id, { actor: 'Tesorería Demo', role: 'Treasury', evidence: 'Hash TX-DEMO-001' });
 
   return ws;
 }

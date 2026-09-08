@@ -27,6 +27,7 @@ empresa-operativa-chile/
 │   ├── accounting-engine/          IVA, PPM, honorarios, patente, IDPC, F29, asientos
 │   └── company-operations/
 │       ├── workspace.mjs           ← motor operativo (sin node:*)
+│       ├── governance.mjs          ← RACI, SoD, controles, riesgos y KRI
 │       ├── store.mjs               ← almacenes de memoria y navegador
 │       ├── node-store.mjs          ← almacén de disco (sólo Node)
 │       ├── rut.mjs                 ← RUT y dígito verificador
@@ -36,7 +37,7 @@ empresa-operativa-chile/
 │   ├── web/src/                    ÚNICA interfaz del producto
 │   │   ├── app.js                  router y shell
 │   │   ├── lib/                    dom, estado, plataforma
-│   │   └── views/                  10 vistas
+│   │   └── views/                  15 vistas
 │   ├── empresa-operativa/          servidor local estático
 │   ├── contador-desktop/           shell Tauri 2 (Windows)
 │   ├── android/                    envoltorio Capacitor
@@ -44,7 +45,7 @@ empresa-operativa-chile/
 │
 ├── scripts/                        build-rules · build-icons · build-web ·
 │                                   build-all · verify-apk · validate-rules
-├── tests/                          50 pruebas (runner nativo de Node)
+├── tests/                          158 pruebas (runner nativo de Node)
 ├── docs/                           documentación y runbooks
 └── curriculum/ labs/ cases/        material de aprendizaje
 ```
@@ -132,6 +133,19 @@ El producto se niega a hacer cosas que serían más cómodas:
 | Reabrir sin motivo escrito | La trazabilidad importa más que la inmutabilidad absoluta. |
 | Borrar una línea de la bitácora | No existe la operación. Una bitácora editable no es evidencia. |
 | Decir "todo en orden" con evidencias faltantes | El objetivo es detectar el hueco, no tranquilizar. |
+
+## 8️⃣ Decisión 8 — SoD en el motor, no sólo en el organigrama
+
+**Problema.** Una matriz de funciones escrita en un documento no impide que la misma persona
+solicite, apruebe, ejecute y concilie una operación.
+
+**Decisión.** `governance.mjs` declara las funciones habilitadas por etapa y las combinaciones
+incompatibles. `CompanyWorkspace.advanceCriticalProcess()` sólo acepta la etapa siguiente, una
+función autorizada, una persona compatible y una referencia de evidencia.
+
+**Consecuencia.** Web, Android, Windows y CLI comparten las mismas restricciones. Los procesos,
+controles, riesgos, frecuencias y denuncias forman parte del respaldo portable v3, que conserva
+compatibilidad de importación con v1 y v2.
 
 ## 🔀 Flujo de datos de una operación
 

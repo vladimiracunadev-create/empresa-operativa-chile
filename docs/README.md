@@ -2,8 +2,8 @@
 
 <div align="center">
 
-[![Manual](https://img.shields.io/badge/📘_manual-17_capítulos-e8590c?style=for-the-badge)](MANUAL.md)
-[![PDF](https://img.shields.io/badge/📕_PDF-28_páginas-b45309?style=for-the-badge)](MANUAL.pdf)
+[![Manual](https://img.shields.io/badge/📘_manual-21_capítulos-e8590c?style=for-the-badge)](MANUAL.md)
+[![PDF](https://img.shields.io/badge/📕_PDF-37_páginas-b45309?style=for-the-badge)](MANUAL.pdf)
 [![Fuentes](https://img.shields.io/badge/fuentes-oficiales_2026-2e8b57?style=for-the-badge)](SOURCES-2026.md)
 
 [🏠 Inicio](../README.md) · [📘 Manual](MANUAL.md) · [🏗️ Arquitectura](ARCHITECTURE.md) · [🗺️ Roadmap](ROADMAP.md)
@@ -25,6 +25,7 @@
 | [`ATAJOS-DE-TECLADO.md`](ATAJOS-DE-TECLADO.md) | Para moverte con el teclado, sobre todo en la versión de Windows |
 | [`ACCOUNTING-POLICIES.md`](ACCOUNTING-POLICIES.md) | Para entender los criterios contables del caso guía |
 | [`SOURCES-2026.md`](SOURCES-2026.md) | Para verificar cualquier tasa o plazo contra su fuente |
+| [`CONTROL-INTERNO.md`](CONTROL-INTERNO.md) | Para diseñar gobierno, RACI, SoD, controles, riesgos, KRI, auditoría y custodia |
 
 ## Para entender el producto
 

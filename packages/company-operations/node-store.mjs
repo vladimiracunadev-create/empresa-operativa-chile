@@ -23,6 +23,14 @@ const FILES = {
   obligations: 'obligations.json',
   'closed-periods': 'closed-periods.json',
   'period-closes': 'period-closes.json',
+  'equity-movements': 'equity-movements.json',
+  'annual-closes': 'annual-closes.json',
+  'municipal-profile': 'municipal-profile.json',
+  controls: 'controls.json',
+  'risk-register': 'risk-register.json',
+  'critical-processes': 'critical-processes.json',
+  'audit-schedule': 'audit-schedule.json',
+  whistleblowing: 'whistleblowing.json',
   audit: 'audit.ndjson'
 };
 

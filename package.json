@@ -1,6 +1,6 @@
 {
   "name": "empresa-operativa-chile",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "private": true,
   "type": "module",
   "description": "Aplicación local-first para crear, operar y controlar una empresa chilena a través del tiempo, con contabilidad y tributación explicables.",

@@ -283,6 +283,9 @@ code, kbd { font-family: var(--mono); font-size: 0.86em; }
 
 .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
 .grid--2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.governance-kpis { grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); }
+.control-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 14px; padding: 13px 0; border-top: 1px solid var(--border); align-items: start; }
+.control-row:first-of-type { border-top: 0; }
 .stack { display: grid; gap: 14px; }
 
 /* --------------------------------------------------------------- KPIs ---- */
@@ -769,6 +772,7 @@ kbd {
   h1 { font-size: 1.32rem; }
   .kpi__value { font-size: 1.28rem; }
   .step__form { grid-template-columns: 1fr; }
+  .control-row { grid-template-columns: 1fr; }
   .tablewrap { margin: 0 -14px; padding: 0 14px; }
   .toasts { left: 12px; right: 12px; bottom: 78px; max-width: none; }
 }

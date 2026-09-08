@@ -63,6 +63,13 @@
     "h": 900
   },
   {
+    "name": "control-interno",
+    "view": "control-interno",
+    "alt": "Gobernanza y control interno con KRI, procesos críticos, controles, riesgos, RACI y auditoría continua",
+    "w": 1440,
+    "h": 1500
+  },
+  {
     "name": "datos",
     "view": "datos",
     "alt": "Exportación, importación y respaldos",
