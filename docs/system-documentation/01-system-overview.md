@@ -67,7 +67,7 @@ distintos, cada uno con su momento, su fuente legal y su evidencia.
 | **Auditoría** | Bitácora *append-only* de todo lo que cambió | `auditoria.js` |
 | **Datos** | Exportación, importación, respaldos y CSV | `datos.js` |
 | **Academia** | Explicaciones ancladas al mismo motor que calcula | `academia.js` |
-| **Glosario** | 54 términos, con «no confundir con» | `glosario.js` |
+| **Glosario** | 76 términos, con «no confundir con» | `glosario.js` |
 | **Ayuda** | Los manuales dentro de la app, sin conexión, más los 12 atajos | `ayuda.js` |
 
 Catorce vistas en total. Todas se registran en `NAV`, dentro de `apps/web/src/app.js`, y una prueba

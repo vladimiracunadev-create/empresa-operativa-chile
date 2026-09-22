@@ -231,7 +231,7 @@ Salida real obtenida durante este análisis, en Windows 11 con Node v24.11.1 y p
 
 ```text
 Reglas embebidas sincronizadas (2026).
-Glosario sincronizado (54 términos).
+Glosario sincronizado (76 términos).
 Guía sincronizada (14 etapas, 2 diagramas).
 Atajos sincronizados (12).
 Presentación válida: 8 diapositivas, 28 minutos.

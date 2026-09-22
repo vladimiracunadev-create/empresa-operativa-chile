@@ -193,12 +193,38 @@ test('las frecuencias de auditoría son configurables pero siempre positivas', (
 
 test('whistleblowing preserva evidencia y exige investigación independiente', () => {
   const w = ws();
-  const report = w.reportConcern({ reporter: 'Ana', description: 'Aprobación fuera de política', evidence: 'Hash EV-1 bajo custodia de Compliance' });
+  const report = w.reportConcern({ reporter: 'Ana', description: 'Aprobación fuera de política', evidence: 'Hash EV-1', evidenceCustodian: 'Compliance', retaliationRisk: 'medium' });
   assert.throws(() => w.updateConcern(report.id, { status: 'investigation', investigator: 'Ana', conflictOfInterest: false }), /Conflicto de interés/);
   assert.throws(() => w.updateConcern(report.id, { status: 'investigation', investigator: 'Bruno' }), /declararse/);
-  const investigated = w.updateConcern(report.id, { status: 'investigation', investigator: 'Bruno', conflictOfInterest: false, escalation: 'Internal Audit' });
+  const investigated = w.updateConcern(report.id, {
+    status: 'investigation', investigator: 'Bruno', conflictOfInterest: false, escalation: 'Internal Audit',
+    establishedFacts: 'La aprobación ocurrió después de la ejecución', hypotheses: 'Error de flujo o excepción no autorizada',
+    missingEvidence: 'Acta de excepción y log de permisos', note: 'Se separaron hechos de hipótesis'
+  });
   assert.equal(investigated.investigator, 'Bruno');
   assert.equal(investigated.evidence, report.evidence);
+  assert.equal(investigated.history.length, 2);
+  assert.throws(() => w.updateConcern(report.id, { status: 'resolved', investigator: 'Bruno', decisionMaker: 'Bruno' }), /no puede decidir/);
+  assert.throws(() => w.updateConcern(report.id, { status: 'resolved', investigator: 'Bruno', decisionMaker: 'Carla', conclusion: 'Excepción no autorizada' }), /remediación/);
+  const resolved = w.updateConcern(report.id, {
+    status: 'resolved', investigator: 'Bruno', decisionMaker: 'Carla', establishedFacts: investigated.establishedFacts,
+    conclusion: 'Excepción no autorizada, sin atribuir intención', remediation: 'Bloquear ejecución previa a aprobación',
+    verification: 'Muestra de 30 operaciones sin saltos', reviewChannel: 'Comité de Auditoría', note: 'Cierre revisable'
+  });
+  assert.equal(resolved.status, 'resolved');
+  assert.equal(w.getKris().openConcerns, 0);
+});
+
+test('los KRI muestran casos abiertos y remediaciones vencidas sin declarar culpabilidad', () => {
+  const w = ws();
+  const report = w.reportConcern({ description: 'Alerta sin respuesta', evidence: 'EV-2' });
+  w.updateConcern(report.id, {
+    status: 'investigation', investigator: 'Inés', conflictOfInterest: false,
+    remediationDueDate: '2026-01-01', hypotheses: 'Control fallido', note: 'Investigación abierta'
+  });
+  const kris = w.getKris({ now: new Date('2026-09-22T12:00:00Z') });
+  assert.equal(kris.openConcerns, 1);
+  assert.equal(kris.overdueRemediations, 1);
 });
 
 test('el respaldo v3 conserva la capa de gobierno y sigue aceptando v2', () => {

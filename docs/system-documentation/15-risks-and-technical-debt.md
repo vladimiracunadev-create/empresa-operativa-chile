@@ -76,7 +76,7 @@ decisión tomada, no una tarea pendiente.
 | **Ubicación** | `docs/ARCHITECTURE.md:39` y `:47` |
 | **Evidencia** | Dice `views/ 10 vistas` y `tests/ 50 pruebas`. **Reales, contadas: 14 vistas y 153 pruebas** |
 | **Severidad** | 🟨 Media · **Impacto**: el documento de arquitectura es lo primero que lee alguien nuevo, y empieza desconfiando · **Probabilidad**: **ya ocurrió** |
-| **Contexto** | El `README.md` raíz **sí está al día** (153 pruebas, 54 términos, 12 atajos, 14 etapas, 8 diapositivas). El drift está localizado en un archivo |
+| **Contexto** | El `README.md` raíz **sí está al día** (159 pruebas, 76 términos, 12 atajos, 14 etapas, 8 diapositivas). El drift está localizado en un archivo |
 | **Recomendación** | Corregir las dos cifras. Mejor aún: generarlas, como ya se hace con el glosario, la guía y los atajos — el repositorio tiene el patrón resuelto y no lo aplicó aquí |
 | **Prioridad** | **P1** — cuesta dos líneas |
 
@@ -195,7 +195,7 @@ decisión tomada, no una tarea pendiente.
 | **Tensión de diseño** | Purgar la bitácora contradice su propósito. Particionarla por año, no |
 | **Prioridad** | **P2**, junto con H-06 |
 
-### H-15 · `workspace.mjs` concentra 1.142 líneas y toda la lógica de negocio
+### H-15 · `workspace.mjs` concentra 1.388 líneas y toda la lógica de negocio
 
 | | |
 | --- | --- |

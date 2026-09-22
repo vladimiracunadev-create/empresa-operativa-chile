@@ -246,7 +246,7 @@ parts:
     title: "Gobernanza, control interno y auditoría continua"
     classes:
       - id: C65
-        title: "Gobierno corporativo y RACI"
+        title: "Gobierno corporativo, integridad y RACI"
         duration_minutes: 90
       - id: C66
         title: "Segregación de funciones"
@@ -255,11 +255,11 @@ parts:
         title: "Diseño y clasificación de controles"
         duration_minutes: 90
       - id: C68
-        title: "Libros auxiliares, conciliación y custodia"
+        title: "Libros auxiliares, conciliación, documentos y custodia"
         duration_minutes: 90
       - id: C69
-        title: "Risk register, KRI y auditoría continua"
+        title: "Risk register, KRI, excepciones y auditoría continua"
         duration_minutes: 90
       - id: C70
-        title: "Whistleblowing e investigación independiente"
+        title: "Whistleblowing, investigación independiente y remediación"
         duration_minutes: 90

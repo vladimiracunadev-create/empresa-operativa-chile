@@ -100,7 +100,7 @@ docs/              Documentación de producto + esta serie
 ```
 
 **La forma más rápida de orientarse:** casi todo lo importante está en dos archivos.
-`packages/company-operations/workspace.mjs` (1.142 líneas) tiene toda la lógica de negocio, y
+`packages/company-operations/workspace.mjs` (1.388 líneas) tiene toda la lógica de negocio, y
 `packages/accounting-engine/index.mjs` todo el cálculo. Las cuatro superficies son envoltorios
 delgados sobre eso.
 

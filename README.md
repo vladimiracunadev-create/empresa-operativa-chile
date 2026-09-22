@@ -17,7 +17,7 @@ Windows y navegador. Tus datos no salen del dispositivo.**
 
 [![Versión](https://img.shields.io/badge/versión-1.5.0-e8590c?style=for-the-badge)](CHANGELOG.md)
 [![Plataformas](https://img.shields.io/badge/plataformas-Android_·_Windows_·_Web-7c5cff?style=for-the-badge)](#-descargas)
-[![Pruebas](https://img.shields.io/badge/pruebas-158_verdes-2e8b57?style=for-the-badge)](tests/)
+[![Pruebas](https://img.shields.io/badge/pruebas-159_verdes-2e8b57?style=for-the-badge)](tests/)
 [![Dependencias](https://img.shields.io/badge/dependencias_de_producción-0-2f81f7?style=for-the-badge)](package.json)
 [![Telemetría](https://img.shields.io/badge/telemetría-cero-3fb950?style=for-the-badge)](#-privacidad-que-se-puede-comprobar)
 [![Reglas](https://img.shields.io/badge/reglas-año_comercial_2026-8957e5?style=for-the-badge)](docs/SOURCES-2026.md)
@@ -42,6 +42,7 @@ Windows y navegador. Tus datos no salen del dispositivo.**
 [📋 Runbook mensual](docs/RUNBOOK-MENSUAL.md) ·
 [🏗️ Arquitectura](docs/ARCHITECTURE.md) ·
 [🔗 Fuentes oficiales](docs/SOURCES-2026.md) ·
+[🧭 Integridad e investigación](docs/INTEGRIDAD-INVESTIGACION.md) ·
 [📖 Glosario](docs/GLOSSARY.md) ·
 [📓 Changelog](CHANGELOG.md) ·
 [🗺️ Roadmap](docs/ROADMAP.md) ·
@@ -52,7 +53,7 @@ Windows y navegador. Tus datos no salen del dispositivo.**
 
 | 🖥️ Vistas | 🧮 Motor | ✅ Pruebas | 📦 Dependencias | 📱 Plataformas | 📄 Manual |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| **15** | **1** | **158** | **0** | **3** | **HTML + PDF** |
+| **15** | **1** | **159** | **0** | **3** | **HTML + PDF** |
 
 </div>
 
@@ -172,7 +173,7 @@ falla si una lámina se desbordó o si las cifras de arriba dejaron de cuadrar c
 | Patente municipal | ✅ distingue empresa nueva de empresa en funcionamiento, con base legal citada |
 | Tasas municipales por comuna | ⚪ **ninguna viene inventada** — el usuario registra la suya con fuente y fecha |
 | Cierre anual | ✅ snapshot inmutable con la versión de las reglas usadas |
-| Glosario | ✅ 54 términos, fuente única, sincronía comprobada en CI |
+| Glosario | ✅ 76 términos, fuente única, sincronía comprobada en CI |
 | Manuales dentro de la app | ✅ guía ilustrada y manual completos, leíbles **sin conexión** desde la pestaña Ayuda |
 | Ayuda contextual | ✅ al pasar el cursor sobre cualquier término marcado |
 | Atajos de teclado | ✅ 12, con buscador `Ctrl+K` y ayuda en `F1` |
@@ -385,7 +386,7 @@ pnpm start        # build + servidor en http://127.0.0.1:4180
 |---|---|
 | `pnpm build` | Reglas embebidas → iconos → `apps/web/dist` |
 | `pnpm app` | Sirve la app ya construida |
-| `pnpm test` | 158 pruebas con el runner nativo de Node |
+| `pnpm test` | 159 pruebas con el runner nativo de Node |
 | `pnpm check` | Sincronía de reglas + validación + pruebas |
 | `pnpm cli -- ayuda` | Todos los comandos de la CLI |
 | `pnpm desktop:build` | Instaladores de Windows (necesita Rust) |
@@ -414,7 +415,7 @@ arranca y se comprueba que sigue vivo. Un build en verde no prueba que la app es
 
 ## 🧪 Pruebas
 
-158 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
+159 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
 hacen confiable al producto:
 
 - un período cerrado es inmutable **en las dos direcciones** (no se agrega y no se borra);
@@ -431,6 +432,7 @@ hacen confiable al producto:
 - `docs/GLOSSARY.md` no puede desviarse de `packages/glossary/index.mjs`.
 - un proceso crítico no puede saltar etapas ni reutilizar una persona en funciones incompatibles;
 - una investigación exige independencia, conflicto declarado y evidencia preservada;
+- una investigación separa hechos, hipótesis, decisión y remediación, y sólo cierra con verificación;
 - los respaldos v3 conservan controles, riesgos, procesos y denuncias sin romper v1/v2.
 
 ## 🎓 Academia
@@ -440,8 +442,8 @@ las explicaciones usan el mismo motor que opera tu empresa — no textos escrito
 tiempo dejen de coincidir:
 
 - 📚 [`curriculum/`](curriculum/) — 17 partes y 70 clases
-- 🧪 [`labs/`](labs/) — 16 laboratorios
-- 📁 [`cases/`](cases/) — casos integrales
+- 🧪 [`labs/`](labs/) — 17 laboratorios
+- 📁 [`cases/`](cases/) — 4 casos integrales
 - 🎲 [`data/scenarios/`](data/scenarios/) — escenarios sintéticos para la CLI
 
 ## 📚 Documentación
@@ -451,11 +453,13 @@ tiempo dejen de coincidir:
 | 🧭 | [**Empezar aquí**](docs/EMPEZAR-AQUI.md) · [**HTML**](docs/EMPEZAR-AQUI.html) · [**PDF**](docs/EMPEZAR-AQUI.pdf) | **Si nunca has creado una empresa y no sabes por dónde partir.** 14 etapas ilustradas con diagramas y las pantallas reales: qué decidir, qué documento te queda, cómo sabes que terminaste — y qué NO cubre el sistema |
 | 📘 | [**Manual de usuario**](docs/MANUAL.md) · [**HTML**](docs/MANUAL.html) · [**PDF**](docs/MANUAL.pdf) | 21 capítulos, incluida la operación del módulo de control interno |
 | 🛡️ | [Control interno, SoD y auditoría](docs/CONTROL-INTERNO.md) | Gobierno, RACI, procesos, controles, riesgo, KRI, whistleblowing y custodia |
+| 🧭 | [Integridad, fraude e investigación](docs/INTEGRIDAD-INVESTIGACION.md) | Señales defensivas, debido proceso, causa raíz, decisiones y remediación |
+| 📚 | [Bibliografía de integridad](docs/BIBLIOGRAFIA-INTEGRIDAD.md) | Fuentes secundarias y testimoniales con alcance y limitaciones |
 | 📋 | [Runbook mensual](docs/RUNBOOK-MENSUAL.md) | Qué hacer cada mes, en orden |
 | 📆 | [Runbook anual](docs/RUNBOOK-ANUAL.md) | Ciclo anual y Operación Renta |
 | 🌳 | [Árbol de decisión](docs/DECISION-TREE.md) | Cuándo resolverlo solo y cuándo escalar |
 | 📗 | [Políticas contables](docs/ACCOUNTING-POLICIES.md) | Criterios del caso guía |
-| 📖 | [Glosario](docs/GLOSSARY.md) | 54 términos, generado desde el propio sistema |
+| 📖 | [Glosario](docs/GLOSSARY.md) | 76 términos, generado desde el propio sistema |
 | ⌨️ | [Atajos de teclado](docs/ATAJOS-DE-TECLADO.md) | 12 atajos, sobre todo para la versión de Windows |
 | 🎤 | [Presentación](docs/presentacion.md) · [Ver online](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/presentacion.html) · [PDF](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/PRESENTACION.pdf) · [Pauta](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/PAUTA.pdf) | 8 láminas y guion del expositor para presentar el producto en media hora |
 | 💰 | [Capital y patrimonio](docs/accounting/CAPITAL-PATRIMONIO.md) | Las cinco magnitudes que no son sinónimos |

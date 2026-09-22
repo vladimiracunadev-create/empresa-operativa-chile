@@ -55,7 +55,7 @@ export const DEFAULT_AUDIT_SCHEDULE = Object.freeze({
 
 export const RISK_STATUSES = Object.freeze(['open', 'monitoring', 'treated', 'accepted', 'closed']);
 export const CONTROL_STATUSES = Object.freeze(['effective', 'failed', 'remediation']);
-export const WHISTLE_STATUSES = Object.freeze(['reported', 'triage', 'investigation', 'escalated', 'resolved']);
+export const WHISTLE_STATUSES = Object.freeze(['reported', 'triage', 'investigation', 'escalated', 'remediation', 'verification', 'resolved']);
 
 const requiredText = (value, label) => {
   const text = String(value ?? '').trim();
@@ -163,7 +163,9 @@ export function advanceCriticalProcess(process, transition, now) {
   };
 }
 
-export function processKris(processes, controls, { now = new Date(), staleDays = 7 } = {}) {
+export function processKris(processes, controls, concernsOrOptions = [], options = {}) {
+  const concerns = Array.isArray(concernsOrOptions) ? concernsOrOptions : [];
+  const { now = new Date(), staleDays = 7 } = Array.isArray(concernsOrOptions) ? options : concernsOrOptions;
   const staleLimit = now.getTime() - staleDays * 86400000;
   const afterExecution = p => ['executed', 'recorded', 'reconciled', 'audited'].includes(p.status);
   return {
@@ -172,7 +174,9 @@ export function processKris(processes, controls, { now = new Date(), staleDays =
     privilegedActions: processes.filter(p => p.category === 'privileged_action' && p.status !== 'audited').length,
     staleReconciliations: processes.filter(p => p.status === 'reconciled' && new Date(p.updatedAt).getTime() < staleLimit).length,
     unknownCounterparties: processes.filter(p => afterExecution(p) && !p.counterparty).length,
-    failedControls: controls.filter(c => c.status === 'failed').length
+    failedControls: controls.filter(c => c.status === 'failed').length,
+    openConcerns: concerns.filter(c => c.status !== 'resolved').length,
+    overdueRemediations: concerns.filter(c => c.status !== 'resolved' && c.remediationDueDate && new Date(c.remediationDueDate).getTime() < now.getTime()).length
   };
 }
 

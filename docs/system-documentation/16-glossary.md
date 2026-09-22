@@ -20,7 +20,7 @@ tecnicismo, se explica.
 
 ## Términos del dominio — dónde están
 
-Los 54 términos contables, tributarios y municipales —capital social, capital enterado, CPT, F29,
+Los 76 términos contables, tributarios, municipales y de integridad —capital social, capital enterado, CPT, F29,
 remanente de crédito fiscal, patente municipal, UTM, DTE, RCV…— están en
 [`docs/GLOSSARY.md`](../GLOSSARY.md) y dentro de la propia aplicación, en la pestaña **Glosario**,
 con ayuda al pasar el cursor sobre cualquier término.

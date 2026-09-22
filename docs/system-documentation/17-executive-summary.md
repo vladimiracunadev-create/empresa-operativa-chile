@@ -57,7 +57,7 @@ distintas.
 | **Bitácora de auditoría** | Toda mutación queda. **Nada se puede borrar** |
 | **Respaldo portátil** | Se exporta desde el teléfono y se importa en Windows |
 | **Entorno de práctica** | Separado del real. Ninguna ruta de código los mezcla |
-| **Manual y glosario dentro de la app** | 54 términos con ayuda al pasar el cursor, sin conexión |
+| **Manual y glosario dentro de la app** | 76 términos con ayuda al pasar el cursor, sin conexión |
 
 ## Lo que deliberadamente NO hace
 
@@ -81,7 +81,7 @@ Está declarado por el propio producto, y esa franqueza es parte de su propuesta
 | Interfaz | Sin framework, sin bundler |
 | Almacenamiento | En el propio dispositivo. Sin base de datos y sin servidor |
 | Empaquetado | Capacitor (Android) y Tauri 2 (Windows) |
-| Pruebas | Runner nativo de Node — **158 pruebas, sin framework externo** |
+| Pruebas | Runner nativo de Node — **159 pruebas, sin framework externo** |
 | Automatización | 6 procesos de integración continua |
 
 **Cero dependencias de producción** no es una anécdota: significa que no hay una cadena de terceros

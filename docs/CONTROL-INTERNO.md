@@ -108,14 +108,16 @@ La empresa debe probar, por activo y contraparte, que las obligaciones con clien
 
 Cada riesgo registra `risk`, `probability`, `impact`, `owner`, `control`, `residual risk`, `KRI` y `status`. Probabilidad e impacto usan escala 1–5; la prioridad inicial es P×I, pero no reemplaza materialidad ni requisitos regulatorios.
 
-La aplicación calcula seis KRI observables:
+La aplicación calcula ocho KRI observables:
 
 - transacciones ejecutadas sin conciliar;
 - transferencias ejecutadas sin aprobación;
 - acciones privilegiadas no auditadas;
 - conciliaciones antiguas;
 - contrapartes desconocidas;
-- controles fallidos.
+- controles fallidos;
+- casos de integridad abiertos;
+- remediaciones vencidas.
 
 Un KRI no es un control: es una señal para decidir. Cada organización debe fijar umbral, ventana, fuente, dueño y respuesta.
 
@@ -127,5 +129,42 @@ Un KRI no es un control: es una señal para decidir. Cada organización debe fij
 4. Haz avanzar el proceso con personas distintas. El sistema mostrará la única etapa permitida.
 5. Revisa KRI y bitácora. Configura las frecuencias de auditoría.
 6. Usa Whistleblowing para preservar y escalar hechos fuera del flujo normal.
+7. Separa hechos, hipótesis y evidencia faltante; asigna investigador y decisor distintos.
+8. No cierres el caso hasta registrar remediación, prueba de eficacia y vía de revisión.
 
 Los datos permanecen separados entre EMPRESA REAL y SANDBOX y forman parte del respaldo portable v3.
+
+## Integridad tributaria y operaciones que “cuadran”
+
+Documento, banco, asiento y declaración pueden coincidir y aun así faltar sustancia económica. Para compras materiales o de riesgo alto, la prueba defensiva conecta:
+
+```text
+DTE ↔ contrato/orden ↔ entrega o recepción ↔ banco ↔ contabilidad ↔ RCV/F29
+```
+
+Una diferencia, vínculo o documento posterior es una señal para revisar. No convierte automáticamente la operación en fraude ni a una persona en responsable. La investigación debe conservar hipótesis alternativas y buscar evidencia que confirme y contradiga.
+
+## Investigación y debido proceso
+
+La aplicación conserva una cronología append-only del caso y distingue:
+
+- hecho reportado y evidencia original;
+- custodio, confidencialidad y riesgo de represalia;
+- hechos establecidos, hipótesis y evidencia faltante;
+- investigador independiente y persona decisora distinta;
+- conflicto de interés y escalamiento;
+- conclusión, remediación, vencimiento y verificación;
+- vía de revisión antes del cierre definitivo.
+
+El flujo es `hecho → evidencia → hipótesis → contraste → conclusión`, nunca `sospecha → culpable`. La recopilación debe ser necesaria, proporcional, respetar privacidad y limitar el acceso a quienes cumplen una función documentada.
+
+## Causa raíz y cierre
+
+```text
+síntoma → evidencia → correlación → hipótesis → causa raíz
+→ control fallido → responsabilidad funcional → remediación → verificación
+```
+
+Un asiento correctivo o el pago de una diferencia no demuestran que el problema se resolvió. El cierre exige una prueba posterior con universo o muestra, período, criterio, resultado y revisor.
+
+Material extendido: [Integridad, fraude y respuesta institucional](INTEGRIDAD-INVESTIGACION.md), [caso “La operación que sí cuadraba”](../cases/04-operacion-que-si-cuadraba/README.md) y [bibliografía secundaria](BIBLIOGRAFIA-INTEGRIDAD.md).

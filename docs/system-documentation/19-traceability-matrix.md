@@ -115,10 +115,20 @@ Las columnas de persistencia usan las claves reales del almacén, documentadas e
 | Funcionalidad | Regla de negocio | Interfaz | Módulo | Función | Persistencia | Prueba | Documento | Estado |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **Bitácora append-only** | Toda mutación queda. **No existe operación de borrado** | Vista `auditoria`, CLI `bitacora` | `company-operations` | `audit()`, `listAudit()` | `audit` (NDJSON en disco) | `workspace.test.mjs` · «toda mutación queda en la bitácora append-only» | [07](07-database.md) | ✅ |
-| Exportar | Formato portátil `v2`, compatible entre las 4 superficies | Vista `datos`, CLI `exportar` | `company-operations` | `exportAll()` | Todas las claves | `workspace.test.mjs` · «exportar e importar reproduce el espacio de trabajo completo» | [09](09-apis-and-integrations.md) | ✅ |
-| Importar | Rechaza archivos ajenos; acepta v1 y v2; **no pisa ejercicios cerrados** | Vista `datos` | `company-operations` | `importAll()` | Todas las claves | `workspace.test.mjs` · «importar un archivo ajeno se rechaza» | [07](07-database.md) | ✅ |
+| Exportar | Formato portátil `v3`, compatible entre las 4 superficies | Vista `datos`, CLI `exportar` | `company-operations` | `exportAll()` | Todas las claves | `workspace.test.mjs` · «exportar e importar reproduce el espacio de trabajo completo» | [09](09-apis-and-integrations.md) | ✅ |
+| Importar | Rechaza archivos ajenos; acepta v1, v2 y v3; **no pisa ejercicios cerrados** | Vista `datos` | `company-operations` | `importAll()` | Todas las claves | `workspace.test.mjs` · «importar un archivo ajeno se rechaza» | [07](07-database.md) | ✅ |
 | Respaldo con nombre | Marca de tiempo ISO saneada | Vista `datos` | `company-operations` | `backup()` | `__snapshots` / `backups/` | Indirecta | [13](13-deployment-and-operations.md) | ☑️ |
 | **Semáforo** | **No dice «todo en orden»** si faltan evidencias | Vista `panel` | `company-operations` | `healthCheck()` | Derivado | `workspace.test.mjs` · «el diagnóstico marca error cuando hay obligaciones vencidas» | [08](08-data-flow.md) | ✅ |
+
+## 9a · Gobierno, integridad e investigación
+
+| Funcionalidad | Regla de negocio | Interfaz | Módulo | Función | Persistencia | Prueba | Documento | Estado |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Proceso crítico | Siete etapas, evidencia y actores incompatibles | `control-interno` | `company-operations` | `addCriticalProcess()`, `advanceCriticalProcess()` | `critical-processes` | `workspace.test.mjs` · «un proceso crítico exige secuencia…» | [CONTROL-INTERNO](../CONTROL-INTERNO.md) | ✅ |
+| Investigación | Distingue hechos, hipótesis y evidencia faltante; conserva cronología | `control-interno` | `company-operations` | `reportConcern()`, `updateConcern()` | `whistleblowing` | `workspace.test.mjs` · «whistleblowing preserva evidencia…» | [Integridad](../INTEGRIDAD-INVESTIGACION.md) | ✅ |
+| Separación investigación/decisión | Una persona investigadora no puede resolver su propio caso | `control-interno` | `company-operations` | `updateConcern()` | `whistleblowing` | `workspace.test.mjs` | [Integridad](../INTEGRIDAD-INVESTIGACION.md) | ✅ |
+| Cierre verificable | Exige conclusión, remediación, verificación y vía de revisión | `control-interno` | `company-operations` | `updateConcern()` | `whistleblowing.history` | `workspace.test.mjs` | [Control interno](../CONTROL-INTERNO.md) | ✅ |
+| KRI de respuesta | Casos abiertos y remediaciones vencidas son señales, no juicios | `control-interno` | `company-operations` | `processKris()` | Derivado | `workspace.test.mjs` · «los KRI muestran casos abiertos…» | [Control interno](../CONTROL-INTERNO.md) | ✅ |
 
 ## 10 · Aislamiento real / sandbox
 
@@ -155,7 +165,7 @@ Las columnas de persistencia usan las claves reales del almacén, documentadas e
 | Funcionalidad | Regla de negocio | Interfaz | Módulo | Función | Persistencia | Prueba | Documento | Estado |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **Escapado por defecto** | Toda interpolación se escapa salvo `raw()` explícito | Todas | `apps/web/lib` | `html`, `esc` | — | **Ninguna** · H-08 | [11](11-security.md) | ☑️ |
-| Glosario | 54 términos, fuente única | Vista `glosario` | `glossary` | `termsByCategory()`, `searchTerms()` | — | `glossary.test.mjs` (11) | [16](16-glossary.md) | ✅ |
+| Glosario | 76 términos, fuente única | Vista `glosario` | `glossary` | `termsByCategory()`, `searchTerms()` | — | `glossary.test.mjs` (11) | [16](16-glossary.md) | ✅ |
 | Ayuda contextual | Definición al pasar el cursor | Todas | `apps/web/lib` | `terms.js` | — | `ayuda.test.mjs` (16) | [04](04-code-map.md) | ✅ |
 | Atajos de teclado | 12, con buscador y ayuda | Todas | `shortcuts` | `resolveShortcut()` | — | `ayuda.test.mjs` | [05](05-technical-reference.md) | ✅ |
 | Contrato de la web | El índice referencia lo que el build produce | — | `apps/web` | `index.html`, manifiesto | — | `webapp.test.mjs` (8) | [12](12-testing-and-quality.md) | ✅ |

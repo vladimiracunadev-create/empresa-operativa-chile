@@ -610,12 +610,13 @@ el motor rechaza la acción y explica el conflicto SoD.
 
 | Sección | Uso |
 |---|---|
-| KRI | Operaciones sin conciliar o aprobar, accesos privilegiados, antigüedad, contrapartes desconocidas y controles fallidos |
+| KRI | Operaciones sin conciliar o aprobar, accesos privilegiados, antigüedad, contrapartes desconocidas, controles fallidos, casos abiertos y remediaciones vencidas |
 | Catálogo de controles | Clasifica Preventive/Detective/Corrective y Manual/Automated/Hybrid |
 | Risk register | Registra riesgo, P×I, dueño, control, residual, KRI y estado |
 | RACI | Define quién responde, ejecuta, es consultado y es informado |
 | Auditoría continua | Configura conciliación diaria, revisión semanal, cierre mensual, revisión trimestral y revisión externa anual |
-| Whistleblowing | Preserva el reporte, exige investigador independiente, declara conflictos y documenta escalamiento |
+| Whistleblowing e investigación | Preserva el reporte, limita accesos, evalúa represalia y separa hechos, hipótesis y evidencia faltante |
+| Decisión y remediación | Exige investigador y decisor distintos, conclusión respaldada, vía de revisión y prueba de eficacia |
 
 ### Custodia y contabilidad
 
@@ -626,7 +627,15 @@ criterio profesional sobre reconocimiento, medición, restricciones o revelacion
 
 El SANDBOX incluye un proceso de custodia ejecutado pero aún no registrado ni conciliado. Ese
 descalce intencional enciende los KRI y permite practicar sin usar información real. El marco
-completo y el caso capstone están en [Control interno, SoD y auditoría](CONTROL-INTERNO.md).
+completo y los casos capstone están en [Control interno, SoD y auditoría](CONTROL-INTERNO.md).
+
+### Investigar sin prejuzgar
+
+Una alerta indica revisión, no culpabilidad. En cada caso registra primero qué se reportó y cómo se
+preservó; después separa hechos establecidos, hipótesis y evidencia faltante. La persona que
+investiga no puede ser quien decide. Para cerrar, documenta conclusión, remediación, prueba de
+eficacia y una vía independiente de revisión. El método completo está en
+[Integridad, fraude y respuesta institucional](INTEGRIDAD-INVESTIGACION.md).
 
 ---
 
@@ -703,7 +712,7 @@ sola. No son textos escritos aparte que con el tiempo dejen de coincidir con lo 
 
 ![Glosario](assets/capturas/glosario.png)
 
-54 términos, buscables (la búsqueda ignora tildes y mayúsculas). Cada uno tiene:
+76 términos, buscables (la búsqueda ignora tildes y mayúsculas). Cada uno tiene:
 
 - un **resumen** de una línea;
 - una **definición** escrita para que la entienda alguien que no es contador;

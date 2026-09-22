@@ -11,7 +11,7 @@
 
 ---
 
-Estado a **2026-09-07**, versión 1.5.0.
+Estado a **2026-09-22**, versión 1.5.0.
 
 ## ✅ v1.0 — publicado
 
@@ -38,6 +38,14 @@ Estado a **2026-09-07**, versión 1.5.0.
 - Whistleblowing con preservación, independencia, conflicto y escalamiento.
 - Escenario de custodia digital y caso capstone de descalce.
 - Respaldo portable v3 compatible en importación con v1/v2.
+
+### Extensión de integridad posterior a v1.5
+
+- C61–C70 desarrolladas con fraude tributario defensivo, conflictos, partes relacionadas, investigación, causa raíz y remediación.
+- Caso sintético “La operación que sí cuadraba” y laboratorio de investigación.
+- Investigación trazable con confidencialidad, represalia, hechos, hipótesis, evidencia faltante, separación investigador/decisor y verificación.
+- Ocho KRI: se añaden casos abiertos y remediaciones vencidas.
+- Fuentes oficiales y bibliografía secundaria separadas, con límites y fecha de verificación.
 
 ## 🔜 v1.6 — integraciones y conciliación
 

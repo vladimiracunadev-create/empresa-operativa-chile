@@ -15,6 +15,26 @@
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 Versionado según [SemVer](https://semver.org/lang/es/).
 
+## [Sin publicar]
+
+### ✨ Añadido
+
+- Marco educativo original de integridad, fraude tributario defensivo, decisiones institucionales, investigación, causa raíz y remediación.
+- Caso sintético “La operación que sí cuadraba”, laboratorio 17 y matrices de hechos, fuentes y controles fallidos.
+- Bibliografía secundaria separada de las fuentes oficiales; *Impunidad* queda registrado como crónica testimonial sin afirmar acceso al libro completo.
+- 22 términos de integridad e investigación en el glosario generado.
+
+### 🔁 Cambiado
+
+- C61–C70 se desarrollan sin crear una parte nueva ni cambiar su numeración.
+- Whistleblowing conserva confidencialidad, riesgo de represalia, custodio, hechos, hipótesis, evidencia faltante y cronología.
+- El cierre de una investigación exige investigador y decisor distintos, conclusión respaldada, remediación, verificación y vía de revisión.
+- KRI amplía su cobertura a casos abiertos y remediaciones vencidas.
+
+### 🧪 Pruebas
+
+- Cobertura del ciclo completo de investigación, separación investigación/decisión, cierre verificable y ageing de remediaciones.
+
 ## [1.5.0] — 2026-09-07
 
 Empresa Operativa Chile incorpora control interno ejecutable para que una falla técnica,

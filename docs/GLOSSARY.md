@@ -3,7 +3,7 @@
 
 # 📖 Glosario
 
-54 términos. Estas mismas definiciones son las que muestra la aplicación al pulsar **?** junto a cualquier campo
+76 términos. Estas mismas definiciones son las que muestra la aplicación al pulsar **?** junto a cualquier campo
 y las que lista la pantalla **Glosario**: hay una sola copia, en `packages/glossary/index.mjs`, y CI comprueba que este
 documento no se desvíe de ella.
 
@@ -19,6 +19,7 @@ documento no se desvíe de ella.
 - **Municipal** — [Patente municipal](#patente-municipal) · [Capital base de patente](#capital-base-patente) · [Patente inicial](#patente-inicial) · [Inversiones deducibles](#inversiones-deducibles) · [Prorrateo entre sucursales](#prorrateo-sucursales) · [UTM](#utm) · [Oficina virtual](#oficina-virtual) · [Domicilio tributario](#domicilio-tributario)
 - **Contabilidad** — [Cierre anual](#cierre-anual) · [SpA](#spa) · [Accionista](#accionista) · [Ingreso operacional](#ingreso-operacional) · [Conciliación](#conciliacion)
 - **Cumplimiento y evidencia** — [Evidencia](#evidencia) · [Estado del dato](#estado-del-dato) · [Origen del dato](#origen-del-dato) · [Expediente anual](#expediente-anual) · [PENDING_CONFIRMATION](#pending-confirmation)
+- **Integridad e investigación** — [Integridad](#integridad) · [Fraude](#fraude) · [Error](#error) · [Negligencia](#negligencia) · [Evasión](#evasion) · [Elusión](#elusion) · [Dolo](#dolo) · [Conflicto de interés](#conflicto-interes) · [Parte relacionada](#parte-relacionada) · [Beneficiario final](#beneficiario-final) · [Operación simulada](#operacion-simulada) · [Cadena de custodia](#cadena-custodia) · [Whistleblowing](#whistleblowing) · [Represalia](#represalia) · [Red flag](#red-flag) · [Remediación](#remediacion) · [Impunidad](#impunidad) · [Corrupción](#corrupcion) · [Cohecho](#cohecho) · [Responsabilidad administrativa](#responsabilidad-administrativa) · [Responsabilidad penal](#responsabilidad-penal) · [Responsabilidad tributaria](#responsabilidad-tributaria)
 
 ## Capital y patrimonio
 
@@ -581,6 +582,174 @@ Relacionado: [Cierre anual](#cierre-anual) · [Evidencia](#evidencia)
 Aparece sobre todo tras migrar datos antiguos: si sólo se conocía un “capital” genérico, se conserva como capital enterado y el capital social y el suscrito quedan marcados así en vez de inventarse.
 
 Relacionado: [Estado del dato](#estado-del-dato)
+
+## Integridad e investigación
+
+<a id="integridad"></a>
+### Integridad
+
+**Coherencia entre deberes, decisiones, conducta y evidencia, incluso cuando nadie observa.**
+
+En una empresa exige tono desde la dirección, responsabilidades claras, conflictos declarados, decisiones trazables y corrección efectiva de fallas. No equivale sólo a cumplir formalidades.
+
+<a id="fraude"></a>
+### Fraude
+
+**Engaño deliberado orientado a obtener un beneficio indebido o causar un perjuicio.**
+
+Una anomalía, un error o un documento incompleto no prueban fraude. La calificación requiere evidencia de la representación falsa, intención, beneficio o perjuicio y nexo, conforme al régimen aplicable.
+
+> ⚠️ **No confundir con:** [Error](#error) · [Negligencia](#negligencia)
+
+<a id="error"></a>
+### Error
+
+**Equivocación verificable que no permite inferir por sí sola intención de engañar.**
+
+Debe corregirse, analizarse su causa y revisarse su recurrencia. Repetición o advertencias ignoradas pueden cambiar la evaluación, pero requieren evidencia adicional.
+
+> ⚠️ **No confundir con:** [Fraude](#fraude) · [Negligencia](#negligencia)
+
+<a id="negligencia"></a>
+### Negligencia
+
+**Incumplimiento del deber de cuidado que era exigible en una función concreta.**
+
+Su evaluación depende del deber aplicable, la competencia, las advertencias y las circunstancias. No es sinónimo automático de dolo ni de delito.
+
+> ⚠️ **No confundir con:** [Error](#error) · [Dolo](#dolo)
+
+<a id="evasion"></a>
+### Evasión
+
+**Incumplimiento tributario que oculta o altera hechos relevantes para reducir o evitar el impuesto debido.**
+
+La determinación jurídica depende de los hechos, la norma y la evidencia. Este sistema detecta inconsistencias; no declara que una persona evadió.
+
+<a id="elusion"></a>
+### Elusión
+
+**Resultado tributario obtenido mediante actos cuya calificación debe analizarse conforme a las normas antielusivas aplicables.**
+
+No es equivalente a evasión. Distinguir planificación legítima, elusión y abuso o simulación exige revisar sustancia, propósito, contratos y norma vigente.
+
+> ⚠️ **No confundir con:** [Evasión](#evasion) · [Operación simulada](#operacion-simulada)
+
+<a id="dolo"></a>
+### Dolo
+
+**Elemento subjetivo referido al conocimiento y voluntad exigidos por la figura jurídica aplicable.**
+
+No se presume sólo por el resultado ni por una alerta. Su prueba y significado dependen del tipo de responsabilidad y de la decisión de la autoridad competente.
+
+<a id="conflicto-interes"></a>
+### Conflicto de interés
+
+**Situación en que un interés secundario puede interferir con el deber de decidir por la organización.**
+
+Puede existir aunque no haya daño ni conducta ilícita. Debe declararse y gestionarse mediante abstención, mitigación, aprobación independiente y trazabilidad.
+
+<a id="parte-relacionada"></a>
+### Parte relacionada
+
+**Persona o entidad vinculada por propiedad, control, administración u otra relación relevante.**
+
+La relación no invalida automáticamente una operación. Exige identificar el vínculo, evaluar conflicto, acreditar sustancia y conservar aprobación independiente.
+
+<a id="beneficiario-final"></a>
+### Beneficiario final
+
+**Persona natural que en último término posee, controla o se beneficia de una estructura u operación, según la definición aplicable.**
+
+Su identificación depende del contexto normativo. Una sociedad intermediaria o apoderado no reemplaza el análisis de control y beneficio efectivo.
+
+<a id="operacion-simulada"></a>
+### Operación simulada
+
+**Operación cuya apariencia documental no corresponde, total o parcialmente, a la realidad que pretende representar.**
+
+Un DTE auténtico no demuestra por sí solo la sustancia. La calificación exige contrastar contrato, entrega, recepción, banco, registro, impuesto y propósito.
+
+Relacionado: [DTE](#dte) · [Evidencia](#evidencia)
+
+<a id="cadena-custodia"></a>
+### Cadena de custodia
+
+**Registro de origen, integridad, acceso y transferencias de evidencia desde su preservación.**
+
+Debe identificar qué se preservó, quién lo obtuvo, cuándo, cómo se protegió y quién accedió. Un hash puede apoyar integridad, pero no prueba por sí solo origen ni veracidad.
+
+Relacionado: [Evidencia](#evidencia)
+
+<a id="whistleblowing"></a>
+### Whistleblowing
+
+**Canal y proceso para reportar de buena fe hechos o riesgos que requieren revisión.**
+
+Requiere confidencialidad, evaluación de represalia, triage, preservación, independencia, escalamiento y una respuesta trazable. Un reporte es una fuente que debe contrastarse.
+
+<a id="represalia"></a>
+### Represalia
+
+**Consecuencia adversa impuesta por reportar, colaborar o participar de buena fe en una revisión.**
+
+El riesgo debe evaluarse desde el triage y gestionarse con acceso restringido, monitoreo y escalamiento, sin prometer anonimato cuando técnicamente no puede garantizarse.
+
+<a id="red-flag"></a>
+### Red flag
+
+**Señal observable que aumenta el riesgo y justifica revisión.**
+
+No es prueba de fraude ni culpabilidad. Debe vincularse a una fuente, umbral, ventana, dueño y respuesta, y contrastarse con explicaciones alternativas.
+
+<a id="remediacion"></a>
+### Remediación
+
+**Acción que corrige la causa y reduce la posibilidad o impacto de recurrencia.**
+
+No termina al implementar un cambio. Requiere dueño, plazo, evidencia y una prueba posterior de eficacia independiente.
+
+<a id="impunidad"></a>
+### Impunidad
+
+**Ausencia de respuesta efectiva frente a un hecho atribuible, analizada a través de la cadena institucional.**
+
+No toda causa sin condena demuestra impunidad: puede existir absolución, sobreseimiento u otra salida legítima. El análisis debe identificar hecho, competencia, decisiones, estado procesal y causas verificables.
+
+<a id="corrupcion"></a>
+### Corrupción
+
+**Abuso de poder o función para obtener un beneficio indebido.**
+
+No toda irregularidad es corrupción. Sostener esta clasificación exige acreditar función, deber, beneficio, interferencia y responsabilidad mediante evidencia y proceso competente.
+
+<a id="cohecho"></a>
+### Cohecho
+
+**Delito vinculado al ofrecimiento, solicitud o aceptación de beneficios en relación con una función, según el tipo legal aplicable.**
+
+Su configuración depende de los elementos de la ley vigente y debe establecerse mediante el procedimiento competente; una relación o pago aislado no bastan.
+
+<a id="responsabilidad-administrativa"></a>
+### Responsabilidad administrativa
+
+**Consecuencia derivada del incumplimiento de deberes administrativos en el régimen aplicable.**
+
+Es distinta de la responsabilidad penal, civil o tributaria. Un mismo hecho puede activar vías diferentes con procedimientos y estándares propios.
+
+<a id="responsabilidad-penal"></a>
+### Responsabilidad penal
+
+**Consecuencia jurídica establecida por tribunal competente por la comisión atribuible de un delito.**
+
+Requiere tipo penal, prueba, procedimiento y sentencia. Una alerta interna, formalización o acusación no equivale a condena.
+
+<a id="responsabilidad-tributaria"></a>
+### Responsabilidad tributaria
+
+**Obligaciones y consecuencias derivadas de las normas tributarias aplicables.**
+
+Puede comprender determinación, diferencias, reajustes, intereses, multas y, cuando corresponda, una vía penal separada. Cada consecuencia exige su fundamento y procedimiento.
 
 ---
 

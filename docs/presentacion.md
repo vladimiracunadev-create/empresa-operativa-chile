@@ -100,7 +100,7 @@ pnpm presentacion
 **El objetivo no es que aprendas contabilidad para usar el sistema, sino que el sistema te enseñe mientras opera la empresa.**
 
 - **Empezar aquí:** 14 etapas ordenadas por tiempo, con la decisión de cada punto y el documento que queda.
-- **Glosario de 54 términos**, con lo que **no** hay que confundir con qué; se explica al pasar el cursor.
+- **Glosario de 76 términos**, con lo que **no** hay que confundir con qué; se explica al pasar el cursor.
 - Cada cifra responde **«¿de dónde salió este número?»** con su desglose y su base legal.
 - Estados explícitos: `ESTIMADO · CALCULADO · DECLARADO · VERIFICADO · PAGADO`.
 

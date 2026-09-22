@@ -220,7 +220,7 @@ export class CompanyWorkspace {
   }
 
   getKris(options) {
-    return processKris(this.listCriticalProcesses(), this.listControls(), options);
+    return processKris(this.listCriticalProcesses(), this.listControls(), this.listWhistleblowingReports(), options);
   }
 
   listWhistleblowingReports() {
@@ -238,10 +238,23 @@ export class CompanyWorkspace {
       reporter: String(report.reporter || 'anonymous').trim() || 'anonymous',
       description,
       evidence,
+      evidenceCustodian: String(report.evidenceCustodian || 'Compliance').trim(),
+      confidentiality: String(report.confidentiality || 'restricted').trim(),
+      retaliationRisk: String(report.retaliationRisk || 'not_assessed').trim(),
       status: 'reported',
       investigator: null,
+      decisionMaker: null,
       conflictOfInterest: null,
       escalation: '',
+      establishedFacts: '',
+      hypotheses: '',
+      missingEvidence: '',
+      conclusion: '',
+      remediation: '',
+      remediationDueDate: '',
+      verification: '',
+      reviewChannel: '',
+      history: [{ status: 'reported', at: now, note: 'Reporte recibido y evidencia identificada.' }],
       createdAt: now,
       updatedAt: now
     };
@@ -258,18 +271,44 @@ export class CompanyWorkspace {
     const status = patch.status || current.status;
     if (!WHISTLE_STATUSES.includes(status)) throw new Error('Estado de denuncia no soportado');
     const investigator = String(patch.investigator ?? current.investigator ?? '').trim() || null;
-    if (['investigation', 'escalated', 'resolved'].includes(status) && !investigator) throw new Error('La investigación exige una persona independiente asignada');
+    if (['investigation', 'escalated', 'remediation', 'verification', 'resolved'].includes(status) && !investigator) throw new Error('La investigación exige una persona independiente asignada');
     if (investigator && investigator === current.reporter && current.reporter !== 'anonymous') throw new Error('Conflicto de interés: quien reporta no puede investigarse a sí mismo');
-    if (['investigation', 'escalated', 'resolved'].includes(status) && typeof patch.conflictOfInterest !== 'boolean' && typeof current.conflictOfInterest !== 'boolean') {
+    if (['investigation', 'escalated', 'remediation', 'verification', 'resolved'].includes(status) && typeof patch.conflictOfInterest !== 'boolean' && typeof current.conflictOfInterest !== 'boolean') {
       throw new Error('Antes de investigar debe declararse si existe conflicto de interés');
     }
+    const decisionMaker = String(patch.decisionMaker ?? current.decisionMaker ?? '').trim() || null;
+    if (decisionMaker && investigator && decisionMaker === investigator) throw new Error('La persona investigadora no puede decidir el caso');
+    const establishedFacts = String(patch.establishedFacts ?? current.establishedFacts ?? '').trim();
+    const hypotheses = String(patch.hypotheses ?? current.hypotheses ?? '').trim();
+    const missingEvidence = String(patch.missingEvidence ?? current.missingEvidence ?? '').trim();
+    const conclusion = String(patch.conclusion ?? current.conclusion ?? '').trim();
+    const remediation = String(patch.remediation ?? current.remediation ?? '').trim();
+    const remediationDueDate = String(patch.remediationDueDate ?? current.remediationDueDate ?? '').trim();
+    const verification = String(patch.verification ?? current.verification ?? '').trim();
+    const reviewChannel = String(patch.reviewChannel ?? current.reviewChannel ?? '').trim();
+    if (status === 'resolved') {
+      if (!establishedFacts || !conclusion) throw new Error('Resolver exige hechos establecidos y una conclusión basada en evidencia');
+      if (!decisionMaker) throw new Error('Resolver exige una persona decisora distinta de quien investigó');
+      if (!remediation || !verification || !reviewChannel) throw new Error('Resolver exige remediación, verificación de eficacia y vía de revisión');
+    }
+    const updatedAt = isoNow();
     const next = {
       ...current,
       status,
       investigator,
+      decisionMaker,
       conflictOfInterest: typeof patch.conflictOfInterest === 'boolean' ? patch.conflictOfInterest : current.conflictOfInterest,
       escalation: String(patch.escalation ?? current.escalation ?? '').trim(),
-      updatedAt: isoNow()
+      establishedFacts,
+      hypotheses,
+      missingEvidence,
+      conclusion,
+      remediation,
+      remediationDueDate,
+      verification,
+      reviewChannel,
+      history: [...(current.history ?? []), { status, at: updatedAt, note: String(patch.note || '').trim() || 'Caso actualizado con trazabilidad.' }],
+      updatedAt
     };
     rows[index] = next;
     this.store.write(KEY.whistleblowing, rows);

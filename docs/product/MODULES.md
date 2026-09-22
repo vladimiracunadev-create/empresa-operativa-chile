@@ -79,3 +79,13 @@ Fuente única de definiciones en `packages/glossary/index.mjs`, con tres consumi
 
 CI comprueba que el documento no se desvíe del módulo. Cada término declara categoría, resumen, definición pedagógica,
 base legal cuando la tiene y —lo más importante de este dominio— **con qué no hay que confundirlo**.
+
+## 14. Gobierno, integridad e investigación
+
+Procesos críticos de siete etapas con evidencia y SoD; controles, risk register, ocho KRI y
+auditoría continua. El canal de whistleblowing registra confidencialidad, riesgo de represalia,
+custodio y una cronología que separa hechos, hipótesis y evidencia faltante.
+
+El cierre exige investigador y decisor distintos, conclusión proporcional, remediación, prueba de
+eficacia y vía de revisión. La aplicación detecta anomalías y excepciones; no declara culpabilidad,
+corrupción ni delito.

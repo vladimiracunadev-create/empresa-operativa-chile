@@ -31,9 +31,9 @@ empresa-operativa-chile/
 ├── packages/                6 paquetes · el núcleo · ESM puro sin node:* (salvo node-store)
 ├── apps/                    5 aplicaciones · web, android, contador-desktop, empresa-operativa, contador-cli
 ├── scripts/                 13 scripts + 4 librerías · build, generación de docs y verificación
-├── tests/                   13 suites · 158 pruebas
+├── tests/                   13 suites · 159 pruebas
 ├── docs/                    23 documentos Markdown + assets + presentación + esta serie
-├── curriculum/ labs/ cases/ material de aprendizaje: 16 partes, 16 laboratorios, 2 casos
+├── curriculum/ labs/ cases/ material de aprendizaje: 17 partes, 17 laboratorios, 4 casos
 ├── data/scenarios/          1 escenario JSON para la CLI
 ├── .github/                 6 workflows + 3 plantillas de issue + plantilla de PR
 └── raíz                     package.json, .gitignore, .gitattributes, CHANGELOG, CONTRIBUTING,
@@ -77,8 +77,8 @@ propósito distinto, no duplicado.
 
 | Elemento | Líneas | Responsabilidad | Depende de | Quién lo usa | Estado |
 | --- | ---: | --- | --- | --- | --- |
-| `workspace.mjs` | **1.349** | **El orquestador central.** Clase `CompanyWorkspace`: ficha, capital, gobierno, procesos críticos, riesgos, auditoría, períodos, respaldo y diagnóstico. Más `seedSandboxWorkspace()` | `governance.mjs`, `capital.mjs`, motores contables y reglas | Todas las vistas vía `state.js`; `index.mjs`; CLI | Activo |
-| `governance.mjs` | 185 | RACI, SoD, siete etapas, controles, riesgos, KRI y frecuencias de auditoría | — | `workspace.mjs`, vista `control-interno` | **Crítico** |
+| `workspace.mjs` | **1.388** | **El orquestador central.** Clase `CompanyWorkspace`: ficha, capital, gobierno, procesos críticos, riesgos, investigación, auditoría, períodos, respaldo y diagnóstico. Más `seedSandboxWorkspace()` | `governance.mjs`, `capital.mjs`, motores contables y reglas | Todas las vistas vía `state.js`; `index.mjs`; CLI | Activo |
+| `governance.mjs` | 189 | RACI, SoD, siete etapas, controles, riesgos, ocho KRI y frecuencias de auditoría | — | `workspace.mjs`, vista `control-interno` | **Crítico** |
 | `capital.mjs` | 371 | Modelo societario: `EQUITY_MOVEMENT_KINDS` (9 tipos), `DATA_STATUS` (5), `DATA_ORIGIN` (5), `normalizeCapitalProfile`, `validateCapitalProfile`, `capitalPendingToPay`, `normalizeEquityMovement`, `summarizeEquityMovements` | — | `workspace.mjs`, vista `capital` | Activo |
 | `store.mjs` | 84 | `createMemoryStore()` y `createWebStore({namespace})`. Define el contrato de seis métodos | — | `platform.js`, pruebas | Activo |
 | `node-store.mjs` | 95 | Almacén de disco. Escritura atómica (temporal + `rename`) y bitácora NDJSON *append-only* | `node:fs`, `node:path` | `index.mjs` (Node) — **nunca** el navegador | Activo |
@@ -89,7 +89,7 @@ propósito distinto, no duplicado.
 
 | Elemento | Líneas | Responsabilidad | Consumidores | Estado |
 | --- | ---: | --- | --- | --- |
-| `glossary/index.mjs` | 654 | **54 términos** en 6 categorías, con `notToConfuseWith`, `related`, `legalReference`. `term()`, `searchTerms()`, `termsByCategory()`, `danglingReferences()` | Vista `glosario`, ayudas contextuales (`terms.js`), buscador `Ctrl+K`, `build-glossary.mjs` → `docs/GLOSSARY.md` | Activo |
+| `glossary/index.mjs` | 771 | **76 términos** en 7 categorías, con `notToConfuseWith`, `related`, `legalReference`. `term()`, `searchTerms()`, `termsByCategory()`, `danglingReferences()` | Vista `glosario`, ayudas contextuales (`terms.js`), buscador `Ctrl+K`, `build-glossary.mjs` → `docs/GLOSSARY.md` | Activo |
 | `onboarding/index.mjs` | 624 | **14 etapas** en **5 fases**, `COVERAGE` (9 cubiertas / 10 no cubiertas), **12** `FIRST_QUESTIONS`. `stage()`, `stagesByPhase()`, `danglingReferences()` | Vista `empezar`, `build-guide.mjs` → `EMPEZAR-AQUI.{md,html,pdf}`, `lib/diagrams.mjs`, `capture-screenshots.mjs` | Activo |
 | `shortcuts/index.mjs` | 186 | **12 atajos** en 3 grupos. `resolveShortcut(event, {typing})`, `shortcutsByGroup()`, `keysFor()` | `lib/shortcuts.js`, `build-shortcuts.mjs` → `docs/ATAJOS-DE-TECLADO.md` | Activo |
 
@@ -133,7 +133,7 @@ en CI**— y es la razón de que la documentación de este repositorio no pueda 
 | `auditoria.js` | 92 | Bitácora, con buscador que conserva el cursor | Activo |
 | `datos.js` | 179 | Exportar, importar, respaldos, CSV | Activo |
 | `academia.js` | 254 | Explicaciones que usan el mismo motor que calcula | Activo |
-| `glosario.js` | 95 | Los 54 términos, buscables | Activo |
+| `glosario.js` | 95 | Los 76 términos, buscables | Activo |
 | `ayuda.js` | 187 | Los manuales en un marco del mismo origen; atajos | Activo |
 
 ### 2.2 `apps/empresa-operativa/` — servidor local estático
@@ -218,7 +218,7 @@ en CI**— y es la razón de que la documentación de este repositorio no pueda 
 
 ---
 
-## 4 · `tests/` — 13 suites, 158 pruebas
+## 4 · `tests/` — 13 suites, 159 pruebas
 
 | Suite | Líneas | Pruebas | Qué protege |
 | --- | ---: | ---: | --- |
@@ -229,7 +229,7 @@ en CI**— y es la razón de que la documentación de este repositorio no pueda 
 | `capital.test.mjs` | 178 | 19 | Migración del campo `capital` antiguo, validaciones societarias, agregación de movimientos |
 | `tax-equity.test.mjs` | 177 | 17 | Los dos métodos de CPT, el piso en cero, el rechazo del método a quien no califica |
 | `municipal-patent.test.mjs` | 211 | 23 | La bifurcación del art. 24, topes, deducciones, prorrateo, UTM y tasa no verificada |
-| `workspace.test.mjs` | 146 | 14 | Inmutabilidad del período, remanente entre períodos, evidencia obligatoria, respaldo |
+| `workspace.test.mjs` | 248 | 15 | Inmutabilidad, evidencia, respaldo e investigación con remediación verificable |
 | `company-operations.test.mjs` | 34 | 4 | Aislamiento real/sandbox sobre disco real |
 | `glossary.test.mjs` | 93 | 11 | Referencias no rotas, unicidad de ids, categorías declaradas |
 | `onboarding.test.mjs` | 189 | 17 | Etapas, fases, referencias a vistas y a trámites, cobertura declarada |
@@ -287,9 +287,9 @@ Recuento verificado con `node --test tests/*.test.mjs`: `tests 153 · pass 153 �
 
 | Directorio | Contenido | Consumidores | Estado |
 | --- | --- | --- | --- |
-| `curriculum/` | `curriculum.yaml` (244 líneas) + **16 partes** con su README | Lectura humana | Activo |
-| `labs/` | **16 laboratorios**, cada uno con `README.md` y `solution.md` | Lectura humana | Activo |
-| `cases/` | **2 casos** integrales | Lectura humana | Activo |
+| `curriculum/` | `curriculum.yaml` + **17 partes** con su README | Lectura humana | Activo |
+| `labs/` | **17 laboratorios**, cada uno con `README.md` y `solution.md` | Lectura humana | Activo |
+| `cases/` | **4 casos** integrales | Lectura humana | Activo |
 | `data/scenarios/` | 1 escenario JSON para `pnpm cli escenario` | CLI | Activo |
 | `academy/README.md` | Índice del material | Lectura humana | Activo |
 

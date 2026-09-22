@@ -607,7 +607,7 @@ en vez de la fuente.
 ```mermaid
 flowchart LR
     subgraph FUENTE["Fuente única · packages/"]
-        G["glossary/index.mjs<br/>54 términos"]
+        G["glossary/index.mjs<br/>76 términos"]
         O["onboarding/index.mjs<br/>14 etapas"]
         S["shortcuts/index.mjs<br/>12 atajos"]
     end

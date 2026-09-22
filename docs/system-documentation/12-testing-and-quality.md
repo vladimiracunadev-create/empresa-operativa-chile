@@ -6,7 +6,7 @@
 
 ## La conclusión, primero
 
-**158 pruebas en 13 suites, todas verdes, ejecutadas en la revisión v1.5.** Corren con el runner nativo
+**159 pruebas en 13 suites, todas verdes, ejecutadas el 22-09-2026.** Corren con el runner nativo
 de Node (`node --test`), sin framework, sin *mocks*, sin configuración y en **0,64 segundos**.
 
 Y una segunda capa que importa más de lo que parece: **el repositorio verifica cosas que un test
@@ -47,7 +47,7 @@ node --test tests/*.test.mjs
 | Comando | Salida real | rc |
 | --- | --- | --- |
 | `node scripts/build-rules.mjs --check` | `Reglas embebidas sincronizadas (2026).` | 0 |
-| `node scripts/build-glossary.mjs --check` | `Glosario sincronizado (54 términos).` | 0 |
+| `node scripts/build-glossary.mjs --check` | `Glosario sincronizado (76 términos).` | 0 |
 | `node scripts/build-guide.mjs --check` | `Guía sincronizada (14 etapas, 2 diagramas).` | 0 |
 | `node scripts/build-shortcuts.mjs --check` | `Atajos sincronizados (12).` | 0 |
 | `node scripts/build-presentation.mjs --check` | `Presentación válida: 8 diapositivas, 28 minutos.` | 0 |
@@ -110,8 +110,8 @@ Los tres vectores de escape son los mismos que ejecuta `ci.yml`; el `405` lo añ
 | `tax-equity.test.mjs` | **17** | Elección de método, art. 41 frente a 14 D 3 (j), piso en cero, elegibilidad por régimen |
 | `onboarding.test.mjs` | **17** | Las 14 etapas de la ruta, fases, pasos con trámite |
 | `ayuda.test.mjs` | **16** | Términos, tooltips y coherencia de la ayuda contextual |
-| `workspace.test.mjs` | **14** | Inmutabilidad del período, evidencia obligatoria, aislamiento real/sandbox, bitácora, export/import |
-| `glossary.test.mjs` | **11** | Los 54 términos, categorías, búsqueda, «no confundir con» |
+| `workspace.test.mjs` | **15** | Inmutabilidad, evidencia, aislamiento, bitácora, export/import e investigación verificable |
+| `glossary.test.mjs` | **11** | Los 76 términos, categorías, búsqueda, «no confundir con» |
 | `f29.test.mjs` | **8** | Arrastre del remanente, los dos modos de `f29Basic`, los tres vencimientos |
 | `webapp.test.mjs` | **8** | El índice referencia lo que el build produce; el manifiesto apunta a iconos que existen; mismo `appId` en Android y Windows |
 | `accounting.test.mjs` | **6** | Venta, compra, honorario, PPM, IDPC, asiento |
@@ -232,7 +232,7 @@ No se mide, así que lo que sigue es un mapa cualitativo hecho leyendo qué toca
 | --- | --- | --- | --- |
 | `chile-tax-rules` | `index.mjs` | **Alta** | 4 pruebas, incluida la que más importa |
 | `accounting-engine` | `index.mjs`, `tax-equity.mjs`, `municipal-patent.mjs` | **Muy alta** | 6 + 17 + 23 + 8 pruebas |
-| `company-operations` | `workspace.mjs`, `capital.mjs`, `rut.mjs`, `store.mjs` | **Alta** | 14 + 19 + 6 + 4 |
+| `company-operations` | `workspace.mjs`, `capital.mjs`, `rut.mjs`, `store.mjs` | **Alta** | 15 + 19 + 6 + 4 |
 | `glossary`, `onboarding`, `shortcuts` | | **Alta** | 11 + 17 + 16, más 4 gates `--check` |
 | Contrato de la web | `index.html`, manifiesto, iconos | **Media** | 8 pruebas, **de presencia y contrato, no de comportamiento** |
 | **Vistas** | `apps/web/src/views/*.js` (15) | ❌ **Ninguna** | Ninguna prueba las ejecuta |
@@ -284,7 +284,7 @@ Reconstruidos a partir de lo que CI exige; el repositorio no los enuncia en un d
 
 Para que un cambio entre a `main`:
 
-1. Las 158 pruebas pasan localmente; CI las ejecuta en Ubuntu (Node 20 y 22) y Windows (Node 22).
+1. Las 159 pruebas pasan localmente; CI las ejecuta en Ubuntu (Node 20 y 22) y Windows (Node 22).
 2. Los cinco gates de sincronía documental pasan.
 3. `validate-rules.mjs` pasa.
 4. El build completo funciona **y es reproducible**.

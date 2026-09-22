@@ -45,7 +45,7 @@ empresa-operativa-chile/
 │
 ├── scripts/                        build-rules · build-icons · build-web ·
 │                                   build-all · verify-apk · validate-rules
-├── tests/                          158 pruebas (runner nativo de Node)
+├── tests/                          159 pruebas (runner nativo de Node)
 ├── docs/                           documentación y runbooks
 └── curriculum/ labs/ cases/        material de aprendizaje
 ```
@@ -146,6 +146,18 @@ función autorizada, una persona compatible y una referencia de evidencia.
 **Consecuencia.** Web, Android, Windows y CLI comparten las mismas restricciones. Los procesos,
 controles, riesgos, frecuencias y denuncias forman parte del respaldo portable v3, que conserva
 compatibilidad de importación con v1 y v2.
+
+## 9️⃣ Decisión 9 — Investigación como cronología, no como etiqueta
+
+**Problema.** Un estado `investigation` y una caja de texto no distinguen denuncia, hecho, hipótesis,
+conclusión ni corrección. También permiten que la misma persona investigue y decida.
+
+**Decisión.** El caso conserva custodio, confidencialidad, riesgo de represalia, hechos establecidos,
+hipótesis, evidencia faltante y una historia append-only. Para resolver exige investigador y decisor
+distintos, remediación, prueba de eficacia y vía de revisión.
+
+**Consecuencia.** La aplicación hace visible el debido proceso y el ageing de remediaciones sin
+convertirse en un clasificador de personas. Los KRI muestran casos abiertos y plazos vencidos.
 
 ## 🔀 Flujo de datos de una operación
 

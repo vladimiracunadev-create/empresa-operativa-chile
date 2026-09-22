@@ -11,7 +11,7 @@ SQL, no hay cadena de conexión y no hay credencial que proteger. Se buscó: ni 
 esquema, ni un driver, ni una dependencia de base de datos en ningún `package.json` del repositorio.
 
 Lo que sí hay es un **contrato de almacén de seis métodos** (`packages/company-operations/store.mjs`)
-con tres implementaciones. `CompanyWorkspace` —las 1.142 líneas donde vive toda la lógica de
+con tres implementaciones. `CompanyWorkspace` —las 1.388 líneas donde vive toda la lógica de
 negocio— sólo habla ese contrato y no sabe sobre qué está escribiendo.
 
 Este documento cumple lo que se le pide a un capítulo de base de datos: el diccionario de datos está

@@ -1,7 +1,8 @@
 # 🔗 Fuentes oficiales verificadas — Chile 2026
 
-Última revisión del repositorio: **16 de agosto de 2026**
-(capital propio tributario, patente municipal y reglas societarias; el resto, 9 de agosto de 2026).
+Última revisión del repositorio: **22 de septiembre de 2026**
+(integridad, delitos tributarios, gobierno y protección de datos; capital propio tributario,
+patente municipal y reglas societarias, 16 de agosto de 2026; el resto, 9 de agosto de 2026).
 
 > Las normas cambian. Antes de usar una tasa o plazo en una declaración real, vuelve a comprobar la fuente oficial.
 
@@ -79,3 +80,34 @@ fuente y su fecha, y sólo entonces deja de mostrarse la advertencia de simulaci
 4. El repositorio: interpretación educativa y simulación.
 
 Cuando exista diferencia entre el simulador y SII, **manda la fuente oficial y la situación tributaria real del contribuyente**.
+
+## Integridad, fraude tributario y respuesta institucional (verificado 22-09-2026)
+
+Estas fuentes respaldan el marco educativo de detección e investigación. No convierten una alerta de la aplicación en infracción o delito probado.
+
+### Legislación
+
+- Código Tributario, especialmente arts. 97 y 162, versión consultada vigente desde 11-07-2025: https://www.bcn.cl/leychile/navegar?idNorma=6374&idVersion=2025-07-11
+- Ley N.º 20.393 sobre responsabilidad penal de las personas jurídicas, texto vigente consultado: https://www.bcn.cl/leychile/navegar?idNorma=1008668
+- Ley N.º 21.595 de delitos económicos: https://www.bcn.cl/leychile/navegar?idNorma=1195119
+- Ley N.º 19.884 sobre transparencia, límite y control del gasto electoral: https://www.bcn.cl/leychile/navegar?idNorma=213283
+- Ley N.º 19.628 sobre protección de la vida privada. La versión consultada está vigente hasta el 30-11-2026; la reforma de la Ley N.º 21.719 entra en vigor el 01-12-2026: https://www.bcn.cl/leychile/navegar?idNorma=141599
+
+### SII
+
+- Pregunta frecuente sobre sanciones ante detección de facturas falsas, actualizada 14-05-2025: https://www.sii.cl/preguntas_frecuentes/preguntas_generales/001_430_1465.htm
+- Plan de Gestión de Cumplimiento Tributario 2026. Incluye contribuyentes agresivos, uso de facturas falsas, análisis masivo de datos, mallas de relaciones y patrones de riesgo: https://www.sii.cl/destacados/SII_PGCT_2026.pdf
+- Resultados de estrategia contra comportamiento tributario agresivo y uso indebido de crédito IVA, 07-06-2024: https://www.sii.cl/noticias/2024/070624noti01aav.htm
+
+### Gobierno, control e investigación
+
+- CMF, NCG N.º 502 de 2024. Gobierno corporativo, gestión de riesgos, segregación, denuncias, auditoría interna y mejoramiento continuo. Es normativa sectorial; aquí se usa como referencia de diseño, no como obligación universal: https://www.cmfchile.cl/normativa/ncg_502_2024.pdf
+- Fiscalía de Chile, actualización estadística de términos de investigaciones vinculadas al financiamiento irregular de la política, corte 30-09-2022: https://www.fiscaliadechile.cl/sites/default/files/2024-10/Actualizacion_Estadistica_FIP_sept_2022.pdf
+- Fiscalía de Chile, posición institucional de 17-04-2017 sobre el efecto del art. 162 en aristas sin denuncia o querella del SII: https://www.fiscaliadechile.cl/index.php/actualidad/noticias/nacionales/abbott-si-el-sii-no-se-querella-o-denuncia-nos-pone-una-barrera
+- SERVEL, financiamiento, gasto, registro de aportes, rendición y fiscalización de campañas: https://www.servel.cl/campanas-electorales-elecciones-presidencial-y-parlamentarias/
+
+### Estado y límites de los casos reales
+
+El informe de Fiscalía con corte al **30-09-2022** distingue condena, suspensión condicional del procedimiento, decisión de no perseverar, sobreseimiento y asuntos pendientes para Penta, SQM y Corpesca. Se conserva como fuente histórica fechada; no se presenta como estado procesal actual a septiembre de 2026.
+
+Las afirmaciones testimoniales sobre presiones, motivaciones o interferencia se separan de estos hechos institucionales. La bibliografía comercial y técnica se registra en [BIBLIOGRAFIA-INTEGRIDAD.md](BIBLIOGRAFIA-INTEGRIDAD.md), no en esta lista de fuentes oficiales.

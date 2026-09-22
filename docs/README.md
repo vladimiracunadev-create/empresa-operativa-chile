@@ -26,6 +26,8 @@
 | [`ACCOUNTING-POLICIES.md`](ACCOUNTING-POLICIES.md) | Para entender los criterios contables del caso guía |
 | [`SOURCES-2026.md`](SOURCES-2026.md) | Para verificar cualquier tasa o plazo contra su fuente |
 | [`CONTROL-INTERNO.md`](CONTROL-INTERNO.md) | Para diseñar gobierno, RACI, SoD, controles, riesgos, KRI, auditoría y custodia |
+| [`INTEGRIDAD-INVESTIGACION.md`](INTEGRIDAD-INVESTIGACION.md) | Para prevenir, detectar, investigar y remediar fallas de integridad sin prejuzgar |
+| [`BIBLIOGRAFIA-INTEGRIDAD.md`](BIBLIOGRAFIA-INTEGRIDAD.md) | Fuentes secundarias, testimoniales y técnicas, separadas de las fuentes oficiales |
 
 ## Para entender el producto
 
@@ -54,8 +56,8 @@
 ## Material de aprendizaje
 
 - [`../curriculum/`](../curriculum/) — ruta formativa por partes
-- [`../labs/`](../labs/) — 16 laboratorios
-- [`../cases/`](../cases/) — casos integrales
+- [`../labs/`](../labs/) — 17 laboratorios
+- [`../cases/`](../cases/) — 4 casos integrales
 - [`../data/scenarios/`](../data/scenarios/) — escenarios para la CLI
 
 ## Recordatorio

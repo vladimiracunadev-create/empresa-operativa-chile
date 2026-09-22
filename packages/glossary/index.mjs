@@ -22,7 +22,8 @@ export const CATEGORIES = Object.freeze([
   'IVA y documentos',
   'Municipal',
   'Contabilidad',
-  'Cumplimiento y evidencia'
+  'Cumplimiento y evidencia',
+  'Integridad e investigación'
 ]);
 
 /** @type {ReadonlyArray<{id:string,term:string,category:string,short:string,long:string,notToConfuseWith?:string[],related?:string[],legalReference?:string,source?:string,lastVerified?:string}>} */
@@ -610,6 +611,122 @@ export const TERMS = Object.freeze([
       'Aparece sobre todo tras migrar datos antiguos: si sólo se conocía un “capital” genérico, se conserva como capital enterado ' +
       'y el capital social y el suscrito quedan marcados así en vez de inventarse.',
     related: ['estado-del-dato']
+  },
+  {
+    id: 'integridad', term: 'Integridad', category: 'Integridad e investigación',
+    short: 'Coherencia entre deberes, decisiones, conducta y evidencia, incluso cuando nadie observa.',
+    long: 'En una empresa exige tono desde la dirección, responsabilidades claras, conflictos declarados, decisiones trazables y corrección efectiva de fallas. No equivale sólo a cumplir formalidades.'
+  },
+  {
+    id: 'fraude', term: 'Fraude', category: 'Integridad e investigación',
+    short: 'Engaño deliberado orientado a obtener un beneficio indebido o causar un perjuicio.',
+    long: 'Una anomalía, un error o un documento incompleto no prueban fraude. La calificación requiere evidencia de la representación falsa, intención, beneficio o perjuicio y nexo, conforme al régimen aplicable.',
+    notToConfuseWith: ['error', 'negligencia']
+  },
+  {
+    id: 'error', term: 'Error', category: 'Integridad e investigación',
+    short: 'Equivocación verificable que no permite inferir por sí sola intención de engañar.',
+    long: 'Debe corregirse, analizarse su causa y revisarse su recurrencia. Repetición o advertencias ignoradas pueden cambiar la evaluación, pero requieren evidencia adicional.',
+    notToConfuseWith: ['fraude', 'negligencia']
+  },
+  {
+    id: 'negligencia', term: 'Negligencia', category: 'Integridad e investigación',
+    short: 'Incumplimiento del deber de cuidado que era exigible en una función concreta.',
+    long: 'Su evaluación depende del deber aplicable, la competencia, las advertencias y las circunstancias. No es sinónimo automático de dolo ni de delito.',
+    notToConfuseWith: ['error', 'dolo']
+  },
+  {
+    id: 'evasion', term: 'Evasión', category: 'Integridad e investigación',
+    short: 'Incumplimiento tributario que oculta o altera hechos relevantes para reducir o evitar el impuesto debido.',
+    long: 'La determinación jurídica depende de los hechos, la norma y la evidencia. Este sistema detecta inconsistencias; no declara que una persona evadió.'
+  },
+  {
+    id: 'elusion', term: 'Elusión', category: 'Integridad e investigación',
+    short: 'Resultado tributario obtenido mediante actos cuya calificación debe analizarse conforme a las normas antielusivas aplicables.',
+    long: 'No es equivalente a evasión. Distinguir planificación legítima, elusión y abuso o simulación exige revisar sustancia, propósito, contratos y norma vigente.',
+    notToConfuseWith: ['evasion', 'operacion-simulada']
+  },
+  {
+    id: 'dolo', term: 'Dolo', category: 'Integridad e investigación',
+    short: 'Elemento subjetivo referido al conocimiento y voluntad exigidos por la figura jurídica aplicable.',
+    long: 'No se presume sólo por el resultado ni por una alerta. Su prueba y significado dependen del tipo de responsabilidad y de la decisión de la autoridad competente.'
+  },
+  {
+    id: 'conflicto-interes', term: 'Conflicto de interés', category: 'Integridad e investigación',
+    short: 'Situación en que un interés secundario puede interferir con el deber de decidir por la organización.',
+    long: 'Puede existir aunque no haya daño ni conducta ilícita. Debe declararse y gestionarse mediante abstención, mitigación, aprobación independiente y trazabilidad.'
+  },
+  {
+    id: 'parte-relacionada', term: 'Parte relacionada', category: 'Integridad e investigación',
+    short: 'Persona o entidad vinculada por propiedad, control, administración u otra relación relevante.',
+    long: 'La relación no invalida automáticamente una operación. Exige identificar el vínculo, evaluar conflicto, acreditar sustancia y conservar aprobación independiente.'
+  },
+  {
+    id: 'beneficiario-final', term: 'Beneficiario final', category: 'Integridad e investigación',
+    short: 'Persona natural que en último término posee, controla o se beneficia de una estructura u operación, según la definición aplicable.',
+    long: 'Su identificación depende del contexto normativo. Una sociedad intermediaria o apoderado no reemplaza el análisis de control y beneficio efectivo.'
+  },
+  {
+    id: 'operacion-simulada', term: 'Operación simulada', category: 'Integridad e investigación',
+    short: 'Operación cuya apariencia documental no corresponde, total o parcialmente, a la realidad que pretende representar.',
+    long: 'Un DTE auténtico no demuestra por sí solo la sustancia. La calificación exige contrastar contrato, entrega, recepción, banco, registro, impuesto y propósito.',
+    related: ['dte', 'evidencia']
+  },
+  {
+    id: 'cadena-custodia', term: 'Cadena de custodia', category: 'Integridad e investigación',
+    short: 'Registro de origen, integridad, acceso y transferencias de evidencia desde su preservación.',
+    long: 'Debe identificar qué se preservó, quién lo obtuvo, cuándo, cómo se protegió y quién accedió. Un hash puede apoyar integridad, pero no prueba por sí solo origen ni veracidad.',
+    related: ['evidencia']
+  },
+  {
+    id: 'whistleblowing', term: 'Whistleblowing', category: 'Integridad e investigación',
+    short: 'Canal y proceso para reportar de buena fe hechos o riesgos que requieren revisión.',
+    long: 'Requiere confidencialidad, evaluación de represalia, triage, preservación, independencia, escalamiento y una respuesta trazable. Un reporte es una fuente que debe contrastarse.'
+  },
+  {
+    id: 'represalia', term: 'Represalia', category: 'Integridad e investigación',
+    short: 'Consecuencia adversa impuesta por reportar, colaborar o participar de buena fe en una revisión.',
+    long: 'El riesgo debe evaluarse desde el triage y gestionarse con acceso restringido, monitoreo y escalamiento, sin prometer anonimato cuando técnicamente no puede garantizarse.'
+  },
+  {
+    id: 'red-flag', term: 'Red flag', category: 'Integridad e investigación',
+    short: 'Señal observable que aumenta el riesgo y justifica revisión.',
+    long: 'No es prueba de fraude ni culpabilidad. Debe vincularse a una fuente, umbral, ventana, dueño y respuesta, y contrastarse con explicaciones alternativas.'
+  },
+  {
+    id: 'remediacion', term: 'Remediación', category: 'Integridad e investigación',
+    short: 'Acción que corrige la causa y reduce la posibilidad o impacto de recurrencia.',
+    long: 'No termina al implementar un cambio. Requiere dueño, plazo, evidencia y una prueba posterior de eficacia independiente.'
+  },
+  {
+    id: 'impunidad', term: 'Impunidad', category: 'Integridad e investigación',
+    short: 'Ausencia de respuesta efectiva frente a un hecho atribuible, analizada a través de la cadena institucional.',
+    long: 'No toda causa sin condena demuestra impunidad: puede existir absolución, sobreseimiento u otra salida legítima. El análisis debe identificar hecho, competencia, decisiones, estado procesal y causas verificables.'
+  },
+  {
+    id: 'corrupcion', term: 'Corrupción', category: 'Integridad e investigación',
+    short: 'Abuso de poder o función para obtener un beneficio indebido.',
+    long: 'No toda irregularidad es corrupción. Sostener esta clasificación exige acreditar función, deber, beneficio, interferencia y responsabilidad mediante evidencia y proceso competente.'
+  },
+  {
+    id: 'cohecho', term: 'Cohecho', category: 'Integridad e investigación',
+    short: 'Delito vinculado al ofrecimiento, solicitud o aceptación de beneficios en relación con una función, según el tipo legal aplicable.',
+    long: 'Su configuración depende de los elementos de la ley vigente y debe establecerse mediante el procedimiento competente; una relación o pago aislado no bastan.'
+  },
+  {
+    id: 'responsabilidad-administrativa', term: 'Responsabilidad administrativa', category: 'Integridad e investigación',
+    short: 'Consecuencia derivada del incumplimiento de deberes administrativos en el régimen aplicable.',
+    long: 'Es distinta de la responsabilidad penal, civil o tributaria. Un mismo hecho puede activar vías diferentes con procedimientos y estándares propios.'
+  },
+  {
+    id: 'responsabilidad-penal', term: 'Responsabilidad penal', category: 'Integridad e investigación',
+    short: 'Consecuencia jurídica establecida por tribunal competente por la comisión atribuible de un delito.',
+    long: 'Requiere tipo penal, prueba, procedimiento y sentencia. Una alerta interna, formalización o acusación no equivale a condena.'
+  },
+  {
+    id: 'responsabilidad-tributaria', term: 'Responsabilidad tributaria', category: 'Integridad e investigación',
+    short: 'Obligaciones y consecuencias derivadas de las normas tributarias aplicables.',
+    long: 'Puede comprender determinación, diferencias, reajustes, intereses, multas y, cuando corresponda, una vía penal separada. Cada consecuencia exige su fundamento y procedimiento.'
   }
 ]);
 
