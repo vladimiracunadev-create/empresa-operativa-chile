@@ -1,5 +1,11 @@
 # 🏗️ Arquitectura
 
+> Expansion multijurisdiccional incremental: consulta el
+> [contrato CountryPack](architecture/COUNTRY-PACK.md), la
+> [auditoria de brechas](audits/MULTIJURISDICTION-GAP-ANALYSIS.md) y el
+> [plan de PR pequenos](audits/MULTIJURISDICTION-PR-PLAN.md). Los perfiles no chilenos son
+> documentales y sus calculos permanecen deshabilitados.
+
 <div align="center">
 
 ![Motor](https://img.shields.io/badge/motor-1_para_3_plataformas-7c5cff?style=for-the-badge)
@@ -45,7 +51,7 @@ empresa-operativa-chile/
 │
 ├── scripts/                        build-rules · build-icons · build-web ·
 │                                   build-all · verify-apk · validate-rules
-├── tests/                          159 pruebas (runner nativo de Node)
+├── tests/                          173 pruebas (runner nativo de Node)
 ├── docs/                           documentación y runbooks
 └── curriculum/ labs/ cases/        material de aprendizaje
 ```
