@@ -22,6 +22,18 @@ const distDir = path.join(root, 'apps/web/dist');
 
 /** Módulos del dominio que sí puede cargar un navegador (sin `node:*`). */
 const CORE = [
+  ['core/country-pack.mjs', 'core/country-pack.mjs'],
+  ['core/regulatory-rules.mjs', 'core/regulatory-rules.mjs'],
+  ['i18n/locales/index.mjs', 'i18n/locales/index.mjs'],
+  ['jurisdictions/profile.mjs', 'jurisdictions/profile.mjs'],
+  ['jurisdictions/registry.mjs', 'jurisdictions/registry.mjs'],
+  ['jurisdictions/cl/index.mjs', 'jurisdictions/cl/index.mjs'],
+  ['jurisdictions/pe/index.mjs', 'jurisdictions/pe/index.mjs'],
+  ['jurisdictions/mx/index.mjs', 'jurisdictions/mx/index.mjs'],
+  ['jurisdictions/co/index.mjs', 'jurisdictions/co/index.mjs'],
+  ['jurisdictions/ar/index.mjs', 'jurisdictions/ar/index.mjs'],
+  ['jurisdictions/br/index.mjs', 'jurisdictions/br/index.mjs'],
+  ['jurisdictions/es/index.mjs', 'jurisdictions/es/index.mjs'],
   ['chile-tax-rules/index.mjs', 'chile-tax-rules/index.mjs'],
   ['chile-tax-rules/rules.generated.mjs', 'chile-tax-rules/rules.generated.mjs'],
   ['chile-tax-rules/municipalities.mjs', 'chile-tax-rules/municipalities.mjs'],
