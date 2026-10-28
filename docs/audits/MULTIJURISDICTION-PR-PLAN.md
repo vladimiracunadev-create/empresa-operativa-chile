@@ -13,7 +13,11 @@ pruebas de empaquetado se ejecutan cuando la superficie correspondiente cambia.
 | 6 | ✅ Expediente de liquidez/insolvencia CL orientativo. | Elegibilidad `REQUIRES_VERIFICATION`; sin envio ni firma. | Exportar evidencia y retirar UI. |
 | 7 | ✅ Piloto documental PE. Revision profesional de cada caso sigue pendiente. | RUC/SUNAT, nunca F29; calculos apagados. | Mantener `DOCUMENTARY_ONLY`. |
 | 8 | ✅ Perfiles documentales MX/CO/AR/BR/ES y requisitos subnacionales. | CABA no se generaliza; BR requiere subdivision; ES no calcula. | Desactivar cada pack de forma independiente. |
-| 9 | 🔄 E2E Web/Windows/Android, manuales y release evidence. | Gates locales y workflows de plataforma ligados al commit final. | Revertir integracion UI, no contratos estables. |
+| 9 | ✅ E2E Web/Windows/Android, manuales y release evidence. | 201 pruebas; CI/seguridad/Android/Windows verdes sobre `7c0e8ece`; evidencia con hashes. | Revertir integración UI, no contratos estables. |
 
 Ningun PR cambia simultaneamente formulas chilenas, persistencia y UI. Esa separacion permite
 atribuir una regresion y revertirla sin perder datos.
+
+> Nota de ejecución: los cortes 2–9 se implementaron como commits revisables dentro del PR #2, no
+> como ocho PR remotos separados. La evidencia final está en
+> [`RELEASE-EVIDENCE-MULTIJURISDICTION-2026-10-28.md`](./RELEASE-EVIDENCE-MULTIJURISDICTION-2026-10-28.md).
