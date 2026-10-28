@@ -11,6 +11,8 @@ vigencia, alcance, fórmula, excepciones, prueba y aprobación registradas en el
 | CL | Marca y dominio | [INAPI, preguntas frecuentes](https://www.inapi.cl/preguntas-frecuentes/marcas) | Dominio no protege marca; vigencia de 10 años, fecha exacta no calculada sin título. | Verificado en alcance |
 | CL | Renovación de marca | [INAPI, renovación](https://www.inapi.cl/marcas/tramites/renovacion) | Checklist y frecuencia; no presenta solicitudes ni paga. | Verificado en alcance |
 | CL | Insolvencia | [Superir, Ley 20.720 actualizada](https://www.superir.gob.cl/wp-content/uploads/2024/11/Ley-20720_09-ENE-2014-ACTUALIZADA.pdf) | Conceptos separados y expediente orientativo; elegibilidad siempre requiere profesional. | Verificado en alcance |
+| CL | Relaciones de trabajo | [Dirección del Trabajo](https://www.dt.gob.cl/) | Registro de hechos y señales; no clasifica automáticamente subordinación o dependencia. | Ruta oficial, requiere revisión humana |
+| CL | Sucesión, poderes y responsabilidad | [BCN LeyChile](https://www.bcn.cl/leychile/) | Checklist documental; no adjudica herederos, acciones, legitimarios ni representación. | Ruta oficial, requiere revisión jurídica |
 | PE | RUC | [SUNAT, inscríbete en el RUC](https://centrovirtual.sunat.gob.pe/tramites/inscribete-ruc) | Perfil documental y ruta de autoridad; sin cálculo. | Documental |
 | PE | Registro | [SUNARP](https://www.gob.pe/sunarp) | Autoridad inicial; entidad y trámite requieren revisión. | Documental |
 | MX | RFC personas morales | [SAT](https://www.sat.gob.mx/portal/public/tramites/inscripcion-al-rfc-pm) | Perfil documental; sin tasas. | Documental |

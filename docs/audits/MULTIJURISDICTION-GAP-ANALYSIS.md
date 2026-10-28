@@ -68,3 +68,18 @@ compatibilidad de respaldos cuando el contexto jurisdiccional se persista.
 - `pnpm desktop:build`: no ejecutable en esta maquina porque `cargo` no esta instalado. Tauri
   termino antes de compilar al fallar `cargo metadata`; no se afirma un instalador Windows local.
 - Migracion de datos: ninguna. Reglas y formulas CL: sin cambios.
+
+## Cierre técnico del Prompt Maestro V3 · 2026-10-28
+
+La revisión literal final se documenta en `docs/audits/MASTER-PROMPT-V3-CROSSWALK.md`. Después de
+releer el prompt completo se cerraron las brechas restantes de contrato CountryPack, matriz de
+obligaciones/costos, vigencia y conflicto normativo, plurales/glosario i18n, continuidad de
+administrador, colaboradores, gastos y garantías personales.
+
+- `pnpm check`: **201/201 pruebas**, generados sincronizados y reglas 2026 validadas.
+- `pnpm build`: 75 archivos; el navegador recibe 36 módulos del núcleo mediante el bundle común.
+- `pnpm android:prepare`: 76 archivos, 17 vistas y 36 módulos del núcleo.
+- Migración: respaldo v4; importación v1/v2/v3 y fixture de producto v1.5 sin pérdida de operaciones,
+  cierres, comprobantes, auditoría ni aislamiento REAL/SANDBOX.
+- Países extranjeros: siguen `DOCUMENTARY_ONLY`, con cálculos apagados. No se declara cobertura total.
+- Fórmulas CL legacy: sin cambios; los sobres de metadatos se comparan con los valores originales.

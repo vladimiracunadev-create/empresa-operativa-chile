@@ -93,5 +93,62 @@ export function requireComputableRule(rule, context = {}) {
   if (context.effectiveTaxYear && context.effectiveTaxYear !== rule.effectiveTaxYear) {
     throw new Error('La regla no corresponde al ano comercial solicitado');
   }
+  if (context.onDate !== undefined) {
+    if (!isRealIsoDate(context.onDate)) throw new Error('onDate debe ser una fecha ISO valida');
+    if (context.onDate < rule.validFrom || (rule.validTo !== null && context.onDate > rule.validTo)) {
+      throw new Error(`REQUIRES_HUMAN_REVIEW: regla ${rule.ruleVersion} fuera de vigencia`);
+    }
+  }
   return rule;
+}
+
+/** Rechaza conjuntos ambiguos: dos normas verificadas aplicables no se eligen por azar. */
+export function resolveRegulatoryRuleSet(rules, context = {}) {
+  if (!Array.isArray(rules) || rules.length === 0) throw new Error('NOT_IMPLEMENTED: no hay reglas candidatas');
+  const candidates = [];
+  for (const rule of rules) {
+    try { candidates.push(requireComputableRule(rule, context)); } catch (error) {
+      if (!String(error.message).includes('fuera de vigencia') && !String(error.message).includes('no corresponde')) throw error;
+    }
+  }
+  if (candidates.length === 0) throw new Error('REQUIRES_HUMAN_REVIEW: no hay regla verificada y vigente para el contexto');
+  if (candidates.length > 1) throw new Error(`DISPUTED: existen ${candidates.length} reglas verificadas aplicables`);
+  return candidates[0];
+}
+
+/** Crea una propuesta sin mutar la regla histórica ni activar la revisión. */
+export function proposeRuleRevision(previous, changes, { proposedVersion, proposedAt } = {}) {
+  validateRegulatoryRule(previous);
+  requiredText({ proposedVersion }, 'proposedVersion');
+  if (!isRealIsoDate(proposedAt)) throw new Error('proposedAt debe ser fecha ISO valida');
+  const proposal = {
+    ...previous,
+    ...changes,
+    ruleVersion: proposedVersion,
+    supersedes: previous.ruleVersion,
+    reviewStatus: 'DRAFT',
+    approver: null,
+    checkedAt: proposedAt
+  };
+  validateRegulatoryRule(proposal);
+  return { proposal, previous: structuredClone(previous), changedFields: Object.keys(changes).filter(key => JSON.stringify(previous[key]) !== JSON.stringify(changes[key])) };
+}
+
+export function explainLegalCalculation({ rule, formula, inputs, result, warnings = [] }, context = {}) {
+  requireComputableRule(rule, context);
+  requiredText({ formula }, 'formula');
+  if (!inputs || typeof inputs !== 'object' || Array.isArray(inputs)) throw new Error('inputs debe ser un objeto');
+  if (!Array.isArray(warnings)) throw new Error('warnings debe ser una lista');
+  return {
+    result,
+    formula,
+    inputs: structuredClone(inputs),
+    assumptions: [...rule.assumptions],
+    exceptions: [...rule.exceptions],
+    source: { url: rule.sourceUrl, title: rule.sourceTitle },
+    ruleVersion: rule.ruleVersion,
+    jurisdiction: { country: rule.country, subdivision: rule.subdivision },
+    validity: { from: rule.validFrom, to: rule.validTo, effectiveTaxYear: rule.effectiveTaxYear },
+    warnings: [...warnings, 'Confirmar el resultado y la vigencia en el portal oficial antes de declarar o pagar.']
+  };
 }

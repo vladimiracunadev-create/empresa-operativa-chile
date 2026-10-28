@@ -386,7 +386,7 @@ pnpm start        # build + servidor en http://127.0.0.1:4180
 |---|---|
 | `pnpm build` | Reglas embebidas → iconos → `apps/web/dist` |
 | `pnpm app` | Sirve la app ya construida |
-| `pnpm test` | 190 pruebas con el runner nativo de Node |
+| `pnpm test` | 201 pruebas con el runner nativo de Node |
 | `pnpm check` | Sincronía de reglas + validación + pruebas |
 | `pnpm cli -- ayuda` | Todos los comandos de la CLI |
 | `pnpm desktop:build` | Instaladores de Windows (necesita Rust) |
@@ -415,7 +415,7 @@ arranca y se comprueba que sigue vivo. Un build en verde no prueba que la app es
 
 ## 🧪 Pruebas
 
-190 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
+201 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
 hacen confiable al producto:
 
 - un período cerrado es inmutable **en las dos direcciones** (no se agrega y no se borra);

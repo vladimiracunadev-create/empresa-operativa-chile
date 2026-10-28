@@ -1,8 +1,10 @@
 import { html, raw, fmtCLP, attempt } from '../lib/dom.js';
 import { state, ws } from '../lib/state.js';
 import { classifyChileMonth, projectCashFlow, assessChileInactivity } from '../core/jurisdictions/cl/operations.mjs';
-import { assessLiquidityRisk, createInsolvencyDossier, CHILE_DISTRESS_CONCEPTS } from '../core/jurisdictions/cl/insolvency.mjs';
+import { assessLiquidityRisk, createInsolvencyDossier, CHILE_DISTRESS_CONCEPTS, CHILE_INSOLVENCY_PROCEDURES } from '../core/jurisdictions/cl/insolvency.mjs';
 import { trademarkChecklist } from '../core/jurisdictions/cl/trademarks.mjs';
+import { projectChileObligations, CHILE_CAPITAL_CONCEPTS } from '../core/jurisdictions/cl/obligations.mjs';
+import { administratorContinuityChecklist, assessCollaboratorRelationship, assessExpenseBoundary, assessPersonalGuarantee } from '../core/jurisdictions/cl/people-and-contracts.mjs';
 import { allowedLifecycleTransitions, LIFECYCLE_STATES } from '../core/core/lifecycle.mjs';
 
 const num = value => Number(value || 0);
@@ -23,10 +25,22 @@ export default {
     const inactivity = assessChileInactivity({ undeclaredPeriods: plan.undeclaredPeriods ?? null, monthsWithoutOperations: plan.monthsWithoutOperations ?? null, evidence: plan.inactivityEvidence ? [plan.inactivityEvidence] : [] });
     const liquidity = assessLiquidityRisk({ availableCash: num(plan.openingCash), overduePayables: num(plan.overduePayables), taxDebt: num(plan.taxDebt), socialSecurityDebt: num(plan.socialSecurityDebt), minimumCashPolicy: num(plan.minimumCashPolicy) });
     const trademark = trademarkChecklist(company.trademarkPlan ?? {});
+    const projectedObligations = projectChileObligations();
+    const administrator = administratorContinuityChecklist();
+    const collaborator = assessCollaboratorRelationship();
+    const expenseBoundary = assessExpenseBoundary();
+    const guarantee = assessPersonalGuarantee();
     const lifecycle = w.getLifecycle();
     const next = lifecycle ? allowedLifecycleTransitions(lifecycle.state) : [];
     return html`
       <div class="page__head"><h1>Continuidad y contingencias</h1><p>Separa caja, inactividad, deuda, insolvencia, reorganización, liquidación, disolución y término tributario. Ninguna alerta presenta solicitudes ni decide elegibilidad.</p></div>
+      <div class="journey-bar" aria-label="Guía para cada obligación">
+        <span><strong>1 · Qué necesito</strong><small>Hecho y perfil verificados</small></span>
+        <span><strong>2 · Dónde ingreso</strong><small>Ruta oficial del país</small></span>
+        <span><strong>3 · Costo y periodicidad</strong><small>Sin convertir lo desconocido en cero</small></span>
+        <span><strong>4 · Qué comprobante guardo</strong><small>Folio, título o contrato</small></span>
+        <span><strong>5 · Qué hago si falla</strong><small>Preservar error y escalar</small></span>
+      </div>
       <div class="grid grid--2">
         <div class="card"><div class="card__head"><h2>Actividad de ${state.period}</h2><span class="status status--pending">${month.state}</span></div><p>${month.reason}</p><p class="card__hint">F29: ${month.f29}. F22 y DJ se determinan por perfil, no por cero ventas.</p><a href="${month.source}" target="_blank" rel="noreferrer">Fuente SII</a></div>
         <div class="card"><div class="card__head"><h2>Inactividad</h2><span class="status status--pending">${inactivity.state}</span></div><p>${inactivity.reason}</p><p><strong>Cierre automático:</strong> no.</p><a href="${inactivity.source}" target="_blank" rel="noreferrer">Fuente SII</a></div>
@@ -42,12 +56,21 @@ export default {
         <button class="btn btn--primary" type="submit">Guardar supuestos</button>
       </form>
       <div class="card"><div class="card__head"><h2>Proyección 6 / 12 / 24 / 36 meses</h2></div><div class="tablewrap"><table><thead><tr><th>Horizonte</th><th>Caja inicial</th><th>Ingresos</th><th>Costos</th><th>Caja final</th></tr></thead><tbody>${raw(cash.map(row => `<tr><td>${row.months} meses</td><td class="num">${fmtCLP(row.openingCash)}</td><td class="num">${fmtCLP(row.income)}</td><td class="num">${fmtCLP(row.costs)}</td><td class="num">${fmtCLP(row.closingCash)}</td></tr>`).join(''))}</tbody></table></div><p class="card__hint">SIMULACIÓN con supuestos del usuario; no es mínimo legal ni pronóstico garantizado.</p></div>
+      <div class="card"><div class="card__head"><h2>Costos y periodicidades</h2><span class="status status--pending">NO DETERMINADO ≠ 0</span></div><div class="tablewrap tablewrap--wide"><table><thead><tr><th>Concepto</th><th>Frecuencia</th><th>Monto</th><th>Condición</th><th>Comprobante</th><th>Si falla</th></tr></thead><tbody>${raw(projectedObligations.map(row => `<tr><td><strong>${row.label}</strong><br><a href="${row.sourceUrl}" target="_blank" rel="noreferrer">Fuente</a></td><td>${row.frequency}</td><td>${row.valueState}</td><td>${row.trigger ?? 'Según contrato o trámite'}</td><td>${row.evidenceRequired}</td><td>${row.failureRecovery}</td></tr>`).join(''))}</tbody></table></div><p class="card__hint">Pago único, mensual, condicional, semestral, anual y cada 10 años se registran como categorías distintas. Una reserva recomendada nunca se presenta como mínimo legal.</p></div>
       <div class="card"><div class="card__head"><h2>Alerta de liquidez</h2><span class="status status--pending">${liquidity.level}</span></div><p>${liquidity.warning}</p><p>Obligaciones vencidas: <strong>${fmtCLP(liquidity.totalDue)}</strong> · Brecha: <strong>${fmtCLP(liquidity.cashGap)}</strong> · Elegibilidad: <strong>${liquidity.eligibility}</strong>.</p><button class="btn" data-dossier>Crear expediente local orientativo</button></div>
       <div class="card"><div class="card__head"><h2>Conceptos que no son equivalentes</h2></div><div class="tablewrap"><table><tbody>${raw(CHILE_DISTRESS_CONCEPTS.map(row => `<tr><td><strong>${row.label}</strong></td><td>No equivale automáticamente a ${row.distinctFrom.join(', ')}</td></tr>`).join(''))}</tbody></table></div></div>
+      <div class="card"><div class="card__head"><h2>Procedimientos concursales: orientación, no elegibilidad</h2></div><div class="tablewrap"><table><tbody>${raw(CHILE_INSOLVENCY_PROCEDURES.map(row => `<tr><td><strong>${row.label}</strong></td><td>${row.eligibility}</td><td>${row.forum === 'court' ? 'Exige revisión jurídica/tribunal' : 'Exige revisión profesional'}</td></tr>`).join(''))}</tbody></table></div><p class="card__hint">Una SpA sin trabajadores no queda automáticamente habilitada para reorganización o liquidación simplificada.</p></div>
       <div class="grid grid--2">
         <form class="card" data-trademark-form><div class="card__head"><h2>Marca, nombre y dominio</h2></div><label class="field"><span class="field__label">Signo o marca</span><input name="sign" value="${trademark.sign}"></label><label class="field"><span class="field__label">Dominio</span><input name="domain" value="${trademark.domain}"></label><p>${trademark.warning}</p><p>Renovación: ${trademark.renewal.frequencyYears} años; fecha exacta ${trademark.status === 'PENDING' ? 'NO DETERMINADA' : 'REQUIERE VERIFICACIÓN'}.</p><button class="btn" type="submit">Guardar checklist</button></form>
         <div class="card"><div class="card__head"><h2>Ciclo de vida auditable</h2></div>${lifecycle ? raw(`<p>Estado: <strong>${LIFECYCLE_STATES[lifecycle.state].label}</strong></p><p>Verificación: ${lifecycle.verificationState}</p><form data-lifecycle-form><label class="field"><span class="field__label">Transición</span><select name="to">${next.map(id => `<option value="${id}">${LIFECYCLE_STATES[id].label}</option>`).join('')}</select></label><label class="field"><span class="field__label">Responsable</span><input name="responsible" required></label><label class="field"><span class="field__label">Evidencia o evidencia faltante</span><input name="evidence" required></label><button class="btn" type="submit">Registrar transición</button></form>`) : raw(`<form data-lifecycle-start><p>Aún no se inició el historial.</p><label class="field"><span class="field__label">Responsable</span><input name="responsible" required></label><label class="field"><span class="field__label">Evidencia o nota inicial</span><input name="evidence" required></label><button class="btn" type="submit">Iniciar en planificación</button></form>`)}</div>
-      </div>`;
+      </div>
+      <div class="grid grid--2">
+        <div class="card"><div class="card__head"><h2>Administrador y sucesión</h2><span class="status status--pending">${administrator.state}</span></div><p>${administrator.warning}</p><ul>${raw(administrator.checklist.map(step => `<li>${step}</li>`).join(''))}</ul></div>
+        <div class="card"><div class="card__head"><h2>Colaboradores y contratos</h2><span class="status status--pending">${collaborator.classification}</span></div><p>${collaborator.warning}</p><p>${collaborator.ipWarning}</p></div>
+        <div class="card"><div class="card__head"><h2>Gasto personal o empresarial</h2><span class="status status--pending">${expenseBoundary.boundary}</span></div><p>${expenseBoundary.warning}</p><p>Deducibilidad tributaria: <strong>${expenseBoundary.taxDeductibility}</strong>.</p></div>
+        <div class="card"><div class="card__head"><h2>Responsabilidad y garantías</h2><span class="status status--pending">${guarantee.state}</span></div><p>${guarantee.warning}</p><p>Responsabilidad limitada absoluta: <strong>no</strong>.</p></div>
+      </div>
+      <div class="card"><div class="card__head"><h2>Capital, depósito, desembolso y gasto</h2></div><div class="tablewrap"><table><tbody>${raw(CHILE_CAPITAL_CONCEPTS.map(row => `<tr><td><strong>${row.label}</strong></td><td>${row.description}</td></tr>`).join(''))}</tbody></table></div></div>`;
   },
   mount(root, rerender) {
     root.querySelector('[data-plan-form]')?.addEventListener('submit', async event => {

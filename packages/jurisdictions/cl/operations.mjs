@@ -1,4 +1,4 @@
-const SII_INACTIVITY_SOURCE = 'https://www.sii.cl/preguntas_frecuentes/catastro/001_013_8998.htm';
+const SII_INACTIVITY_SOURCE = 'https://www.sii.cl/normativa_legislacion/resoluciones/2026/reso17.pdf';
 const SII_F29_SOURCE = 'https://www.sii.cl/preguntas_frecuentes/impuestos_mensuales/001_130_1964.htm';
 
 const amount = value => Math.round(Number(value || 0));

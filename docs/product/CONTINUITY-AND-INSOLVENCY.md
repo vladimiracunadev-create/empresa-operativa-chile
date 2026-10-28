@@ -25,6 +25,21 @@ Una brecha de caja es una alerta, no un diagnóstico concursal. El expediente lo
 bienes, gravámenes, acreedores, vencimientos, juicios, trabajadores, cartolas y carpeta tributaria. El campo
 de elegibilidad permanece `REQUIRES_VERIFICATION`, `submitted` y `signed` permanecen `false`.
 
+## Personas, contratos y patrimonio
+
+El módulo también conserva cuatro límites que no deben resolverse por inferencia:
+
+- cambio, incapacidad o fallecimiento del administrador registra evidencia y continuidad, pero no
+  adjudica acciones, herederos, legitimarios ni poderes;
+- una boleta o contrato por proyecto no descarta subordinación/dependencia; se registran hechos y se
+  escala a revisión laboral;
+- propósito empresarial y deducibilidad tributaria son decisiones distintas;
+- responsabilidad limitada no elimina garantías personales ni todas las excepciones legales.
+
+La matriz de obligaciones distingue pago único, mensual, condicional, semestral, anual y decenal.
+Cada fila conserva fuente, ruta oficial, comprobante y recuperación. Un monto desconocido permanece
+`NO_DETERMINADO`: nunca se transforma en cero.
+
 Deuda, insolvencia, reorganización, liquidación concursal, disolución societaria y término de giro son
 conceptos diferentes. La aplicación no clasifica a una SpA sin trabajadores como elegible para un proceso
 simplificado.

@@ -739,6 +739,10 @@ kbd {
 .stagebox p:last-child { margin-bottom: 0; }
 .stagebox table { font-size: 0.82rem; }
 
+.journey-bar { display:grid; grid-template-columns:repeat(5,minmax(150px,1fr)); gap:1px; margin:0 0 16px; overflow:auto; border:1px solid var(--border); border-radius:var(--radius); background:var(--border); }
+.journey-bar span { display:flex; min-width:150px; flex-direction:column; gap:4px; padding:12px; background:var(--surface); }
+.journey-bar small { color:var(--muted); line-height:1.35; }
+
 /* -------------------------------------------------------------- móvil ---- */
 
 .mobile-only { display: none; }

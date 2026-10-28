@@ -70,3 +70,22 @@ export function normalizeJurisdictionContext(value = {}) {
   return next;
 }
 
+/** Señala ambigüedad transfronteriza sin elegir moneda o zona por conveniencia. */
+export function assessCrossBorderReadiness(context, { currencyEvidence = null, operationTimeZones = {} } = {}) {
+  validateJurisdictionContext(context);
+  if (!operationTimeZones || typeof operationTimeZones !== 'object' || Array.isArray(operationTimeZones)) throw new Error('operationTimeZones debe ser un objeto');
+  const missingTimeZones = context.operationCountries.filter(country => !operationTimeZones[country]);
+  const crossBorder = new Set([context.fiscalCountry, context.incorporationCountry, ...context.operationCountries]).size > 1;
+  const warnings = [];
+  if (crossBorder && !currencyEvidence) warnings.push('Moneda de registro sin evidencia para el contexto transfronterizo.');
+  if (context.operationCountries.length > 1 && missingTimeZones.length) warnings.push(`Zonas horarias no resueltas: ${missingTimeZones.join(', ')}.`);
+  return {
+    state: warnings.length ? 'REQUIRES_VERIFICATION' : 'READY_FOR_DOCUMENTARY_GUIDANCE',
+    crossBorder,
+    currency: context.currency,
+    fiscalTimeZone: context.timeZone,
+    missingTimeZones,
+    warnings
+  };
+}
+

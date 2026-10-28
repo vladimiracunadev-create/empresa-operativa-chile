@@ -62,7 +62,7 @@ export function validateCountryPack(pack) {
     throw new Error('timeZone debe ser una zona IANA soportada');
   }
 
-  for (const field of ['subdivisions', 'supportedLocales', 'legalEntities', 'identifiers', 'forms', 'procedures', 'rules', 'supportedScenarios']) {
+  for (const field of ['subdivisions', 'supportedLocales', 'legalEntities', 'identifiers', 'forms', 'initialDeclarations', 'obligations', 'currencies', 'procedures', 'evidenceRequirements', 'alerts', 'officialRoutes', 'rules', 'supportedScenarios']) {
     list(pack[field], field);
   }
   if (pack.supportedLocales.length === 0 || pack.supportedLocales.some(locale => !BCP47.test(locale))) {
@@ -71,6 +71,14 @@ export function validateCountryPack(pack) {
   records(pack.legalEntities, 'legalEntities', ['id', 'label', 'status']);
   records(pack.identifiers, 'identifiers', ['id', 'label', 'authority', 'status']);
   records(pack.forms, 'forms', ['id', 'label', 'status']);
+  records(pack.initialDeclarations, 'initialDeclarations', ['id', 'label', 'status']);
+  records(pack.obligations, 'obligations', ['id', 'label', 'status']);
+  records(pack.currencies, 'currencies', ['code', 'roundingMode', 'status']);
+  records(pack.procedures, 'procedures', ['id', 'authority', 'status']);
+  records(pack.evidenceRequirements, 'evidenceRequirements', ['id', 'label', 'status']);
+  records(pack.alerts, 'alerts', ['id', 'label', 'status']);
+  records(pack.officialRoutes, 'officialRoutes', ['id', 'label', 'url', 'status']);
+  for (const route of pack.officialRoutes) if (!String(route.url).startsWith('https://')) throw new Error('officialRoutes.url debe usar HTTPS');
   if (pack.supportedScenarios.some(value => typeof value !== 'string' || value.trim() === '')) {
     throw new Error('supportedScenarios no puede contener valores vacios');
   }
@@ -110,6 +118,12 @@ export function validateCountryPack(pack) {
   if (pack.capabilities.taxCalculations.enabled && !['VERIFIED', 'PARTIAL_VERIFIED'].includes(pack.verification.state)) {
     throw new Error('Un pack documental o no revisado no puede habilitar calculos tributarios');
   }
+  object(pack.calendar, 'calendar');
+  text(pack.calendar.status, 'calendar.status');
+  if (pack.calendar.holidaysSource !== null && !String(pack.calendar.holidaysSource).startsWith('https://')) throw new Error('calendar.holidaysSource debe usar HTTPS o ser null');
+  object(pack.rounding, 'rounding');
+  text(pack.rounding.mode, 'rounding.mode');
+  if (!Number.isInteger(pack.rounding.scale) || pack.rounding.scale < 0) throw new Error('rounding.scale debe ser entero no negativo');
   return true;
 }
 

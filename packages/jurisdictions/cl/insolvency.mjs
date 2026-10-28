@@ -12,6 +12,32 @@ export const SUPERIR_SOURCES = Object.freeze([
   'https://www.superir.gob.cl/liquidacion-simplificada/'
 ]);
 
+export const CHILE_INSOLVENCY_PROCEDURES = Object.freeze([
+  { id: 'economic-insolvency-advice', label: 'Asesoría económica de insolvencia', forum: 'professional', eligibility: 'REQUIRES_VERIFICATION', automatic: false },
+  { id: 'reorganization', label: 'Reorganización concursal', forum: 'court', eligibility: 'REQUIRES_VERIFICATION', automatic: false },
+  { id: 'simplified-reorganization', label: 'Reorganización simplificada', forum: 'court', eligibility: 'REQUIRES_VERIFICATION', automatic: false },
+  { id: 'voluntary-liquidation', label: 'Liquidación voluntaria', forum: 'court', eligibility: 'REQUIRES_VERIFICATION', automatic: false },
+  { id: 'forced-liquidation', label: 'Liquidación forzosa', forum: 'court', eligibility: 'REQUIRES_VERIFICATION', automatic: false },
+  { id: 'simplified-liquidation', label: 'Liquidación simplificada', forum: 'court', eligibility: 'REQUIRES_VERIFICATION', automatic: false }
+]);
+
+export function reviewInsolvencyProcedure({ procedureId, hasWorkers = null, evidence = [] } = {}) {
+  const procedure = CHILE_INSOLVENCY_PROCEDURES.find(row => row.id === procedureId);
+  if (!procedure) throw new Error('Procedimiento concursal no soportado');
+  if (!Array.isArray(evidence)) throw new Error('evidence debe ser una lista');
+  return {
+    ...procedure,
+    hasWorkers,
+    evidence: [...evidence],
+    eligibility: 'REQUIRES_VERIFICATION',
+    automatic: false,
+    warning: hasWorkers === false && procedureId.includes('simplified')
+      ? 'No tener trabajadores no prueba elegibilidad para un procedimiento simplificado. Verificar todos los criterios con SUPERIR y profesional habilitado.'
+      : 'La elegibilidad depende de antecedentes completos y revisión profesional; la aplicación no la determina.',
+    sources: SUPERIR_SOURCES
+  };
+}
+
 export function assessLiquidityRisk({ availableCash = 0, overduePayables = 0, taxDebt = 0, socialSecurityDebt = 0, minimumCashPolicy = 0 } = {}) {
   const totalDue = [overduePayables, taxDebt, socialSecurityDebt].reduce((sum, value) => sum + Math.max(0, Number(value || 0)), 0);
   const gap = Number(availableCash || 0) - totalDue - Math.max(0, Number(minimumCashPolicy || 0));
