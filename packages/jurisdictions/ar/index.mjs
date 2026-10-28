@@ -10,5 +10,8 @@ export const pack = documentaryPack({
     trademark: verifiedAgency('Instituto Nacional de la Propiedad Industrial', 'https://www.argentina.gob.ar/inpi/marcas/registrar-una-marca', 'Registro nacional de marcas.'),
     insolvency: unknownAgency('Autoridad y competencia concursal pendientes de investigacion por jurisdiccion.')
   },
-  identifiers: [{ id: 'CUIT', label: 'Clave Unica de Identificacion Tributaria', authority: 'ARCA', status: 'PARTIAL_VERIFIED' }]
+  identifiers: [{ id: 'CUIT', label: 'Clave Unica de Identificacion Tributaria', authority: 'ARCA', status: 'PARTIAL_VERIFIED' }],
+  legalEntities: [{ id: 'AR_ENTITY_UNRESOLVED', label: 'Tipo societario y registro provincial por verificar', status: 'REQUIRES_HUMAN_REVIEW' }],
+  forms: [{ id: 'CUIT_REGISTRATION', label: 'Inscripción fiscal ante ARCA', status: 'DOCUMENTARY_ONLY' }],
+  procedures: [{ id: 'provincial-registry-resolution', authority: 'Registro según provincia; IGJ sólo cuando corresponda', status: 'REQUIRES_HUMAN_REVIEW', automatic: false }]
 });

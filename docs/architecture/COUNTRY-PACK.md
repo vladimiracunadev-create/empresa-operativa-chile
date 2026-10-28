@@ -67,7 +67,7 @@ Web, Tauri y Capacitor para que la integracion posterior use una sola fuente.
 
 ## Compatibilidad y reversion
 
-- No cambia el formato de respaldo v3 ni la separacion REAL/SANDBOX.
+- El respaldo v4 agrega contexto jurisdiccional y ciclo de vida como extensiones; importa v1/v2/v3 y mantiene la separacion REAL/SANDBOX.
 - No mueve ni reescribe `packages/chile-tax-rules`; CL se consume mediante adaptador.
 - No modifica APIs de `accounting-engine` ni `company-operations`.
 - Reversion: retirar las entradas nuevas de `scripts/build-web.mjs` y los directorios

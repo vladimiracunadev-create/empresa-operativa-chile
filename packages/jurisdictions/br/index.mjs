@@ -10,5 +10,8 @@ export const pack = documentaryPack({
     trademark: verifiedAgency('Instituto Nacional da Propriedade Industrial', 'https://www.gov.br/inpi/pt-br/servicos/marcas', 'Marcas y propiedad industrial.'),
     insolvency: unknownAgency('Autoridad y procedimiento concursal pendientes de investigacion juridica aprobada.')
   },
-  identifiers: [{ id: 'CNPJ', label: 'Cadastro Nacional da Pessoa Juridica', authority: 'Receita Federal', status: 'PARTIAL_VERIFIED' }]
+  identifiers: [{ id: 'CNPJ', label: 'Cadastro Nacional da Pessoa Juridica', authority: 'Receita Federal', status: 'PARTIAL_VERIFIED' }],
+  legalEntities: [{ id: 'BR_ENTITY_UNRESOLVED', label: 'Natureza jurídica por verificar', status: 'REQUIRES_HUMAN_REVIEW' }],
+  forms: [{ id: 'CNPJ_REGISTRATION', label: 'Inscrição no CNPJ', status: 'DOCUMENTARY_ONLY' }],
+  procedures: [{ id: 'redesim-registration', authority: 'REDESIM / Junta / municipio competentes', status: 'REQUIRES_HUMAN_REVIEW', automatic: false }]
 });

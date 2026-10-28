@@ -11,5 +11,7 @@ export const pack = documentaryPack({
     insolvency: unknownAgency('Autoridad y procedimiento concursal pendientes de investigacion juridica aprobada.')
   },
   identifiers: [{ id: 'NIF', label: 'Numero de Identificacion Fiscal', authority: 'AEAT', status: 'PARTIAL_VERIFIED' }],
-  forms: [{ id: '036', label: 'Declaracion censal de alta, modificacion y baja', status: 'VERIFIED' }]
+  legalEntities: [{ id: 'ES_ENTITY_UNRESOLVED', label: 'Forma jurídica española por verificar', status: 'REQUIRES_HUMAN_REVIEW' }],
+  forms: [{ id: '036', label: 'Declaracion censal de alta, modificacion y baja', status: 'VERIFIED' }],
+  procedures: [{ id: 'circe-or-registry-route', authority: 'CIRCE / Registro Mercantil competente', status: 'DOCUMENTARY_ONLY', automatic: false }]
 });

@@ -1,6 +1,9 @@
 import { defineCountryPack } from '../../core/country-pack.mjs';
 import { availableYears, loadRules } from '../../chile-tax-rules/index.mjs';
 import { verifiedAgency } from '../profile.mjs';
+import { chileRuleEnvelope, loadChileRuleWithMetadata } from './rule-envelope.mjs';
+
+const RULE_NAMES = ['iva', 'honorarios', 'ppmProPyme', 'idpcProPyme', 'utm', 'municipalPatent', 'taxEquity', 'f29'];
 
 export const pack = defineCountryPack({
   country: 'CL',
@@ -18,8 +21,8 @@ export const pack = defineCountryPack({
   identifiers: [{ id: 'RUT', label: 'Rol Unico Tributario', authority: 'SII', status: 'PARTIAL_VERIFIED' }],
   forms: [{ id: 'F29', label: 'Formulario 29', status: 'PARTIAL_VERIFIED' }],
   procedures: [],
-  rules: [],
-  supportedScenarios: ['legacy-cl-2026-tax-adapter'],
+  rules: RULE_NAMES.map(name => chileRuleEnvelope(name, 2026)),
+  supportedScenarios: ['legacy-cl-2026-tax-adapter', 'zero-income', 'inactivity-review', 'liquidity-orientation', 'trademark-checklist'],
   capabilities: {
     documentaryGuidance: true,
     taxCalculations: {
@@ -40,3 +43,5 @@ export const pack = defineCountryPack({
 export function loadVerifiedChileRules(commercialYear) {
   return loadRules(commercialYear);
 }
+
+export { chileRuleEnvelope, loadChileRuleWithMetadata };

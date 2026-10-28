@@ -56,6 +56,20 @@
     "h": 1020
   },
   {
+    "name": "contexto",
+    "view": "contexto",
+    "alt": "Selector global de país fiscal, constitución, residencia, operación, idioma, moneda y zona horaria",
+    "w": 1180,
+    "h": 1180
+  },
+  {
+    "name": "continuidad",
+    "view": "continuidad",
+    "alt": "Continuidad: actividad, inactividad, caja, liquidez, insolvencia, marca y ciclo de vida",
+    "w": 1180,
+    "h": 1700
+  },
+  {
     "name": "auditoria",
     "view": "auditoria",
     "alt": "Bitácora de auditoría",

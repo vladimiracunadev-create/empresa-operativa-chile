@@ -16,6 +16,8 @@ import empezar from './views/empezar.js';
 import panel from './views/panel.js';
 import constitucion from './views/constitucion.js';
 import empresa from './views/empresa.js';
+import contexto from './views/contexto.js';
+import continuidad from './views/continuidad.js';
 import capital from './views/capital.js';
 import operaciones from './views/operaciones.js';
 import impuestos from './views/impuestos.js';
@@ -34,8 +36,8 @@ const NAV = [
   // "Empezar aquí" va primero y solo: es la única pantalla ordenada por tiempo
   // en vez de por función, y es la respuesta a "no sé por dónde empezar".
   { group: 'Empezar', views: [empezar] },
-  { group: 'Operar', views: [panel, operaciones, impuestos, obligaciones, cierre] },
-  { group: 'Empresa', views: [constitucion, empresa, capital] },
+  { group: 'Operar', views: [panel, operaciones, impuestos, obligaciones, continuidad, cierre] },
+  { group: 'Empresa', views: [contexto, constitucion, empresa, capital] },
   { group: 'Control', views: [controlInterno, auditoria, datos] },
   { group: 'Aprender', views: [academia, glosario, ayuda] }
 ];
@@ -120,12 +122,17 @@ function modeBar() {
         <span><strong>SANDBOX</strong> — empresa ficticia para practicar. Nada de aquí se copia a la empresa real.</span></div>`;
 }
 
+function jurisdictionBar() {
+  const context = ws().getJurisdictionContext();
+  return html`<div class="jurisdictionbar"><span><strong>${context.fiscalCountry}</strong> fiscal · ${context.locale} · ${context.currency} · ${context.timeZone}</span><button class="btn btn--ghost btn--sm" data-go="contexto">Cambiar país e idioma</button></div>`;
+}
+
 function renderView(keepScroll = false) {
   const view = VIEWS[state.view] ?? panel;
   const main = document.querySelector('#main');
   const scroll = keepScroll ? globalThis.scrollY : 0;
 
-  main.innerHTML = modeBar() + view.render();
+  main.innerHTML = modeBar() + jurisdictionBar() + view.render();
   // Las vistas piden un redibujo tras mutar datos; se conserva el scroll para
   // que guardar una fila a mitad de tabla no salte al principio de la página.
   view.mount?.(main, () => render(true));

@@ -38,6 +38,8 @@ const SHOTS = [
   { name: 'obligaciones', view: 'obligaciones', w: 1440, h: 900, alt: 'Calendario de obligaciones y comprobantes' },
   { name: 'cierre', view: 'cierre', w: 1440, h: 980, alt: 'Cierre mensual con su lista de control' },
   { name: 'empresa', view: 'empresa', w: 1440, h: 1020, alt: 'Ficha de la empresa y patente municipal estimada' },
+  { name: 'contexto', view: 'contexto', w: 1440, h: 1180, alt: 'Selector global de país fiscal, constitución, residencia, operación, idioma, moneda y zona horaria' },
+  { name: 'continuidad', view: 'continuidad', w: 1440, h: 1700, alt: 'Continuidad: actividad, inactividad, caja, liquidez, insolvencia, marca y ciclo de vida' },
   { name: 'auditoria', view: 'auditoria', w: 1440, h: 900, alt: 'Bitácora de auditoría' },
   { name: 'control-interno', view: 'control-interno', w: 1440, h: 1500, alt: 'Gobernanza y control interno con KRI, procesos críticos, controles, riesgos, RACI y auditoría continua' },
   { name: 'datos', view: 'datos', w: 1440, h: 980, alt: 'Exportación, importación y respaldos' },
@@ -48,9 +50,12 @@ const SHOTS = [
   { name: 'panel-claro', view: 'panel', w: 1440, h: 940, tema: 'claro', alt: 'El panel en tema claro' },
   { name: 'panel-real', view: 'panel', w: 1440, h: 800, modo: 'real', alt: 'El panel en EMPRESA REAL, con la franja ámbar de advertencia' },
   // Móvil: es la forma en que se usa el APK, y la navegación cambia a barra inferior.
-  { name: 'movil-panel', view: 'panel', w: 412, h: 915, alt: 'El panel en un teléfono' },
-  { name: 'movil-operaciones', view: 'operaciones', w: 412, h: 915, alt: 'Las operaciones en un teléfono' },
-  { name: 'movil-impuestos', view: 'impuestos', w: 412, h: 915, alt: 'El borrador del F29 en un teléfono' }
+  // Chrome headless en Windows impone un ancho mínimo cercano a 500 px. Se usa
+  // ese viewport real en vez de recortar una ventana mayor y fingir 412 px.
+  { name: 'movil-panel', view: 'panel', w: 500, h: 915, scale: 1, alt: 'El panel en una pantalla pequeña de 500 px' },
+  { name: 'movil-operaciones', view: 'operaciones', w: 500, h: 915, scale: 1, alt: 'Las operaciones en una pantalla pequeña de 500 px' },
+  { name: 'movil-impuestos', view: 'impuestos', w: 500, h: 915, scale: 1, alt: 'El borrador del F29 en una pantalla pequeña de 500 px' },
+  { name: 'movil-continuidad', view: 'continuidad', w: 500, h: 915, scale: 1, alt: 'Continuidad e inactividad en una pantalla pequeña de 500 px' }
 ];
 
 /**
@@ -95,7 +100,7 @@ const urlFor = shot => {
 
 for (const shot of selectedShots) {
   const dest = path.join(outDir, `${shot.name}.png`);
-  const bytes = screenshot({ url: urlFor(shot), out: dest, width: shot.w, height: shot.h, scale: 2 });
+  const bytes = screenshot({ url: urlFor(shot), out: dest, width: shot.w, height: shot.h, scale: shot.scale ?? 2 });
   console.log(`  ${shot.name}.png — ${(bytes / 1024).toFixed(0)} KB (${shot.w}×${shot.h})`);
 }
 
