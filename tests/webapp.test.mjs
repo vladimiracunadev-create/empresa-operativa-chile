@@ -97,16 +97,27 @@ test('la versión de la app coincide en package.json, Tauri y Cargo', () => {
   const cargo = fs.readFileSync(path.join(root, 'apps/contador-desktop/src-tauri/Cargo.toml'), 'utf8');
   const appJs = fs.readFileSync(path.join(webSrc, 'app.js'), 'utf8');
   const android = JSON.parse(fs.readFileSync(path.join(root, 'apps/android/package.json'), 'utf8'));
-  const androidLock = JSON.parse(fs.readFileSync(path.join(root, 'apps/android/package-lock.json'), 'utf8'));
   const desktop = JSON.parse(fs.readFileSync(path.join(root, 'apps/contador-desktop/package.json'), 'utf8'));
 
   assert.equal(tauri.version, pkg.version, 'tauri.conf.json quedó desfasado');
   assert.match(cargo, new RegExp(`^version = "${pkg.version}"$`, 'm'), 'Cargo.toml quedó desfasado');
   assert.match(appJs, new RegExp(`APP_VERSION = '${pkg.version}'`), 'APP_VERSION quedó desfasado');
   assert.equal(android.version, pkg.version, 'apps/android/package.json quedó desfasado');
-  assert.equal(androidLock.version, pkg.version, 'apps/android/package-lock.json quedó desfasado');
-  assert.equal(androidLock.packages[''].version, pkg.version, 'el importador raíz del package-lock de Android quedó desfasado');
   assert.equal(desktop.version, pkg.version, 'apps/contador-desktop/package.json quedó desfasado');
+});
+
+test('pnpm es el único gestor y no existen lockfiles de npm', () => {
+  const lockfilesNpm = [];
+  const visitar = dir => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name === 'node_modules' || entry.name === '.git') continue;
+      const target = path.join(dir, entry.name);
+      if (entry.isDirectory()) visitar(target);
+      else if (entry.name === 'package-lock.json' || entry.name === 'npm-shrinkwrap.json') lockfilesNpm.push(target);
+    }
+  };
+  visitar(root);
+  assert.deepEqual(lockfilesNpm, [], `se encontraron lockfiles ajenos a pnpm: ${lockfilesNpm.join(', ')}`);
 });
 
 test('el identificador de la aplicación es el mismo en Android y en Windows', () => {
