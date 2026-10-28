@@ -26,6 +26,40 @@ export function createTranslator(locale) {
   };
 }
 
+export function formatPlural(count, { locale, one, other }) {
+  if (!Number.isFinite(Number(count))) throw new Error('count debe ser numerico');
+  const category = new Intl.PluralRules(locale).select(Number(count));
+  const template = category === 'one' ? one : other;
+  if (typeof template !== 'string' || !template.includes('{count}')) throw new Error('Los mensajes plurales deben incluir {count}');
+  return template.replaceAll('{count}', new Intl.NumberFormat(locale).format(Number(count)));
+}
+
+const contextualGlossary = Object.freeze({
+  'es-CL': { taxAuthority: 'Servicio de Impuestos Internos (SII)', businessIdentifier: 'Rol Único Tributario (RUT)', initialTaxRegistration: 'Inicio de Actividades' },
+  'es-PE': { taxAuthority: 'Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT)', businessIdentifier: 'Registro Único de Contribuyentes (RUC)', initialTaxRegistration: 'Inscripción en el RUC' },
+  'es-MX': { taxAuthority: 'Servicio de Administración Tributaria (SAT)', businessIdentifier: 'Registro Federal de Contribuyentes (RFC)', initialTaxRegistration: 'Inscripción en el RFC' },
+  'es-CO': { taxAuthority: 'Dirección de Impuestos y Aduanas Nacionales (DIAN)', businessIdentifier: 'Registro Único Tributario (RUT)', initialTaxRegistration: 'Inscripción en el RUT' },
+  'es-AR': { taxAuthority: 'Agencia de Recaudación y Control Aduanero (ARCA)', businessIdentifier: 'Clave Única de Identificación Tributaria (CUIT)', initialTaxRegistration: 'Alta tributaria aplicable' },
+  'pt-BR': { taxAuthority: 'Receita Federal', businessIdentifier: 'Cadastro Nacional da Pessoa Jurídica (CNPJ)', initialTaxRegistration: 'Inscrição no CNPJ' },
+  'es-ES': { taxAuthority: 'Agencia Estatal de Administración Tributaria (AEAT)', businessIdentifier: 'Número de Identificación Fiscal (NIF)', initialTaxRegistration: 'Declaración censal aplicable' },
+  en: { taxAuthority: 'Tax authority for the selected jurisdiction', businessIdentifier: 'Jurisdiction-specific business identifier', initialTaxRegistration: 'Applicable initial tax registration' }
+});
+
+export function getContextualGlossary(locale) {
+  const canonical = Intl.getCanonicalLocales(locale)[0];
+  getMessages(canonical);
+  return contextualGlossary[canonical];
+}
+
+export function getStructuredMessages(locale) {
+  const status = getMessages(locale);
+  return Object.freeze({
+    status,
+    errors: Object.freeze({ missingEvidence: `${status.requiresVerification}: ${status.evidence}`, officialPortal: status.officialPortalWarning }),
+    accessibility: Object.freeze({ statusPrefix: status.requiresVerification, simulationPrefix: status.simulation })
+  });
+}
+
 export function formatMoney(amount, { locale, currency }) {
   if (!Number.isFinite(Number(amount))) throw new Error('amount debe ser numerico');
   if (!/^[A-Z]{3}$/.test(String(currency))) throw new Error('currency debe ser ISO 4217');

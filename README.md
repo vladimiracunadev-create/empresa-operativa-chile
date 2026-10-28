@@ -17,7 +17,7 @@ Windows y navegador. Tus datos no salen del dispositivo.**
 
 [![Versión](https://img.shields.io/badge/versión-1.5.0-e8590c?style=for-the-badge)](CHANGELOG.md)
 [![Plataformas](https://img.shields.io/badge/plataformas-Android_·_Windows_·_Web-7c5cff?style=for-the-badge)](#-descargas)
-[![Pruebas](https://img.shields.io/badge/pruebas-173_verdes-2e8b57?style=for-the-badge)](tests/)
+[![Pruebas](https://img.shields.io/badge/pruebas-190_verdes-2e8b57?style=for-the-badge)](tests/)
 [![Dependencias](https://img.shields.io/badge/dependencias_de_producción-0-2f81f7?style=for-the-badge)](package.json)
 [![Telemetría](https://img.shields.io/badge/telemetría-cero-3fb950?style=for-the-badge)](#-privacidad-que-se-puede-comprobar)
 [![Reglas](https://img.shields.io/badge/reglas-año_comercial_2026-8957e5?style=for-the-badge)](docs/SOURCES-2026.md)
@@ -53,7 +53,7 @@ Windows y navegador. Tus datos no salen del dispositivo.**
 
 | 🖥️ Vistas | 🧮 Motor | ✅ Pruebas | 📦 Dependencias | 📱 Plataformas | 📄 Manual |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| **15** | **1** | **173** | **0** | **3** | **HTML + PDF** |
+| **17** | **1** | **190** | **0** | **4** | **HTML + PDF** |
 
 </div>
 
@@ -187,7 +187,7 @@ falla si una lámina se desbordó o si las cifras de arriba dejaron de cuadrar c
 | App de Android | ✅ APK **con el contenido contado dentro del binario** en CI |
 | App de Windows | ✅ MSI, NSIS y portable; **arranca y se comprueba vivo** en CI |
 | Web / PWA | ✅ publicada en Pages, instalable y sin conexión |
-| Pruebas | ✅ 173 en Ubuntu y Windows, Node 20 y 22 |
+| Pruebas | ✅ 190 en Ubuntu y Windows, Node 20 y 22 |
 | Seguridad | ✅ CodeQL + detección de contabilidad real commiteada + acciones fijadas a SHA |
 | Integración con el SII | ⚪ **no existe** — por diseño, no por falta de tiempo |
 | Cifrado de datos locales | ⚪ pendiente ([roadmap](docs/ROADMAP.md)) |
@@ -386,7 +386,7 @@ pnpm start        # build + servidor en http://127.0.0.1:4180
 |---|---|
 | `pnpm build` | Reglas embebidas → iconos → `apps/web/dist` |
 | `pnpm app` | Sirve la app ya construida |
-| `pnpm test` | 173 pruebas con el runner nativo de Node |
+| `pnpm test` | 201 pruebas con el runner nativo de Node |
 | `pnpm check` | Sincronía de reglas + validación + pruebas |
 | `pnpm cli -- ayuda` | Todos los comandos de la CLI |
 | `pnpm desktop:build` | Instaladores de Windows (necesita Rust) |
@@ -415,7 +415,7 @@ arranca y se comprueba que sigue vivo. Un build en verde no prueba que la app es
 
 ## 🧪 Pruebas
 
-173 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
+201 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
 hacen confiable al producto:
 
 - un período cerrado es inmutable **en las dos direcciones** (no se agrega y no se borra);
@@ -433,7 +433,9 @@ hacen confiable al producto:
 - un proceso crítico no puede saltar etapas ni reutilizar una persona en funciones incompatibles;
 - una investigación exige independencia, conflicto declarado y evidencia preservada;
 - una investigación separa hechos, hipótesis, decisión y remediación, y sólo cierra con verificación;
-- los respaldos v3 conservan controles, riesgos, procesos y denuncias sin romper v1/v2.
+- los respaldos v4 conservan controles, riesgos, procesos, denuncias, contexto jurisdiccional y ciclo de vida sin romper v1/v2/v3;
+- país fiscal, país de constitución, residencia, operación, idioma, moneda y zona horaria son dimensiones independientes;
+- PE/MX/CO/AR/BR/ES permanecen documentales y fallan cerrado ante cualquier cálculo fiscal no aprobado.
 
 ## 🎓 Academia
 

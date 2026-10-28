@@ -89,3 +89,21 @@ custodio y una cronología que separa hechos, hipótesis y evidencia faltante.
 El cierre exige investigador y decisor distintos, conclusión proporcional, remediación, prueba de
 eficacia y vía de revisión. La aplicación detecta anomalías y excepciones; no declara culpabilidad,
 corrupción ni delito.
+
+## 15. Contexto multijurisdiccional
+
+Selector global para país fiscal, constitución, residencia, países de operación, subdivisión, idioma,
+moneda, zona horaria, entidad, régimen, año y etapa. El respaldo v4 conserva este contexto y continúa
+importando v1/v2/v3. Sólo Chile 2026 tiene cálculos activos; los demás CountryPack son documentales.
+
+## 16. Continuidad, caja e inactividad
+
+Clasifica `NO DETERMINADO`, `SIN MOVIMIENTO` y `CERO VENTAS CON MOVIMIENTO` sin confundirlos. Proyecta
+caja a 6/12/24/36 meses con supuestos explícitos y sin presentar una reserva interna como mínimo legal.
+Los umbrales SII producen una señal de revisión, nunca cierre automático.
+
+## 17. Liquidez, insolvencia y marcas
+
+Alerta financiera y expediente local de bienes, gravámenes, acreedores, vencimientos, juicios,
+trabajadores, cartolas y carpeta tributaria. Nunca decide elegibilidad, firma ni envía. El checklist INAPI
+separa marca, nombre societario y dominio, y no calcula renovación sin título y fecha verificados.

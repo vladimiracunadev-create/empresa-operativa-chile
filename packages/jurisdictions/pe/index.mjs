@@ -12,5 +12,8 @@ export const pack = documentaryPack({
     insolvency: unknownAgency('Autoridad y procedimiento concursal pendientes de investigacion juridica aprobada.')
   },
   identifiers: [{ id: 'RUC', label: 'Registro Unico de Contribuyentes', authority: 'SUNAT', status: 'VERIFIED' }],
+  legalEntities: [{ id: 'PERU_ENTITY_UNRESOLVED', label: 'Tipo societario por verificar con SUNARP', status: 'REQUIRES_HUMAN_REVIEW' }],
+  forms: [{ id: 'RUC_REGISTRATION', label: 'Inscripción en el RUC', status: 'DOCUMENTARY_ONLY' }],
+  procedures: [{ id: 'ruc-registration', authority: 'SUNAT', status: 'DOCUMENTARY_ONLY', automatic: false }],
   supportedScenarios: ['documentary-orientation', 'ruc-orientation']
 });

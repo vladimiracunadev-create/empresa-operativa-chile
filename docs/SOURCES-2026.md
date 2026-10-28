@@ -1,5 +1,8 @@
 # 🔗 Fuentes oficiales verificadas — Chile 2026
 
+> La matriz multijurisdiccional y sus estados de revisión están en
+> [`docs/legal/MULTIJURISDICTION-SOURCES-2026.md`](legal/MULTIJURISDICTION-SOURCES-2026.md).
+
 Última revisión del repositorio: **22 de septiembre de 2026**
 (integridad, delitos tributarios, gobierno y protección de datos; capital propio tributario,
 patente municipal y reglas societarias, 16 de agosto de 2026; el resto, 9 de agosto de 2026).

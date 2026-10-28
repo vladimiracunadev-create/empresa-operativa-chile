@@ -8,5 +8,8 @@ export const pack = documentaryPack({
     trademark: verifiedAgency('Instituto Mexicano de la Propiedad Industrial', 'https://www.gob.mx/impi', 'Marcas y propiedad industrial.'),
     insolvency: unknownAgency('Autoridad y procedimiento concursal pendientes de investigacion juridica aprobada.')
   },
-  identifiers: [{ id: 'RFC', label: 'Registro Federal de Contribuyentes', authority: 'SAT', status: 'PARTIAL_VERIFIED' }]
+  identifiers: [{ id: 'RFC', label: 'Registro Federal de Contribuyentes', authority: 'SAT', status: 'PARTIAL_VERIFIED' }],
+  legalEntities: [{ id: 'MX_ENTITY_UNRESOLVED', label: 'Tipo societario mexicano por verificar', status: 'REQUIRES_HUMAN_REVIEW' }],
+  forms: [{ id: 'RFC_PM_REGISTRATION', label: 'Inscripción al RFC de personas morales', status: 'DOCUMENTARY_ONLY' }],
+  procedures: [{ id: 'federal-incorporation-orientation', authority: 'Secretaría de Economía', status: 'DOCUMENTARY_ONLY', automatic: false }]
 });

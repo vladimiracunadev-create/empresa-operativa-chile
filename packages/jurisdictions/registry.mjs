@@ -36,6 +36,21 @@ export function resolveJurisdiction({ country, locale }) {
   return { countryPack: pack, locale: resolvedLocale };
 }
 
+/** Evalúa si faltan competencias subnacionales sin impedir guardar un borrador. */
+export function jurisdictionReadiness(context) {
+  const pack = getCountryPack(context?.fiscalCountry);
+  const subdivisions = context?.subdivisions ?? {};
+  const missingSubdivisions = pack.subdivisions
+    .filter(requirement => requirement.requiredFor?.length && !String(subdivisions[requirement.type] ?? '').trim())
+    .map(requirement => requirement.type);
+  return {
+    country: pack.country,
+    state: missingSubdivisions.length ? 'REQUIRES_HUMAN_REVIEW' : pack.verification.state,
+    missingSubdivisions,
+    taxCalculationsEnabled: pack.capabilities.taxCalculations.enabled
+  };
+}
+
 /** Unico puente de calculo habilitado en esta fase: Chile y ano explicitamente verificado. */
 export function loadTaxRules({ country, commercialYear }) {
   const pack = getCountryPack(country);

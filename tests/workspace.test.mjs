@@ -227,12 +227,12 @@ test('los KRI muestran casos abiertos y remediaciones vencidas sin declarar culp
   assert.equal(kris.overdueRemediations, 1);
 });
 
-test('el respaldo v3 conserva la capa de gobierno y sigue aceptando v2', () => {
+test('el respaldo v4 conserva gobierno y sigue aceptando v2', () => {
   const origen = ws();
   origen.addControl({ name: 'Límite', objective: 'Prevenir exceso', owner: 'Treasury', nature: 'Preventive', execution: 'Automated', frequencyDays: 1, evidence: 'Log' });
   origen.reportConcern({ description: 'Caso', evidence: 'EV-1' });
   const payload = origen.exportAll();
-  assert.equal(payload.formatVersion, 3);
+  assert.equal(payload.formatVersion, 4);
   const destino = ws();
   destino.importAll(payload);
   assert.equal(destino.listControls().length, 1);

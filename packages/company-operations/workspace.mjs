@@ -22,6 +22,8 @@ import { calculateTaxEquity, allowsSimplifiedTaxEquity } from '../accounting-eng
 import { calculateMunicipalPatent } from '../accounting-engine/municipal-patent.mjs';
 import { normalizeMunicipality } from '../chile-tax-rules/municipalities.mjs';
 import { loadRules, availableYears } from '../chile-tax-rules/index.mjs';
+import { normalizeJurisdictionContext } from '../core/jurisdiction-context.mjs';
+import { createLifecycleRecord, transitionLifecycle } from '../core/lifecycle.mjs';
 import {
   GOVERNANCE_ROLES,
   DEFAULT_RACI,
@@ -125,6 +127,9 @@ const KEY = {
   criticalProcesses: 'critical-processes',
   auditSchedule: 'audit-schedule',
   whistleblowing: 'whistleblowing',
+  jurisdictionContext: 'jurisdiction-context',
+  lifecycle: 'company-lifecycle',
+  insolvencyDossier: 'insolvency-dossier',
   audit: 'audit'
 };
 
@@ -329,6 +334,62 @@ export class CompanyWorkspace {
     this.store.write(KEY.company, next);
     this.audit('company.saved', { rut: next.rut ?? null, legalName: next.legalName ?? null });
     return next;
+  }
+
+  /* ---------------- contexto jurisdiccional y ciclo de vida ---------------- */
+
+  getJurisdictionContext() {
+    return normalizeJurisdictionContext(this.store.read(KEY.jurisdictionContext, {}));
+  }
+
+  saveJurisdictionContext(context) {
+    const next = normalizeJurisdictionContext({ ...this.getJurisdictionContext(), ...context, updatedAt: isoNow() });
+    this.store.write(KEY.jurisdictionContext, next);
+    this.audit('jurisdiction.context.saved', {
+      fiscalCountry: next.fiscalCountry,
+      incorporationCountry: next.incorporationCountry,
+      operationCountries: next.operationCountries,
+      locale: next.locale,
+      currency: next.currency,
+      lifecycleStage: next.lifecycleStage
+    });
+    return next;
+  }
+
+  getLifecycle() {
+    return this.store.read(KEY.lifecycle, null);
+  }
+
+  startLifecycle(input) {
+    if (this.getLifecycle()) throw new Error('El ciclo de vida ya fue iniciado');
+    const record = createLifecycleRecord({ country: this.getJurisdictionContext().fiscalCountry, ...input });
+    this.store.write(KEY.lifecycle, record);
+    this.saveJurisdictionContext({ lifecycleStage: record.state });
+    this.audit('lifecycle.started', { state: record.state, responsible: record.responsible });
+    return record;
+  }
+
+  advanceLifecycle(input) {
+    const current = this.getLifecycle();
+    if (!current) throw new Error('Primero inicia el ciclo de vida');
+    const record = transitionLifecycle(current, input);
+    this.store.write(KEY.lifecycle, record);
+    this.saveJurisdictionContext({ lifecycleStage: record.state });
+    this.audit('lifecycle.transitioned', { from: current.state, to: record.state, responsible: record.responsible });
+    return record;
+  }
+
+  getInsolvencyDossier() {
+    return this.store.read(KEY.insolvencyDossier, null);
+  }
+
+  saveInsolvencyDossier(dossier) {
+    if (!dossier || dossier.eligibility !== 'REQUIRES_VERIFICATION' || dossier.submitted !== false || dossier.signed !== false) {
+      throw new Error('El expediente debe permanecer orientativo, sin envío ni firma automática');
+    }
+    this.store.write(KEY.insolvencyDossier, dossier);
+    this.audit('insolvency.dossier.saved', { eligibility: dossier.eligibility });
+    return dossier;
   }
 
   /* ---------------- capital y patrimonio ---------------- */
@@ -1081,9 +1142,9 @@ export class CompanyWorkspace {
   exportAll() {
     return {
       format: 'empresa-operativa-chile/backup',
-      // v3 agrega gobierno, controles, riesgos, procesos críticos y denuncias.
-      // Los respaldos v1/v2 se siguen importando (ver `importAll`).
-      formatVersion: 3,
+      // v4 agrega contexto jurisdiccional, grafo de ciclo de vida y expediente
+      // orientativo. Los respaldos v1/v2/v3 se siguen importando.
+      formatVersion: 4,
       mode: this.mode,
       exportedAt: isoNow(),
       company: this.getCompany(),
@@ -1100,6 +1161,9 @@ export class CompanyWorkspace {
       criticalProcesses: this.listCriticalProcesses(),
       auditSchedule: this.getGovernanceModel().auditSchedule,
       whistleblowing: this.listWhistleblowingReports(),
+      jurisdictionContext: this.getJurisdictionContext(),
+      lifecycle: this.getLifecycle(),
+      insolvencyDossier: this.getInsolvencyDossier(),
       audit: this.listAudit()
     };
   }
@@ -1113,7 +1177,7 @@ export class CompanyWorkspace {
     // Un respaldo v1 se importa igual: los campos nuevos simplemente no vienen y
     // quedan vacíos. Romper los respaldos que la gente ya tiene guardados sería
     // peor que cualquier ventaja de limpiar el formato.
-    if (![1, 2, 3].includes(payload.formatVersion)) throw new Error(`Versión de respaldo no soportada: ${payload.formatVersion}`);
+    if (![1, 2, 3, 4].includes(payload.formatVersion)) throw new Error(`Versión de respaldo no soportada: ${payload.formatVersion}`);
 
     if (replace) {
       this.store.write(KEY.company, payload.company ?? null);
@@ -1130,6 +1194,9 @@ export class CompanyWorkspace {
       this.store.write(KEY.criticalProcesses, payload.criticalProcesses ?? []);
       this.store.write(KEY.auditSchedule, payload.auditSchedule ?? DEFAULT_AUDIT_SCHEDULE);
       this.store.write(KEY.whistleblowing, payload.whistleblowing ?? []);
+      this.store.write(KEY.jurisdictionContext, normalizeJurisdictionContext(payload.jurisdictionContext ?? {}));
+      this.store.write(KEY.lifecycle, payload.lifecycle ?? null);
+      this.store.write(KEY.insolvencyDossier, payload.insolvencyDossier ?? null);
     } else {
       const byId = new Map(this.listTransactions().map(t => [t.id, t]));
       for (const t of payload.transactions ?? []) byId.set(t.id, t);
@@ -1154,6 +1221,9 @@ export class CompanyWorkspace {
       this.store.write(KEY.risks, mergeById(this.listRisks(), payload.risks));
       this.store.write(KEY.criticalProcesses, mergeById(this.listCriticalProcesses(), payload.criticalProcesses, 'process_id'));
       this.store.write(KEY.whistleblowing, mergeById(this.listWhistleblowingReports(), payload.whistleblowing));
+      if (payload.jurisdictionContext) this.store.write(KEY.jurisdictionContext, normalizeJurisdictionContext(payload.jurisdictionContext));
+      if (!this.getLifecycle() && payload.lifecycle) this.store.write(KEY.lifecycle, payload.lifecycle);
+      if (!this.getInsolvencyDossier() && payload.insolvencyDossier) this.store.write(KEY.insolvencyDossier, payload.insolvencyDossier);
     }
     this.audit('backup.imported', { replace, transactions: (payload.transactions ?? []).length, sourceMode: payload.mode ?? null });
     return { imported: true, replace, transactions: this.listTransactions().length };

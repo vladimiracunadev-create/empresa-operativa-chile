@@ -23,7 +23,7 @@ significa habilitado para cumplimiento real.
 |---|---|:---:|:---:|:---:|:---:|---|---|---|---|
 | Motor CL 2026 falla cerrado por ano | `packages/chile-tax-rules/index.mjs:23` | Si |  |  | P0 | SII/BCN segun regla | 2026-10-27 | Una regla legacy no posee aun todo el sobre normativo nuevo. | `tests/rules.test.mjs`; `tests/jurisdictions.test.mjs:13` |
 | REAL y SANDBOX separados | `packages/company-operations/workspace.mjs:131-138` | Si |  |  | P0 | Diseno interno | 2026-10-27 | Un cambio de persistencia podria romper aislamiento. | `tests/workspace.test.mjs:97` |
-| Compatibilidad de respaldos v1-v3 | `packages/company-operations/workspace.mjs:1081-1116` | Si |  |  | P0 | Diseno interno | 2026-10-27 | El contexto pais aun no se persiste. | `tests/workspace.test.mjs:234-247` |
+| Compatibilidad de respaldos v1-v4 | `packages/company-operations/workspace.mjs` | Si |  |  | P0 | Diseno interno | 2026-10-27 | Campos v4 son extensiones opcionales. | Migracion v1/v2/v3 y aislamiento REAL/SANDBOX |
 | CountryPack validado | `packages/core/country-pack.mjs:54-113` | Si |  |  | P0 | Contrato interno | 2026-10-27 | Catalogos legales siguen incompletos por pais. | `tests/jurisdictions.test.mjs:8-11` |
 | Registro CL/PE/MX/CO/AR/BR/ES | `packages/jurisdictions/registry.mjs:8-23` | Si |  |  | P0 | Sitios institucionales citados en cada pack | 2026-10-27 | Presencia de perfil puede confundirse con soporte legal completo. | Lista exacta de 7 packs |
 | Adaptador CL sin mover formulas | `packages/jurisdictions/cl/index.mjs:5-41` | Si |  |  | P0 | SII/RES/INAPI/SUPERIR | 2026-10-27 | Solo 2026; no normaliza cada regla legacy. | CL 2026 carga; 2025 falla |
@@ -34,15 +34,15 @@ significa habilitado para cumplimiento real.
 | ES Modelo 036 documental | `packages/jurisdictions/es/index.mjs:3-15` |  | Si |  | P2 | AEAT/OEPM/CIRCE | 2026-10-27 | No hay calendario ni reglas tributarias. | ES falla cerrado |
 | I18N separado del pais | `packages/i18n/locales/index.mjs:1-35`; `registry.mjs:26-36` | Si |  |  | P0 | BCP 47 / Intl | 2026-10-27 | Catalogo inicial pequeno y aun sin UI. | CL+en; MX+pt-BR |
 | Ocho locales iniciales | `packages/i18n/locales/index.mjs:1` |  | Si |  | P1 | BCP 47 / Intl | 2026-10-27 | Faltan plurales, errores y glosario juridico completo. | Formato de moneda/fecha en 8 locales |
-| Regla versionada con trazabilidad | `packages/core/regulatory-rules.mjs:8-83` | Si |  |  | P0 | Fuente propia de cada regla | 2026-10-27 | Las reglas CL existentes aun no fueron migradas al sobre. | DRAFT bloqueado; VERIFIED exige aprobador |
+| Regla versionada con trazabilidad | `packages/core/regulatory-rules.mjs`; `packages/jurisdictions/cl/rule-envelope.mjs` | Si |  |  | P0 | Fuente propia de cada regla | 2026-10-27 | Revision humana debe renovarse al cambiar vigencia. | Fixtures legacy/sobre identicos |
 | Feriados por jurisdiccion | `packages/accounting-engine/index.mjs:139-166` |  | Si |  | P0 | Calendario oficial por pais | 2026-10-27 | CL solo desplaza fin de semana y avisa revisar feriados. | `tests/f29.test.mjs:40-58` |
-| Grafo de ciclo de vida no lineal | `packages/onboarding/index.mjs:27-42` |  | Si |  | P1 | Revision legal por estado | 2026-10-27 | Ruta pedagogica actual sigue ordenada por fases; no registra transiciones. | Pruebas onboarding solo validan etapas |
-| Estados insolvencia/reorganizacion/disolucion/termino | `packages/onboarding/index.mjs:518-557` |  |  | Si | P0 | SUPERIR/ley/tribunales/SII | 2026-10-27 | Confundir conceptos puede inducir decisiones graves. | A disenar con fail-closed |
-| Flujo caja 6/12/24/36 | Sin modulo funcional |  |  | Si | P1 | Supuestos financieros, no minimo legal | 2026-10-27 | Presentar reserva como obligacion legal. | Escenarios 1-6 pendientes |
-| Empresa sin ingresos/clientes | Motor mensual existente, sin clasificador legal completo |  | Si |  | P0 | SII segun perfil | 2026-10-27 | `0` puede confundirse con no aplica/sin movimiento. | Escenarios 1-5 pendientes |
-| Marca/nombre/dominio CL | `packages/onboarding/index.mjs` no contiene modulo INAPI operativo |  |  | Si | P1 | INAPI/NIC Chile | 2026-10-27 | Confundir dominio con marca. | Flujo y renovacion pendientes |
-| Expediente concursal CL | Sin esquema funcional |  |  | Si | P0 | SUPERIR/tribunales/profesional | 2026-10-27 | Datos sensibles y diagnostico automatico indebido. | Escenarios 6-7 pendientes |
-| Selector global accesible | Sin vista registrada |  |  | Si | P1 | WCAG/Intl + packs | 2026-10-27 | Mezclar residencia, operacion y constitucion. | E2E Web/Windows/Android pendiente |
+| Grafo de ciclo de vida no lineal | `packages/core/lifecycle.mjs` | Si |  |  | P1 | Revision legal por estado | 2026-10-27 | Disponibilidad juridica especifica siempre requiere verificacion. | Transiciones autorizadas y evidencia obligatoria |
+| Estados insolvencia/reorganizacion/disolucion/termino | `packages/jurisdictions/cl/insolvency.mjs` | Si |  |  | P0 | SUPERIR/ley/tribunales/SII | 2026-10-27 | No determina elegibilidad ni presenta solicitudes. | Conceptos distintos; fail-closed |
+| Flujo caja 6/12/24/36 | `packages/jurisdictions/cl/operations.mjs` | Si |  |  | P1 | Supuestos financieros, no minimo legal | 2026-10-27 | Depende de supuestos del usuario. | Cuatro horizontes exactos |
+| Empresa sin ingresos/clientes | `packages/jurisdictions/cl/operations.mjs` | Si |  |  | P0 | SII segun perfil | 2026-10-27 | F22/DJ continuan sujetos al perfil. | Cero ventas con compras no es sin movimiento |
+| Marca/nombre/dominio CL | `packages/jurisdictions/cl/trademarks.mjs` | Si |  |  | P1 | INAPI/NIC Chile | 2026-10-27 | Fecha exacta requiere titulo verificado. | Dominio no protege marca; renovacion no inventada |
+| Expediente concursal CL | `packages/jurisdictions/cl/insolvency.mjs`; respaldo v4 | Si |  |  | P0 | SUPERIR/tribunales/profesional | 2026-10-27 | Datos permanecen locales; exige profesional. | Sin envio, firma ni elegibilidad automatica |
+| Selector global accesible | `apps/web/src/views/contexto.js`; barra global en `app.js` | Si |  |  | P1 | WCAG/Intl + packs | 2026-10-27 | Prueba fisica Android pendiente de workflow/artefacto. | Pais/idioma/moneda/zona separados |
 | Bundle comun incluye nueva base | `scripts/build-web.mjs:24-41` | Si |  |  | P0 | Diseno interno | 2026-10-27 | Un import `node:*` romperia WebView. | `pnpm build` + test webapp |
 | Fuente unica de “Empezar aqui” | `packages/onboarding/index.mjs:42`; generador existente | Si |  |  | P0 | Diseno interno | 2026-10-27 | Editar Markdown generado manualmente crearia drift. | `pnpm check` compara generado |
 | Automatizar presentacion/pago/firma | Prohibido por diseno y avisos existentes | Si |  |  | P0 | Portales oficiales/profesionales | 2026-10-27 | Exceso de autoridad del software. | Tests de avisos y ausencia de integracion |
@@ -68,3 +68,18 @@ compatibilidad de respaldos cuando el contexto jurisdiccional se persista.
 - `pnpm desktop:build`: no ejecutable en esta maquina porque `cargo` no esta instalado. Tauri
   termino antes de compilar al fallar `cargo metadata`; no se afirma un instalador Windows local.
 - Migracion de datos: ninguna. Reglas y formulas CL: sin cambios.
+
+## Cierre técnico del Prompt Maestro V3 · 2026-10-28
+
+La revisión literal final se documenta en `docs/audits/MASTER-PROMPT-V3-CROSSWALK.md`. Después de
+releer el prompt completo se cerraron las brechas restantes de contrato CountryPack, matriz de
+obligaciones/costos, vigencia y conflicto normativo, plurales/glosario i18n, continuidad de
+administrador, colaboradores, gastos y garantías personales.
+
+- `pnpm check`: **201/201 pruebas**, generados sincronizados y reglas 2026 validadas.
+- `pnpm build`: 75 archivos; el navegador recibe 36 módulos del núcleo mediante el bundle común.
+- `pnpm android:prepare`: 76 archivos, 17 vistas y 36 módulos del núcleo.
+- Migración: respaldo v4; importación v1/v2/v3 y fixture de producto v1.5 sin pérdida de operaciones,
+  cierres, comprobantes, auditoría ni aislamiento REAL/SANDBOX.
+- Países extranjeros: siguen `DOCUMENTARY_ONLY`, con cálculos apagados. No se declara cobertura total.
+- Fórmulas CL legacy: sin cambios; los sobres de metadatos se comparan con los valores originales.

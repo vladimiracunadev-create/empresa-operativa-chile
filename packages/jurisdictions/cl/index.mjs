@@ -1,6 +1,10 @@
 import { defineCountryPack } from '../../core/country-pack.mjs';
 import { availableYears, loadRules } from '../../chile-tax-rules/index.mjs';
 import { verifiedAgency } from '../profile.mjs';
+import { chileRuleEnvelope, loadChileRuleWithMetadata } from './rule-envelope.mjs';
+import { CHILE_OBLIGATION_CATALOG } from './obligations.mjs';
+
+const RULE_NAMES = ['iva', 'honorarios', 'ppmProPyme', 'idpcProPyme', 'utm', 'municipalPatent', 'taxEquity', 'f29'];
 
 export const pack = defineCountryPack({
   country: 'CL',
@@ -17,9 +21,25 @@ export const pack = defineCountryPack({
   },
   identifiers: [{ id: 'RUT', label: 'Rol Unico Tributario', authority: 'SII', status: 'PARTIAL_VERIFIED' }],
   forms: [{ id: 'F29', label: 'Formulario 29', status: 'PARTIAL_VERIFIED' }],
-  procedures: [],
-  rules: [],
-  supportedScenarios: ['legacy-cl-2026-tax-adapter'],
+  initialDeclarations: [{ id: 'START_OF_ACTIVITIES', label: 'Inicio de Actividades según perfil', status: 'PARTIAL_VERIFIED' }],
+  obligations: CHILE_OBLIGATION_CATALOG.map(row => ({ id: row.id, label: row.label, status: 'PARTIAL_VERIFIED' })),
+  currencies: [{ code: 'CLP', roundingMode: 'HALF_AWAY_FROM_ZERO', status: 'VERIFIED' }],
+  procedures: [
+    { id: 'incorporation-res', authority: 'RES', status: 'PARTIAL_VERIFIED' },
+    { id: 'tax-start-sii', authority: 'SII', status: 'PARTIAL_VERIFIED' }
+  ],
+  evidenceRequirements: [{ id: 'official-receipt', label: 'Folio o comprobante oficial del trámite', status: 'PARTIAL_VERIFIED' }],
+  alerts: [{ id: 'human-confirmation', label: 'Confirmar vigencia y perfil en el portal oficial', status: 'REQUIRES_HUMAN_REVIEW' }],
+  officialRoutes: [
+    { id: 'tax', label: 'Servicio de Impuestos Internos', url: 'https://www.sii.cl/', status: 'VERIFIED' },
+    { id: 'registry', label: 'Registro de Empresas y Sociedades', url: 'https://www.registrodeempresasysociedades.cl/', status: 'VERIFIED' },
+    { id: 'trademark', label: 'INAPI', url: 'https://www.inapi.cl/', status: 'VERIFIED' },
+    { id: 'insolvency', label: 'SUPERIR', url: 'https://www.superir.gob.cl/', status: 'VERIFIED' }
+  ],
+  calendar: { status: 'REQUIRES_HUMAN_REVIEW', holidaysSource: null },
+  rounding: { mode: 'HALF_AWAY_FROM_ZERO', scale: 0 },
+  rules: RULE_NAMES.map(name => chileRuleEnvelope(name, 2026)),
+  supportedScenarios: ['legacy-cl-2026-tax-adapter', 'zero-income', 'inactivity-review', 'liquidity-orientation', 'trademark-checklist'],
   capabilities: {
     documentaryGuidance: true,
     taxCalculations: {
@@ -40,3 +60,5 @@ export const pack = defineCountryPack({
 export function loadVerifiedChileRules(commercialYear) {
   return loadRules(commercialYear);
 }
+
+export { chileRuleEnvelope, loadChileRuleWithMetadata };
