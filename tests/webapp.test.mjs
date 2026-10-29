@@ -152,6 +152,11 @@ test('la automatización de dependencias cubre pnpm, Cargo y GitHub Actions', ()
   const cargoAudit = fs.readFileSync(path.join(root, '.cargo/audit.toml'), 'utf8');
 
   assert.match(dependabot, /package-ecosystem: npm[\s\S]+directory: \/apps\/android/);
+  assert.match(
+    dependabot,
+    /capacitor:[\s\S]+update-types:[\s\S]+- minor[\s\S]+- patch[\s\S]+patterns:[\s\S]+"@capacitor\/\*"/,
+    'Dependabot no debe proponer saltos mayores de Capacitor sin una migración explícita'
+  );
   assert.match(dependabot, /package-ecosystem: npm[\s\S]+directory: \/apps\/contador-desktop/);
   assert.match(dependabot, /package-ecosystem: cargo[\s\S]+directory: \/apps\/contador-desktop\/src-tauri/);
   assert.match(dependabot, /package-ecosystem: github-actions[\s\S]+directory: \//);
