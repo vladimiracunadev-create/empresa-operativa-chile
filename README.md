@@ -17,7 +17,7 @@ Windows y navegador. Tus datos no salen del dispositivo.**
 
 [![Versión](https://img.shields.io/badge/versión-1.5.0-e8590c?style=for-the-badge)](CHANGELOG.md)
 [![Plataformas](https://img.shields.io/badge/plataformas-Android_·_Windows_·_Web-7c5cff?style=for-the-badge)](#-descargas)
-[![Pruebas](https://img.shields.io/badge/pruebas-190_verdes-2e8b57?style=for-the-badge)](tests/)
+[![Pruebas](https://img.shields.io/badge/pruebas-203_verdes-2e8b57?style=for-the-badge)](tests/)
 [![Dependencias](https://img.shields.io/badge/dependencias_de_producción-0-2f81f7?style=for-the-badge)](package.json)
 [![Telemetría](https://img.shields.io/badge/telemetría-cero-3fb950?style=for-the-badge)](#-privacidad-que-se-puede-comprobar)
 [![Reglas](https://img.shields.io/badge/reglas-año_comercial_2026-8957e5?style=for-the-badge)](docs/SOURCES-2026.md)
@@ -187,7 +187,7 @@ falla si una lámina se desbordó o si las cifras de arriba dejaron de cuadrar c
 | App de Android | ✅ APK **con el contenido contado dentro del binario** en CI |
 | App de Windows | ✅ MSI, NSIS y portable; **arranca y se comprueba vivo** en CI |
 | Web / PWA | ✅ publicada en Pages, instalable y sin conexión |
-| Pruebas | ✅ 202 en Ubuntu y Windows, Node 20 y 22 |
+| Pruebas | ✅ 203 en Ubuntu y Windows, Node 22, 24 y 26 con parches de seguridad |
 | Seguridad | ✅ CodeQL + detección de contabilidad real commiteada + acciones fijadas a SHA |
 | Integración con el SII | ⚪ **no existe** — por diseño, no por falta de tiempo |
 | Cifrado de datos locales | ⚪ pendiente ([roadmap](docs/ROADMAP.md)) |
@@ -374,7 +374,7 @@ Detalle en [`docs/SOURCES-2026.md`](docs/SOURCES-2026.md).
 
 ## 🛠️ Desarrollo
 
-Requiere **Node 20+**. Nada más para la web y la CLI.
+Requiere una versión activa y corregida de Node: **22.23.4+**, **24.22.1+** o **26.13.0+** dentro de su línea mayor. El repositorio fija Node 24.22.2 en `.node-version`. Nada más para la web y la CLI.
 
 ```bash
 git clone https://github.com/vladimiracunadev-create/empresa-operativa-chile.git
@@ -386,7 +386,7 @@ pnpm start        # build + servidor en http://127.0.0.1:4180
 |---|---|
 | `pnpm build` | Reglas embebidas → iconos → `apps/web/dist` |
 | `pnpm app` | Sirve la app ya construida |
-| `pnpm test` | 202 pruebas con el runner nativo de Node |
+| `pnpm test` | 203 pruebas con el runner nativo de Node |
 | `pnpm check` | Sincronía de reglas + validación + pruebas |
 | `pnpm cli -- ayuda` | Todos los comandos de la CLI |
 | `pnpm desktop:build` | Instaladores de Windows (necesita Rust) |
@@ -406,8 +406,8 @@ pnpm cli -- resumen --periodo 2026-08
 
 | Plataforma | Herramienta | Requisitos |
 |---|---|---|
-| 📱 Android | Capacitor 7 + Gradle | JDK 21, Android SDK |
-| 💻 Windows | Tauri 2 + Rust | Rust estable, WebView2 |
+| 📱 Android | Capacitor 7 + Gradle | Temurin 21.0.13+9, Android SDK |
+| 💻 Windows | Tauri 2 + Rust | Rust 1.99.1, WebView2 |
 
 Ambos builds corren en CI y **verifican el artefacto por dentro**: el APK se abre como ZIP y se
 cuentan las vistas, los módulos del motor y las reglas que lleva; el ejecutable de Windows se
@@ -415,7 +415,7 @@ arranca y se comprueba que sigue vivo. Un build en verde no prueba que la app es
 
 ## 🧪 Pruebas
 
-202 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
+203 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
 hacen confiable al producto:
 
 - un período cerrado es inmutable **en las dos direcciones** (no se agrega y no se borra);

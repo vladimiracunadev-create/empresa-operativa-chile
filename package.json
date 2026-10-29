@@ -11,10 +11,12 @@
     "url": "https://github.com/vladimiracunadev-create/empresa-operativa-chile.git"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.23.4 <23 || >=24.22.1 <25 || >=26.13.0 <27"
   },
-  "packageManager": "pnpm@11.2.2",
+  "packageManager": "pnpm@11.25.0",
   "scripts": {
+    "runtime:check": "node scripts/check-node-runtime.mjs",
+    "prestart": "pnpm runtime:check",
     "build": "node scripts/build-all.mjs",
     "build:rules": "node scripts/build-rules.mjs",
     "build:glossary": "node scripts/build-glossary.mjs",
@@ -22,12 +24,16 @@
     "build:icons": "node scripts/build-icons.mjs",
     "build:web": "node scripts/build-web.mjs",
     "start": "node scripts/build-all.mjs && node apps/empresa-operativa/server.mjs",
+    "preapp": "pnpm runtime:check",
     "app": "node apps/empresa-operativa/server.mjs",
     "cli": "node apps/contador-cli/src/index.mjs",
     "test": "node --test tests/*.test.mjs",
     "check": "node scripts/build-rules.mjs --check && node scripts/build-glossary.mjs --check && node scripts/build-guide.mjs --check && node scripts/build-shortcuts.mjs --check && node scripts/build-presentation.mjs --check && node scripts/check-presentation.mjs && node scripts/validate-rules.mjs && node --test tests/*.test.mjs",
+    "predesktop:dev": "pnpm runtime:check",
     "desktop:dev": "pnpm --dir apps/contador-desktop run dev",
+    "predesktop:build": "pnpm runtime:check",
     "desktop:build": "node scripts/build-all.mjs && pnpm --dir apps/contador-desktop run build",
+    "preandroid:prepare": "pnpm runtime:check",
     "android:prepare": "node scripts/build-all.mjs && node apps/android/copiar-www.mjs",
     "android:verify": "node scripts/verify-apk.mjs",
     "capturas": "node scripts/capture-screenshots.mjs",

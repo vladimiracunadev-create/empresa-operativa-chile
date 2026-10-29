@@ -62,7 +62,7 @@
       </g>
       <g transform="translate(466, 0)">
         <rect width="126" height="34" rx="17" fill="rgba(240,168,60,0.16)" stroke="rgba(240,168,60,0.5)"/>
-        <text x="63" y="22" fill="#f6c17c" font-size="14" font-weight="600" text-anchor="middle">CLI · Node 20+</text>
+        <text x="63" y="22" fill="#f6c17c" font-size="14" font-weight="600" text-anchor="middle">CLI · Node 22/24/26</text>
       </g>
     </g>
   </g>
