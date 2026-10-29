@@ -25,19 +25,23 @@ Documento de decisiones. Explica **por qué** el proyecto está construido así,
 ```text
 empresa-operativa-chile/
 │
-├── packages/                       Núcleo. ESM puro, cero dependencias.
-│   ├── chile-tax-rules/            Reglas versionadas por año comercial
+├── packages/                       Núcleo de dominio. ESM puro, sin node:*.
+│   ├── core/                       Contratos de estados, evidencia, reglas y resultados fail-closed
+│   ├── i18n/                       8 locales de interfaz, separados de la jurisdicción fiscal
+│   ├── jurisdictions/              Registro + CountryPack CL/PE/MX/CO/AR/BR/ES
+│   ├── chile-tax-rules/            Reglas chilenas versionadas por año comercial
 │   │   ├── rules/2026.json         ← fuente de verdad (revisable, citable)
 │   │   ├── rules.generated.mjs     ← generado: lo mismo, embebible en navegador
 │   │   └── index.mjs
 │   ├── accounting-engine/          IVA, PPM, honorarios, patente, IDPC, F29, asientos
-│   └── company-operations/
-│       ├── workspace.mjs           ← motor operativo (sin node:*)
-│       ├── governance.mjs          ← RACI, SoD, controles, riesgos y KRI
-│       ├── store.mjs               ← almacenes de memoria y navegador
-│       ├── node-store.mjs          ← almacén de disco (sólo Node)
-│       ├── rut.mjs                 ← RUT y dígito verificador
-│       └── index.mjs               ← entrada de Node
+│   ├── company-operations/
+│   │   ├── workspace.mjs           ← motor operativo (sin node:*)
+│   │   ├── governance.mjs          ← RACI, SoD, controles, riesgos y KRI
+│   │   ├── store.mjs               ← almacenes de memoria y navegador
+│   │   ├── node-store.mjs          ← almacén de disco (sólo Node)
+│   │   ├── rut.mjs                 ← RUT y dígito verificador
+│   │   └── index.mjs               ← entrada de Node
+│   └── glossary/ onboarding/ shortcuts/  fuentes únicas de ayuda y documentos generados
 │
 ├── apps/
 │   ├── web/src/                    ÚNICA interfaz del producto
@@ -51,7 +55,7 @@ empresa-operativa-chile/
 │
 ├── scripts/                        build-rules · build-icons · build-web ·
 │                                   build-all · verify-apk · validate-rules
-├── tests/                          204 pruebas (runner nativo de Node)
+├── tests/                          207 pruebas (runner nativo de Node)
 ├── docs/                           documentación y runbooks
 └── curriculum/ labs/ cases/        material de aprendizaje
 ```
