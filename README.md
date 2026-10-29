@@ -17,7 +17,7 @@ Windows y navegador. Tus datos no salen del dispositivo.**
 
 [![Versión](https://img.shields.io/badge/versión-1.5.0-e8590c?style=for-the-badge)](CHANGELOG.md)
 [![Plataformas](https://img.shields.io/badge/plataformas-Android_·_Windows_·_Web-7c5cff?style=for-the-badge)](#-descargas)
-[![Pruebas](https://img.shields.io/badge/pruebas-203_verdes-2e8b57?style=for-the-badge)](tests/)
+[![Pruebas](https://img.shields.io/badge/pruebas-204_verdes-2e8b57?style=for-the-badge)](tests/)
 [![Dependencias](https://img.shields.io/badge/dependencias_de_producción-0-2f81f7?style=for-the-badge)](package.json)
 [![Telemetría](https://img.shields.io/badge/telemetría-cero-3fb950?style=for-the-badge)](#-privacidad-que-se-puede-comprobar)
 [![Reglas](https://img.shields.io/badge/reglas-año_comercial_2026-8957e5?style=for-the-badge)](docs/SOURCES-2026.md)
@@ -187,8 +187,8 @@ falla si una lámina se desbordó o si las cifras de arriba dejaron de cuadrar c
 | App de Android | ✅ APK **con el contenido contado dentro del binario** en CI |
 | App de Windows | ✅ MSI, NSIS y portable; **arranca y se comprueba vivo** en CI |
 | Web / PWA | ✅ publicada en Pages, instalable y sin conexión |
-| Pruebas | ✅ 203 en Ubuntu y Windows, Node 22, 24 y 26 con parches de seguridad |
-| Seguridad | ✅ CodeQL + detección de contabilidad real commiteada + acciones fijadas a SHA |
+| Pruebas | ✅ 204 en Ubuntu y Windows, Node 22, 24 y 26 con parches de seguridad |
+| Seguridad | ✅ CodeQL + revisión de dependencias + auditorías pnpm/RustSec + detección de datos reales + acciones fijadas a SHA |
 | Integración con el SII | ⚪ **no existe** — por diseño, no por falta de tiempo |
 | Cifrado de datos locales | ⚪ pendiente ([roadmap](docs/ROADMAP.md)) |
 | Firma de binarios | ⚪ pendiente ([roadmap](docs/ROADMAP.md)) |
@@ -386,7 +386,7 @@ pnpm start        # build + servidor en http://127.0.0.1:4180
 |---|---|
 | `pnpm build` | Reglas embebidas → iconos → `apps/web/dist` |
 | `pnpm app` | Sirve la app ya construida |
-| `pnpm test` | 203 pruebas con el runner nativo de Node |
+| `pnpm test` | 204 pruebas con el runner nativo de Node |
 | `pnpm check` | Sincronía de reglas + validación + pruebas |
 | `pnpm cli -- ayuda` | Todos los comandos de la CLI |
 | `pnpm desktop:build` | Instaladores de Windows (necesita Rust) |
@@ -415,7 +415,7 @@ arranca y se comprueba que sigue vivo. Un build en verde no prueba que la app es
 
 ## 🧪 Pruebas
 
-203 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
+204 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
 hacen confiable al producto:
 
 - un período cerrado es inmutable **en las dos direcciones** (no se agrega y no se borra);

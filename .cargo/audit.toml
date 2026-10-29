@@ -1,0 +1,6 @@
+# La única aplicación Rust publicada por este repositorio es Windows x86_64.
+# Cargo.lock incluye igualmente dependencias condicionales de Linux y macOS;
+# filtrarlas evita atribuir al binario Windows crates que nunca se compilan.
+[target]
+arch = ["x86_64"]
+os = ["windows"]

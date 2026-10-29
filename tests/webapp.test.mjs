@@ -146,6 +146,24 @@ test('los runtimes de build están fijados a baselines corregidos', () => {
   assert.doesNotMatch(workflows, /github\/codeql-action\/.+?# v3/);
 });
 
+test('la automatización de dependencias cubre pnpm, Cargo y GitHub Actions', () => {
+  const dependabot = fs.readFileSync(path.join(root, '.github/dependabot.yml'), 'utf8');
+  const security = fs.readFileSync(path.join(root, '.github/workflows/security.yml'), 'utf8');
+  const cargoAudit = fs.readFileSync(path.join(root, '.cargo/audit.toml'), 'utf8');
+
+  assert.match(dependabot, /package-ecosystem: npm[\s\S]+directory: \/apps\/android/);
+  assert.match(dependabot, /package-ecosystem: npm[\s\S]+directory: \/apps\/contador-desktop/);
+  assert.match(dependabot, /package-ecosystem: cargo[\s\S]+directory: \/apps\/contador-desktop\/src-tauri/);
+  assert.match(dependabot, /package-ecosystem: github-actions[\s\S]+directory: \//);
+  assert.match(security, /pnpm --dir apps\/android audit --audit-level high/);
+  assert.match(security, /pnpm --dir apps\/contador-desktop audit --audit-level high/);
+  assert.match(security, /cargo audit --file apps\/contador-desktop\/src-tauri\/Cargo\.lock/);
+  assert.match(security, /actions\/dependency-review-action@[0-9a-f]{40}/);
+  assert.doesNotMatch(security, /^\s*(?:run:\s*)?npm\s/m, 'el workflow no debe ejecutar npm');
+  assert.match(cargoAudit, /^arch = \["x86_64"\]$/m);
+  assert.match(cargoAudit, /^os = \["windows"\]$/m);
+});
+
 test('el identificador de la aplicación es el mismo en Android y en Windows', () => {
   const tauri = JSON.parse(fs.readFileSync(path.join(root, 'apps/contador-desktop/src-tauri/tauri.conf.json'), 'utf8'));
   const cap = JSON.parse(fs.readFileSync(path.join(root, 'apps/android/capacitor.config.json'), 'utf8'));

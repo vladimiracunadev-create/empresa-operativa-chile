@@ -1,0 +1,44 @@
+version: 2
+
+updates:
+  # GitHub denomina "npm" a este ecosistema, pero detecta y actualiza los
+  # pnpm-lock.yaml. El repositorio no usa npm ni acepta package-lock.json.
+  - package-ecosystem: npm
+    directory: /apps/android
+    schedule:
+      interval: weekly
+      day: monday
+      time: "07:00"
+      timezone: America/Santiago
+    open-pull-requests-limit: 5
+    groups:
+      capacitor:
+        patterns:
+          - "@capacitor/*"
+
+  - package-ecosystem: npm
+    directory: /apps/contador-desktop
+    schedule:
+      interval: weekly
+      day: monday
+      time: "07:15"
+      timezone: America/Santiago
+    open-pull-requests-limit: 5
+
+  - package-ecosystem: cargo
+    directory: /apps/contador-desktop/src-tauri
+    schedule:
+      interval: weekly
+      day: monday
+      time: "07:30"
+      timezone: America/Santiago
+    open-pull-requests-limit: 5
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "07:45"
+      timezone: America/Santiago
+    open-pull-requests-limit: 5

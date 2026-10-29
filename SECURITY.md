@@ -41,6 +41,18 @@ cada pull request, y falla si lo encuentra. `.gitignore` cubre además `.local-d
 
 Para datos de prueba usa [`data/scenarios/`](data/scenarios/) o el entorno **SANDBOX** de la app.
 
+## 📦 Dependencias y alcance de plataforma
+
+Dependabot revisa los dos `pnpm-lock.yaml`, `Cargo.lock` y las acciones de GitHub. El workflow de
+seguridad ejecuta `pnpm audit`, Dependency Review y RustSec en cada cambio y semanalmente.
+
+La aplicación Tauri que se publica es exclusivamente **Windows x86_64**. Cargo conserva en el
+lockfile dependencias condicionales de otros sistemas aunque no entren al binario; por eso
+`.cargo/audit.toml` limita RustSec al artefacto realmente publicado. Una alerta de otro sistema
+sólo puede cerrarse como «no usada» después de demostrar su cadena con
+`cargo tree --locked --target all --invert <crate>` y dejar la justificación en GitHub. No se
+permite ignorar una alerta que alcance Windows ni una dependencia compartida.
+
 ## ✅ Qué garantiza la aplicación
 
 | Garantía | Cómo está implementada |
