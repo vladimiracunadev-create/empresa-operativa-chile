@@ -1,7 +1,20 @@
-# Solución — Retiro personal
+# Pauta de solución — Retiro o gasto personal
 
-No registrarlo automáticamente como gasto. Debe analizarse como movimiento con accionista/retiro/distribución según hechos y régimen.
+La pauta permite comparar razonamiento; no reemplaza tu entregable ni autoriza una operación real.
 
-## Verificación
+## Hallazgos esperados
 
-Ejecuta el comando equivalente del CLI cuando exista y compara. Después valida el principio con `docs/SOURCES-2026.md`.
+- Banco disminuye y se reconoce una relación con la accionista según la política aplicable.
+- IVA y deducción no se activan por el medio de pago.
+- La excepción queda visible hasta su regularización.
+
+## Autoevaluación
+
+1. Reproduce cada cifra desde las entradas.
+2. Explica por qué cada clasificación sigue siendo válida si cambia la fecha de pago.
+3. Compara tu trabajo con la rúbrica del laboratorio.
+4. Corrige mediante una nueva versión; no borres tu primer intento.
+
+## En la aplicación
+
+Practica en SANDBOX: Operaciones → Capital → Alertas.

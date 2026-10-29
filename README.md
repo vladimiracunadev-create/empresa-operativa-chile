@@ -15,7 +15,7 @@ Windows y navegador. Tus datos no salen del dispositivo.**
 [![Seguridad](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/security.yml/badge.svg?branch=main)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/security.yml)
 [![Pages](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/pages.yml)
 
-[![Versión](https://img.shields.io/badge/versión-1.6.0-e8590c?style=for-the-badge)](CHANGELOG.md)
+[![Versión](https://img.shields.io/badge/versión-1.7.0-e8590c?style=for-the-badge)](CHANGELOG.md)
 [![Plataformas](https://img.shields.io/badge/plataformas-Android_·_Windows_·_Web-7c5cff?style=for-the-badge)](#-descargas)
 [![Pruebas](https://img.shields.io/badge/pruebas-207_verdes-2e8b57?style=for-the-badge)](tests/)
 [![Dependencias](https://img.shields.io/badge/dependencias_de_producción-0-2f81f7?style=for-the-badge)](package.json)
@@ -187,7 +187,7 @@ falla si una lámina se desbordó o si las cifras de arriba dejaron de cuadrar c
 | App de Android | ✅ APK **con el contenido contado dentro del binario** en CI |
 | App de Windows | ✅ MSI, NSIS y portable; **arranca y se comprueba vivo** en CI |
 | Web / PWA | ✅ publicada en Pages, instalable y sin conexión |
-| Pruebas | ✅ 207 en Ubuntu y Windows, Node 22, 24 y 26 con parches de seguridad |
+| Pruebas | ✅ 215 en Ubuntu y Windows, Node 22, 24 y 26 con parches de seguridad |
 | Seguridad | ✅ CodeQL + revisión de dependencias + auditorías pnpm/RustSec + detección de datos reales + acciones fijadas a SHA |
 | Integración con el SII | ⚪ **no existe** — por diseño, no por falta de tiempo |
 | Cifrado de datos locales | ⚪ pendiente ([roadmap](docs/ROADMAP.md)) |
@@ -386,7 +386,7 @@ pnpm start        # build + servidor en http://127.0.0.1:4180
 |---|---|
 | `pnpm build` | Reglas embebidas → iconos → `apps/web/dist` |
 | `pnpm app` | Sirve la app ya construida |
-| `pnpm test` | 207 pruebas con el runner nativo de Node |
+| `pnpm test` | 215 pruebas con el runner nativo de Node |
 | `pnpm check` | Sincronía de reglas + validación + pruebas |
 | `pnpm cli -- ayuda` | Todos los comandos de la CLI |
 | `pnpm desktop:build` | Instaladores de Windows (necesita Rust) |
@@ -415,7 +415,7 @@ arranca y se comprueba que sigue vivo. Un build en verde no prueba que la app es
 
 ## 🧪 Pruebas
 
-207 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
+215 pruebas, sin framework externo. Las que importan no comprueban aritmética, sino las reglas que
 hacen confiable al producto:
 
 - un período cerrado es inmutable **en las dos direcciones** (no se agrega y no se borra);
@@ -439,14 +439,21 @@ hacen confiable al producto:
 
 ## 🎓 Academia
 
-El material de aprendizaje está integrado en la propia aplicación (pestaña **Academia**), donde
-las explicaciones usan el mismo motor que opera tu empresa — no textos escritos aparte que con el
-tiempo dejen de coincidir:
+El material de aprendizaje está **completo dentro de la propia aplicación**, no sólo mencionado en
+el repositorio. La misma Academia viaja offline en la PWA, Windows y Android, con buscador, progreso
+local y práctica segura en SANDBOX:
 
-- 📚 [`curriculum/`](curriculum/) — 17 partes y 70 clases
-- 🧪 [`labs/`](labs/) — 17 laboratorios
-- 📁 [`cases/`](cases/) — 4 casos integrales
+- 📚 [`curriculum/`](curriculum/) — **70 clases desarrolladas** en 17 partes: resultados medibles,
+  conceptos, tres bloques de desarrollo, ejemplo trabajado, taller, errores con recuperación,
+  comprobación, entregable, criterio de aceptación y fuentes
+- 🧭 [`docs/ACADEMIA.md`](docs/ACADEMIA.md) — contrato pedagógico y ruta de estudio
+- 🧪 [`labs/`](labs/) — **17 laboratorios** con entradas, procedimiento, entrega, rúbrica y pauta
+- 📁 [`cases/`](cases/) — **4 casos integradores** de 4 a 6 horas con expediente, etapas y decisiones
+- 🎯 **12 rutas guiadas** y dos talleres calculados con el motor real para encontrar el punto de entrada
 - 🎲 [`data/scenarios/`](data/scenarios/) — escenarios sintéticos para la CLI
+
+Cada elemento sigue `observar → razonar → resolver → comprobar → aplicar`. La CI comprueba que los
+127 documentos generados y el contenido embarcado no se desvíen de su fuente única.
 
 ## 📚 Documentación
 
@@ -454,6 +461,7 @@ tiempo dejen de coincidir:
 |:---:|---|---|
 | 🧭 | [**Empezar aquí**](docs/EMPEZAR-AQUI.md) · [**HTML**](docs/EMPEZAR-AQUI.html) · [**PDF**](docs/EMPEZAR-AQUI.pdf) | **Si nunca has creado una empresa y no sabes por dónde partir.** 14 etapas ilustradas con diagramas y las pantallas reales: qué decidir, qué documento te queda, cómo sabes que terminaste — y qué NO cubre el sistema |
 | 📘 | [**Manual de usuario**](docs/MANUAL.md) · [**HTML**](docs/MANUAL.html) · [**PDF**](docs/MANUAL.pdf) | 21 capítulos, incluida la operación del módulo de control interno |
+| 🎓 | [**Guía de Academia**](docs/ACADEMIA.md) | Cómo estudiar las 70 clases, 17 laboratorios, 4 casos y 12 rutas que también están dentro de la app |
 | 🛡️ | [Control interno, SoD y auditoría](docs/CONTROL-INTERNO.md) | Gobierno, RACI, procesos, controles, riesgo, KRI, whistleblowing y custodia |
 | 🧭 | [Integridad, fraude e investigación](docs/INTEGRIDAD-INVESTIGACION.md) | Señales defensivas, debido proceso, causa raíz, decisiones y remediación |
 | 📚 | [Bibliografía de integridad](docs/BIBLIOGRAFIA-INTEGRIDAD.md) | Fuentes secundarias y testimoniales con alcance y limitaciones |

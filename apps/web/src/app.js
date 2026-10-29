@@ -30,7 +30,7 @@ import academia from './views/academia.js';
 import glosario from './views/glosario.js';
 import ayuda from './views/ayuda.js';
 
-export const APP_VERSION = '1.6.0';
+export const APP_VERSION = '1.7.0';
 
 const NAV = [
   // "Empezar aquí" va primero y solo: es la única pantalla ordenada por tiempo

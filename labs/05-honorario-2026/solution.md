@@ -1,7 +1,20 @@
-# Solución — Honorario 2026
+# Pauta de solución — Honorario y retención del período
 
-Retención 15,25% = $38.125; líquido = $211.875.
+La pauta permite comparar razonamiento; no reemplaza tu entregable ni autoriza una operación real.
 
-## Verificación
+## Hallazgos esperados
 
-Ejecuta el comando equivalente del CLI cuando exista y compara. Después valida el principio con `docs/SOURCES-2026.md`.
+- Bruto = gasto base del caso; líquido = bruto − retención.
+- La obligación retenida no desaparece al pagar al profesional.
+- La evidencia registra tasa, fuente, vigencia y fórmula.
+
+## Autoevaluación
+
+1. Reproduce cada cifra desde las entradas.
+2. Explica por qué cada clasificación sigue siendo válida si cambia la fecha de pago.
+3. Compara tu trabajo con la rúbrica del laboratorio.
+4. Corrige mediante una nueva versión; no borres tu primer intento.
+
+## En la aplicación
+
+Practica en SANDBOX: Honorarios → Operaciones → F29.

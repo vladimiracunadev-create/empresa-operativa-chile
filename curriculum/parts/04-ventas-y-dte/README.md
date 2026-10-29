@@ -1,16 +1,18 @@
 # Parte 04 — Ventas y DTE
 
-## Objetivo
+## Pregunta que guía la parte
 
-Dominar ventas y dte mediante explicación, simulación, registro y verificación.
+Registrar ventas, documentos y cobranza sin duplicar ingresos.
 
-## Clases
+Esta parte usa el caso continuo de Ruta Andina SpA. Cada clase produce una evidencia distinta; leer sin resolver el taller no cuenta como finalización.
 
-1. **Factura electrónica**
-2. **Base neta e IVA**
-3. **Notas de crédito/débito**
-4. **Cobranza y cuentas por cobrar**
+## Recorrido
 
-## Criterio de aprobación
+1. [C17 — Factura electrónica](classes/C17.md) — Leer campos esenciales de un DTE y conectarlos con el hecho.
+2. [C18 — Base neta e IVA](classes/C18.md) — Calcular y explicar neto, IVA y total.
+3. [C19 — Notas de crédito y débito](classes/C19.md) — Relacionar ajustes con el documento original.
+4. [C20 — Cobranza y cuentas por cobrar](classes/C20.md) — Separar venta, vencimiento, cobro y mora.
 
-El estudiante debe poder explicar la operación, calcularla, registrar su efecto y señalar qué evidencia/fuente oficial usaría para verificarla.
+## Criterio de dominio
+
+La parte queda dominada cuando las evidencias de todas sus clases cumplen sus criterios de aceptación y la persona puede explicar cómo una decisión cambia el registro, la caja, la obligación y la evidencia.

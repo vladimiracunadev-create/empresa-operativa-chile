@@ -23,6 +23,10 @@ const walk = dir =>
 
 /** Módulos del núcleo que se copian al bundle (scripts/build-web.mjs). */
 const BROWSER_CORE = [
+  'packages/academy/index.mjs',
+  'packages/academy/course.mjs',
+  'packages/academy/labs.mjs',
+  'packages/academy/cases.mjs',
   'packages/chile-tax-rules/index.mjs',
   'packages/chile-tax-rules/rules.generated.mjs',
   'packages/core/jurisdiction-context.mjs',

@@ -44,7 +44,7 @@ const SHOTS = [
   { name: 'control-interno', view: 'control-interno', w: 1440, h: 1500, alt: 'Gobernanza y control interno con KRI, procesos críticos, controles, riesgos, RACI y auditoría continua' },
   { name: 'datos', view: 'datos', w: 1440, h: 980, alt: 'Exportación, importación y respaldos' },
   { name: 'capital', view: 'capital', w: 1440, h: 1400, alt: 'Capital y patrimonio: las seis magnitudes, el CPT con su desglose y la patente municipal' },
-  { name: 'academia', view: 'academia', w: 1440, h: 1020, alt: 'Academia: una venta y un honorario explicados paso a paso' },
+  { name: 'academia', view: 'academia', w: 1440, h: 1020, alt: 'Academia offline con 70 clases, rutas guiadas, laboratorios, casos, buscador y progreso local' },
   { name: 'glosario', view: 'glosario', w: 1440, h: 1020, alt: 'Glosario buscable con las definiciones del sistema' },
   { name: 'ayuda', view: 'ayuda', w: 1440, h: 1400, alt: 'Ayuda: los manuales dentro de la aplicación y la tabla de atajos de teclado' },
   { name: 'panel-claro', view: 'panel', w: 1440, h: 940, tema: 'claro', alt: 'El panel en tema claro' },

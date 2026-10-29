@@ -4,12 +4,12 @@
 
 # 📘 Manual de usuario
 
-### **Empresa Operativa Chile · versión 1.6.0**
+### **Empresa Operativa Chile · versión 1.7.0**
 
 **Cómo crear, operar y controlar una empresa chilena con esta aplicación —
 de la instalación al cierre del mes, con las pantallas reales del producto.**
 
-[![Versión](https://img.shields.io/badge/versión-1.6.0-4f8cff?style=for-the-badge)](../CHANGELOG.md)
+[![Versión](https://img.shields.io/badge/versión-1.7.0-4f8cff?style=for-the-badge)](../CHANGELOG.md)
 [![Manual PDF](https://img.shields.io/badge/📕_este_manual-en_PDF-e8590c?style=for-the-badge)](MANUAL.pdf)
 [![Reglas](https://img.shields.io/badge/reglas-año_comercial_2026-2e8b57?style=for-the-badge)](SOURCES-2026.md)
 
@@ -688,21 +688,43 @@ Funciona en cualquier dirección. El formato es el mismo en las tres plataformas
 
 ## 13 · 🎓 Academia
 
-Las mismas reglas y el mismo motor que operan tu empresa, explicados.
+Un programa de aprendizaje completo dentro de la misma aplicación. Funciona sin conexión en la
+PWA, Windows y Android; no necesitas abrir GitHub para acceder a las clases.
 
 ![Academia](assets/capturas/academia.png)
 
-Incluye una venta y un honorario desglosados paso a paso con sus asientos contables, y las
-preguntas que aparecen operando: por qué una compra genera IVA crédito y otra no, por qué un
-retiro no es un gasto, qué es el PPM y por qué se paga aunque no haya utilidad, qué es el
-remanente, por qué la app no marca sola un trámite como cumplido y qué evidencia guardar.
+### Qué contiene de verdad
 
-Incluye además el **ciclo temporal completo** de una empresa —de la constitución a la patente del
-ejercicio siguiente— y una tabla con las cinco magnitudes de capital una al lado de la otra,
-calculadas sobre la empresa demo con el mismo motor que opera la tuya.
+| Recorrido | Contenido | Cómo demuestra aprendizaje |
+|---|---:|---|
+| Curso secuencial | 70 clases en 17 partes | Entregable y criterio de aceptación por clase |
+| Rutas guiadas | 12 lecciones de entrada | Ejemplo, práctica y comprobación con retroalimentación |
+| Laboratorios | 17 | Entradas, procedimiento, rúbrica de 100 puntos y pauta |
+| Casos integradores | 4, de 4 a 6 horas | Expediente, decisiones encadenadas e informe final |
+| Talleres del motor | Venta y honorario | Intento previo y pauta calculada con las reglas vigentes |
 
-Las explicaciones usan el **motor real**: si cambia una tasa en las reglas, la academia lo dice
-sola. No son textos escritos aparte que con el tiempo dejen de coincidir con lo que calcula.
+Las 70 clases ya no son una lista de títulos. Cada una incluye prerrequisitos, cinco resultados
+medibles, conceptos operacionales, modelo mental, tres bloques de desarrollo, ejemplo trabajado,
+taller de cinco pasos, errores con causa y corrección, tres comprobaciones, fuentes y una evidencia
+que se puede revisar. El contrato pedagógico es:
+
+`observar → razonar → resolver → comprobar → aplicar`
+
+### Cómo usarla
+
+1. Elige **Curso completo** para avanzar en orden o **Rutas guiadas** si partes desde una duda.
+2. Usa el buscador para encontrar temas como F29, conciliación, capital o evidencia.
+3. Escribe tu hipótesis antes de desplegar el ejemplo o la pauta.
+4. Practica en **SANDBOX**; Academia nunca necesita datos personales reales.
+5. Marca el elemento completado sólo cuando el entregable cumple su criterio. El avance se guarda
+   localmente en ese dispositivo y nunca se mezcla con la evidencia de EMPRESA REAL.
+6. Cierra cada bloque con un laboratorio y usa los casos para integrar contabilidad, impuestos,
+   caja, obligaciones y control.
+
+La documentación de [`curriculum/`](../curriculum/), [`labs/`](../labs/) y [`cases/`](../cases/) se
+genera desde los mismos módulos que lee la app. `pnpm check` falla si se desincroniza. Las tasas de
+los talleres usan el **motor real**, pero una clase no presenta declaraciones, firma, paga ni
+reemplaza a la autoridad o al profesional competente.
 
 ---
 
@@ -901,7 +923,7 @@ respaldo y auméntalo en el otro (capítulo [12](#cap-12)).
 <details>
 <summary><b>¿Puedo llevar más de una empresa?</b></summary>
 
-En la versión 1.6.0, hay un entorno real por dispositivo. Como alternativa, exporta el respaldo de
+En la versión 1.7.0, hay un entorno real por dispositivo. Como alternativa, exporta el respaldo de
 una empresa, reemplaza con el de la otra, y ve alternando. Multi-empresa está en el roadmap.
 </details>
 
@@ -1026,7 +1048,7 @@ Todo esto está en el [roadmap](ROADMAP.md).
 [🔗 Fuentes oficiales](SOURCES-2026.md) ·
 [🏗️ Arquitectura](ARCHITECTURE.md)
 
-<sub>Empresa Operativa Chile · v1.6.0 · Reglas del año comercial 2026 verificadas el 2026-08-09<br>
+<sub>Empresa Operativa Chile · v1.7.0 · Reglas del año comercial 2026 verificadas el 2026-08-09<br>
 MIT © Vladimir Acuña · Hecho en Chile 🇨🇱</sub>
 
 </div>

@@ -1,16 +1,18 @@
 # Parte 09 — Tesorería
 
-## Objetivo
+## Pregunta que guía la parte
 
-Dominar tesorería mediante explicación, simulación, registro y verificación.
+Administrar caja, vencimientos y conciliaciones sin ocultar riesgo.
 
-## Clases
+Esta parte usa el caso continuo de Ruta Andina SpA. Cada clase produce una evidencia distinta; leer sin resolver el taller no cuenta como finalización.
 
-1. **Cuenta bancaria empresa**
-2. **Conciliación bancaria**
-3. **Cuentas por pagar**
-4. **Flujo de caja**
+## Recorrido
 
-## Criterio de aprobación
+1. [C37 — Cuenta bancaria empresa](classes/C37.md) — Separar fondos empresariales y personales.
+2. [C38 — Conciliación bancaria](classes/C38.md) — Explicar diferencias entre libro y banco.
+3. [C39 — Cuentas por pagar](classes/C39.md) — Ordenar obligaciones por acreedor, fecha y criticidad.
+4. [C40 — Flujo de caja](classes/C40.md) — Proyectar cobros y pagos con escenarios.
 
-El estudiante debe poder explicar la operación, calcularla, registrar su efecto y señalar qué evidencia/fuente oficial usaría para verificarla.
+## Criterio de dominio
+
+La parte queda dominada cuando las evidencias de todas sus clases cumplen sus criterios de aceptación y la persona puede explicar cómo una decisión cambia el registro, la caja, la obligación y la evidencia.

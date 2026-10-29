@@ -1,7 +1,20 @@
-# Solución — Patente mínima
+# Pauta de solución — Patente municipal y base mínima
 
-Cálculo por tasa $2.500, pero opera mínimo anual 1 UTM: $71.649 para el ejemplo.
+La pauta permite comparar razonamiento; no reemplaza tu entregable ni autoriza una operación real.
 
-## Verificación
+## Hallazgos esperados
 
-Ejecuta el comando equivalente del CLI cuando exista y compara. Después valida el principio con `docs/SOURCES-2026.md`.
+- La simulación etiqueta moneda, período y supuestos.
+- Sin comuna o UTM verificada no se muestra un monto como obligación real.
+- Capital social, saldo bancario y CPT permanecen separados.
+
+## Autoevaluación
+
+1. Reproduce cada cifra desde las entradas.
+2. Explica por qué cada clasificación sigue siendo válida si cambia la fecha de pago.
+3. Compara tu trabajo con la rúbrica del laboratorio.
+4. Corrige mediante una nueva versión; no borres tu primer intento.
+
+## En la aplicación
+
+Practica en SANDBOX: Patente → Capital → Obligaciones.

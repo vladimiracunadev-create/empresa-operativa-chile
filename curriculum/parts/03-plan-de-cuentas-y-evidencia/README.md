@@ -1,16 +1,18 @@
 # Parte 03 — Plan de cuentas y evidencia
 
-## Objetivo
+## Pregunta que guía la parte
 
-Dominar plan de cuentas y evidencia mediante explicación, simulación, registro y verificación.
+Diseñar registros que expliquen la operación sin perder trazabilidad.
 
-## Clases
+Esta parte usa el caso continuo de Ruta Andina SpA. Cada clase produce una evidencia distinta; leer sin resolver el taller no cuenta como finalización.
 
-1. **Diseñar cuentas**
-2. **Banco y caja**
-3. **Clientes/proveedores**
-4. **Trazabilidad documental**
+## Recorrido
 
-## Criterio de aprobación
+1. [C13 — Diseñar cuentas](classes/C13.md) — Crear un plan útil sin fragmentarlo ni esconder diferencias.
+2. [C14 — Banco y caja](classes/C14.md) — Controlar efectivo con responsables y conciliación.
+3. [C15 — Clientes y proveedores](classes/C15.md) — Mantener auxiliares por contraparte y vencimiento.
+4. [C16 — Trazabilidad documental](classes/C16.md) — Seguir una cifra desde reporte hasta documento y vuelta.
 
-El estudiante debe poder explicar la operación, calcularla, registrar su efecto y señalar qué evidencia/fuente oficial usaría para verificarla.
+## Criterio de dominio
+
+La parte queda dominada cuando las evidencias de todas sus clases cumplen sus criterios de aceptación y la persona puede explicar cómo una decisión cambia el registro, la caja, la obligación y la evidencia.

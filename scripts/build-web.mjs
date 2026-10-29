@@ -22,6 +22,10 @@ const distDir = path.join(root, 'apps/web/dist');
 
 /** Módulos del dominio que sí puede cargar un navegador (sin `node:*`). */
 const CORE = [
+  ['academy/index.mjs', 'academy/index.mjs'],
+  ['academy/course.mjs', 'academy/course.mjs'],
+  ['academy/labs.mjs', 'academy/labs.mjs'],
+  ['academy/cases.mjs', 'academy/cases.mjs'],
   ['core/country-pack.mjs', 'core/country-pack.mjs'],
   ['core/regulatory-rules.mjs', 'core/regulatory-rules.mjs'],
   ['core/jurisdiction-context.mjs', 'core/jurisdiction-context.mjs'],

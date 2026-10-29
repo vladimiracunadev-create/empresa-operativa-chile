@@ -1,7 +1,20 @@
-# Solución — Cierre mensual completo
+# Pauta de solución — Cierre mensual completo
 
-Comparar totals, F29 y asientos. Luego listar qué datos faltan para convertir la simulación en una declaración real.
+La pauta permite comparar razonamiento; no reemplaza tu entregable ni autoriza una operación real.
 
-## Verificación
+## Hallazgos esperados
 
-Ejecuta el comando equivalente del CLI cuando exista y compara. Después valida el principio con `docs/SOURCES-2026.md`.
+- Saldos y auxiliares se reconcilian o muestran excepción.
+- El documento faltante no se inventa.
+- El cierre conserva hash/bitácora y puede reabrirse sólo mediante corrección auditada.
+
+## Autoevaluación
+
+1. Reproduce cada cifra desde las entradas.
+2. Explica por qué cada clasificación sigue siendo válida si cambia la fecha de pago.
+3. Compara tu trabajo con la rúbrica del laboratorio.
+4. Corrige mediante una nueva versión; no borres tu primer intento.
+
+## En la aplicación
+
+Practica en SANDBOX: Cierres → Auditoría → Respaldo.

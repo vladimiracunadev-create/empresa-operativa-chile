@@ -1,7 +1,20 @@
-# Solución — Mes con IVA a pagar
+# Pauta de solución — Mes con IVA a pagar
 
-Débito $190.000; crédito $57.000; IVA básico a pagar $133.000 antes de otros componentes.
+La pauta permite comparar razonamiento; no reemplaza tu entregable ni autoriza una operación real.
 
-## Verificación
+## Hallazgos esperados
 
-Ejecuta el comando equivalente del CLI cuando exista y compara. Después valida el principio con `docs/SOURCES-2026.md`.
+- Débito: $380.000; crédito: $114.000; IVA determinado antes de otros componentes: $266.000.
+- El resultado se etiqueta preparación interna, con período y fuente.
+- PPM y retenciones no se mezclan dentro de la diferencia de IVA.
+
+## Autoevaluación
+
+1. Reproduce cada cifra desde las entradas.
+2. Explica por qué cada clasificación sigue siendo válida si cambia la fecha de pago.
+3. Compara tu trabajo con la rúbrica del laboratorio.
+4. Corrige mediante una nueva versión; no borres tu primer intento.
+
+## En la aplicación
+
+Practica en SANDBOX: F29 → Impuestos → Cierres.

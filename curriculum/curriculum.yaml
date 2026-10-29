@@ -1,265 +1,443 @@
-version: 1
+version: 2
 country: CL
-reference_date: 2026-08-09
+reference_date: 2026-10-29
+pedagogical_contract: "observar -> razonar -> resolver -> comprobar -> aplicar"
+guided_routes: 12
+labs: 17
+cases: 4
 parts:
   - id: "00"
+    slug: "mentalidad-contable"
     title: "Mentalidad contable"
+    goal: "Aprender a reconstruir hechos con documentos y no a memorizar nombres de cuentas."
     classes:
       - id: C01
         title: "Qué resuelve la contabilidad"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Fundamento"
+        outcome: "Explicar qué preguntas responde un sistema contable."
       - id: C02
         title: "Documentos, hechos y evidencia"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Fundamento"
+        outcome: "Separar hecho, documento, registro y evidencia."
       - id: C03
         title: "Devengado vs percibido/pagado"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Fundamento"
+        outcome: "Distinguir reconocimiento económico y movimiento de caja."
       - id: C04
         title: "Ciclo mensual y anual"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Fundamento"
+        outcome: "Ubicar cada control en su frecuencia correcta."
   - id: "01"
+    slug: "formalizacion-y-perfil-tributario"
     title: "Formalización y perfil tributario"
+    goal: "Entender qué datos definen a la empresa antes de calcular obligaciones."
     classes:
       - id: C05
         title: "SpA unipersonal"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Fundamento"
+        outcome: "Distinguir sociedad, accionista y administrador."
       - id: C06
         title: "RUT e inicio de actividades"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Fundamento"
+        outcome: "Separar constitución, identificación e inicio tributario."
       - id: C07
         title: "Oficina virtual y domicilio"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Fundamento"
+        outcome: "Evaluar domicilio sin convertirlo en una garantía universal."
       - id: C08
         title: "Régimen Pro Pyme"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Fundamento"
+        outcome: "Reconocer que el régimen es un dato verificado, no una preferencia de cálculo."
   - id: "02"
+    slug: "partida-doble"
     title: "Partida doble"
+    goal: "Construir asientos desde cambios económicos y comprobar su equilibrio."
     classes:
       - id: C09
-        title: "Activo/pasivo/patrimonio"
-        duration_minutes: 90
+        title: "Activo, pasivo y patrimonio"
+        duration_minutes: 35
+        level: "Fundamento"
+        outcome: "Clasificar recursos, obligaciones y parte residual."
       - id: C10
         title: "Debe y haber"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Fundamento"
+        outcome: "Usar Debe/Haber después de identificar la cuenta y su cambio."
       - id: C11
         title: "Ingresos y gastos"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Fundamento"
+        outcome: "Separar resultado de caja, capital y deuda."
       - id: C12
         title: "Balance de comprobación"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Fundamento"
+        outcome: "Usar el balance para detectar, no para ocultar, errores."
   - id: "03"
+    slug: "plan-de-cuentas-y-evidencia"
     title: "Plan de cuentas y evidencia"
+    goal: "Diseñar registros que expliquen la operación sin perder trazabilidad."
     classes:
       - id: C13
         title: "Diseñar cuentas"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Fundamento"
+        outcome: "Crear un plan útil sin fragmentarlo ni esconder diferencias."
       - id: C14
         title: "Banco y caja"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Fundamento"
+        outcome: "Controlar efectivo con responsables y conciliación."
       - id: C15
-        title: "Clientes/proveedores"
-        duration_minutes: 90
+        title: "Clientes y proveedores"
+        duration_minutes: 35
+        level: "Fundamento"
+        outcome: "Mantener auxiliares por contraparte y vencimiento."
       - id: C16
         title: "Trazabilidad documental"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Fundamento"
+        outcome: "Seguir una cifra desde reporte hasta documento y vuelta."
   - id: "04"
+    slug: "ventas-y-dte"
     title: "Ventas y DTE"
+    goal: "Registrar ventas, documentos y cobranza sin duplicar ingresos."
     classes:
       - id: C17
         title: "Factura electrónica"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Leer campos esenciales de un DTE y conectarlos con el hecho."
       - id: C18
         title: "Base neta e IVA"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Calcular y explicar neto, IVA y total."
       - id: C19
-        title: "Notas de crédito/débito"
-        duration_minutes: 90
+        title: "Notas de crédito y débito"
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Relacionar ajustes con el documento original."
       - id: C20
         title: "Cobranza y cuentas por cobrar"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Separar venta, vencimiento, cobro y mora."
   - id: "05"
+    slug: "compras-y-gastos"
     title: "Compras y gastos"
+    goal: "Decidir tratamiento contable y tributario con evidencia suficiente."
     classes:
       - id: C21
         title: "Factura recibida"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Validar compra, recepción y obligación por pagar."
       - id: C22
         title: "Crédito fiscal"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Evaluar elegibilidad del IVA sin asumirla."
       - id: C23
         title: "Gasto del giro"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Relacionar costo con actividad y período."
       - id: C24
-        title: "Gasto rechazado/no deducible"
-        duration_minutes: 90
+        title: "Gasto rechazado o no deducible"
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Registrar sin esconder un desembolso no aceptado."
   - id: "06"
+    slug: "registro-de-compras-y-ventas"
     title: "Registro de Compras y Ventas"
+    goal: "Conciliar documentos propios con el registro oficial sin copiar a ciegas."
     classes:
       - id: C25
         title: "RCV ventas"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Comparar DTE emitidos, anulados y ajustados con el registro."
       - id: C26
         title: "RCV compras"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Revisar documentos recibidos y su clasificación."
       - id: C27
         title: "Caracterización"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Asignar tratamiento sin perder el documento original."
       - id: C28
         title: "Conciliación RCV ↔ documentos"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Cerrar diferencias entre fuente oficial y expediente interno."
   - id: "07"
+    slug: "f29-y-ppm"
     title: "F29 y PPM"
+    goal: "Preparar un control mensual explicable sin confundirlo con presentación."
     classes:
       - id: C29
         title: "Anatomía F29"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Reconocer componentes y procedencia de datos."
       - id: C30
-        title: "IVA débito/crédito"
-        duration_minutes: 90
+        title: "IVA débito y crédito"
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Conciliar impuesto de ventas, compras y remanente."
       - id: C31
         title: "PPM Pro Pyme"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Calcular anticipo sólo con régimen, base y tasa vigentes."
       - id: C32
         title: "Plazos, pago y rectificación"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Separar vencimiento, presentación, pago y corrección."
   - id: "08"
+    slug: "honorarios"
     title: "Honorarios"
+    goal: "Controlar bruto, líquido, retención y evidencia sin duplicar costos."
     classes:
       - id: C33
         title: "Boleta recibida"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Validar emisor, servicio, fecha y monto bruto."
       - id: C34
         title: "Retención 15,25% 2026"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Aplicar la tasa 2026 sin convertirla en regla eterna."
       - id: C35
         title: "Pago y F29"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Conectar pago líquido con retención por enterar."
       - id: C36
-        title: "Casos con/sin retención"
-        duration_minutes: 90
+        title: "Casos con o sin retención"
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Evitar inferir obligación desde una etiqueta incompleta."
   - id: "09"
+    slug: "tesoreria"
     title: "Tesorería"
+    goal: "Administrar caja, vencimientos y conciliaciones sin ocultar riesgo."
     classes:
       - id: C37
         title: "Cuenta bancaria empresa"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Separar fondos empresariales y personales."
       - id: C38
         title: "Conciliación bancaria"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Explicar diferencias entre libro y banco."
       - id: C39
         title: "Cuentas por pagar"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Ordenar obligaciones por acreedor, fecha y criticidad."
       - id: C40
         title: "Flujo de caja"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Proyectar cobros y pagos con escenarios."
   - id: "10"
+    slug: "accionista-y-patrimonio"
     title: "Accionista y patrimonio"
+    goal: "Registrar relaciones con propietarios sin mezclar capital, deuda y gasto."
     classes:
       - id: C41
         title: "Aporte de capital"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Relacionar estatuto, compromiso y aporte efectivo."
       - id: C42
         title: "Cuenta corriente accionista"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Registrar deudas recíprocas con claridad."
       - id: C43
         title: "Retiros y distribuciones"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Separar salida patrimonial de gasto operativo."
       - id: C44
         title: "Separación empresa/persona"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Operación"
+        outcome: "Aplicar controles para evitar mezcla patrimonial."
   - id: "11"
+    slug: "activos-y-cierre-contable"
     title: "Activos y cierre contable"
+    goal: "Reconocer recursos de largo plazo y ajustes sin inventar valores."
     classes:
       - id: C45
         title: "Activo vs gasto"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Decidir si un desembolso beneficia uno o varios períodos."
       - id: C46
         title: "Depreciación conceptual"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Entender distribución del costo sin usar tasas inventadas."
       - id: C47
         title: "Provisiones y ajustes"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Registrar estimaciones como estimaciones revisables."
       - id: C48
         title: "Cierre de resultados"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Cerrar ingresos y gastos preservando el detalle del período."
   - id: "12"
-    title: "Municipal y compliance"
+    slug: "municipal-y-compliance"
+    title: "Municipal y cumplimiento"
+    goal: "Controlar patente y obligaciones con vigencia, fuente y ámbito."
     classes:
       - id: C49
         title: "Patente municipal"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Calcular sólo con base, tasa, comuna y período verificados."
       - id: C50
         title: "UTM y actualizaciones"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Usar el valor del período correcto."
       - id: C51
-        title: "Contratos/oficina virtual"
-        duration_minutes: 90
+        title: "Contratos y oficina virtual"
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Controlar vigencia, servicio y dependencia laboral."
       - id: C52
         title: "Matriz de obligaciones"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Mantener frecuencia, próxima fecha, fuente y evidencia."
   - id: "13"
+    slug: "cierre-mensual"
     title: "Cierre mensual"
+    goal: "Cerrar períodos con controles, evidencia y recuperación explícita."
     classes:
       - id: C53
         title: "Checklist"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Definir pasos mínimos antes de congelar un mes."
       - id: C54
         title: "Conciliaciones cruzadas"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Comparar fuentes independientes y explicar diferencias."
       - id: C55
         title: "Control de errores"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Clasificar error, impacto y corrección sin borrar historia."
       - id: C56
         title: "Carpeta de evidencia"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Organizar un expediente que otra persona pueda revisar."
   - id: "14"
+    slug: "renta-anual"
     title: "Renta anual"
+    goal: "Preparar la revisión anual sin convertir la app en declarante automático."
     classes:
       - id: C57
         title: "Base Pro Pyme"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Identificar régimen, período y ajustes antes de calcular."
       - id: C58
         title: "Registros empresariales"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Reconocer registros aplicables sin inferirlos."
       - id: C59
         title: "Declaraciones Juradas"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Gestionar catálogo, fuente y vencimiento por obligación concreta."
       - id: C60
         title: "F22 y revisión final"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Conciliar declaración anual con cierres y fuentes oficiales."
   - id: "15"
+    slug: "auditoria-y-automatizacion"
     title: "Auditoría y automatización"
+    goal: "Automatizar controles sin automatizar afirmaciones no verificadas."
     classes:
       - id: C61
         title: "Muestreo y pruebas"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Seleccionar evidencia según riesgo y objetivo."
       - id: C62
         title: "Alertas de inconsistencias"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Diseñar alertas accionables y no alarmistas."
       - id: C63
         title: "Reglas versionadas"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Conservar vigencia, fuente y cambios históricos."
       - id: C64
         title: "Diseño de un contador virtual seguro"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Definir qué automatizar y dónde fallar cerrado."
   - id: "16"
+    slug: "gobernanza-control-interno"
     title: "Gobernanza, control interno y auditoría continua"
+    goal: "Diseñar decisiones, controles e investigaciones con responsabilidad y evidencia."
     classes:
       - id: C65
         title: "Gobierno corporativo, integridad y RACI"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Asignar responsable, aprobador, consultado e informado."
       - id: C66
         title: "Segregación de funciones"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Separar etapas incompatibles o crear compensaciones."
       - id: C67
         title: "Diseño y clasificación de controles"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Definir objetivo, tipo, frecuencia y evidencia."
       - id: C68
         title: "Libros auxiliares, conciliación, documentos y custodia"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Conectar detalle, mayor y evidencia preservada."
       - id: C69
         title: "Risk register, KRI, excepciones y auditoría continua"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Medir riesgo residual y excepciones vencidas."
       - id: C70
         title: "Whistleblowing, investigación independiente y remediación"
-        duration_minutes: 90
+        duration_minutes: 35
+        level: "Control y decisión"
+        outcome: "Preservar denuncias y separar hechos de hipótesis."

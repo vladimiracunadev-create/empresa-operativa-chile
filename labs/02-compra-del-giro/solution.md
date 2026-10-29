@@ -1,7 +1,21 @@
-# Solución — Compra del giro
+# Pauta de solución — Compra del giro con IVA
 
-Neto $120.000; IVA $22.800; total $142.800. El uso como crédito exige cumplir requisitos y correcta documentación/caracterización.
+La pauta permite comparar razonamiento; no reemplaza tu entregable ni autoriza una operación real.
 
-## Verificación
+## Hallazgos esperados
 
-Ejecuta el comando equivalente del CLI cuando exista y compara. Después valida el principio con `docs/SOURCES-2026.md`.
+- Neto: $200.000; IVA: $38.000.
+- Recepción: gasto/activo e IVA contra Proveedores.
+- Pago: Proveedores contra Banco.
+- Si falta relación con el giro, el crédito y la deducción quedan por verificar; la salida bancaria no desaparece.
+
+## Autoevaluación
+
+1. Reproduce cada cifra desde las entradas.
+2. Explica por qué cada clasificación sigue siendo válida si cambia la fecha de pago.
+3. Compara tu trabajo con la rúbrica del laboratorio.
+4. Corrige mediante una nueva versión; no borres tu primer intento.
+
+## En la aplicación
+
+Practica en SANDBOX: Operaciones → Compras → Documentos.

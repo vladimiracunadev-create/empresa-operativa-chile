@@ -1,7 +1,20 @@
-# Solución — Aporte de capital
+# Pauta de solución — Aporte de capital
 
-Debe Banco $1.000.000 / Haber Capital $1.000.000. No es ingreso por venta.
+La pauta permite comparar razonamiento; no reemplaza tu entregable ni autoriza una operación real.
 
-## Verificación
+## Hallazgos esperados
 
-Ejecuta el comando equivalente del CLI cuando exista y compara. Después valida el principio con `docs/SOURCES-2026.md`.
+- Banco y patrimonio aumentan $1.000.000.
+- El resultado del período no aumenta.
+- El expediente distingue suscripción, desembolso y recepción.
+
+## Autoevaluación
+
+1. Reproduce cada cifra desde las entradas.
+2. Explica por qué cada clasificación sigue siendo válida si cambia la fecha de pago.
+3. Compara tu trabajo con la rúbrica del laboratorio.
+4. Corrige mediante una nueva versión; no borres tu primer intento.
+
+## En la aplicación
+
+Practica en SANDBOX: Capital → Gobierno → Diario.
