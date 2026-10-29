@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Pruebas](https://img.shields.io/badge/pruebas-203_verdes-2e8b57?style=for-the-badge)](tests/)
+[![Pruebas](https://img.shields.io/badge/pruebas-204_verdes-2e8b57?style=for-the-badge)](tests/)
 [![Dependencias](https://img.shields.io/badge/dependencias-0-2f81f7?style=for-the-badge)](package.json)
 [![Reglas](https://img.shields.io/badge/toda_tasa-con_fuente_oficial-8957e5?style=for-the-badge)](docs/SOURCES-2026.md)
 
@@ -18,7 +18,7 @@ son un poco más estrictas de lo habitual — y todas tienen un motivo concreto.
 ## 🚀 Antes de nada
 
 ```bash
-pnpm check    # sincronía de reglas + validación + 203 pruebas
+pnpm check    # sincronía de reglas + validación + 204 pruebas
 pnpm build    # deja apps/web/dist listo
 ```
 
