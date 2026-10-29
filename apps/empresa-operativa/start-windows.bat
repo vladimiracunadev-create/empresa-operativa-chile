@@ -9,8 +9,14 @@ cd /d "%~dp0..\.."
 where node >nul 2>nul
 if errorlevel 1 (
   echo.
-  echo   Falta Node.js 20 o superior. Descargalo desde https://nodejs.org
+  echo   Falta Node.js. Instala la version fijada en .node-version desde https://nodejs.org
   echo.
+  pause
+  exit /b 1
+)
+
+node scripts\check-node-runtime.mjs
+if errorlevel 1 (
   pause
   exit /b 1
 )

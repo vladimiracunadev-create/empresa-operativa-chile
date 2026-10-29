@@ -7,10 +7,13 @@ Set-Location (Join-Path $PSScriptRoot '..\..')
 
 if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
     Write-Host ''
-    Write-Host '  Falta Node.js 20 o superior. Descárgalo desde https://nodejs.org' -ForegroundColor Yellow
+    Write-Host '  Falta Node.js. Instala la versión fijada en .node-version desde https://nodejs.org' -ForegroundColor Yellow
     Write-Host ''
     exit 1
 }
+
+node scripts/check-node-runtime.mjs
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 Write-Host ''
 Write-Host '  Construyendo la aplicación...' -ForegroundColor Cyan

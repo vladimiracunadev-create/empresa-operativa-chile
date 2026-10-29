@@ -120,6 +120,32 @@ test('pnpm es el único gestor y no existen lockfiles de npm', () => {
   assert.deepEqual(lockfilesNpm, [], `se encontraron lockfiles ajenos a pnpm: ${lockfilesNpm.join(', ')}`);
 });
 
+test('los runtimes de build están fijados a baselines corregidos', () => {
+  const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
+  const android = JSON.parse(fs.readFileSync(path.join(root, 'apps/android/package.json'), 'utf8'));
+  const desktop = JSON.parse(fs.readFileSync(path.join(root, 'apps/contador-desktop/package.json'), 'utf8'));
+  const nodeVersion = fs.readFileSync(path.join(root, '.node-version'), 'utf8').trim();
+  const rustToolchain = fs.readFileSync(path.join(root, 'rust-toolchain.toml'), 'utf8');
+  const cargoLock = path.join(root, 'apps/contador-desktop/src-tauri/Cargo.lock');
+  const workflows = walk(path.join(root, '.github/workflows'))
+    .filter(file => file.endsWith('.yml'))
+    .map(file => fs.readFileSync(file, 'utf8'))
+    .join('\n');
+
+  assert.equal(pkg.packageManager, 'pnpm@11.25.0');
+  assert.equal(pkg.engines.node, '>=22.23.4 <23 || >=24.22.1 <25 || >=26.13.0 <27');
+  assert.equal(android.packageManager, pkg.packageManager);
+  assert.equal(android.engines.node, pkg.engines.node);
+  assert.equal(desktop.packageManager, pkg.packageManager);
+  assert.equal(desktop.engines.node, pkg.engines.node);
+  assert.equal(nodeVersion, '24.22.2');
+  assert.match(rustToolchain, /^channel = "1\.99\.1"$/m);
+  assert.ok(fs.existsSync(cargoLock), 'falta Cargo.lock para el escritorio Tauri');
+  assert.doesNotMatch(workflows, /node-version:\s*['"]?(?:20|22)['"]?\s*$/m);
+  assert.doesNotMatch(workflows, /rustup toolchain install stable/);
+  assert.doesNotMatch(workflows, /github\/codeql-action\/.+?# v3/);
+});
+
 test('el identificador de la aplicación es el mismo en Android y en Windows', () => {
   const tauri = JSON.parse(fs.readFileSync(path.join(root, 'apps/contador-desktop/src-tauri/tauri.conf.json'), 'utf8'));
   const cap = JSON.parse(fs.readFileSync(path.join(root, 'apps/android/capacitor.config.json'), 'utf8'));
