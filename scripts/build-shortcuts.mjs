@@ -11,6 +11,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SHORTCUTS, shortcutsByGroup } from '../packages/shortcuts/index.mjs';
+import { readUtf8IfExists } from './lib/files.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const target = path.join(root, 'docs/ATAJOS-DE-TECLADO.md');
@@ -71,7 +72,7 @@ Escribir «no» en una descripción no abre nada.
 | Este documento | \`scripts/build-shortcuts.mjs\` | Proyección del módulo, comprobada en CI |
 `;
 
-const previous = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : '';
+const previous = readUtf8IfExists(target);
 
 if (process.argv.includes('--check')) {
   if (previous !== body) {

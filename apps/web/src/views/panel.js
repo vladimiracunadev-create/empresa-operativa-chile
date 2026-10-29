@@ -1,4 +1,4 @@
-import { html, raw, fmtCLP, fmtPeriod, fmtDate, currentPeriod } from '../lib/dom.js';
+import { html, raw, fmtCLP, fmtPeriod, fmtDate } from '../lib/dom.js';
 import { state, ws } from '../lib/state.js';
 import { f29Basic, f29DueDates } from '../core/accounting-engine/index.mjs';
 

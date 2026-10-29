@@ -15,6 +15,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { TERMS, termsByCategory, danglingReferences } from '../packages/glossary/index.mjs';
+import { readUtf8IfExists } from './lib/files.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const target = path.join(root, 'docs/GLOSSARY.md');
@@ -75,7 +76,7 @@ Cuando una situación dependa de interpretación, de antecedentes particulares o
 la aplicación lo dice en vez de resolverlo sola: **requiere verificación con fuente oficial, municipalidad o profesional tributario.**
 `;
 
-const previous = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : '';
+const previous = readUtf8IfExists(target);
 
 if (process.argv.includes('--check')) {
   if (previous !== body) {

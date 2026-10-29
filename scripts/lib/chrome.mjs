@@ -72,10 +72,16 @@ export function screenshot({ url, out, width, height, scale = 2, timeBudget = 40
     { timeBudget }
   );
 
-  if (!fs.existsSync(out) || fs.statSync(out).size < 5000) {
+  let bytes = 0;
+  try {
+    bytes = fs.statSync(out).size;
+  } catch (error) {
+    if (error?.code !== 'ENOENT') throw error;
+  }
+  if (bytes < 5000) {
     throw new Error(`La captura ${path.basename(out)} salió vacía o no se generó`);
   }
-  return fs.statSync(out).size;
+  return bytes;
 }
 
 /**
@@ -88,7 +94,8 @@ export function screenshot({ url, out, width, height, scale = 2, timeBudget = 40
  * suelo se puede bajar en la llamada en vez de rebajarlo para todos.
  */
 export function printPdf({ html, out, timeBudget = 15000, minBytes = 50_000 }) {
-  const tmp = path.join(os.tmpdir(), `eoc-print-${process.pid}-${path.basename(out, '.pdf')}.html`);
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'eoc-print-'));
+  const tmp = path.join(tempDir, 'document.html');
   fs.writeFileSync(tmp, html);
   fs.mkdirSync(path.dirname(out), { recursive: true });
 
@@ -96,14 +103,19 @@ export function printPdf({ html, out, timeBudget = 15000, minBytes = 50_000 }) {
     run(['--no-pdf-header-footer', `--print-to-pdf=${out}`, `file:///${tmp.replace(/\\/g, '/')}`], { timeBudget });
   } finally {
     if (process.env.EOC_KEEP_HTML) console.log(`HTML intermedio: ${tmp}`);
-    else fs.rmSync(tmp, { force: true });
+    else fs.rmSync(tempDir, { recursive: true, force: true });
   }
 
-  if (!fs.existsSync(out) || fs.statSync(out).size < minBytes) {
+  let bytes = 0;
+  try {
+    bytes = fs.statSync(out).size;
+  } catch (error) {
+    if (error?.code !== 'ENOENT') throw error;
+  }
+  if (bytes < minBytes) {
     throw new Error(`${path.basename(out)} salió vacío o demasiado pequeño: probablemente no se embebieron las imágenes.`);
   }
 
-  const bytes = fs.statSync(out).size;
   const pages = (fs.readFileSync(out).toString('latin1').match(/\/Type\s*\/Page[^s]/g) ?? []).length;
   return { bytes, pages };
 }

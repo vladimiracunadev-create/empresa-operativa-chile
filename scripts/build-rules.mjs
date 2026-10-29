@@ -15,6 +15,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readUtf8IfExists } from './lib/files.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const rulesDir = path.join(root, 'packages/chile-tax-rules/rules');
@@ -50,7 +51,7 @@ export const AVAILABLE_YEARS = ${JSON.stringify(years.map(Number))};
 export default RULES;
 `;
 
-const previous = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : '';
+const previous = readUtf8IfExists(target);
 
 if (process.argv.includes('--check')) {
   if (previous !== body) {

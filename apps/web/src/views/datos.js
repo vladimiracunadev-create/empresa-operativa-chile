@@ -1,4 +1,4 @@
-import { html, raw, fmtCLP, fmtDateTime, toast, confirmAction, attempt } from '../lib/dom.js';
+import { html, raw, toast, confirmAction, attempt } from '../lib/dom.js';
 import { state, ws } from '../lib/state.js';
 import { saveTextFile, pickTextFile, PLATFORM, PLATFORM_LABEL } from '../lib/platform.js';
 
