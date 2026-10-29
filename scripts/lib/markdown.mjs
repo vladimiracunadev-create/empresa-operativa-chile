@@ -16,6 +16,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 export const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+export const escAttr = s => esc(s).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
 const MIME = { '.png': 'image/png', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp' };
 
@@ -57,7 +58,7 @@ const ALERTS = {
 export function markdownToHtml(md, { resolveImage, linkExternal = false } = {}) {
   const image = (alt, src) => {
     const uri = resolveImage(src);
-    return uri ? `<img src="${uri}" alt="${esc(alt)}" loading="lazy">` : '';
+    return uri ? `<img src="${escAttr(uri)}" alt="${escAttr(alt)}" loading="lazy">` : '';
   };
 
   const inline = text => {
@@ -65,8 +66,8 @@ export function markdownToHtml(md, { resolveImage, linkExternal = false } = {}) 
     out = out.replace(/`([^`]+)`/g, (_, code) => `<code>${code}</code>`);
     out = out.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, alt, src) => image(alt, src));
     out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, href) => {
-      if (href.startsWith('#')) return `<a href="${href}">${label}</a>`;
-      if (linkExternal) return `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+      if (href.startsWith('#')) return `<a href="${escAttr(href)}">${label}</a>`;
+      if (linkExternal) return `<a href="${escAttr(href)}" target="_blank" rel="noopener noreferrer">${label}</a>`;
       return `<span class="link">${label}</span>`;
     });
     out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
@@ -105,7 +106,7 @@ export function markdownToHtml(md, { resolveImage, linkExternal = false } = {}) 
           .join('\n')
           .replace(/<img src="([^"]+)"/g, (m, src) => {
             const uri = resolveImage(src);
-            return uri ? `<img src="${uri}"` : m;
+            return uri ? `<img src="${escAttr(uri)}"` : m;
           })
           .replace(/\[!\[[^\]]*\]\([^)]*\)\]\([^)]*\)/g, '')
           .replace(/!\[[^\]]*\]\(https?:[^)]*\)/g, '')
@@ -145,7 +146,7 @@ export function markdownToHtml(md, { resolveImage, linkExternal = false } = {}) 
       const code = [];
       while (i < lines.length && !lines[i].startsWith('```')) code.push(lines[i]), i++;
       i++;
-      out.push(`<pre class="code" data-lang="${esc(lang)}"><code>${esc(code.join('\n'))}</code></pre>`);
+      out.push(`<pre class="code" data-lang="${escAttr(lang)}"><code>${esc(code.join('\n'))}</code></pre>`);
       continue;
     }
 
@@ -172,7 +173,7 @@ export function markdownToHtml(md, { resolveImage, linkExternal = false } = {}) 
       closeList();
       const level = heading[1].length;
       const text = heading[2].replace(/\s*\{#.*\}$/, '');
-      out.push(`<h${level} id="${slug(text)}">${inline(text)}</h${level}>`);
+      out.push(`<h${level} id="${escAttr(slug(text))}">${inline(text)}</h${level}>`);
       i++;
       continue;
     }

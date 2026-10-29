@@ -30,7 +30,7 @@ import { STAGES, PHASES, COVERAGE, FIRST_QUESTIONS, stagesByPhase, stage, dangli
 import { TERMS } from '../packages/glossary/index.mjs';
 import { FORMATION_STEPS } from '../packages/company-operations/workspace.mjs';
 import { routeDiagram, useCaseDiagram } from './lib/diagrams.mjs';
-import { markdownToHtml, embedFrom, slug } from './lib/markdown.mjs';
+import { markdownToHtml, embedFrom } from './lib/markdown.mjs';
 import { SCREEN_CSS, PRINT_CSS } from './lib/print-style.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');

@@ -1,7 +1,7 @@
 import { html, raw, esc } from '../lib/dom.js';
 import { ws } from '../lib/state.js';
 import { termChip, mountTerms } from '../lib/terms.js';
-import { stagesByPhase, stage, FIRST_QUESTIONS, COVERAGE, STAGES } from '../core/onboarding/index.mjs';
+import { stagesByPhase, FIRST_QUESTIONS, COVERAGE, STAGES } from '../core/onboarding/index.mjs';
 import { openExternal } from '../lib/platform.js';
 
 /**

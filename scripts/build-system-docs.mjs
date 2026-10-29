@@ -20,6 +20,7 @@
  *   node scripts/build-system-docs.mjs --no-diagrams
  */
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
@@ -139,22 +140,32 @@ function renderDiagram(code) {
   const hash = crypto.createHash('sha256').update(code).digest('hex').slice(0, 12);
   const rel = `assets/diagramas/mermaid-${hash}.svg`;
   const out = path.join(docsDir, rel);
-  if (fs.existsSync(out)) {
+  try {
     return { rel, width: widthOf(fs.readFileSync(out, 'utf8')) };
+  } catch (error) {
+    if (error?.code !== 'ENOENT') throw error;
   }
 
   fs.mkdirSync(diagramDir, { recursive: true });
-  const input = path.join(diagramDir, `.tmp-${hash}.mmd`);
-  fs.writeFileSync(input, code);
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'eoc-mermaid-'));
+  const input = path.join(tempDir, 'diagram.mmd');
+  const rendered = path.join(tempDir, 'diagram.svg');
   try {
-    execFileSync(mmdc.bin, [...mmdc.prefix, '-i', input, '-o', out, '-b', 'white', '-t', 'default', '-q'], {
+    fs.writeFileSync(input, code, { flag: 'wx' });
+    execFileSync(mmdc.bin, [...mmdc.prefix, '-i', input, '-o', rendered, '-b', 'white', '-t', 'default', '-q'], {
       stdio: 'pipe'
     });
-    const { svg, width } = pinSvgSize(fs.readFileSync(out, 'utf8'));
-    fs.writeFileSync(out, svg);
-    return { rel, width };
+    const { svg, width } = pinSvgSize(fs.readFileSync(rendered, 'utf8'));
+    fs.writeFileSync(rendered, svg);
+    try {
+      fs.copyFileSync(rendered, out, fs.constants.COPYFILE_EXCL);
+      return { rel, width };
+    } catch (error) {
+      if (error?.code !== 'EEXIST') throw error;
+      return { rel, width: widthOf(fs.readFileSync(out, 'utf8')) };
+    }
   } finally {
-    fs.rmSync(input, { force: true });
+    fs.rmSync(tempDir, { recursive: true, force: true });
   }
 }
 

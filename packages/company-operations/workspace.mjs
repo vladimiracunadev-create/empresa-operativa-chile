@@ -18,7 +18,7 @@ import {
   summarizeEquityMovements,
   equityMovementKind
 } from './capital.mjs';
-import { calculateTaxEquity, allowsSimplifiedTaxEquity } from '../accounting-engine/tax-equity.mjs';
+import { calculateTaxEquity } from '../accounting-engine/tax-equity.mjs';
 import { calculateMunicipalPatent } from '../accounting-engine/municipal-patent.mjs';
 import { normalizeMunicipality } from '../chile-tax-rules/municipalities.mjs';
 import { loadRules, availableYears } from '../chile-tax-rules/index.mjs';
