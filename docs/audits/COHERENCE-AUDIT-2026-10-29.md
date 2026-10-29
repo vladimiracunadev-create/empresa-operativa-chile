@@ -15,7 +15,7 @@ referencias fechadas de changelog, auditorías y snapshots anteriores se conserv
 
 | Afirmación actual | Fuente de verdad y evidencia | Resultado |
 | --- | --- | --- |
-| Versión `1.6.0` | `package.json`, Android, shell Tauri, `Cargo.toml`, `tauri.conf.json`, `APP_VERSION`, tag y release | Coherente |
+| Manifests y release del corte auditado | `package.json`, Android, shell Tauri, `Cargo.toml`, `tauri.conf.json`, `APP_VERSION`, tag y release observados entonces | Coherente |
 | 207 pruebas | Ejecución fresca de `pnpm check`: 207 aprobadas, 0 fallidas | Coherente tras corregir dos marcadores 204 |
 | Documentos derivados | `pnpm check`: reglas, glosario (76), guía (14 etapas), atajos (12) y presentación (8 láminas) sincronizados | Coherente |
 | 6 workflows | `android.yml`, `ci.yml`, `desktop.yml`, `pages.yml`, `release.yml`, `security.yml` | Coherente |

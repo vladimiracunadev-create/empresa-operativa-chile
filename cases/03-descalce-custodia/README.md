@@ -1,51 +1,70 @@
-# Caso capstone — El descalce que nadie vio
+# K03 — Descalce de caja y custodia de evidencia
+
+> **Dedicación orientativa:** 5 h · Caso educativo con datos ficticios. No determina elegibilidad legal, no presenta declaraciones y no sustituye asesoría habilitada.
 
 ## Situación
 
-**Operadora Horizonte SpA** procesa pagos de comercios, mantiene saldos de clientes y conserva parte de la liquidez en bancos y parte en custodios de activos digitales. Durante el cierre aparece un descalce equivalente a CLP 84.000.000 entre el libro auxiliar de clientes y los activos disponibles.
+La empresa vende con pago a 60 días y debe pagar proveedores y retenciones antes. En paralelo, faltan documentos de tres transferencias. El caso exige distinguir riesgo de liquidez, deuda vencida e insolvencia, y reconstruir evidencia sin fabricar respaldos.
 
-La organización creció rápido. La misma jefatura solicita y aprueba transferencias; Treasury ejecuta y descarga cartolas; Accounting registra totales semanales; Technology administra accesos privilegiados y puede modificar exportaciones; Compliance recibe denuncias a través de Management; Internal Audit revisa una muestra anual. Hay conciliaciones con antigüedad de 43 días, contrapartes con nombres inconsistentes y tres controles automáticos fallidos que no generaron ticket.
+## Objetivo de aprendizaje
 
-No se sabe todavía si el origen es fraude, error de corte, duplicación, activo restringido, comisión no registrada, pérdida de claves o una combinación. El objetivo no es adivinar: es construir evidencia suficiente para separar hipótesis.
+Integrar operación, contabilidad, impuestos, evidencia, caja y control sin convertir datos incompletos en certezas.
 
-## Evidencia disponible
+## Expediente inicial
 
-- libro auxiliar de clientes al cierre;
-- extractos de dos bancos;
-- saldos y movimientos de tres wallets/exchanges;
-- log de accesos privilegiados;
-- tickets de transferencias;
-- mayor contable y cuentas de control;
-- configuración y resultados de controles automáticos;
-- denuncia anónima que menciona una whitelist modificada;
-- actas del Board y matriz de autorizaciones.
+- Ventas por cobrar: $4.500.000, vencimiento promedio 52 días.
+- Banco disponible: $620.000.
+- Pagos próximos 30 días: $1.850.000.
+- Tres cargos bancarios suman $410.000 y carecen de vínculo documental.
+- Una obligación previsional está marcada por verificar.
+- No existe conclusión profesional sobre insolvencia.
 
-## Trabajo del estudiante
+## Etapas
 
-Evalúa por separado y luego conecta:
+1. **1. Diagnóstico de caja.** Construye flujo de 13 semanas con escenario base, cobro tardío y pérdida de cliente.
+2. **2. Prioridades.** Ordena obligaciones por vencimiento, consecuencia y capacidad; separa negociación de omisión.
+3. **3. Evidencia.** Abre excepciones por transferencias, preserva cartolas y solicita documentos sin inventar su causa.
+4. **4. Escalamiento.** Define umbrales para contador, abogado o asesor de insolvencia sin diagnosticar elegibilidad.
 
-1. **Tecnología:** integridad de logs, identidades, accesos privilegiados, cambios, interfaces y disponibilidad de evidencia.
-2. **Contabilidad:** mayor, libros auxiliares, corte, reconocimiento, restricciones, comisiones y conciliaciones.
-3. **Gobernanza:** apetito, información al Board, autoridad, independencia y rendición de cuentas.
-4. **Personas:** concentración de privilegios, reemplazos, incentivos, conflictos y canal de denuncias.
-5. **Procesos:** recorrido request→audit, puntos sin evidencia, operaciones fuera de flujo y excepciones.
-6. **Auditoría:** cobertura, frecuencia, calidad de evidencia, seguimiento y acceso directo al Board.
-7. **Riesgos:** registro, P×I, dueño, controles, residual, KRI, umbrales y respuesta.
+## Decisiones que debes defender
 
-## Entregables
+- ¿Cuándo la alerta pasa de educativa a operación detenida?
+- ¿Qué pagos no pueden clasificarse con la cartola sola?
+- ¿Qué información falta para hablar de insolvencia?
+- ¿Cómo se conserva la cadena de custodia de los respaldos recuperados?
 
-- cronología verificable del descalce y mapa de hipótesis;
-- conciliación de tres vías por activo y contraparte;
-- matriz RACI y SoD rediseñada;
-- inventario de controles Preventive/Detective/Corrective y Manual/Automated/Hybrid;
-- risk register priorizado con KRI y umbrales;
-- plan de preservación de evidencia e investigación independiente;
-- calendario configurable de revisión diaria, semanal, mensual, trimestral y anual;
-- diseño objetivo y plan de transición 30/60/90 días;
-- criterios que demuestren que el descalce se resolvió sin ocultar diferencias.
+## Entrega
 
-## Criterio de aprobación
+- Cronología y mapa de actores.
+- Libro de decisiones: dato, hipótesis, evidencia, responsable y estado.
+- Registros/cálculos reproducibles y conciliaciones.
+- Matriz de obligaciones: aplica, no aplica o requiere verificación, con fuente.
+- Informe ejecutivo de una página con riesgos, límites y próximas acciones.
 
-No basta con cuadrar CLP 84.000.000 mediante un asiento. La propuesta debe explicar el origen con evidencia, aislar conflictos, proteger la investigación, corregir el libro auxiliar cuando corresponda y rediseñar el sistema para que una recurrencia sea visible dentro del umbral definido.
+## Rúbrica
 
-Practica el flujo en SANDBOX desde **Control interno**, usando una persona distinta en cada etapa y adjuntando referencias sintéticas, nunca datos reales.
+| Criterio | Peso | Qué se observa |
+|---|---:|---|
+| Integración | 25% | Conecta hechos, registros, caja, obligaciones y evidencia sin duplicarlos. |
+| Juicio | 25% | Toma decisiones proporcionales y deja lo incierto como verificación. |
+| Trazabilidad | 20% | Toda conclusión puede reconstruirse desde la fuente. |
+| Recuperación | 15% | Cada fallo o diferencia tiene responsable, fecha y forma de comprobar su solución. |
+| Comunicación | 15% | El informe permite actuar sin ocultar límites ni usar alarmismo. |
+
+## Pauta de revisión
+
+Abre esta sección sólo después de entregar tu primera versión.
+
+<details>
+<summary>Hallazgos que una solución sólida debería descubrir</summary>
+
+- La falta de caja próxima es una alerta demostrable; “quiebra” no lo es.
+- Los escenarios no se mezclan con saldos reales.
+- Las transferencias quedan pendientes con dueño y plazo.
+- La consulta concursal devuelve REQUIERE_VERIFICACION.
+- La remediación preserva archivos originales y bitácora.
+</details>
+
+## En la aplicación
+
+Recorre el caso en SANDBOX mediante: Flujo de caja → Continuidad → Alertas → Auditoría → Insolvencia.

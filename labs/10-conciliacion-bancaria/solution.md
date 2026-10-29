@@ -1,7 +1,20 @@
-# Solución — Conciliación bancaria
+# Pauta de solución — Conciliación bancaria
 
-Documentar la partida conciliatoria y confirmar que explique exactamente la diferencia.
+La pauta permite comparar razonamiento; no reemplaza tu entregable ni autoriza una operación real.
 
-## Verificación
+## Hallazgos esperados
 
-Ejecuta el comando equivalente del CLI cuando exista y compara. Después valida el principio con `docs/SOURCES-2026.md`.
+- Saldo contable ajustado: $1.410.000.
+- Cartola + depósito en tránsito: $1.430.000; la diferencia restante de $20.000 exige investigación.
+- El laboratorio no permite forzar el cierre: debe abrirse una excepción por $20.000.
+
+## Autoevaluación
+
+1. Reproduce cada cifra desde las entradas.
+2. Explica por qué cada clasificación sigue siendo válida si cambia la fecha de pago.
+3. Compara tu trabajo con la rúbrica del laboratorio.
+4. Corrige mediante una nueva versión; no borres tu primer intento.
+
+## En la aplicación
+
+Practica en SANDBOX: Conciliación → Banco → Cierres.

@@ -1,7 +1,20 @@
-# Solución — Cierre anual básico
+# Pauta de solución — Cierre anual básico
 
-Base educativa $5.000.000; a 12,5% el IDPC estimado sería $625.000, antes de créditos/PPM y validaciones de Operación Renta.
+La pauta permite comparar razonamiento; no reemplaza tu entregable ni autoriza una operación real.
 
-## Verificación
+## Hallazgos esperados
 
-Ejecuta el comando equivalente del CLI cuando exista y compara. Después valida el principio con `docs/SOURCES-2026.md`.
+- Las excepciones permanecen visibles.
+- CPT aparece como preliminar con método y supuestos.
+- No se genera número de declaración ni estado “presentado”.
+
+## Autoevaluación
+
+1. Reproduce cada cifra desde las entradas.
+2. Explica por qué cada clasificación sigue siendo válida si cambia la fecha de pago.
+3. Compara tu trabajo con la rúbrica del laboratorio.
+4. Corrige mediante una nueva versión; no borres tu primer intento.
+
+## En la aplicación
+
+Practica en SANDBOX: Cierre anual → CPT → Evidencias.

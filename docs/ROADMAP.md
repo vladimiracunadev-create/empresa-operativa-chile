@@ -2,8 +2,8 @@
 
 <div align="center">
 
-[![Actual](https://img.shields.io/badge/actual-v1.6.0-e8590c?style=for-the-badge)](../CHANGELOG.md)
-[![Siguiente](https://img.shields.io/badge/siguiente-v1.7_·_integraciones-2f81f7?style=for-the-badge)](#-v17--integraciones-y-conciliación)
+[![Actual](https://img.shields.io/badge/actual-v1.7.0-e8590c?style=for-the-badge)](../CHANGELOG.md)
+[![Siguiente](https://img.shields.io/badge/siguiente-v1.8_·_integraciones-2f81f7?style=for-the-badge)](#-v18--integraciones-y-conciliación)
 
 [🏠 Inicio](../README.md) · [📓 Changelog](../CHANGELOG.md) · [🏗️ Arquitectura](ARCHITECTURE.md)
 
@@ -11,7 +11,7 @@
 
 ---
 
-Estado a **2026-10-28**, versión 1.6.0.
+Estado a **2026-10-29**, versión 1.7.0.
 
 ## ✅ v1.0 — publicado
 
@@ -56,7 +56,14 @@ Estado a **2026-10-28**, versión 1.6.0.
 - Capacitor y runtimes corregidos; Dependabot, auditorías pnpm/RustSec y CodeQL sin alertas abiertas.
 - SBOM CycloneDX y hashes SHA-256 en los releases.
 
-## 🔜 v1.7 — integraciones y conciliación
+## ✅ v1.7 — Academia completa y offline
+
+- 70 clases desarrolladas en 17 partes, con ejemplo, taller, recuperación y evaluación.
+- 12 rutas guiadas, 17 laboratorios con rúbrica, 4 casos integradores y 2 talleres del motor.
+- Buscador y progreso local en Web/PWA, Windows y Android.
+- Fuente única y 127 documentos generados; CI impide contenido vacío o desincronizado.
+
+## 🔜 v1.8 — integraciones y conciliación
 
 Ordenado por lo que hoy obliga a trabajo manual:
 
@@ -68,7 +75,7 @@ Ordenado por lo que hoy obliga a trabajo manual:
 5. **Feriados legales** en el cálculo de vencimientos.
 6. **Recordatorios de vencimiento** en Android.
 
-## 📗 v1.8 — contabilidad más completa
+## 📗 v1.9 — contabilidad más completa
 
 - Plan de cuentas configurable y libro mayor.
 - Balance y estado de resultados educativos.
@@ -76,14 +83,14 @@ Ordenado por lo que hoy obliga a trabajo manual:
 - Más códigos del F29 y proporcionalidad de IVA.
 - Multi-empresa dentro del mismo entorno real.
 
-## 📘 v1.9 — operación avanzada
+## 📘 v2.0 — operación avanzada
 
 - Declaraciones juradas según perfil.
 - Asistente de F22 / Operación Renta.
 - Expediente anual con toda la evidencia del ejercicio.
 - Exportaciones y servicios prestados al exterior.
 
-## 🛡️ v2.0 — endurecimiento
+## 🛡️ v2.1 — endurecimiento
 
 - **Firma de código** de los instaladores de Windows (hoy SmartScreen avisa).
 - **APK firmado para release** y publicación en Google Play.

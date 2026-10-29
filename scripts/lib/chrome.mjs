@@ -61,6 +61,9 @@ function run(args, { timeBudget = 4000 } = {}) {
  */
 export function screenshot({ url, out, width, height, scale = 2, timeBudget = 4000 }) {
   fs.mkdirSync(path.dirname(out), { recursive: true });
+  // Si Chrome falla silenciosamente, un PNG anterior no puede hacerse pasar
+  // por evidencia nueva. Se elimina primero y se valida el archivo resultante.
+  fs.rmSync(out, { force: true });
   run(
     [
       '--hide-scrollbars',

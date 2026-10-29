@@ -1,16 +1,18 @@
 # Parte 05 — Compras y gastos
 
-## Objetivo
+## Pregunta que guía la parte
 
-Dominar compras y gastos mediante explicación, simulación, registro y verificación.
+Decidir tratamiento contable y tributario con evidencia suficiente.
 
-## Clases
+Esta parte usa el caso continuo de Ruta Andina SpA. Cada clase produce una evidencia distinta; leer sin resolver el taller no cuenta como finalización.
 
-1. **Factura recibida**
-2. **Crédito fiscal**
-3. **Gasto del giro**
-4. **Gasto rechazado/no deducible**
+## Recorrido
 
-## Criterio de aprobación
+1. [C21 — Factura recibida](classes/C21.md) — Validar compra, recepción y obligación por pagar.
+2. [C22 — Crédito fiscal](classes/C22.md) — Evaluar elegibilidad del IVA sin asumirla.
+3. [C23 — Gasto del giro](classes/C23.md) — Relacionar costo con actividad y período.
+4. [C24 — Gasto rechazado o no deducible](classes/C24.md) — Registrar sin esconder un desembolso no aceptado.
 
-El estudiante debe poder explicar la operación, calcularla, registrar su efecto y señalar qué evidencia/fuente oficial usaría para verificarla.
+## Criterio de dominio
+
+La parte queda dominada cuando las evidencias de todas sus clases cumplen sus criterios de aceptación y la persona puede explicar cómo una decisión cambia el registro, la caja, la obligación y la evidencia.

@@ -1,38 +1,50 @@
-# Lab 17 — Investigar una operación que sí cuadra
+# L17 — Investigación de integridad
 
-## Propósito
+> **Parte:** 16 · **Tiempo:** 100 min · **Aprobación:** 80/100 y ningún error crítico de doble conteo, período, evidencia o afirmación legal no verificada.
 
-Aplicar el ciclo prevenir→detectar→investigar→probar→corregir→evitar recurrencia sin confundir una alerta con culpabilidad.
+## Escenario
 
-## Prerrequisitos
+Llega una denuncia ficticia sobre pagos aprobados por la misma persona que concilia. Diseña una investigación independiente, preserva evidencia y evita prejuzgar.
 
-C54, C61–C70 y el caso [La operación que sí cuadraba](../../cases/04-operacion-que-si-cuadraba/README.md).
+> Trabaja sólo con los datos ficticios del caso. No presentes formularios ni uses credenciales reales.
 
-## Problema
+## Material de entrada
 
-Elige cinco eventos del caso y construye:
+- Denuncia anonimizada
+- Matriz RACI
+- Registro de pagos ficticios
+- Cadena de custodia vacía
 
-1. una cronología verificable;
-2. una matriz “qué falló”;
-3. dos hipótesis alternativas por señal;
-4. un plan de preservación con custodio y acceso;
-5. tres controles: uno preventivo, uno detectivo y uno correctivo;
-6. una remediación con dueño, vencimiento y prueba de eficacia.
+## Trabajo
+
+1. Evalúa conflicto de interés.
+2. Define alcance, hipótesis y evidencia a preservar.
+3. Construye cadena de custodia.
+4. Separa hechos, inferencias y conclusiones.
+5. Propón remediación y verificación posterior.
 
 ## Entrega
 
-- tabla de hechos, evidencia, hipótesis y conclusión provisional;
-- fuentes y fecha de verificación;
-- decisión de escalamiento con competencia explicada;
-- límites y evidencia faltante;
-- criterio explícito para cerrar o reabrir.
+- Hoja de razonamiento: hecho, período, evidencia, clasificación y supuesto.
+- Cálculo o conciliación reproducible, con unidades y fórmula visibles.
+- Registro propuesto y vínculo con el documento de origen.
+- Lista de excepciones: dato faltante, riesgo, responsable y acción siguiente.
+- Conclusión de cinco líneas que distingue lo comprobado de lo que requiere verificación.
 
-## Preguntas de comprobación
+## Rúbrica
 
-1. ¿Por qué banco, DTE y contabilidad pueden cuadrar y aun así faltar sustancia?
-2. ¿Qué diferencia una relación declarada de un conflicto no gestionado?
-3. ¿Qué prueba que la segregación es humana y no sólo de usuarios?
-4. ¿Qué afirmaciones no puedes sostener todavía?
-5. ¿Cómo sabrás dentro de 90 días que la corrección funcionó?
+| Criterio | Peso | Evidencia observable |
+|---|---:|---|
+| Exactitud | 25% | Los cálculos se reproducen y los asientos equilibran. |
+| Razonamiento | 25% | Cada clasificación explica qué cambió y por qué. |
+| Trazabilidad | 25% | Cada cifra se enlaza con entrada, documento y período. |
+| Límites | 15% | No se inventan obligaciones ni hechos ausentes. |
+| Comunicación | 10% | Otra persona puede revisar y repetir el trabajo. |
 
-> No abras `solution.md` hasta terminar tu intento.
+## Errores que debes buscar antes de entregar
+
+- Tratar denuncia como culpabilidad.
+- Permitir que el investigado seleccione evidencia.
+- Cerrar con una política sin probar el control.
+
+No abras [la pauta de solución](solution.md) antes de completar y guardar tu primer intento.

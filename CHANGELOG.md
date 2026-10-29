@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Versión](https://img.shields.io/badge/versión_actual-1.6.0-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
+[![Versión](https://img.shields.io/badge/versión_actual-1.7.0-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
 [![Formato](https://img.shields.io/badge/formato-Keep_a_Changelog-7c5cff?style=for-the-badge)](https://keepachangelog.com/es-ES/1.1.0/)
 [![SemVer](https://img.shields.io/badge/versionado-SemVer-2f81f7?style=for-the-badge)](https://semver.org/lang/es/)
 
@@ -18,6 +18,24 @@ Versionado según [SemVer](https://semver.org/lang/es/).
 ## [Sin publicar]
 
 Sin cambios todavía.
+
+## [1.7.0] — 2026-10-29
+
+### ✨ Añadido
+
+- Academia offline y navegable en Web/PWA, Windows y Android: 12 rutas guiadas, 70 clases, 17 laboratorios, 4 casos integradores y dos talleres del motor.
+- Buscador por contenido, progreso local por dispositivo, comprobaciones con retroalimentación y acceso directo a SANDBOX.
+- Fuente única `packages/academy/` y generador de 127 documentos con comprobación de sincronía en `pnpm check`.
+
+### 🔁 Cambiado
+
+- Las 70 fichas nominales se reemplazan por clases de 35 minutos con prerrequisitos, cinco resultados, conceptos, modelo mental, desarrollo en tres bloques, ejemplo trabajado, taller, errores con recuperación, tres comprobaciones, entregable, criterio de aceptación y fuentes.
+- Los 17 laboratorios incorporan datos de entrada, procedimiento, pauta, errores y rúbrica; los 4 casos incorporan expediente, etapas, decisiones y evaluación.
+- Los ejemplos preexistentes de venta y honorario exigen un intento antes de revelar una pauta calculada con el motor real.
+
+### 🧪 Pruebas
+
+- Las 215 pruebas de CI validan cantidades, profundidad mínima, unicidad de cada clase, estructura pedagógica, rúbricas, documentos generados y empaquetado offline.
 
 ## [1.6.0] — 2026-10-29
 
@@ -437,6 +455,7 @@ Primera versión distribuible. El proyecto pasa de prototipo con tres interfaces
 - Academia: currículo, 16 laboratorios y casos integrales.
 - Andamiaje de Tauri para Windows.
 
+[1.7.0]: https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/tag/v1.7.0
 [1.6.0]: https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/tag/v1.6.0
 [1.5.0]: https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/tag/v1.5.0
 [1.0.0]: https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/tag/v1.0.0

@@ -17,6 +17,7 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 
 const steps = [
   ['Reglas tributarias embebidas', 'build-rules.mjs'],
+  ['Academia y material de aprendizaje', 'build-academy.mjs'],
   ['Iconos de las tres plataformas', 'build-icons.mjs'],
   ['Aplicación web (apps/web/dist)', 'build-web.mjs']
 ];

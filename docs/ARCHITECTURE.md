@@ -29,6 +29,7 @@ empresa-operativa-chile/
 │   ├── core/                       Contratos de estados, evidencia, reglas y resultados fail-closed
 │   ├── i18n/                       8 locales de interfaz, separados de la jurisdicción fiscal
 │   ├── jurisdictions/              Registro + CountryPack CL/PE/MX/CO/AR/BR/ES
+│   ├── academy/                    Fuente única de 70 clases, 12 rutas, 17 labs y 4 casos
 │   ├── chile-tax-rules/            Reglas chilenas versionadas por año comercial
 │   │   ├── rules/2026.json         ← fuente de verdad (revisable, citable)
 │   │   ├── rules.generated.mjs     ← generado: lo mismo, embebible en navegador
@@ -41,7 +42,7 @@ empresa-operativa-chile/
 │   │   ├── node-store.mjs          ← almacén de disco (sólo Node)
 │   │   ├── rut.mjs                 ← RUT y dígito verificador
 │   │   └── index.mjs               ← entrada de Node
-│   └── glossary/ onboarding/ shortcuts/  fuentes únicas de ayuda y documentos generados
+│   └── glossary/ onboarding/ shortcuts/  otras fuentes únicas de ayuda y documentos generados
 │
 ├── apps/
 │   ├── web/src/                    ÚNICA interfaz del producto
@@ -53,9 +54,9 @@ empresa-operativa-chile/
 │   ├── android/                    envoltorio Capacitor
 │   └── contador-cli/               CLI
 │
-├── scripts/                        build-rules · build-icons · build-web ·
+├── scripts/                        build-rules · build-academy · build-icons · build-web ·
 │                                   build-all · verify-apk · validate-rules
-├── tests/                          207 pruebas (runner nativo de Node)
+├── tests/                          215 pruebas (runner nativo de Node)
 ├── docs/                           documentación y runbooks
 └── curriculum/ labs/ cases/        material de aprendizaje
 ```
