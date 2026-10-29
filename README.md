@@ -187,7 +187,7 @@ falla si una lámina se desbordó o si las cifras de arriba dejaron de cuadrar c
 | App de Android | ✅ APK **con el contenido contado dentro del binario** en CI |
 | App de Windows | ✅ MSI, NSIS y portable; **arranca y se comprueba vivo** en CI |
 | Web / PWA | ✅ publicada en Pages, instalable y sin conexión |
-| Pruebas | ✅ 204 en Ubuntu y Windows, Node 22, 24 y 26 con parches de seguridad |
+| Pruebas | ✅ 207 en Ubuntu y Windows, Node 22, 24 y 26 con parches de seguridad |
 | Seguridad | ✅ CodeQL + revisión de dependencias + auditorías pnpm/RustSec + detección de datos reales + acciones fijadas a SHA |
 | Integración con el SII | ⚪ **no existe** — por diseño, no por falta de tiempo |
 | Cifrado de datos locales | ⚪ pendiente ([roadmap](docs/ROADMAP.md)) |
@@ -463,6 +463,7 @@ tiempo dejen de coincidir:
 | 📗 | [Políticas contables](docs/ACCOUNTING-POLICIES.md) | Criterios del caso guía |
 | 📖 | [Glosario](docs/GLOSSARY.md) | 76 términos, generado desde el propio sistema |
 | ⌨️ | [Atajos de teclado](docs/ATAJOS-DE-TECLADO.md) | 12 atajos, sobre todo para la versión de Windows |
+| 🔎 | [Auditoría de coherencia v1.6.0](docs/audits/COHERENCE-AUDIT-2026-10-29.md) | Versión, pruebas, workflows, runtimes, documentación, release y About contrastados con sus fuentes de verdad |
 | 🎤 | [Presentación](docs/presentacion.md) · [Ver online](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/presentacion.html) · [PDF](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/PRESENTACION.pdf) · [Pauta](https://vladimiracunadev-create.github.io/empresa-operativa-chile/presentacion/PAUTA.pdf) | 8 láminas y guion del expositor para presentar el producto en media hora |
 | 💰 | [Capital y patrimonio](docs/accounting/CAPITAL-PATRIMONIO.md) | Las cinco magnitudes que no son sinónimos |
 | 🧮 | [Capital Propio Tributario](docs/tax/CAPITAL-PROPIO-TRIBUTARIO.md) | Art. 41 y CPT simplificado Pro Pyme |

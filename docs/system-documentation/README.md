@@ -1,6 +1,16 @@
 # 📕 Documentación de sistema — Empresa Operativa Chile
 
-Documentación técnica completa del repositorio, escrita recorriendo el código fuente.
+Snapshot técnico completo de **Empresa Operativa Chile v1.5.0**, escrito recorriendo el commit
+`2b0e006ba02c406346f08a23c739c81b89c93b0a` y cerrado el 2026-09-22.
+
+> [!IMPORTANT]
+> Esta serie se conserva como evidencia histórica y **no describe el estado actual v1.6.0**.
+> Para el estado vigente consulta el [README](../../README.md), el
+> [CHANGELOG](../../CHANGELOG.md), la [arquitectura actual](../ARCHITECTURE.md), el
+> [análisis multijurisdiccional](../audits/MULTIJURISDICTION-GAP-ANALYSIS.md), la
+> [remediación de seguridad](../audits/SECURITY-REMEDIATION-2026-10-28.md) y la
+> [auditoría de coherencia v1.6.0](../audits/COHERENCE-AUDIT-2026-10-29.md).
+
 Complementa —no reemplaza— la documentación de producto que ya vive en [`docs/`](../README.md).
 
 ---
@@ -51,7 +61,7 @@ publica — sin tener que preguntar a nadie.
 | 09 | [APIs e integraciones](09-apis-and-integrations.md) | Se demuestra que no hay red; contratos de datos e interfaces de plataforma | ✅ |
 | 10 | [Configuración](10-configuration.md) | Variables de entorno, manifiestos, CSP, capacidades Tauri | ✅ |
 | 11 | [Seguridad](11-security.md) | Controles presentes y ausentes, superficie real, hallazgos | ✅ |
-| 12 | [Pruebas y calidad](12-testing-and-quality.md) | 13 suites, 159 pruebas, 6 workflows, gates propios | ✅ |
+| 12 | [Pruebas y calidad](12-testing-and-quality.md) | Snapshot v1.5: 13 suites, 159 pruebas, 6 workflows, gates propios | ✅ |
 | 13 | [Despliegue y operación](13-deployment-and-operations.md) | Pages, APK, instaladores Windows, release, generación de PDF | ✅ |
 | 14 | [Troubleshooting](14-troubleshooting.md) | Síntoma → causa → diagnóstico → solución → riesgo | ✅ |
 | 15 | [Riesgos y deuda técnica](15-risks-and-technical-debt.md) | Hallazgos clasificados. **Informativo: no se corrigió nada** | ✅ |
