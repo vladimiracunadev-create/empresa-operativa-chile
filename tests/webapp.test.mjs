@@ -149,6 +149,7 @@ test('los runtimes de build están fijados a baselines corregidos', () => {
 test('la automatización de dependencias cubre pnpm, Cargo y GitHub Actions', () => {
   const dependabot = fs.readFileSync(path.join(root, '.github/dependabot.yml'), 'utf8');
   const security = fs.readFileSync(path.join(root, '.github/workflows/security.yml'), 'utf8');
+  const release = fs.readFileSync(path.join(root, '.github/workflows/release.yml'), 'utf8');
   const cargoAudit = fs.readFileSync(path.join(root, '.cargo/audit.toml'), 'utf8');
 
   assert.match(dependabot, /package-ecosystem: npm[\s\S]+directory: \/apps\/android/);
@@ -165,6 +166,10 @@ test('la automatización de dependencias cubre pnpm, Cargo y GitHub Actions', ()
   assert.match(security, /cargo audit --file apps\/contador-desktop\/src-tauri\/Cargo\.lock/);
   assert.match(security, /actions\/dependency-review-action@[0-9a-f]{40}/);
   assert.doesNotMatch(security, /^\s*(?:run:\s*)?npm\s/m, 'el workflow no debe ejecutar npm');
+  assert.match(release, /anchore\/sbom-action@[0-9a-f]{40}/);
+  assert.match(release, /format: cyclonedx-json/);
+  assert.match(release, /EmpresaOperativaChile-sbom\.cdx\.json/);
+  assert.match(release, /sha256sum \.\/\* > SHA256SUMS\.txt/);
   assert.match(cargoAudit, /^arch = \["x86_64"\]$/m);
   assert.match(cargoAudit, /^os = \["windows"\]$/m);
 });

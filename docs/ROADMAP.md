@@ -2,8 +2,8 @@
 
 <div align="center">
 
-[![Actual](https://img.shields.io/badge/actual-v1.5.0-e8590c?style=for-the-badge)](../CHANGELOG.md)
-[![Siguiente](https://img.shields.io/badge/siguiente-v1.6_·_integraciones-2f81f7?style=for-the-badge)](#-v16--integraciones-y-conciliación)
+[![Actual](https://img.shields.io/badge/actual-v1.6.0-e8590c?style=for-the-badge)](../CHANGELOG.md)
+[![Siguiente](https://img.shields.io/badge/siguiente-v1.7_·_integraciones-2f81f7?style=for-the-badge)](#-v17--integraciones-y-conciliación)
 
 [🏠 Inicio](../README.md) · [📓 Changelog](../CHANGELOG.md) · [🏗️ Arquitectura](ARCHITECTURE.md)
 
@@ -11,7 +11,7 @@
 
 ---
 
-Estado a **2026-09-22**, versión 1.5.0.
+Estado a **2026-10-28**, versión 1.6.0.
 
 ## ✅ v1.0 — publicado
 
@@ -47,7 +47,16 @@ Estado a **2026-09-22**, versión 1.5.0.
 - Ocho KRI: se añaden casos abiertos y remediaciones vencidas.
 - Fuentes oficiales y bibliografía secundaria separadas, con límites y fecha de verificación.
 
-## 🔜 v1.6 — integraciones y conciliación
+## ✅ v1.6 — multijurisdicción y seguridad
+
+- País fiscal e idioma de interfaz como dimensiones independientes.
+- Contrato `CountryPack`; Chile conserva sus reglas y seis países parten en modo documental.
+- Grafo auditable del ciclo de vida, caja 6/12/24/36 meses, inactividad y contingencias.
+- Fail-closed cuando falta una regla, vigencia, feriado, subdivisión o revisión humana.
+- Capacitor y runtimes corregidos; Dependabot, auditorías pnpm/RustSec y CodeQL sin alertas abiertas.
+- SBOM CycloneDX y hashes SHA-256 en los releases.
+
+## 🔜 v1.7 — integraciones y conciliación
 
 Ordenado por lo que hoy obliga a trabajo manual:
 
@@ -59,7 +68,7 @@ Ordenado por lo que hoy obliga a trabajo manual:
 5. **Feriados legales** en el cálculo de vencimientos.
 6. **Recordatorios de vencimiento** en Android.
 
-## 📗 v1.7 — contabilidad más completa
+## 📗 v1.8 — contabilidad más completa
 
 - Plan de cuentas configurable y libro mayor.
 - Balance y estado de resultados educativos.
@@ -67,7 +76,7 @@ Ordenado por lo que hoy obliga a trabajo manual:
 - Más códigos del F29 y proporcionalidad de IVA.
 - Multi-empresa dentro del mismo entorno real.
 
-## 📘 v1.8 — operación avanzada
+## 📘 v1.9 — operación avanzada
 
 - Declaraciones juradas según perfil.
 - Asistente de F22 / Operación Renta.

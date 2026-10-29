@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Versión](https://img.shields.io/badge/versión_actual-1.5.0-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
+[![Versión](https://img.shields.io/badge/versión_actual-1.6.0-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
 [![Formato](https://img.shields.io/badge/formato-Keep_a_Changelog-7c5cff?style=for-the-badge)](https://keepachangelog.com/es-ES/1.1.0/)
 [![SemVer](https://img.shields.io/badge/versionado-SemVer-2f81f7?style=for-the-badge)](https://semver.org/lang/es/)
 
@@ -17,12 +17,24 @@ Versionado según [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+Sin cambios todavía.
+
+## [1.6.0] — 2026-10-29
+
+Esta versión incorpora el motor multijurisdiccional con cierre seguro ante datos
+normativos incompletos y reemplaza el APK 1.5.0 retirado por la vulnerabilidad
+crítica de Capacitor.
+
 ### ✨ Añadido
 
 - Marco educativo original de integridad, fraude tributario defensivo, decisiones institucionales, investigación, causa raíz y remediación.
 - Caso sintético “La operación que sí cuadraba”, laboratorio 17 y matrices de hechos, fuentes y controles fallidos.
 - Bibliografía secundaria separada de las fuentes oficiales; *Impunidad* queda registrado como crónica testimonial sin afirmar acceso al libro completo.
 - 22 términos de integridad e investigación en el glosario generado.
+- Contrato `CountryPack`, registro ISO para CL, PE, MX, CO, AR, BR y ES, y ocho locales de interfaz separados de la jurisdicción fiscal.
+- Grafo auditable del ciclo empresarial, escenarios de inactividad, caja a 6/12/24/36 meses y expediente concursal local sin envío automático.
+- Automatización semanal de dependencias para pnpm, Cargo y GitHub Actions; auditorías pnpm y RustSec en CI.
+- SBOM CycloneDX del repositorio incluido en cada release junto con hashes SHA-256.
 
 ### 🔁 Cambiado
 
@@ -30,10 +42,21 @@ Versionado según [SemVer](https://semver.org/lang/es/).
 - Whistleblowing conserva confidencialidad, riesgo de represalia, custodio, hechos, hipótesis, evidencia faltante y cronología.
 - El cierre de una investigación exige investigador y decisor distintos, conclusión respaldada, remediación, verificación y vía de revisión.
 - KRI amplía su cobertura a casos abiertos y remediaciones vencidas.
+- Capacitor queda fijado en 7.6.9 y Tauri CLI en 2.12.4; Dependabot no propone migraciones mayores de Capacitor como parches automáticos.
+- Los runtimes de build quedan fijados en Node 22.23.4/24.22.2/26.13.0, pnpm 11.25.0, Temurin 21.0.13+9 y Rust 1.99.1.
+- Los perfiles de PE, MX, CO, AR, BR y ES son documentales: sus calculadoras permanecen apagadas hasta disponer de reglas verificadas.
+
+### 🔐 Seguridad
+
+- Corregida CVE-2026-103922 al actualizar Capacitor; el APK vulnerable de v1.5.0 permanece retirado.
+- Eliminadas las 14 alertas CodeQL abiertas: temporales predecibles, carreras TOCTOU, atributos HTML incompletamente escapados e imports sin uso.
+- Los diagramas Mermaid se publican de forma exclusiva y los temporales de Chrome/Mermaid usan directorios aleatorios con limpieza garantizada.
+- GitHub mantiene alertas de dependencias y correcciones de seguridad automatizadas; las excepciones deben quedar justificadas por plataforma.
 
 ### 🧪 Pruebas
 
-- Cobertura del ciclo completo de investigación, separación investigación/decisión, cierre verificable y ageing de remediaciones.
+- **207 pruebas**: ciclo completo de investigación, separación investigación/decisión, cierre verificable, escenarios multijurisdiccionales y regresiones de seguridad del build.
+- CI valida Node en Linux y Windows, RustSec, auditoría pnpm, CodeQL, ausencia de datos reales y publicación de Pages.
 
 ## [1.5.0] — 2026-09-07
 
@@ -414,5 +437,6 @@ Primera versión distribuible. El proyecto pasa de prototipo con tres interfaces
 - Academia: currículo, 16 laboratorios y casos integrales.
 - Andamiaje de Tauri para Windows.
 
+[1.6.0]: https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/tag/v1.6.0
 [1.5.0]: https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/tag/v1.5.0
 [1.0.0]: https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/tag/v1.0.0
