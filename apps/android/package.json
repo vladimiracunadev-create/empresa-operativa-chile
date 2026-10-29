@@ -20,6 +20,6 @@
     "@capacitor/core": "7.6.9"
   },
   "devDependencies": {
-    "@capacitor/cli": "7.6.9"
+    "@capacitor/cli": "8.5.3"
   }
 }
