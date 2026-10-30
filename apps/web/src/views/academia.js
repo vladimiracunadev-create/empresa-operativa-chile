@@ -4,7 +4,7 @@ import { openExternal } from '../lib/platform.js';
 import { saleFromNet, honorariumFromGross, journal } from '../core/accounting-engine/index.mjs';
 import { loadRules } from '../core/chile-tax-rules/index.mjs';
 import { ACADEMY_LESSONS, ACADEMY_MODULES } from '../core/academy/index.mjs';
-import { COURSE_MODULES, COURSE_CLASSES, COURSE_UNIT_GUIDES } from '../core/academy/course.mjs';
+import { COURSE_CLASSES, COURSE_UNIT_GUIDES } from '../core/academy/course.mjs';
 import { ACADEMY_LABS } from '../core/academy/labs.mjs';
 import { ACADEMY_CASES } from '../core/academy/cases.mjs';
 

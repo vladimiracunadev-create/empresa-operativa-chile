@@ -129,8 +129,9 @@ test('la documentación generada expone las 70 clases, 17 labs y 4 casos', () =>
 test('el libro PDF contiene el catálogo completo y está enlazado desde el README', () => {
   const pdf = path.join(root, 'docs', 'ACADEMIA-COMPLETA.pdf');
   const manifest = JSON.parse(fs.readFileSync(path.join(root, 'docs', 'ACADEMIA-COMPLETA.manifest.json'), 'utf8'));
-  assert.ok(fs.statSync(pdf).size >= 300_000);
-  assert.equal(fs.readFileSync(pdf).subarray(0, 4).toString(), '%PDF');
+  const pdfBytes = fs.readFileSync(pdf);
+  assert.ok(pdfBytes.length >= 300_000);
+  assert.equal(pdfBytes.subarray(0, 4).toString(), '%PDF');
   assert.equal(manifest.classes, 70);
   assert.equal(manifest.units, 17);
   assert.equal(manifest.guided, 12);
