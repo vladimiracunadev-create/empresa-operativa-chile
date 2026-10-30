@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Versión](https://img.shields.io/badge/versión_actual-1.7.0-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
+[![Versión](https://img.shields.io/badge/versión_actual-1.7.1-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
 [![Formato](https://img.shields.io/badge/formato-Keep_a_Changelog-7c5cff?style=for-the-badge)](https://keepachangelog.com/es-ES/1.1.0/)
 [![SemVer](https://img.shields.io/badge/versionado-SemVer-2f81f7?style=for-the-badge)](https://semver.org/lang/es/)
 
@@ -18,6 +18,30 @@ Versionado según [SemVer](https://semver.org/lang/es/).
 ## [Sin publicar]
 
 Sin cambios todavía.
+
+## [1.7.1] — 2026-10-30
+
+### ✨ Añadido
+
+- Portada documental del currículo y mapa visual de sus 17 unidades, generados desde la misma fuente que usa la aplicación.
+- Introducción pedagógica completa por unidad: propósito, prerrequisito, caso, preguntas guía, mapa de contenidos, conexiones y producto final.
+- Libro PDF verificable de 289 páginas con las 70 clases, 12 rutas, 17 laboratorios con solución y rúbrica, 4 casos y 2 talleres del motor.
+
+### 🔁 Cambiado
+
+- La Academia web ahora presenta una grilla visual de unidades, vista previa de cada unidad y lector enfocado de una clase a la vez.
+- Las clases permiten avanzar y retroceder sin regresar al índice, incluso al cruzar de una unidad a otra.
+- Los documentos Markdown de cada clase incorporan la misma navegación anterior/unidad/siguiente.
+
+### 🐛 Corregido
+
+- Se alinearon las introducciones de Tesorería, Accionista y patrimonio, Activos y cierre, Municipal y cumplimiento, y Cierre mensual con sus unidades correctas.
+- Las tablas del libro de la Academia ya no se dividen entre páginas.
+
+### 🧪 Pruebas
+
+- 217 pruebas validan el contenido, las introducciones, sus anclas semánticas, la navegación, el catálogo del PDF, su huella y el empaquetado offline.
+- Flujo de usuario comprobado en navegador: currículo → unidad → clase → siguiente/anterior → unidad → currículo, búsqueda y acceso por teclado.
 
 ## [1.7.0] — 2026-10-29
 
@@ -455,6 +479,7 @@ Primera versión distribuible. El proyecto pasa de prototipo con tres interfaces
 - Academia: currículo, 16 laboratorios y casos integrales.
 - Andamiaje de Tauri para Windows.
 
+[1.7.1]: https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/tag/v1.7.1
 [1.7.0]: https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/tag/v1.7.0
 [1.6.0]: https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/tag/v1.6.0
 [1.5.0]: https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/tag/v1.5.0

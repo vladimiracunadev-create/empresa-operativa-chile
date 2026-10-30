@@ -8,8 +8,10 @@ cases: 4
 parts:
   - id: "00"
     slug: "mentalidad-contable"
+    icon: "🔎"
     title: "Mentalidad contable"
     goal: "Aprender a reconstruir hechos con documentos y no a memorizar nombres de cuentas."
+    summary: "Esta unidad cambia la forma de mirar una empresa: primero se reconstruye el hecho y recién después se elige una cuenta o un formulario. Aprenderás a separar lo ocurrido, el documento, el registro y la evidencia."
     classes:
       - id: C01
         title: "Qué resuelve la contabilidad"
@@ -33,8 +35,10 @@ parts:
         outcome: "Ubicar cada control en su frecuencia correcta."
   - id: "01"
     slug: "formalizacion-y-perfil-tributario"
+    icon: "🏢"
     title: "Formalización y perfil tributario"
     goal: "Entender qué datos definen a la empresa antes de calcular obligaciones."
+    summary: "Antes de calcular obligaciones hay que saber qué empresa existe, desde cuándo, con qué actividad, domicilio y régimen verificado. La unidad ordena esos hitos sin tratarlos como sinónimos."
     classes:
       - id: C05
         title: "SpA unipersonal"
@@ -58,8 +62,10 @@ parts:
         outcome: "Reconocer que el régimen es un dato verificado, no una preferencia de cálculo."
   - id: "02"
     slug: "partida-doble"
+    icon: "⚖️"
     title: "Partida doble"
     goal: "Construir asientos desde cambios económicos y comprobar su equilibrio."
+    summary: "La partida doble se aprende como una explicación de cambios económicos, no como una receta de Debe y Haber. Cada asiento nace de identificar recursos, obligaciones, resultado y patrimonio."
     classes:
       - id: C09
         title: "Activo, pasivo y patrimonio"
@@ -83,8 +89,10 @@ parts:
         outcome: "Usar el balance para detectar, no para ocultar, errores."
   - id: "03"
     slug: "plan-de-cuentas-y-evidencia"
+    icon: "🧭"
     title: "Plan de cuentas y evidencia"
     goal: "Diseñar registros que expliquen la operación sin perder trazabilidad."
+    summary: "Transformarás la partida doble en un sistema navegable: plan de cuentas, auxiliares, conciliaciones e identificadores que permiten ir del reporte al documento y volver."
     classes:
       - id: C13
         title: "Diseñar cuentas"
@@ -108,8 +116,10 @@ parts:
         outcome: "Seguir una cifra desde reporte hasta documento y vuelta."
   - id: "04"
     slug: "ventas-y-dte"
+    icon: "🧾"
     title: "Ventas y DTE"
     goal: "Registrar ventas, documentos y cobranza sin duplicar ingresos."
+    summary: "Seguirás una venta desde el servicio y el DTE hasta la cuenta por cobrar, el ajuste y la cobranza. Neto, IVA y total se mantienen separados durante todo el recorrido."
     classes:
       - id: C17
         title: "Factura electrónica"
@@ -133,8 +143,10 @@ parts:
         outcome: "Separar venta, vencimiento, cobro y mora."
   - id: "05"
     slug: "compras-y-gastos"
+    icon: "🛒"
     title: "Compras y gastos"
     goal: "Decidir tratamiento contable y tributario con evidencia suficiente."
+    summary: "Analizarás compras y gastos desde la recepción hasta el pago, distinguiendo naturaleza contable, relación con el giro y tratamiento tributario pendiente de verificación."
     classes:
       - id: C21
         title: "Factura recibida"
@@ -158,8 +170,10 @@ parts:
         outcome: "Registrar sin esconder un desembolso no aceptado."
   - id: "06"
     slug: "registro-de-compras-y-ventas"
+    icon: "🔁"
     title: "Registro de Compras y Ventas"
     goal: "Conciliar documentos propios con el registro oficial sin copiar a ciegas."
+    summary: "Conciliarás el Registro de Compras y Ventas con los documentos y registros internos, tratando cada diferencia como un hallazgo que debe explicarse."
     classes:
       - id: C25
         title: "RCV ventas"
@@ -183,8 +197,10 @@ parts:
         outcome: "Cerrar diferencias entre fuente oficial y expediente interno."
   - id: "07"
     slug: "f29-y-ppm"
+    icon: "📅"
     title: "F29 y PPM"
     goal: "Preparar un control mensual explicable sin confundirlo con presentación."
+    summary: "Construirás un control mensual de IVA, PPM y retenciones que explica cada cifra y reconoce cuándo una obligación requiere verificación."
     classes:
       - id: C29
         title: "Anatomía F29"
@@ -208,8 +224,10 @@ parts:
         outcome: "Separar vencimiento, presentación, pago y corrección."
   - id: "08"
     slug: "honorarios"
+    icon: "👤"
     title: "Honorarios"
     goal: "Controlar bruto, líquido, retención y evidencia sin duplicar costos."
+    summary: "Recorrerás una prestación independiente desde la boleta hasta el gasto, la retención, el pago líquido y la obligación posterior, sin confundir etiquetas con realidad laboral."
     classes:
       - id: C33
         title: "Boleta recibida"
@@ -233,8 +251,10 @@ parts:
         outcome: "Evitar inferir obligación desde una etiqueta incompleta."
   - id: "09"
     slug: "tesoreria"
+    icon: "🏦"
     title: "Tesorería"
     goal: "Administrar caja, vencimientos y conciliaciones sin ocultar riesgo."
+    summary: "Administrarás cuenta bancaria, conciliación, cuentas por pagar y flujo de caja como un solo sistema de tesorería. Cada saldo se conectará con vencimientos y evidencia."
     classes:
       - id: C37
         title: "Cuenta bancaria empresa"
@@ -258,8 +278,10 @@ parts:
         outcome: "Proyectar cobros y pagos con escenarios."
   - id: "10"
     slug: "accionista-y-patrimonio"
+    icon: "👥"
     title: "Accionista y patrimonio"
     goal: "Registrar relaciones con propietarios sin mezclar capital, deuda y gasto."
+    summary: "Separarás aportes de capital, préstamos, retiros, pagos personales y cuenta corriente del accionista. Cada transferencia entre propietario y empresa tendrá naturaleza y respaldo."
     classes:
       - id: C41
         title: "Aporte de capital"
@@ -283,8 +305,10 @@ parts:
         outcome: "Aplicar controles para evitar mezcla patrimonial."
   - id: "11"
     slug: "activos-y-cierre-contable"
+    icon: "🧰"
     title: "Activos y cierre contable"
     goal: "Reconocer recursos de largo plazo y ajustes sin inventar valores."
+    summary: "Estudiarás activos, depreciación, provisiones y cierre de resultados como decisiones documentadas y revisables, no como cifras para cuadrar. Cada ajuste conservará su fundamento."
     classes:
       - id: C45
         title: "Activo vs gasto"
@@ -308,8 +332,10 @@ parts:
         outcome: "Cerrar ingresos y gastos preservando el detalle del período."
   - id: "12"
     slug: "municipal-y-compliance"
+    icon: "🏛️"
     title: "Municipal y cumplimiento"
     goal: "Controlar patente y obligaciones con vigencia, fuente y ámbito."
+    summary: "Conectarás patente municipal, UTM, contratos y matriz de obligaciones manteniendo visibles comuna, período, frecuencia, fuente y evidencia. También separarás simulación de cálculo verificado."
     classes:
       - id: C49
         title: "Patente municipal"
@@ -333,8 +359,10 @@ parts:
         outcome: "Mantener frecuencia, próxima fecha, fuente y evidencia."
   - id: "13"
     slug: "cierre-mensual"
+    icon: "✅"
     title: "Cierre mensual"
     goal: "Cerrar períodos con controles, evidencia y recuperación explícita."
+    summary: "Aprenderás a cerrar un mes mediante checklists, conciliaciones cruzadas, control de errores y una carpeta de evidencia que otra persona pueda revisar."
     classes:
       - id: C53
         title: "Checklist"
@@ -358,8 +386,10 @@ parts:
         outcome: "Organizar un expediente que otra persona pueda revisar."
   - id: "14"
     slug: "renta-anual"
+    icon: "📚"
     title: "Renta anual"
     goal: "Preparar la revisión anual sin convertir la app en declarante automático."
+    summary: "Prepararás la revisión anual conectando doce cierres, régimen verificado, ajustes, registros, declaraciones juradas y F22 sin copiar propuestas a ciegas."
     classes:
       - id: C57
         title: "Base Pro Pyme"
@@ -383,8 +413,10 @@ parts:
         outcome: "Conciliar declaración anual con cierres y fuentes oficiales."
   - id: "15"
     slug: "auditoria-y-automatizacion"
+    icon: "🤖"
     title: "Auditoría y automatización"
     goal: "Automatizar controles sin automatizar afirmaciones no verificadas."
+    summary: "Diseñarás automatizaciones que comprueban, alertan y explican, pero se detienen cuando la norma, el dato o la vigencia no están verificados."
     classes:
       - id: C61
         title: "Muestreo y pruebas"
@@ -408,8 +440,10 @@ parts:
         outcome: "Definir qué automatizar y dónde fallar cerrado."
   - id: "16"
     slug: "gobernanza-control-interno"
+    icon: "🛡️"
     title: "Gobernanza, control interno y auditoría continua"
     goal: "Diseñar decisiones, controles e investigaciones con responsabilidad y evidencia."
+    summary: "Integrarás gobierno corporativo, segregación de funciones, controles, riesgos, denuncias e investigaciones con independencia y debido proceso. El foco estará en demostrar que cada control realmente operó."
     classes:
       - id: C65
         title: "Gobierno corporativo, integridad y RACI"

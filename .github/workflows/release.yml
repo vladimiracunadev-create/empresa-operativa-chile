@@ -44,6 +44,7 @@ jobs:
           # principiantes y la presentación sin volver al repositorio.
           cp docs/MANUAL.pdf release/EmpresaOperativaChile-manual.pdf
           cp docs/EMPEZAR-AQUI.pdf release/EmpresaOperativaChile-empezar-aqui.pdf
+          cp docs/ACADEMIA-COMPLETA.pdf release/EmpresaOperativaChile-academia.pdf
           cp docs/presentacion/PRESENTACION.pdf release/EmpresaOperativaChile-presentacion.pdf
           ls -la release
 
@@ -55,6 +56,7 @@ jobs:
           test -f release/EmpresaOperativaChile-windows-portable.exe
           test -f release/EmpresaOperativaChile-manual.pdf
           test -f release/EmpresaOperativaChile-empezar-aqui.pdf
+          test -f release/EmpresaOperativaChile-academia.pdf
 
       - name: Generar SBOM CycloneDX
         uses: anchore/sbom-action@66cbf4bc1f1c0d2edc94016e65bc221b6bb0ad6c # v0.24.3
@@ -94,6 +96,7 @@ jobs:
             echo "| 🌐 Navegador | [Abrir la app](https://vladimiracunadev-create.github.io/empresa-operativa-chile/) | Instalable como PWA, funciona sin conexión. |"
             echo "| 📕 Manual | \`EmpresaOperativaChile-manual.pdf\` | 21 capítulos con las pantallas reales del producto. |"
             echo "| 🧭 Empezar aquí | \`EmpresaOperativaChile-empezar-aqui.pdf\` | Guía para quien nunca ha creado una empresa: 14 etapas ilustradas. |"
+            echo "| 🎓 Academia | \`EmpresaOperativaChile-academia.pdf\` | Libro completo: 70 clases, rutas guiadas, laboratorios, casos y talleres. |"
             echo "| 🎤 Presentación | \`EmpresaOperativaChile-presentacion.pdf\` | 8 diapositivas para presentar el producto. |"
             echo "| 🔎 SBOM | \`EmpresaOperativaChile-sbom.cdx.json\` | Inventario CycloneDX generado con Syft 1.55.0. |"
             echo ""
