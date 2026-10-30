@@ -4,12 +4,14 @@ import { openExternal } from '../lib/platform.js';
 import { saleFromNet, honorariumFromGross, journal } from '../core/accounting-engine/index.mjs';
 import { loadRules } from '../core/chile-tax-rules/index.mjs';
 import { ACADEMY_LESSONS, ACADEMY_MODULES } from '../core/academy/index.mjs';
-import { COURSE_MODULES, COURSE_CLASSES } from '../core/academy/course.mjs';
+import { COURSE_MODULES, COURSE_CLASSES, COURSE_UNIT_GUIDES } from '../core/academy/course.mjs';
 import { ACADEMY_LABS } from '../core/academy/labs.mjs';
 import { ACADEMY_CASES } from '../core/academy/cases.mjs';
 
 const PROGRESS_KEY = 'empresa-operativa:academy-progress:v2';
 let activeTab = 'course';
+let activeCourseModule = null;
+let activeCourseClass = null;
 
 const readProgress = () => {
   try {
@@ -50,29 +52,85 @@ const renderGuided = progress => ACADEMY_MODULES.map(module => {
   </section>`;
 }).join('');
 
-const renderCourse = progress => COURSE_MODULES.map(module => {
-  const classes = COURSE_CLASSES.filter(item => item.module === module.id);
-  return `<section class="academy-module" data-course-module="${esc(module.id)}">
-    <div class="academy-module__head"><div><span class="eyebrow">Parte ${esc(module.id)}</span><h2>${esc(module.title)}</h2><p>${esc(module.goal)}</p></div><span class="tag">${classes.length} clases</span></div>
-    ${classes.map(item => `<details class="academy-unit academy-unit--course" data-academy-item data-search="${esc(`${item.id} ${item.title} ${item.outcome} ${item.explanation} ${item.evidence.join(' ')}`.toLowerCase())}">
-      <summary><span class="academy-unit__code">${esc(item.id)}</span><span><strong>${esc(item.title)}</strong><small>${esc(item.level)} · ${item.durationMinutes} min · ${esc(item.outcome)}</small></span><span class="academy-done">${progress.has(item.id) ? '✓' : '○'}</span></summary>
-      <article class="academy-unit__body">
-        <div class="academy-callout"><strong>Antes de empezar</strong><p>${esc(item.prerequisite)}</p><p><strong>Caso conductor:</strong> ${esc(item.caseContext)}</p></div>
-        <h3>Resultados verificables</h3>${list(item.results)}
-        <h3>Conceptos operacionales</h3><div class="tablewrap"><table><thead><tr><th>Concepto</th><th>Cómo se usa aquí</th></tr></thead><tbody>${item.concepts.map(concept => `<tr><td><strong>${esc(concept.name)}</strong></td><td>${esc(concept.meaning)}</td></tr>`).join('')}</tbody></table></div>
-        <section class="academy-model"><h3>Modelo mental</h3><p>${esc(item.mentalModel)}</p></section>
-        ${item.development.map(section => `<section><h3>${esc(section.title)}</h3><p>${esc(section.body)}</p></section>`).join('')}
-        <section class="academy-example"><h3>Ejemplo trabajado</h3><p><strong>Situación:</strong> ${esc(item.workedExample.situation)}</p>${numbered(item.workedExample.steps)}<p><strong>Interpretación:</strong> ${esc(item.workedExample.interpretation)}</p></section>
-        <section class="academy-practice"><h3>Taller guiado</h3><p><strong>Problema:</strong> ${esc(item.workshop.prompt)}</p><p>${esc(item.workshop.beforeYouStart)}</p>${numbered(item.workshop.sequence)}<h4>Entregable</h4><p>${esc(item.workshop.deliverable)}</p><h4>Criterio de aceptación</h4>${list(item.workshop.acceptance)}</section>
-        <section><h3>Errores frecuentes y recuperación</h3><div class="tablewrap"><table><thead><tr><th>Síntoma</th><th>Causa</th><th>Corrección</th></tr></thead><tbody>${item.commonErrors.map(error => `<tr><td>${esc(error.symptom)}</td><td>${esc(error.cause)}</td><td>${esc(error.correction)}</td></tr>`).join('')}</tbody></table></div></section>
-        <section><h3>Comprobación formativa</h3>${item.checks.map((check, index) => `<details class="qa"><summary>${index + 1}. ${esc(check.question)}</summary><div class="qa__body"><p>${esc(check.answer)}</p></div></details>`).join('')}</section>
-        <section><h3>Llevarlo a la aplicación</h3><p>${item.appViews.map(view => `<span class="tag">${esc(view)}</span>`).join(' ')}</p><p class="card__hint">${esc(item.boundary)}</p></section>
-        <section><h3>Fuentes para verificar</h3>${list(item.sources)}</section>
-        <div class="academy-actions">${completedButton(item.id, progress)}<button class="btn btn--sm btn--primary" data-to-sandbox>Practicar en SANDBOX</button></div>
-      </article>
-    </details>`).join('')}
+const courseNavigation = (item, compact = false) => {
+  const index = COURSE_CLASSES.findIndex(value => value.id === item.id);
+  const previous = COURSE_CLASSES[index - 1];
+  const next = COURSE_CLASSES[index + 1];
+  return `<nav class="academy-reader-nav ${compact ? 'academy-reader-nav--compact' : ''}" aria-label="Navegación entre clases">
+    ${previous ? `<button type="button" class="academy-reader-nav__step" data-course-class-open="${esc(previous.id)}"><span>← Clase anterior</span><strong>${esc(previous.id)} · ${esc(previous.title)}</strong></button>` : '<span class="academy-reader-nav__edge">Inicio del curso</span>'}
+    <button type="button" class="btn btn--ghost btn--sm" data-course-back="module">↑ Unidad ${esc(item.module)}</button>
+    ${next ? `<button type="button" class="academy-reader-nav__step academy-reader-nav__step--next" data-course-class-open="${esc(next.id)}"><span>Clase siguiente →</span><strong>${esc(next.id)} · ${esc(next.title)}</strong></button>` : '<span class="academy-reader-nav__edge">Fin del curso</span>'}
+  </nav>`;
+};
+
+const renderCourseClass = (item, progress) => {
+  const guide = COURSE_UNIT_GUIDES.find(value => value.id === item.module);
+  const classIndex = COURSE_CLASSES.findIndex(value => value.id === item.id) + 1;
+  return `<section class="academy-reader" data-academy-item data-search="${esc(`${item.id} ${item.title} ${item.outcome} ${item.explanation} ${item.evidence.join(' ')}`.toLowerCase())}">
+    <div class="academy-breadcrumb"><button type="button" data-course-back="curriculum">Las 17 unidades</button><span>›</span><button type="button" data-course-back="module">Unidad ${esc(item.module)}</button><span>›</span><strong>${esc(item.id)}</strong></div>
+    ${courseNavigation(item, true)}
+    <header class="academy-reader__hero" tabindex="-1" data-course-focus>
+      <div class="academy-reader__icon" aria-hidden="true">${esc(guide.icon)}</div>
+      <div><span class="eyebrow">Clase ${classIndex} de ${COURSE_CLASSES.length} · Unidad ${esc(item.module)}</span><h2>${esc(item.id)} — ${esc(item.title)}</h2><p>${esc(item.explanation)}</p><div class="academy-concepts"><span>${esc(item.level)}</span><span>${item.durationMinutes} min</span><span>${progress.has(item.id) ? '✓ Completada' : '○ Pendiente'}</span></div></div>
+    </header>
+    <article class="academy-unit__body academy-reader__body">
+      <div class="academy-callout"><strong>Antes de empezar</strong><p>${esc(item.prerequisite)}</p><p><strong>Caso conductor:</strong> ${esc(item.caseContext)}</p></div>
+      <section><h3>Resultados verificables</h3>${list(item.results)}</section>
+      <section><h3>Conceptos operacionales</h3><div class="tablewrap"><table><thead><tr><th>Concepto</th><th>Cómo se usa aquí</th></tr></thead><tbody>${item.concepts.map(concept => `<tr><td><strong>${esc(concept.name)}</strong></td><td>${esc(concept.meaning)}</td></tr>`).join('')}</tbody></table></div></section>
+      <section class="academy-model"><h3>Modelo mental</h3><p>${esc(item.mentalModel)}</p></section>
+      ${item.development.map(section => `<section><h3>${esc(section.title)}</h3><p>${esc(section.body)}</p></section>`).join('')}
+      <section class="academy-example"><h3>Ejemplo trabajado</h3><p><strong>Situación:</strong> ${esc(item.workedExample.situation)}</p>${numbered(item.workedExample.steps)}<p><strong>Interpretación:</strong> ${esc(item.workedExample.interpretation)}</p></section>
+      <section class="academy-practice"><h3>Taller guiado</h3><p><strong>Problema:</strong> ${esc(item.workshop.prompt)}</p><p>${esc(item.workshop.beforeYouStart)}</p>${numbered(item.workshop.sequence)}<h4>Entregable</h4><p>${esc(item.workshop.deliverable)}</p><h4>Criterio de aceptación</h4>${list(item.workshop.acceptance)}</section>
+      <section><h3>Errores frecuentes y recuperación</h3><div class="tablewrap"><table><thead><tr><th>Síntoma</th><th>Causa</th><th>Corrección</th></tr></thead><tbody>${item.commonErrors.map(error => `<tr><td>${esc(error.symptom)}</td><td>${esc(error.cause)}</td><td>${esc(error.correction)}</td></tr>`).join('')}</tbody></table></div></section>
+      <section><h3>Comprobación formativa</h3>${item.checks.map((check, index) => `<details class="qa"><summary>${index + 1}. ${esc(check.question)}</summary><div class="qa__body"><p>${esc(check.answer)}</p></div></details>`).join('')}</section>
+      <section><h3>Llevarlo a la aplicación</h3><p>${item.appViews.map(view => `<span class="tag">${esc(view)}</span>`).join(' ')}</p><p class="card__hint">${esc(item.boundary)}</p></section>
+      <section><h3>Fuentes para verificar</h3>${list(item.sources)}</section>
+      <div class="academy-actions">${completedButton(item.id, progress)}<button class="btn btn--sm btn--primary" data-to-sandbox>Practicar en SANDBOX</button></div>
+    </article>
+    ${courseNavigation(item)}
   </section>`;
-}).join('');
+};
+
+const renderCourseModule = (guide, progress) => {
+  const classes = COURSE_CLASSES.filter(item => item.module === guide.id);
+  const completed = classes.filter(item => progress.has(item.id)).length;
+  return `<section class="academy-unit-overview" data-course-module="${esc(guide.id)}">
+    <div class="academy-breadcrumb"><button type="button" data-course-back="curriculum">Las 17 unidades</button><span>›</span><strong>Unidad ${esc(guide.id)}</strong></div>
+    <header class="academy-unit-overview__hero" tabindex="-1" data-course-focus>
+      <div class="academy-unit-overview__icon" aria-hidden="true">${esc(guide.icon)}</div><div><span class="eyebrow">Unidad ${esc(guide.id)} · ${classes.length} clases · ${completed} completadas</span><h2>${esc(guide.title)}</h2><p>${esc(guide.summary)}</p></div>
+    </header>
+    <div class="academy-unit-overview__grid"><section><h3>Por qué importa</h3><p>${esc(guide.why)}</p></section><section><h3>Antes de empezar</h3><p>${esc(guide.prerequisite)}</p></section></div>
+    <section class="academy-question-map"><div><span aria-hidden="true">?</span><h3>Preguntas que podrás responder</h3></div>${list(guide.questions)}</section>
+    <section><h3>Recorrido de la unidad</h3><p class="card__hint">Cada paso produce una evidencia. Puedes volver a este mapa o avanzar con los controles anterior/siguiente.</p><div class="academy-class-path">${classes.map((item, index) => `<button type="button" class="academy-class-card" data-course-class-open="${esc(item.id)}" data-academy-item data-search="${esc(`${item.id} ${item.title} ${item.outcome} ${item.explanation}`.toLowerCase())}"><span class="academy-class-card__step">${index + 1}</span><span><strong>${esc(item.id)} · ${esc(item.title)}</strong><small>${esc(item.outcome)}</small></span><span class="academy-done">${progress.has(item.id) ? '✓' : '→'}</span></button>`).join('')}</div></section>
+    <section class="academy-milestone"><span aria-hidden="true">🏁</span><div><h3>Producto final de la unidad</h3><p>${esc(guide.milestone)}</p></div></section>
+    <div class="academy-actions"><button type="button" class="btn btn--ghost" data-course-back="curriculum">← Ver las 17 unidades</button><button type="button" class="btn btn--primary" data-course-class-open="${esc(classes[0].id)}">Empezar por ${esc(classes[0].id)} →</button></div>
+  </section>`;
+};
+
+const renderCourseCurriculum = progress => `<section class="academy-curriculum">
+  <header class="academy-curriculum__intro" tabindex="-1" data-course-focus><div><span class="eyebrow">Currículo completo</span><h2>Una ruta visible, no una lista de 70 títulos</h2><p>Las 17 unidades avanzan desde observar un hecho hasta diseñar controles e investigaciones. Entra a una unidad para leer su explicación completa y revisar todas sus clases antes de comenzar.</p></div><div class="academy-learning-loop" role="img" aria-label="Observar, razonar, resolver, comprobar y aplicar">${['👁 Observar', '🧠 Razonar', '🛠 Resolver', '✓ Comprobar', '🚀 Aplicar'].map((label, index) => `<span><b>${index + 1}</b>${label}</span>`).join('')}</div></header>
+  <div class="academy-unit-grid">${COURSE_UNIT_GUIDES.map(guide => {
+    const classes = COURSE_CLASSES.filter(item => item.module === guide.id);
+    const completed = classes.filter(item => progress.has(item.id)).length;
+    return `<article class="academy-unit-card academy-unit-card--${esc(guide.color)}" data-academy-item data-search="${esc(`${guide.id} ${guide.title} ${guide.summary} ${guide.questions.join(' ')} ${classes.map(item => `${item.id} ${item.title}`).join(' ')}`.toLowerCase())}">
+      <div class="academy-unit-card__top"><span class="academy-unit-card__icon" aria-hidden="true">${esc(guide.icon)}</span><span class="academy-unit-card__number">Unidad ${esc(guide.id)}</span></div><h3>${esc(guide.title)}</h3><p>${esc(guide.summary)}</p><div class="academy-unit-card__meta"><span>${classes.length} clases</span><span>${completed}/${classes.length} completadas</span></div><progress max="${classes.length}" value="${completed}">${completed}/${classes.length}</progress><button type="button" class="btn btn--sm btn--primary" data-course-module-open="${esc(guide.id)}">Explorar unidad →</button>
+    </article>`;
+  }).join('')}</div>
+</section>`;
+
+const renderCourse = progress => {
+  if (activeCourseClass) {
+    const item = COURSE_CLASSES.find(value => value.id === activeCourseClass);
+    if (item) return renderCourseClass(item, progress);
+    activeCourseClass = null;
+  }
+  if (activeCourseModule) {
+    const guide = COURSE_UNIT_GUIDES.find(value => value.id === activeCourseModule);
+    if (guide) return renderCourseModule(guide, progress);
+    activeCourseModule = null;
+  }
+  return renderCourseCurriculum(progress);
+};
 
 const renderLabs = progress => ACADEMY_LABS.map(item => `<details class="academy-unit" data-academy-item data-search="${esc(`${item.id} ${item.title} ${item.brief} ${item.module}`.toLowerCase())}">
   <summary><span class="academy-unit__code">${esc(item.id)}</span><span><strong>${esc(item.title)}</strong><small>Laboratorio · ${item.minutes} min · parte ${esc(item.module)}</small></span><span class="academy-done">${progress.has(item.id) ? '✓' : '○'}</span></summary>
@@ -125,6 +183,29 @@ export default {
 
   mount(root, rerender) {
     root.querySelectorAll('[data-academy-tab]').forEach(button => button.addEventListener('click', () => { activeTab = button.dataset.academyTab; rerender(true); }));
+    const refreshCourse = () => {
+      rerender(true);
+      const target = root.querySelector('[data-course-focus]');
+      target?.focus();
+      target?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    };
+    root.querySelectorAll('[data-course-module-open]').forEach(button => button.addEventListener('click', () => {
+      activeCourseModule = button.dataset.courseModuleOpen;
+      activeCourseClass = null;
+      refreshCourse();
+    }));
+    root.querySelectorAll('[data-course-class-open]').forEach(button => button.addEventListener('click', () => {
+      const item = COURSE_CLASSES.find(value => value.id === button.dataset.courseClassOpen);
+      if (!item) return;
+      activeCourseModule = item.module;
+      activeCourseClass = item.id;
+      refreshCourse();
+    }));
+    root.querySelectorAll('[data-course-back]').forEach(button => button.addEventListener('click', () => {
+      if (button.dataset.courseBack === 'curriculum') activeCourseModule = null;
+      activeCourseClass = null;
+      refreshCourse();
+    }));
     root.querySelectorAll('[data-to-sandbox]').forEach(button => button.addEventListener('click', () => { setMode('sandbox'); rerender(true); }));
     root.querySelectorAll('[data-go]').forEach(button => button.addEventListener('click', () => { location.hash = button.dataset.go; }));
     root.querySelectorAll('[data-ext]').forEach(button => button.addEventListener('click', () => openExternal(button.dataset.ext)));

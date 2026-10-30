@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ACADEMY_LESSONS, ACADEMY_MODULES } from '../packages/academy/index.mjs';
-import { COURSE_MODULES, COURSE_CLASSES } from '../packages/academy/course.mjs';
+import { COURSE_MODULES, COURSE_CLASSES, COURSE_UNIT_GUIDES } from '../packages/academy/course.mjs';
 import { ACADEMY_LABS } from '../packages/academy/labs.mjs';
 import { ACADEMY_CASES } from '../packages/academy/cases.mjs';
 
@@ -15,11 +15,32 @@ test('Academia declara un catálogo real y sin identificadores duplicados', () =
   assert.equal(ACADEMY_MODULES.length, 4);
   assert.equal(ACADEMY_LESSONS.length, 12);
   assert.equal(COURSE_MODULES.length, 17);
+  assert.equal(COURSE_UNIT_GUIDES.length, 17);
   assert.equal(COURSE_CLASSES.length, 70);
   assert.equal(ACADEMY_LABS.length, 17);
   assert.equal(ACADEMY_CASES.length, 4);
   const ids = [...ACADEMY_LESSONS, ...COURSE_CLASSES, ...ACADEMY_LABS, ...ACADEMY_CASES].map(item => item.id);
   assert.equal(new Set(ids).size, ids.length);
+});
+
+test('cada unidad explica el recorrido antes de abrir una clase', () => {
+  const semanticAnchors = {
+    '00': /hecho|evidencia/i, '01': /empresa|régimen/i, '02': /partida doble|asiento/i,
+    '03': /plan de cuentas|trazabilidad/i, '04': /venta|DTE/i, '05': /compras|gastos/i,
+    '06': /Registro de Compras y Ventas|RCV/i, '07': /F29|PPM/i, '08': /honorario|boleta/i,
+    '09': /tesorería|flujo de caja/i, '10': /accionista|capital/i, '11': /activos|depreciación/i,
+    '12': /patente municipal|UTM/i, '13': /cerrar un mes|cierre/i, '14': /revisión anual|F22/i,
+    '15': /automatizaciones|regla/i, '16': /gobierno corporativo|control/i
+  };
+  for (const guide of COURSE_UNIT_GUIDES) {
+    assert.match(guide.icon, /\S/u, `${guide.id}: falta icono`);
+    assert.ok(words(guide.summary) >= 20, `${guide.id}: resumen superficial`);
+    assert.ok(words(guide.why) >= 15, `${guide.id}: falta explicar por qué importa`);
+    assert.equal(guide.questions.length, 3, `${guide.id}: faltan preguntas guía`);
+    assert.ok(guide.milestone.length >= 45, `${guide.id}: producto final superficial`);
+    assert.match(`${guide.summary} ${guide.why} ${guide.milestone}`, semanticAnchors[guide.id], `${guide.id}: introducción no corresponde a su unidad`);
+    assert.deepEqual(guide.classIds, COURSE_CLASSES.filter(item => item.module === guide.id).map(item => item.id));
+  }
 });
 
 test('cada una de las 70 clases cumple el contrato pedagógico', () => {
@@ -89,6 +110,34 @@ test('la documentación generada expone las 70 clases, 17 labs y 4 casos', () =>
   }
   assert.equal(fs.readdirSync(path.join(root, 'labs')).filter(dir => /^\d{2}-/.test(dir)).length, 17);
   assert.equal(fs.readdirSync(path.join(root, 'cases')).filter(dir => /^\d{2}-/.test(dir)).length, 4);
+  const curriculum = fs.readFileSync(path.join(root, 'curriculum', 'README.md'), 'utf8');
+  assert.match(curriculum, /Las 17 unidades/);
+  assert.match(curriculum, /academia-map\.svg/);
+  for (const guide of COURSE_UNIT_GUIDES) {
+    const unit = fs.readFileSync(path.join(root, 'curriculum', 'parts', `${guide.id}-${guide.slug}`, 'README.md'), 'utf8');
+    assert.match(unit, /Qué vas a aprender/);
+    assert.match(unit, /Mapa de contenidos/);
+    assert.match(unit, /Producto final de la unidad/);
+  }
+  for (const file of classFiles) {
+    const content = fs.readFileSync(file, 'utf8');
+    assert.match(content, /Volver a la unidad/);
+    assert.match(content, /Siguiente:|Fin del curso/);
+  }
+});
+
+test('el libro PDF contiene el catálogo completo y está enlazado desde el README', () => {
+  const pdf = path.join(root, 'docs', 'ACADEMIA-COMPLETA.pdf');
+  const manifest = JSON.parse(fs.readFileSync(path.join(root, 'docs', 'ACADEMIA-COMPLETA.manifest.json'), 'utf8'));
+  assert.ok(fs.statSync(pdf).size >= 300_000);
+  assert.equal(fs.readFileSync(pdf).subarray(0, 4).toString(), '%PDF');
+  assert.equal(manifest.classes, 70);
+  assert.equal(manifest.units, 17);
+  assert.equal(manifest.guided, 12);
+  assert.equal(manifest.labs, 17);
+  assert.equal(manifest.cases, 4);
+  assert.ok(manifest.pages >= 100);
+  assert.match(fs.readFileSync(path.join(root, 'README.md'), 'utf8'), /docs\/ACADEMIA-COMPLETA\.pdf/);
 });
 
 test('la aplicación empaqueta y hace navegable toda Academia sin conexión', () => {
@@ -101,6 +150,10 @@ test('la aplicación empaqueta y hace navegable toda Academia sin conexión', ()
   assert.match(view, /ACADEMY_LABS/);
   assert.match(view, /ACADEMY_CASES/);
   assert.match(view, /data-academy-search/);
+  assert.match(view, /data-course-module-open/);
+  assert.match(view, /data-course-class-open/);
+  assert.match(view, /Clase siguiente/);
+  assert.match(view, /COURSE_UNIT_GUIDES/);
   assert.match(view, /localStorage/);
   assert.doesNotMatch(view, /listOperations\(/, 'Academia debe usar la API vigente CompanyWorkspace.listTransactions');
   assert.doesNotMatch(view, /journal\.sale\(/, 'Academia debe usar la función journal con una operación tipada');

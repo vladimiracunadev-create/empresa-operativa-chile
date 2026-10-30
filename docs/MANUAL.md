@@ -4,12 +4,12 @@
 
 # 📘 Manual de usuario
 
-### **Empresa Operativa Chile · versión 1.7.0**
+### **Empresa Operativa Chile · versión 1.7.1**
 
 **Cómo crear, operar y controlar una empresa chilena con esta aplicación —
 de la instalación al cierre del mes, con las pantallas reales del producto.**
 
-[![Versión](https://img.shields.io/badge/versión-1.7.0-4f8cff?style=for-the-badge)](../CHANGELOG.md)
+[![Versión](https://img.shields.io/badge/versión-1.7.1-4f8cff?style=for-the-badge)](../CHANGELOG.md)
 [![Manual PDF](https://img.shields.io/badge/📕_este_manual-en_PDF-e8590c?style=for-the-badge)](MANUAL.pdf)
 [![Reglas](https://img.shields.io/badge/reglas-año_comercial_2026-2e8b57?style=for-the-badge)](SOURCES-2026.md)
 
@@ -923,7 +923,7 @@ respaldo y auméntalo en el otro (capítulo [12](#cap-12)).
 <details>
 <summary><b>¿Puedo llevar más de una empresa?</b></summary>
 
-En la versión 1.7.0, hay un entorno real por dispositivo. Como alternativa, exporta el respaldo de
+En la versión 1.7.1, hay un entorno real por dispositivo. Como alternativa, exporta el respaldo de
 una empresa, reemplaza con el de la otra, y ve alternando. Multi-empresa está en el roadmap.
 </details>
 
@@ -1048,7 +1048,7 @@ Todo esto está en el [roadmap](ROADMAP.md).
 [🔗 Fuentes oficiales](SOURCES-2026.md) ·
 [🏗️ Arquitectura](ARCHITECTURE.md)
 
-<sub>Empresa Operativa Chile · v1.7.0 · Reglas del año comercial 2026 verificadas el 2026-08-09<br>
+<sub>Empresa Operativa Chile · v1.7.1 · Reglas del año comercial 2026 verificadas el 2026-08-09<br>
 MIT © Vladimir Acuña · Hecho en Chile 🇨🇱</sub>
 
 </div>

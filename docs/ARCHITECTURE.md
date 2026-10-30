@@ -56,7 +56,7 @@ empresa-operativa-chile/
 │
 ├── scripts/                        build-rules · build-academy · build-icons · build-web ·
 │                                   build-all · verify-apk · validate-rules
-├── tests/                          215 pruebas (runner nativo de Node)
+├── tests/                          217 pruebas (runner nativo de Node)
 ├── docs/                           documentación y runbooks
 └── curriculum/ labs/ cases/        material de aprendizaje
 ```

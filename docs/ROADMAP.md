@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Actual](https://img.shields.io/badge/actual-v1.7.0-e8590c?style=for-the-badge)](../CHANGELOG.md)
+[![Actual](https://img.shields.io/badge/actual-v1.7.1-e8590c?style=for-the-badge)](../CHANGELOG.md)
 [![Siguiente](https://img.shields.io/badge/siguiente-v1.8_·_integraciones-2f81f7?style=for-the-badge)](#-v18--integraciones-y-conciliación)
 
 [🏠 Inicio](../README.md) · [📓 Changelog](../CHANGELOG.md) · [🏗️ Arquitectura](ARCHITECTURE.md)
@@ -11,7 +11,7 @@
 
 ---
 
-Estado a **2026-10-29**, versión 1.7.0.
+Estado a **2026-10-30**, versión 1.7.1.
 
 ## ✅ v1.0 — publicado
 
@@ -60,8 +60,10 @@ Estado a **2026-10-29**, versión 1.7.0.
 
 - 70 clases desarrolladas en 17 partes, con ejemplo, taller, recuperación y evaluación.
 - 12 rutas guiadas, 17 laboratorios con rúbrica, 4 casos integradores y 2 talleres del motor.
-- Buscador y progreso local en Web/PWA, Windows y Android.
-- Fuente única y 127 documentos generados; CI impide contenido vacío o desincronizado.
+- Buscador, lector enfocado, navegación anterior/siguiente y progreso local en Web/PWA, Windows y Android.
+- Introducciones completas para las 17 unidades y mapa visual del currículo.
+- Fuente única y 129 documentos generados; CI impide contenido vacío o desincronizado.
+- Libro PDF completo de 289 páginas con las 70 clases y todos los recursos de la Academia.
 
 ## 🔜 v1.8 — integraciones y conciliación
 
