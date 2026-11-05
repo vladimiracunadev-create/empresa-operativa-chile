@@ -41,6 +41,24 @@ for (const [name, rule] of Object.entries(r)) {
   if (!rule.lastVerified) errors.push(`La regla "${name}" no declara su última verificación`);
 }
 
+// Ley 21.850 (D.O. 17-10-2026): escalera del 14 A por año comercial (art. 6° transitorio),
+// restitución del crédito (art. 5° transitorio) y retención de honorarios (Ley 21.133).
+const expected = {
+  2026: { g: 0.27, rest: null, hon: 0.1525 },
+  2027: { g: 0.255, rest: 0.3, hon: 0.16 },
+  2028: { g: 0.24, rest: 0.2, hon: 0.17 },
+  2029: { g: 0.23, rest: 0, hon: 0.17 },
+  2030: { g: 0.23, rest: 0, hon: 0.17 }
+};
+for (const [year, e] of Object.entries(expected)) {
+  const y = loadRules(Number(year));
+  if (y.idpcGeneral14A?.rate !== e.g) errors.push(`IDPC 14 A ${year} esperado ${e.g}`);
+  if (y.idpcGeneral14A?.creditRestitution?.rate !== e.rest) errors.push(`Restitución ${year} esperada ${e.rest}`);
+  if (y.honorarios.retentionRate !== e.hon) errors.push(`Retención honorarios ${year} esperada ${e.hon}`);
+  if (Number(year) >= 2029 && y.idpcProPyme.rate !== null) errors.push(`Pro Pyme ${year} debe seguir pendiente hasta que el SII instruya`);
+  if (Number(year) >= 2027 && y.ley21850?.publicationDate !== '2026-10-17') errors.push(`${year} no declara la publicación de la Ley 21.850`);
+}
+
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);

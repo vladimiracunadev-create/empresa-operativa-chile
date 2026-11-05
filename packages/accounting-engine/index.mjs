@@ -13,6 +13,7 @@ import { loadRules } from '../chile-tax-rules/index.mjs';
 
 export { calculateTaxEquity, allowsSimplifiedTaxEquity, TAX_EQUITY_METHODS } from './tax-equity.mjs';
 export { calculateMunicipalPatent, BUSINESS_STAGES } from './municipal-patent.mjs';
+export { idpcRegimen14A, idpcProPymeGeneral, compareRegimes, exportServicesCredit, catastrophicDiseasesCredit, STATUS as TAX_STATUS } from './ley-21850.mjs';
 
 export const clp = n => Math.round(Number(n || 0));
 
@@ -52,6 +53,9 @@ export function ppmFromSalesNet(salesNet, year = 2026, rate) {
   assertNonNegative('salesNet', salesNet);
   const r = loadRules(year);
   const usedRate = rate ?? r.ppmProPyme.initialYearRate;
+  if (!Number.isFinite(usedRate)) {
+    throw new Error(`PPM Pro Pyme ${year}: tasa pendiente de validación (${r.ppmProPyme.note}). Indica la tasa explícita si ya la validaste.`);
+  }
   return { base: clp(salesNet), rate: usedRate, ppm: clp(Number(salesNet) * usedRate) };
 }
 
@@ -178,10 +182,17 @@ export function f29DueDates(period, year = 2026) {
  * nueva o está en funcionamiento, de las deducciones y del prorrateo entre
  * sucursales— usa `calculateMunicipalPatent` de `./municipal-patent.mjs`.
  */
+/** UTM más reciente del MISMO año; nunca la de otro año. */
+function latestUtm(rules, year) {
+  const keys = Object.keys(rules.utm).filter(k => k.startsWith(`${year}-`)).sort();
+  if (!keys.length) throw new Error(`No hay UTM registrada para ${year}: indícala explícitamente (utm).`);
+  return rules.utm[keys[keys.length - 1]];
+}
+
 export function municipalPatent({ capital, rate, utm }, year = 2026) {
   assertNonNegative('capital', capital);
   const r = loadRules(year);
-  const u = clp(utm ?? r.utm['2026-08']);
+  const u = clp(utm ?? latestUtm(r, year));
   const usedRate = rate ?? r.municipalPatent.minRate;
   if (usedRate < r.municipalPatent.minRate || usedRate > r.municipalPatent.maxRate) {
     throw new Error('rate fuera del rango legal configurado');
@@ -197,6 +208,9 @@ export function idpcProPyme({ incomeReceived = 0, expensesPaid = 0, adjustments 
   assertNonNegative('expensesPaid', expensesPaid);
   const r = loadRules(year);
   const base = Math.max(0, clp(incomeReceived) - clp(expensesPaid) + clp(adjustments));
+  if (!Number.isFinite(r.idpcProPyme.rate)) {
+    return { base, rate: null, estimatedIdpc: null, status: 'pendiente-validacion', note: r.idpcProPyme.reason ?? r.idpcProPyme.note };
+  }
   return { base, rate: r.idpcProPyme.rate, estimatedIdpc: clp(base * r.idpcProPyme.rate), note: r.idpcProPyme.note };
 }
 

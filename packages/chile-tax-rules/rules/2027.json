@@ -1,0 +1,329 @@
+{
+  "schemaVersion": 2,
+  "country": "CL",
+  "commercialYear": 2027,
+  "lastVerified": "2026-11-05",
+  "profile": "SpA — reglas proyectadas 2027: ley publicada, instrucciones SII pendientes",
+  "status": "projected",
+  "iva": {
+    "generalRate": 0.19,
+    "source": "https://www.sii.cl/valores_y_fechas/iva/iva2026.htm",
+    "lastVerified": "2026-11-05",
+    "note": "Tasa general vigente (D.L. 825 art. 14). No se conoce modificación legal para este año; reverificar al iniciar el año."
+  },
+  "honorarios": {
+    "retentionRate": 0.16,
+    "source": "https://www.sii.cl/noticias/2025/261225noti01smn.htm",
+    "lastVerified": "2026-11-05",
+    "note": "Gradualidad de la Ley 21.133: 15,25% (2026), 16% (2027), 17% desde 2028."
+  },
+  "ppmProPyme": {
+    "initialYearRate": null,
+    "upTo50000UfRate": null,
+    "above50000UfRate": null,
+    "status": "pendiente-validacion",
+    "source": "https://www.sii.cl/destacados/modernizacion/regimenes_mt.html",
+    "lastVerified": "2026-11-05",
+    "note": "La Ley 21.850 (art. 7° transitorio) obliga a recalcular el PPM entre abril 2027 y marzo 2030; el SII aún no publica el procedimiento. No se calcula PPM para este año."
+  },
+  "idpcProPyme": {
+    "rate": 0.125,
+    "status": "ley-publicada",
+    "source": "https://www.sii.cl/normativa_legislacion/circulares/2025/circu53.pdf",
+    "legalReference": "Ley 21.755 art. 25",
+    "lastVerified": "2026-11-05",
+    "note": "Pro Pyme General: 12,5% para los años comerciales 2025 a 2027 (Circular SII 53/2025). El art. 6° transitorio de la Ley 21.850 lo deja a salvo."
+  },
+  "utm": {
+    "source": "https://www.sii.cl/valores_y_fechas/utm/utm2027.htm",
+    "lastVerified": "2026-11-05",
+    "note": "La UTM de este año aún no existe en la aplicación: se debe ingresar explícitamente. No se reutiliza la de otro año."
+  },
+  "municipalPatent": {
+    "minUtm": 1,
+    "maxUtm": 8000,
+    "minRate": 0.0025,
+    "maxRate": 0.005,
+    "source": "https://www.bcn.cl/leychile/navegar?idNorma=6942",
+    "legalReference": "D.L. N.º 3.063 de 1979 sobre Rentas Municipales, art. 24",
+    "effectiveFrom": "2008-07-04",
+    "lastVerified": "2026-08-16",
+    "verificationNote": "El texto del art. 24 se contrastó contra el Oficio SII N.º 1.700 de 15-06-2016, que cita literalmente su inciso tercero, y contra una reproducción pública del articulado. BCN/LeyChile no respondió el 16-08-2026; reverificar el enlace antes de usar la cifra en una declaración real.",
+    "note": "Rango legal. Cada municipalidad fija su tasa dentro del rango mediante ordenanza; la tasa concreta de una comuna NO está en este archivo y debe verificarse con la municipalidad.",
+    "capitalBasis": {
+      "newBusiness": {
+        "rule": "capital propio inicial declarado por el contribuyente",
+        "legalReference": "D.L. 3.063, art. 24 inciso tercero",
+        "note": "Para actividades nuevas la base es el capital propio inicial que el contribuyente declara, no cualquier cifra registrada como capital social o suscrito."
+      },
+      "establishedBusiness": {
+        "rule": "capital propio registrado en el balance terminado el 31 de diciembre inmediatamente anterior, con los ajustes de los arts. 41 y siguientes de la LIR",
+        "legalReference": "D.L. 3.063, art. 24 inciso tercero; LIR art. 41",
+        "note": "Por eso la base del año 2 no tiene por qué coincidir con el capital declarado al constituir la sociedad."
+      },
+      "simplifiedTaxEquity": {
+        "rule": "los contribuyentes que determinan capital propio tributario simplificado se sujetan a esas reglas",
+        "legalReference": "D.L. 3.063, art. 24; LIR art. 14 letra D) N.º 3 letra (j)"
+      }
+    },
+    "deductions": {
+      "investmentsInOtherPatentedBusinesses": {
+        "allowed": true,
+        "legalReference": "D.L. 3.063, art. 24 inciso final",
+        "evidence": "certificado emitido por la municipalidad correspondiente",
+        "note": "Se puede deducir la parte del capital propio invertida en otros negocios afectos al pago de patente, acreditada con certificado municipal."
+      }
+    },
+    "branchAllocation": {
+      "method": "prorrateo del capital propio entre las unidades según el número de trabajadores de cada una",
+      "declaredIn": "declaración anual del mes de mayo",
+      "legalReference": "D.L. 3.063, art. 25",
+      "note": "La municipalidad de la casa matriz determina la distribución y la comunica a las demás."
+    },
+    "informationFlow": {
+      "siiToMunicipalities": "El SII pone a disposición de cada municipalidad, dentro del mes de mayo de cada año, el capital propio declarado, el RUT y el código de actividad de sus contribuyentes.",
+      "legalReference": "D.L. 3.063, art. 24",
+      "note": "Esta aplicación NO está conectada al SII ni a ninguna municipalidad: sólo modela el flujo."
+    }
+  },
+  "taxEquity": {
+    "methods": {
+      "article41": {
+        "id": "article41",
+        "label": "CPT del art. 41 N.º 1 de la LIR",
+        "formula": "activo tributario − pasivo exigible tributario, rebajados previamente los valores intangibles, nominales, transitorios y de orden que no representen inversiones efectivas",
+        "legalReference": "LIR art. 41 N.º 1",
+        "source": "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_7347.htm",
+        "lastVerified": "2026-08-16"
+      },
+      "simplified14D3j": {
+        "id": "simplified14D3j",
+        "label": "CPT simplificado Pro Pyme",
+        "formula": "capital aportado formalizado (+ aumentos) + bases imponibles de primera categoría de cada año + rentas percibidas por participaciones en otras empresas − disminuciones de capital − pérdidas − partidas del inciso segundo del art. 21 pagadas − retiros y distribuciones a los propietarios",
+        "floorZero": true,
+        "legalReference": "LIR art. 14 letra D) N.º 3 letra (j)",
+        "source": "https://www.sii.cl/normativa_legislacion/circulares/2020/circu62.pdf",
+        "lastVerified": "2026-08-16",
+        "note": "Si el resultado es negativo, el capital propio tributario simplificado se considera $0."
+      }
+    },
+    "eligibility": {
+      "simplified14D3j": [
+        "Pro Pyme General (14 D N.º 3)"
+      ],
+      "note": "El régimen Pro Pyme Transparente (14 D N.º 8) y el Régimen General (14 A) NO determinan el CPT simplificado de la letra (j); su tratamiento requiere revisión profesional."
+    },
+    "initialTaxEquity": {
+      "rule": "En el primer ejercicio el capital propio tributario inicial se determina a la fecha de inicio de actividades y corresponde, en lo esencial, al capital efectivamente enterado más los aportes en bienes a su valor tributario, menos los pasivos exigibles existentes a esa fecha.",
+      "legalReference": "LIR art. 41 N.º 1",
+      "note": "El capital SUSCRITO pero no enterado no es un activo de la empresa; sólo lo enterado ingresa al patrimonio."
+    },
+    "warnings": [
+      "El CPT que esta aplicación calcula es una ESTIMACIÓN interna. El CPT que rige es el que la empresa declara en su F22 y el que el SII acepta.",
+      "No se modelan corrección monetaria del art. 41, revalorizaciones, reorganizaciones empresariales, activos en moneda extranjera ni depreciación tributaria acelerada."
+    ]
+  },
+  "f29": {
+    "generalDueDay": 12,
+    "internetPaidEligibleDueDay": 20,
+    "internetNoPaymentDueDay": 28,
+    "source": "https://www.sii.cl/preguntas_frecuentes/iva/001_030_1668.htm",
+    "lastVerified": "2026-08-09",
+    "note": "Si el vencimiento cae en día inhábil, el plazo se traslada según la regla vigente del SII."
+  },
+  "warnings": [
+    "Reglas PROYECTADAS: la Ley 21.850 está publicada pero el SII está emitiendo 13 circulares y 17 resoluciones; nada de lo pendiente se calcula como definitivo.",
+    "Ninguna tasa de este archivo debe tratarse como permanente: reverificar antes de cada Operación Renta.",
+    "La tasa del 14 A depende del año comercial en que se devengan o perciben las rentas, no del año en que se declara.",
+    "Este archivo contiene el RANGO legal de la patente municipal, no la tasa de ninguna comuna. La tasa efectiva la fija cada municipalidad por ordenanza y debe verificarse con ella.",
+    "Capital social, capital suscrito, capital enterado, patrimonio contable, capital propio tributario y capital base de patente son magnitudes distintas: este archivo no las trata como sinónimos y la aplicación tampoco debe hacerlo."
+  ],
+  "idpcGeneral14A": {
+    "rate": 0.255,
+    "taxYear": 2028,
+    "legalReference": "Ley 21.850 art. 6° transitorio (letras b, c, d); LIR art. 20 modificado por el art. 8 N° 3",
+    "source": "https://www.diariooficial.interior.gob.cl/publicaciones/2026/10/17/44576-B/01/2888352.pdf",
+    "officialText": "https://www.bcn.cl/leychile/navegar?idNorma=1229250",
+    "lastVerified": "2026-11-05",
+    "creditRestitution": {
+      "status": "ley-publicada",
+      "rate": 0.3,
+      "appliesToCreditsOfTaxYear": 2028,
+      "legalReference": "Ley 21.850 art. 5° transitorio (restitución 30% AT 2028, 20% AT 2029) y art. 9 (supresión desde 2027)"
+    },
+    "exceptions": [
+      "Contribuyentes del art. 14 letra G LIR: no aplican los literales a) y b) del art. 6° transitorio (años 2026 y 2027)."
+    ],
+    "note": "Tasa del régimen general 14 A. Depende del año comercial en que se devengan o perciben las rentas, no del año de declaración."
+  },
+  "ley21850": {
+    "publicationDate": "2026-10-17",
+    "lastVerified": "2026-11-05",
+    "source": "https://www.diariooficial.interior.gob.cl/publicaciones/2026/10/17/44576-B/01/2888352.pdf",
+    "officialText": "https://www.bcn.cl/leychile/navegar?idNorma=1229250",
+    "status": "ley-publicada-instrucciones-pendientes",
+    "note": "Cada beneficio distingue ley publicada, vigencia e instrucción pendiente. Ninguno se aplica automáticamente: requiere perfil, régimen y evidencia.",
+    "exportServicesCredit": {
+      "effectiveFrom": "2026-11-01",
+      "legalReference": "LIR art. 33 ter (Ley 21.850 art. 7)",
+      "rate": 0.15,
+      "nonMetropolitanBonusPoints": 0.05,
+      "capUtmPerWorker": 75,
+      "againstTax": "Impuesto de Primera Categoría",
+      "refundable": false,
+      "carryForward": true,
+      "requiresAccountingIncome": true,
+      "requirements": [
+        "servicio basado en el conocimiento",
+        "calificado como exportación por el Servicio Nacional de Aduanas",
+        "prestado a persona sin domicilio ni residencia en Chile",
+        "prestado total o parcialmente en Chile y utilizado en el extranjero",
+        "trabajador domiciliado y residente en Chile"
+      ],
+      "restrictions": [
+        "incompatible con otras franquicias o créditos basados en remuneraciones (salvo Ley 19.853, con tope conjunto)",
+        "pérdida del crédito de todos los trabajadores si no se acredita el lugar de trabajo del bonus regional"
+      ],
+      "pending": [
+        "decreto de Hacienda con el catálogo de servicios de la economía del conocimiento",
+        "resolución SII sobre registro de trabajadores y acreditación del lugar de labores"
+      ]
+    },
+    "catastrophicDiseasesCredit": {
+      "effectiveFrom": "2027-01-01",
+      "legalReference": "LIR art. 33 quáter (Ley 21.850 art. 7)",
+      "totalCapUtmPerWorker": 150,
+      "regimes": [
+        "14 A",
+        "14 D N° 3"
+      ],
+      "refundable": false,
+      "carryForward": true,
+      "requirements": [
+        "pago directo del empleador a prestador acreditado en la Superintendencia de Salud",
+        "trabajador con antigüedad continua de al menos 2 años",
+        "cotizaciones previsionales al día",
+        "beneficiario: trabajador, hijos de 25 años o menos, cónyuge o conviviente civil"
+      ],
+      "restrictions": [
+        "excluye lo cubierto por FONASA, ISAPRE, seguros u otra bonificación",
+        "no aplica a desembolsos que beneficien a titulares de 10% o más y sus parientes hasta 4° grado",
+        "el exceso sobre el tope puede ser gasto necesario (art. 31 LIR)"
+      ],
+      "pending": [
+        "decreto Hacienda-Salud que define enfermedades, diagnósticos y tratamientos cubiertos"
+      ]
+    },
+    "sence": {
+      "effectiveFrom": "2026-11-01",
+      "effectiveFromNote": "Regla general del art. 9° transitorio (primer día del mes siguiente a la publicación). Fuentes secundarias indican 1-1-2027: confirmar con SENCE/SII.",
+      "legalReference": "Ley 19.518 arts. 36, 37 y 42 modificados por el art. 29 de la Ley 21.850",
+      "franchiseLimit": 0.007,
+      "previousFranchiseLimit": 0.01,
+      "contributionCaps": [
+        {
+          "monthlyTaxableUpToUtm": 25,
+          "maxShare": 0.8
+        },
+        {
+          "monthlyTaxableAboveUtm": 25,
+          "upToUtm": 50,
+          "maxShare": 0.5
+        },
+        {
+          "monthlyTaxableAboveUtm": 50,
+          "maxShare": 0.15
+        }
+      ],
+      "pending": [
+        "reglamento y circulares SENCE"
+      ]
+    },
+    "integrationRestitution": {
+      "effectiveFrom": "2027-01-01",
+      "byTaxYear": {
+        "2028": 0.3,
+        "2029": 0.2,
+        "2030": 0
+      },
+      "legalReference": "Ley 21.850 arts. 5° y 9° transitorios; art. 9",
+      "pending": [
+        "instrucciones SII para el control en el registro SAC"
+      ]
+    },
+    "ppmRecalculation": {
+      "legalReference": "Ley 21.850 art. 7° transitorio",
+      "recalculateWindows": [
+        "2027-04/2028-03",
+        "2028-04/2029-03",
+        "2029-04/2030-03"
+      ],
+      "regime14AJanToMarReduction": {
+        "2027": 0.0556,
+        "2028": 0.0588,
+        "2029": 0.0417
+      },
+      "pending": [
+        "resolución o circular SII con el procedimiento de recálculo"
+      ]
+    },
+    "iusif": {
+      "legalReference": "Ley 21.850 arts. 11° y 12° transitorios",
+      "rate": 0.1,
+      "optionDeadline": "2027-06-17",
+      "scope": "saldos FUR, STUT y retiros en exceso; sin derecho a créditos asociados",
+      "pending": [
+        "formulario establecido por resolución del SII"
+      ]
+    },
+    "donationsRebate": {
+      "legalReference": "Ley 21.850 art. 1° transitorio",
+      "rebate": 0.5,
+      "perDonor": "una sola vez",
+      "window": [
+        "2026-12-01",
+        "2027-11-30"
+      ],
+      "scope": "Impuesto a las donaciones (Ley 16.271); fuera del alcance de cálculo del producto"
+    },
+    "treasuryRelief": {
+      "legalReference": "Ley 21.850 art. 2° transitorio",
+      "windowDays": 180,
+      "dueUntil": "2025-12-31",
+      "cashMaxInterestWaiver": 1,
+      "cashMaxFineWaiver": 0.8,
+      "agreementMaxInterestWaiver": 0.95,
+      "agreementMaxFineWaiver": 0.75,
+      "agreementDownPaymentMin": 0.1,
+      "note": "Condonación facultativa de Tesorería; no es automática."
+    },
+    "municipalDebtRelief": {
+      "legalReference": "Ley 21.850 art. 10° transitorio",
+      "requestWindow": [
+        "2026-12-01",
+        "2027-11-30"
+      ],
+      "scope": "derechos municipales (patentes, aseo, permisos) devengados en los 3 años previos al 2026-01-01; condona intereses y multas",
+      "note": "Relevante para la patente municipal; cada municipalidad resuelve."
+    },
+    "foreignAssetsDeclaration": {
+      "legalReference": "Ley 21.850 art. 3° transitorio",
+      "window": [
+        "2027-01-01",
+        "2027-12-31"
+      ],
+      "rates": {
+        "general": 0.1,
+        "repatriatedAndInvested5Years": 0.07
+      },
+      "scope": "fuera del alcance de cálculo del producto; sólo se documenta"
+    },
+    "outOfScope": [
+      "exención transitoria de IVA en venta de viviendas nuevas (art. 4° transitorio)",
+      "DFL 2 e impuesto único de 5% al arriendo (art. 3)",
+      "exención de contribuciones a mayores de 65 años (art. 10)",
+      "invariabilidad tributaria",
+      "ganancias de capital art. 107 LIR"
+    ]
+  }
+}

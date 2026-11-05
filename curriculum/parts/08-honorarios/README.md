@@ -29,7 +29,7 @@ Separar una prestación independiente de una relación laboral.
 | Paso | Clase | Pregunta práctica | Resultado |
 |---:|---|---|---|
 | 1 | [C33 — Boleta recibida](classes/C33.md) | La boleta respalda el honorario, pero debe conectarse con servicio y aprobación. El bruto es el costo total; el pago puede dividirse entre prestador y retención. | Validar emisor, servicio, fecha y monto bruto. |
-| 2 | [C34 — Retención 15,25% 2026](classes/C34.md) | Para el ejemplo 2026, bruto × 15,25% determina retención bajo el supuesto aplicable. Cada año debe verificarse la tasa y quién retiene. | Aplicar la tasa 2026 sin convertirla en regla eterna. |
+| 2 | [C34 — Retención 15,25% 2026](classes/C34.md) | Para el ejemplo 2026, bruto × 15,25% determina retención bajo el supuesto aplicable. Cada año debe verificarse la tasa y quién retiene. La gradualidad de la Ley 21.133 sigue: 15,25% en 2026, 16% en 2027 y 17% desde 2028; por eso el motor guarda la tasa dentro del archivo de reglas de cada año y un cierre de 2026 se reproduce siempre con 15,25%. | Aplicar la tasa 2026 sin convertirla en regla eterna. |
 | 3 | [C35 — Pago y F29](classes/C35.md) | El pago al prestador reduce Banco por el líquido; la retención queda como obligación. El F29 y su comprobante cierran otra parte del circuito. | Conectar pago líquido con retención por enterar. |
 | 4 | [C36 — Casos con o sin retención](classes/C36.md) | Quién emite, quién paga, tipo de documento, fecha y reglas definen el tratamiento. Si falta un dato, la app debe exigir verificación y no elegir el caso más común. | Evitar inferir obligación desde una etiqueta incompleta. |
 
@@ -37,7 +37,7 @@ Separar una prestación independiente de una relación laboral.
 
 **1. Boleta recibida.** La boleta respalda el honorario, pero debe conectarse con servicio y aprobación. El bruto es el costo total; el pago puede dividirse entre prestador y retención. La evidencia principal será: boleta, contrato/servicio, aprobación, fecha.
 
-**2. Retención 15,25% 2026.** Para el ejemplo 2026, bruto × 15,25% determina retención bajo el supuesto aplicable. Cada año debe verificarse la tasa y quién retiene. La evidencia principal será: año, tasa oficial, boleta, cálculo.
+**2. Retención 15,25% 2026.** Para el ejemplo 2026, bruto × 15,25% determina retención bajo el supuesto aplicable. Cada año debe verificarse la tasa y quién retiene. La gradualidad de la Ley 21.133 sigue: 15,25% en 2026, 16% en 2027 y 17% desde 2028; por eso el motor guarda la tasa dentro del archivo de reglas de cada año y un cierre de 2026 se reproduce siempre con 15,25%. La evidencia principal será: año, tasa oficial, boleta, cálculo.
 
 **3. Pago y F29.** El pago al prestador reduce Banco por el líquido; la retención queda como obligación. El F29 y su comprobante cierran otra parte del circuito. La evidencia principal será: boleta, pago líquido, retención, comprobante F29.
 

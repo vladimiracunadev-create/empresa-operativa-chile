@@ -18,7 +18,7 @@ son un poco más estrictas de lo habitual — y todas tienen un motivo concreto.
 ## 🚀 Antes de nada
 
 ```bash
-pnpm check    # sincronía de reglas/Academia + validación + 217 pruebas
+pnpm check    # sincronía de reglas/Academia + validación + 230 pruebas
 pnpm build    # deja apps/web/dist listo
 ```
 

@@ -17,7 +17,17 @@ Versionado según [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
-Sin cambios todavía.
+### ✨ Añadido
+
+- Ley N.º 21.850 (D.O. 17-10-2026): reglas proyectadas `2027.json` a `2030.json` con la escalera del régimen 14 A (27 → 25,5 → 24 → 23 %), restitución del crédito (30 / 20 / 0 %), retención de honorarios (16 % y 17 %) y los beneficios de la ley con fuente, vigencia y pendientes.
+- Motor `ley-21850.mjs`: IDPC 14 A, Pro Pyme General, comparación de regímenes, crédito por exportación de servicios y crédito por enfermedades catastróficas, con estados explícitos `pendiente-validacion` / `informacion-insuficiente`.
+- Comando CLI `regimenes` y documento [docs/tax/LEY-21850.md](docs/tax/LEY-21850.md) (matriz de impacto, fuentes, decisiones y riesgos).
+- Academia: clases C31, C34, C57, C60 y C63 incorporan la reforma.
+
+### 🔁 Cambiado
+
+- `ppmFromSalesNet` e `idpcProPyme` informan «pendiente de validación» cuando la tasa del año no está instruida, en lugar de calcular con un valor ajeno.
+- `municipalPatent` ya no reutiliza la UTM de 2026 para otros años.
 
 ## [1.7.1] — 2026-10-30
 
