@@ -24,6 +24,7 @@ import {
   calculateMunicipalPatent,
   calculateTaxEquity,
   idpcProPyme,
+  compareRegimes,
   simulateScenario,
   journal
 } from '../../../packages/accounting-engine/index.mjs';
@@ -73,6 +74,7 @@ CÁLCULO (no toca disco)
   cpt          --anio 2026 --regimen "Pro Pyme General (14 D N.º 3)"
                [--activos N] [--pasivos N] [--capital-aportado N] [--base-imponible N] [--perdidas N] [--retiros N]
   idpc         --ingresos N --gastos N [--ajustes N]
+  regimenes    --base N [--anio 2027]   (compara 14 A / Pro Pyme; Ley 21.850)
   asiento      --tipo sale|purchase|expense|honorarium|capital_contribution|shareholder_loan|shareholder_loan_repayment|owner_withdrawal|tax_payment --monto N
   escenario    archivo.json
   rut          76.123.456-7
@@ -203,6 +205,10 @@ try {
 
     case 'idpc':
       out(idpcProPyme({ incomeReceived: num('ingresos'), expensesPaid: num('gastos'), adjustments: num('ajustes') }, anio()));
+      break;
+
+    case 'regimenes':
+      out(compareRegimes({ taxableBase: num('base') }, anio()));
       break;
 
     case 'asiento':

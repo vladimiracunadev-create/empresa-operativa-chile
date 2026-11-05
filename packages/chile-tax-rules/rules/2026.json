@@ -106,7 +106,9 @@
       }
     },
     "eligibility": {
-      "simplified14D3j": ["Pro Pyme General (14 D N.º 3)"],
+      "simplified14D3j": [
+        "Pro Pyme General (14 D N.º 3)"
+      ],
       "note": "El régimen Pro Pyme Transparente (14 D N.º 8) y el Régimen General (14 A) NO determinan el CPT simplificado de la letra (j); su tratamiento requiere revisión profesional."
     },
     "initialTaxEquity": {
@@ -134,5 +136,22 @@
     "Ninguna tasa de este archivo debe tratarse como permanente: cada año comercial exige su propio archivo de reglas verificado contra la fuente oficial.",
     "Este archivo contiene el RANGO legal de la patente municipal, no la tasa de ninguna comuna. La tasa efectiva la fija cada municipalidad por ordenanza y debe verificarse con ella.",
     "Capital social, capital suscrito, capital enterado, patrimonio contable, capital propio tributario y capital base de patente son magnitudes distintas: este archivo no las trata como sinónimos y la aplicación tampoco debe hacerlo."
-  ]
+  ],
+  "idpcGeneral14A": {
+    "rate": 0.27,
+    "taxYear": 2027,
+    "legalReference": "LIR art. 20 (texto vigente hasta 31-12-2026); Ley 21.850 art. 6° transitorio letra a)",
+    "source": "https://www.diariooficial.interior.gob.cl/publicaciones/2026/10/17/44576-B/01/2888352.pdf",
+    "officialText": "https://www.bcn.cl/leychile/navegar?idNorma=1229250",
+    "lastVerified": "2026-11-05",
+    "creditRestitution": {
+      "status": "regimen-anterior",
+      "rate": null,
+      "note": "Rige la restitución anterior de los arts. 56 N° 3 y 63 LIR; esta aplicación no la recalcula."
+    },
+    "exceptions": [
+      "Contribuyentes del art. 14 letra G LIR: no aplican los literales a) y b) del art. 6° transitorio (años 2026 y 2027)."
+    ],
+    "note": "Tasa del régimen general 14 A. Depende del año comercial en que se devengan o perciben las rentas, no del año de declaración."
+  }
 }

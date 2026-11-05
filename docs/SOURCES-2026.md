@@ -114,3 +114,7 @@ Estas fuentes respaldan el marco educativo de detección e investigación. No co
 El informe de Fiscalía con corte al **30-09-2022** distingue condena, suspensión condicional del procedimiento, decisión de no perseverar, sobreseimiento y asuntos pendientes para Penta, SQM y Corpesca. Se conserva como fuente histórica fechada; no se presenta como estado procesal actual a septiembre de 2026.
 
 Las afirmaciones testimoniales sobre presiones, motivaciones o interferencia se separan de estos hechos institucionales. La bibliografía comercial y técnica se registra en [BIBLIOGRAFIA-INTEGRIDAD.md](BIBLIOGRAFIA-INTEGRIDAD.md), no en esta lista de fuentes oficiales.
+
+### Ley 21.850 (Reconstrucción Nacional)
+
+Matriz completa de fuentes, vigencias y pendientes en [tax/LEY-21850.md](tax/LEY-21850.md). Texto oficial: https://www.diariooficial.interior.gob.cl/publicaciones/2026/10/17/44576-B/01/2888352.pdf

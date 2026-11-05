@@ -30,7 +30,7 @@ Poder reconstruir una cifra desde su documento y su regla.
 |---:|---|---|---|
 | 1 | [C61 — Muestreo y pruebas](classes/C61.md) | Muestrear no es mirar al azar sin criterio. Se define población, riesgo, cobertura y excepción; partidas críticas pueden revisarse al 100%. | Seleccionar evidencia según riesgo y objetivo. |
 | 2 | [C62 — Alertas de inconsistencias](classes/C62.md) | Una alerta indica condición observable, severidad, evidencia y acción. No debe acusar fraude ni incumplimiento legal sin investigación. | Diseñar alertas accionables y no alarmistas. |
-| 3 | [C63 — Reglas versionadas](classes/C63.md) | Una regla legal necesita país, período, fuente, revisión y estado. Actualizar una tasa no reescribe años cerrados; se crea una versión nueva y pruebas. | Conservar vigencia, fuente y cambios históricos. |
+| 3 | [C63 — Reglas versionadas](classes/C63.md) | Una regla legal necesita país, período, fuente, revisión y estado. Actualizar una tasa no reescribe años cerrados; se crea una versión nueva y pruebas. Caso real: la Ley 21.850 sube la escalera del 14 A hasta 2030 y el repositorio responde con rules/2027.json a rules/2030.json, mientras rules/2026.json conserva sus valores; lo que el SII aún no instruye queda como estado pendiente. | Conservar vigencia, fuente y cambios históricos. |
 | 4 | [C64 — Diseño de un contador virtual seguro](classes/C64.md) | El sistema calcula y organiza evidencia; no firma, presenta, paga ni decide elegibilidad. Datos incompletos devuelven un estado observable y una ruta de verificación. | Definir qué automatizar y dónde fallar cerrado. |
 
 ## Cómo se conectan las clases
@@ -39,7 +39,7 @@ Poder reconstruir una cifra desde su documento y su regla.
 
 **2. Alertas de inconsistencias.** Una alerta indica condición observable, severidad, evidencia y acción. No debe acusar fraude ni incumplimiento legal sin investigación. La evidencia principal será: regla, dato, severidad, acción.
 
-**3. Reglas versionadas.** Una regla legal necesita país, período, fuente, revisión y estado. Actualizar una tasa no reescribe años cerrados; se crea una versión nueva y pruebas. La evidencia principal será: fuente, vigencia, revisor, diff, prueba.
+**3. Reglas versionadas.** Una regla legal necesita país, período, fuente, revisión y estado. Actualizar una tasa no reescribe años cerrados; se crea una versión nueva y pruebas. Caso real: la Ley 21.850 sube la escalera del 14 A hasta 2030 y el repositorio responde con rules/2027.json a rules/2030.json, mientras rules/2026.json conserva sus valores; lo que el SII aún no instruye queda como estado pendiente. La evidencia principal será: fuente, vigencia, revisor, diff, prueba.
 
 **4. Diseño de un contador virtual seguro.** El sistema calcula y organiza evidencia; no firma, presenta, paga ni decide elegibilidad. Datos incompletos devuelven un estado observable y una ruta de verificación. La evidencia principal será: contrato, estados, fuentes, tests, auditoría.
 

@@ -28,14 +28,14 @@ Tener doce cierres mensuales explicables y perfil tributario verificado.
 
 | Paso | Clase | Pregunta práctica | Resultado |
 |---:|---|---|---|
-| 1 | [C57 — Base Pro Pyme](classes/C57.md) | La base anual no se obtiene sumando caja. Se necesita método, ingresos, gastos y ajustes respaldados; si el régimen no califica, no se fuerza el cálculo simplificado. | Identificar régimen, período y ajustes antes de calcular. |
+| 1 | [C57 — Base Pro Pyme](classes/C57.md) | La base anual no se obtiene sumando caja. Se necesita método, ingresos, gastos y ajustes respaldados; si el régimen no califica, no se fuerza el cálculo simplificado. Desde la Ley 21.850 la tasa de Primera Categoría depende del año comercial en que se devengan o perciben las rentas: régimen general 14 A con 27% (2026), 25,5% (2027), 24% (2028) y 23% desde 2029; Pro Pyme General con 12,5% hasta 2027 y 15% condicionado en 2028, y su tasa desde 2029 pendiente de instrucción del SII. Año comercial y año tributario no son lo mismo: las rentas de 2027 se declaran en 2028. | Identificar régimen, período y ajustes antes de calcular. |
 | 2 | [C58 — Registros empresariales](classes/C58.md) | Los registros dependen del régimen y hechos del contribuyente. La aplicación debe pedir perfil y no mostrar obligaciones universales por defecto. | Reconocer registros aplicables sin inferirlos. |
 | 3 | [C59 — Declaraciones Juradas](classes/C59.md) | No existe una lista universal válida para toda empresa. Cada DJ necesita criterio de aplicabilidad, período, datos, revisión y comprobante. | Gestionar catálogo, fuente y vencimiento por obligación concreta. |
 | 4 | [C60 — F22 y revisión final](classes/C60.md) | El F22 integra resultados y antecedentes anuales. La app puede preparar controles, pero la propuesta y presentación se verifican en el portal y con profesional cuando corresponde. | Conciliar declaración anual con cierres y fuentes oficiales. |
 
 ## Cómo se conectan las clases
 
-**1. Base Pro Pyme.** La base anual no se obtiene sumando caja. Se necesita método, ingresos, gastos y ajustes respaldados; si el régimen no califica, no se fuerza el cálculo simplificado. La evidencia principal será: régimen, balance, ajustes, fuentes.
+**1. Base Pro Pyme.** La base anual no se obtiene sumando caja. Se necesita método, ingresos, gastos y ajustes respaldados; si el régimen no califica, no se fuerza el cálculo simplificado. Desde la Ley 21.850 la tasa de Primera Categoría depende del año comercial en que se devengan o perciben las rentas: régimen general 14 A con 27% (2026), 25,5% (2027), 24% (2028) y 23% desde 2029; Pro Pyme General con 12,5% hasta 2027 y 15% condicionado en 2028, y su tasa desde 2029 pendiente de instrucción del SII. Año comercial y año tributario no son lo mismo: las rentas de 2027 se declaran en 2028. La evidencia principal será: régimen, balance, ajustes, fuentes.
 
 **2. Registros empresariales.** Los registros dependen del régimen y hechos del contribuyente. La aplicación debe pedir perfil y no mostrar obligaciones universales por defecto. La evidencia principal será: régimen, movimientos patrimoniales, cierres, declaraciones.
 

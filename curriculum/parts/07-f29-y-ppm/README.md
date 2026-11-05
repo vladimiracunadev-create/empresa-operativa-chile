@@ -30,7 +30,7 @@ Distinguir IVA débito, crédito, retenciones y pagos provisionales.
 |---:|---|---|---|
 | 1 | [C29 — Anatomía F29](classes/C29.md) | El formulario reúne impuestos y retenciones con bases distintas. Cada casilla debe enlazar a documentos, registros y reglas; un total sin procedencia no es revisable. | Reconocer componentes y procedencia de datos. |
 | 2 | [C30 — IVA débito y crédito](classes/C30.md) | Débito proviene de operaciones gravadas; crédito requiere elegibilidad; remanente conecta períodos. Cada saldo debe conservar su origen y no degradarse a una resta sin documentos. | Conciliar impuesto de ventas, compras y remanente. |
-| 3 | [C31 — PPM Pro Pyme](classes/C31.md) | El PPM no es IVA ni utilidad. La tasa y base dependen del contexto verificado; usar la tasa inicial eternamente es un error de vigencia. | Calcular anticipo sólo con régimen, base y tasa vigentes. |
+| 3 | [C31 — PPM Pro Pyme](classes/C31.md) | El PPM no es IVA ni utilidad. La tasa y base dependen del contexto verificado; usar la tasa inicial eternamente es un error de vigencia. La Ley 21.850 (D.O. 17-10-2026) ordena recalcular el PPM entre abril de 2027 y marzo de 2030 con la tasa de cada año; mientras el SII no publique el procedimiento, la aplicación declara el PPM de esos años como pendiente de validación en vez de inventar una tasa. | Calcular anticipo sólo con régimen, base y tasa vigentes. |
 | 4 | [C32 — Plazos, pago y rectificación](classes/C32.md) | La fecha depende de período, modalidad, calendario y reglas vigentes. Rectificar no debe prometerse como universal: se documenta el error y se confirma el procedimiento oficial. | Separar vencimiento, presentación, pago y corrección. |
 
 ## Cómo se conectan las clases
@@ -39,7 +39,7 @@ Distinguir IVA débito, crédito, retenciones y pagos provisionales.
 
 **2. IVA débito y crédito.** Débito proviene de operaciones gravadas; crédito requiere elegibilidad; remanente conecta períodos. Cada saldo debe conservar su origen y no degradarse a una resta sin documentos. La evidencia principal será: RCV ventas, RCV compras, remanente anterior, cálculo.
 
-**3. PPM Pro Pyme.** El PPM no es IVA ni utilidad. La tasa y base dependen del contexto verificado; usar la tasa inicial eternamente es un error de vigencia. La evidencia principal será: régimen, tasa, vigencia, base.
+**3. PPM Pro Pyme.** El PPM no es IVA ni utilidad. La tasa y base dependen del contexto verificado; usar la tasa inicial eternamente es un error de vigencia. La Ley 21.850 (D.O. 17-10-2026) ordena recalcular el PPM entre abril de 2027 y marzo de 2030 con la tasa de cada año; mientras el SII no publique el procedimiento, la aplicación declara el PPM de esos años como pendiente de validación en vez de inventar una tasa. La evidencia principal será: régimen, tasa, vigencia, base.
 
 **4. Plazos, pago y rectificación.** La fecha depende de período, modalidad, calendario y reglas vigentes. Rectificar no debe prometerse como universal: se documenta el error y se confirma el procedimiento oficial. La evidencia principal será: calendario oficial, acuse, pago, expediente de corrección.
 

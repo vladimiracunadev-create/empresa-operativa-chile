@@ -196,7 +196,9 @@ test('el historial muestra el año 2 rotulado como simulación, no como cálculo
 
   assert.equal(year1.simulatedWithRulesYear, null, 'el año con reglas propias no se simula');
   assert.equal(year2.simulatedWithRulesYear, 2026, 'un año sin reglas propias sólo puede mostrarse como simulación rotulada');
-  assert.match(year2.patentError, /No hay reglas verificadas para el año comercial 2027/);
+  // Desde la Ley 21.850 existe rules/2027.json, pero la UTM de 2027 aún no existe:
+  // el período no se calcula con la UTM de otro año.
+  assert.match(year2.patentError, /Las reglas del año 2027 no traen ninguna UTM verificada/);
   assert.notEqual(year2.patent.baseCapital, year1.patent.baseCapital, 'la base tiene que haber cambiado de un año al otro');
   assert.equal(year2.patent.baseCapital, w.getAnnualClose(2026).CPT);
 });
