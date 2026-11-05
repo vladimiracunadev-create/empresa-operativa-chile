@@ -15,7 +15,7 @@ Windows y navegador. Tus datos no salen del dispositivo.**
 [![Seguridad](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/security.yml/badge.svg?branch=main)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/security.yml)
 [![Pages](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/actions/workflows/pages.yml)
 
-[![Versión](https://img.shields.io/badge/versión-1.7.1-e8590c?style=for-the-badge)](CHANGELOG.md)
+[![Versión](https://img.shields.io/badge/versión-1.8.0-e8590c?style=for-the-badge)](CHANGELOG.md)
 [![Plataformas](https://img.shields.io/badge/plataformas-Android_·_Windows_·_Web-7c5cff?style=for-the-badge)](#-descargas)
 [![Pruebas](https://img.shields.io/badge/pruebas-230_verdes-2e8b57?style=for-the-badge)](tests/)
 [![Dependencias](https://img.shields.io/badge/dependencias_de_producción-0-2f81f7?style=for-the-badge)](package.json)
