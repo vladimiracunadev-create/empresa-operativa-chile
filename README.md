@@ -17,7 +17,7 @@ Windows y navegador. Tus datos no salen del dispositivo.**
 
 [![Versión](https://img.shields.io/badge/versión-1.7.1-e8590c?style=for-the-badge)](CHANGELOG.md)
 [![Plataformas](https://img.shields.io/badge/plataformas-Android_·_Windows_·_Web-7c5cff?style=for-the-badge)](#-descargas)
-[![Pruebas](https://img.shields.io/badge/pruebas-217_verdes-2e8b57?style=for-the-badge)](tests/)
+[![Pruebas](https://img.shields.io/badge/pruebas-230_verdes-2e8b57?style=for-the-badge)](tests/)
 [![Dependencias](https://img.shields.io/badge/dependencias_de_producción-0-2f81f7?style=for-the-badge)](package.json)
 [![Telemetría](https://img.shields.io/badge/telemetría-cero-3fb950?style=for-the-badge)](#-privacidad-que-se-puede-comprobar)
 [![Reglas](https://img.shields.io/badge/reglas-año_comercial_2026-8957e5?style=for-the-badge)](docs/SOURCES-2026.md)
@@ -53,7 +53,7 @@ Windows y navegador. Tus datos no salen del dispositivo.**
 
 | 🖥️ Vistas | 🧮 Motor | ✅ Pruebas | 📦 Dependencias | 📱 Plataformas | 📄 Manual |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| **17** | **1** | **217** | **0** | **4** | **HTML + PDF** |
+| **17** | **1** | **230** | **0** | **4** | **HTML + PDF** |
 
 </div>
 
@@ -187,7 +187,7 @@ falla si una lámina se desbordó o si las cifras de arriba dejaron de cuadrar c
 | App de Android | ✅ APK **con el contenido contado dentro del binario** en CI |
 | App de Windows | ✅ MSI, NSIS y portable; **arranca y se comprueba vivo** en CI |
 | Web / PWA | ✅ publicada en Pages, instalable y sin conexión |
-| Pruebas | ✅ 217 en Ubuntu y Windows, Node 22, 24 y 26 con parches de seguridad |
+| Pruebas | ✅ 230 en Ubuntu y Windows, Node 22, 24 y 26 con parches de seguridad |
 | Seguridad | ✅ CodeQL + revisión de dependencias + auditorías pnpm/RustSec + detección de datos reales + acciones fijadas a SHA |
 | Integración con el SII | ⚪ **no existe** — por diseño, no por falta de tiempo |
 | Cifrado de datos locales | ⚪ pendiente ([roadmap](docs/ROADMAP.md)) |
