@@ -2,8 +2,8 @@
 
 <div align="center">
 
-[![Actual](https://img.shields.io/badge/actual-v1.7.1-e8590c?style=for-the-badge)](../CHANGELOG.md)
-[![Siguiente](https://img.shields.io/badge/siguiente-v1.8_·_integraciones-2f81f7?style=for-the-badge)](#-v18--integraciones-y-conciliación)
+[![Actual](https://img.shields.io/badge/actual-v1.8.0-e8590c?style=for-the-badge)](../CHANGELOG.md)
+[![Siguiente](https://img.shields.io/badge/siguiente-v1.9_·_integraciones-2f81f7?style=for-the-badge)](#-v19--integraciones-y-conciliación)
 
 [🏠 Inicio](../README.md) · [📓 Changelog](../CHANGELOG.md) · [🏗️ Arquitectura](ARCHITECTURE.md)
 
@@ -11,7 +11,7 @@
 
 ---
 
-Estado a **2026-10-30**, versión 1.7.1.
+Estado a **2026-11-05**, versión 1.8.0.
 
 ## ✅ v1.0 — publicado
 
@@ -65,7 +65,14 @@ Estado a **2026-10-30**, versión 1.7.1.
 - Fuente única y 129 documentos generados; CI impide contenido vacío o desincronizado.
 - Libro PDF completo de 289 páginas con las 70 clases y todos los recursos de la Academia.
 
-## 🔜 v1.8 — integraciones y conciliación
+## ✅ v1.8 — Ley 21.850 (Reconstrucción Nacional)
+
+- Reglas por año comercial 2027-2030: escalera del 14 A (27 → 25,5 → 24 → 23 %), restitución del crédito (30/20/0 %) y honorarios 16 %/17 %.
+- Motor: IDPC 14 A y Pro Pyme, comparación de regímenes, crédito por exportación de servicios y por enfermedades catastróficas.
+- Estados explícitos `pendiente-validacion` / `informacion-insuficiente` donde el SII aún no instruye.
+- Academia, manual y [documento de impacto](tax/LEY-21850.md) actualizados.
+
+## 🔜 v1.9 — integraciones y conciliación
 
 Ordenado por lo que hoy obliga a trabajo manual:
 
@@ -77,7 +84,7 @@ Ordenado por lo que hoy obliga a trabajo manual:
 5. **Feriados legales** en el cálculo de vencimientos.
 6. **Recordatorios de vencimiento** en Android.
 
-## 📗 v1.9 — contabilidad más completa
+## 📗 v1.10 — contabilidad más completa
 
 - Plan de cuentas configurable y libro mayor.
 - Balance y estado de resultados educativos.

@@ -4,12 +4,12 @@
 
 # 📘 Manual de usuario
 
-### **Empresa Operativa Chile · versión 1.7.1**
+### **Empresa Operativa Chile · versión 1.8.0**
 
 **Cómo crear, operar y controlar una empresa chilena con esta aplicación —
 de la instalación al cierre del mes, con las pantallas reales del producto.**
 
-[![Versión](https://img.shields.io/badge/versión-1.7.1-4f8cff?style=for-the-badge)](../CHANGELOG.md)
+[![Versión](https://img.shields.io/badge/versión-1.8.0-4f8cff?style=for-the-badge)](../CHANGELOG.md)
 [![Manual PDF](https://img.shields.io/badge/📕_este_manual-en_PDF-e8590c?style=for-the-badge)](MANUAL.pdf)
 [![Reglas](https://img.shields.io/badge/reglas-año_comercial_2026-2e8b57?style=for-the-badge)](SOURCES-2026.md)
 
@@ -493,6 +493,21 @@ registraste, y `IVA derivado` cuando se dedujeron aplicando el 19 % al neto.
 **retención de honorarios** (lo que la empresa debe enterar por las boletas que recibió) y el
 **total estimado a enterar**.
 
+### 🏛️ Ley 21.850: tasas y créditos hasta 2030
+
+Desde la versión 1.8.0 hay reglas por año comercial para 2027 a 2030. La tasa del régimen
+general (14 A) baja de **27 %** (2026) a **25,5 %** (2027), **24 %** (2028) y **23 %** desde 2029;
+depende del año en que se devengan o perciben las rentas, no del año en que se declara. La
+retención de honorarios sube a **16 %** en 2027 y **17 %** desde 2028.
+
+Cuando la ley todavía no tiene instrucción del SII (PPM de 2027 en adelante, tasa Pro Pyme desde
+2029, catálogo de servicios de exportación, enfermedades catastróficas), la aplicación muestra
+**pendiente de validación** o **información insuficiente** en vez de una cifra aproximada.
+La UTM de un año futuro hay que ingresarla: nunca se reutiliza la de otro año.
+
+Para comparar regímenes desde la línea de comandos: `node apps/contador-cli/src/index.mjs regimenes --base 100000000 --anio 2027`.
+Detalle, fuentes y pendientes: [LEY-21850.md](tax/LEY-21850.md).
+
 ### 📅 Vencimientos
 
 Las tres fechas que el SII distingue. La etiqueta `trasladado` indica que la fecha caía en fin
@@ -923,7 +938,7 @@ respaldo y auméntalo en el otro (capítulo [12](#cap-12)).
 <details>
 <summary><b>¿Puedo llevar más de una empresa?</b></summary>
 
-En la versión 1.7.1, hay un entorno real por dispositivo. Como alternativa, exporta el respaldo de
+En la versión 1.8.0, hay un entorno real por dispositivo. Como alternativa, exporta el respaldo de
 una empresa, reemplaza con el de la otra, y ve alternando. Multi-empresa está en el roadmap.
 </details>
 
@@ -1048,7 +1063,7 @@ Todo esto está en el [roadmap](ROADMAP.md).
 [🔗 Fuentes oficiales](SOURCES-2026.md) ·
 [🏗️ Arquitectura](ARCHITECTURE.md)
 
-<sub>Empresa Operativa Chile · v1.7.1 · Reglas del año comercial 2026 verificadas el 2026-08-09<br>
+<sub>Empresa Operativa Chile · v1.8.0 · Reglas del año comercial 2026 verificadas el 2026-08-09; reglas proyectadas 2027-2030 (Ley 21.850) verificadas el 2026-11-05<br>
 MIT © Vladimir Acuña · Hecho en Chile 🇨🇱</sub>
 
 </div>

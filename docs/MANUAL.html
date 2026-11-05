@@ -135,7 +135,7 @@
 </style>
 </head><body>
 <div class="doc__bar">
-  <b>📘 Manual de usuario · Empresa Operativa Chile v1.7.1</b>
+  <b>📘 Manual de usuario · Empresa Operativa Chile v1.8.0</b>
   <a href="MANUAL.pdf" download>Descargar PDF</a>
 </div>
 <div class="doc">
@@ -308,6 +308,11 @@
 <p><strong>PPM</strong> (anticipo sobre los ingresos brutos, se paga aunque el mes cierre con pérdida),</p>
 <p><strong>retención de honorarios</strong> (lo que la empresa debe enterar por las boletas que recibió) y el</p>
 <p><strong>total estimado a enterar</strong>.</p>
+<h3 id="ley-21850-tasas-y-creditos-hasta-2030">🏛️ Ley 21.850: tasas y créditos hasta 2030</h3>
+<p>Desde la versión 1.8.0 hay reglas por año comercial para 2027 a 2030. La tasa del régimen general (14 A) baja de <strong>27 %</strong> (2026) a <strong>25,5 %</strong> (2027), <strong>24 %</strong> (2028) y <strong>23 %</strong> desde 2029; depende del año en que se devengan o perciben las rentas, no del año en que se declara. La retención de honorarios sube a <strong>16 %</strong> en 2027 y <strong>17 %</strong> desde 2028.</p>
+<p>Cuando la ley todavía no tiene instrucción del SII (PPM de 2027 en adelante, tasa Pro Pyme desde 2029, catálogo de servicios de exportación, enfermedades catastróficas), la aplicación muestra</p>
+<p><strong>pendiente de validación</strong> o <strong>información insuficiente</strong> en vez de una cifra aproximada. La UTM de un año futuro hay que ingresarla: nunca se reutiliza la de otro año.</p>
+<p>Para comparar regímenes desde la línea de comandos: <code>node apps/contador-cli/src/index.mjs regimenes --base 100000000 --anio 2027</code>. Detalle, fuentes y pendientes: <a href="tax/LEY-21850.md" target="_blank" rel="noopener noreferrer">LEY-21850.md</a>.</p>
 <h3 id="vencimientos">📅 Vencimientos</h3>
 <p>Las tres fechas que el SII distingue. La etiqueta <code>trasladado</code> indica que la fecha caía en fin de semana y se movió al siguiente día hábil.</p>
 <div class="alert alert--warning"><div class="alert__head">⚠️ Advertencia</div><p>Los <strong>feriados legales no están modelados</strong>. Confirma siempre en el calendario tributario oficial antes de apurar un pago.</p></div>
@@ -532,7 +537,7 @@ respaldo y auméntalo en el otro (capítulo [12](#cap-12)).
 <details>
 <summary><b>¿Puedo llevar más de una empresa?</b></summary>
 
-En la versión 1.7.1, hay un entorno real por dispositivo. Como alternativa, exporta el respaldo de
+En la versión 1.8.0, hay un entorno real por dispositivo. Como alternativa, exporta el respaldo de
 una empresa, reemplaza con el de la otra, y ve alternando. Multi-empresa está en el roadmap.
 </details>
 <details>
@@ -605,7 +610,7 @@ complejas se escalan a un especialista.
 [🔗 Fuentes oficiales](SOURCES-2026.md) ·
 [🏗️ Arquitectura](ARCHITECTURE.md)
 
-<sub>Empresa Operativa Chile · v1.7.1 · Reglas del año comercial 2026 verificadas el 2026-08-09<br>
+<sub>Empresa Operativa Chile · v1.8.0 · Reglas del año comercial 2026 verificadas el 2026-08-09; reglas proyectadas 2027-2030 (Ley 21.850) verificadas el 2026-11-05<br>
 MIT © Vladimir Acuña · Hecho en Chile 🇨🇱</sub>
 
 </div></main>

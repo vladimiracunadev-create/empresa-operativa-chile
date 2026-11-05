@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Versión](https://img.shields.io/badge/versión_actual-1.7.1-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
+[![Versión](https://img.shields.io/badge/versión_actual-1.8.0-e8590c?style=for-the-badge)](https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/latest)
 [![Formato](https://img.shields.io/badge/formato-Keep_a_Changelog-7c5cff?style=for-the-badge)](https://keepachangelog.com/es-ES/1.1.0/)
 [![SemVer](https://img.shields.io/badge/versionado-SemVer-2f81f7?style=for-the-badge)](https://semver.org/lang/es/)
 
@@ -17,12 +17,21 @@ Versionado según [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+Sin cambios todavía.
+
+## [1.8.0] — 2026-11-05
+
 ### ✨ Añadido
 
 - Ley N.º 21.850 (D.O. 17-10-2026): reglas proyectadas `2027.json` a `2030.json` con la escalera del régimen 14 A (27 → 25,5 → 24 → 23 %), restitución del crédito (30 / 20 / 0 %), retención de honorarios (16 % y 17 %) y los beneficios de la ley con fuente, vigencia y pendientes.
 - Motor `ley-21850.mjs`: IDPC 14 A, Pro Pyme General, comparación de regímenes, crédito por exportación de servicios y crédito por enfermedades catastróficas, con estados explícitos `pendiente-validacion` / `informacion-insuficiente`.
 - Comando CLI `regimenes` y documento [docs/tax/LEY-21850.md](docs/tax/LEY-21850.md) (matriz de impacto, fuentes, decisiones y riesgos).
-- Academia: clases C31, C34, C57, C60 y C63 incorporan la reforma.
+- Academia: clases C31, C34, C57, C60 y C63 incorporan la reforma; el libro PDF pasa a 290 páginas.
+- Manual: sección «Ley 21.850: tasas y créditos hasta 2030».
+
+### 🔒 Dependencias
+
+- Capacitor `core` y `android` 7.6.9 → 7.6.10. Se descartó subir sólo la CLI a 8.x (#17) hasta migrar Capacitor completo.
 
 ### 🔁 Cambiado
 
@@ -489,6 +498,7 @@ Primera versión distribuible. El proyecto pasa de prototipo con tres interfaces
 - Academia: currículo, 16 laboratorios y casos integrales.
 - Andamiaje de Tauri para Windows.
 
+[1.8.0]: https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/tag/v1.8.0
 [1.7.1]: https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/tag/v1.7.1
 [1.7.0]: https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/tag/v1.7.0
 [1.6.0]: https://github.com/vladimiracunadev-create/empresa-operativa-chile/releases/tag/v1.6.0
