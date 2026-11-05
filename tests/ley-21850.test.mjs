@@ -133,7 +133,7 @@ test('cada año proyectado declara trazabilidad, vigencia y pendientes de la ley
     assert.equal(r.ley21850.sence.franchiseLimit, 0.007);
     assert.equal(r.ley21850.integrationRestitution.byTaxYear[2030], 0);
     assert.ok(r.ley21850.exportServicesCredit.pending.length > 0);
-    assert.ok(r.idpcGeneral14A.source.startsWith('https://www.diariooficial'));
+    assert.equal(new URL(r.idpcGeneral14A.source).hostname, 'www.diariooficial.interior.gob.cl');
     assert.deepEqual(r.ley21850, loadRules(2027).ley21850, 'el bloque de la ley debe ser idéntico entre años');
   }
 });
